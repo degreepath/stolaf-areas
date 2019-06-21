@@ -1,11 +1,11 @@
 ---
-name: Bachelor of Arts
+name: B.A.
 type: degree
 catalog: 2015-16
 
 result:
   all:
-    - requirement: Degree Requirements
+    # - requirement: Degree Requirements
     - requirement: General Education
 
 requirements:
@@ -69,8 +69,8 @@ requirements:
     result:
       all:
         - requirement: Foundation
-        - requirement: Core
-        - requirement: Integrative
+        # - requirement: Core
+        # - requirement: Integrative
 
     requirements:
       Foundation:
