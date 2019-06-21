@@ -5,20 +5,24 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Prerequisites
-    - reference: Requirements
-    - reference: Ethics
+    - requirement: Prerequisites
+    - requirement: Requirements
+    - requirement: Ethics
 
 requirements:
   Prerequisites:
     message:
-      These courses must be completed before beginning any level III nursing courses.
+      These courses must be completed before beginning any level III nursing
+      courses.
     result:
       all:
         - course: BIO 143
         - course: BIO 243
         - course: ID 210
-        - course: NURS 110
+        - any:
+            - {course: ESTH 110, hidden: true}
+            - {course: ID 110, hidden: true}
+            - course: NURS 110
         - course: PSYCH 125
         - course: PSYCH 241
         - either:
@@ -33,7 +37,8 @@ requirements:
 
   Ethics:
     message:
-      The Nursing department recommends taking the Biomedical Ethics (PHIL 250) course for this requirement
+      The Nursing department recommends taking the Biomedical Ethics (PHIL 250)
+      course for this requirement
     result:
       from: {student: courses}
       where: {gereqs: {$eq: EIN}}

@@ -24,7 +24,7 @@ attributes:
     CSCI 350: [csci_electives]
     MSCS 389: [csci_electives]
     ID 259: [csci_electives]
-    CSCI 300 2000.1: [csci_systems]
+    CSCI 300B 2018.1: [csci_systems]
 
 requirements:
   Foundation:
@@ -49,7 +49,7 @@ requirements:
 
       Software:
         result:
-          both: 
+          both:
             - course: CSCI 251
             - course: CSCI 252.L
 
@@ -58,7 +58,7 @@ requirements:
           both:
             - course: MATH 220
             - count: 1
-              of: 
+              of:
                 - {course: MATH 232, hidden: true}
                 - course: MATH 244
                 - course: MATH 252

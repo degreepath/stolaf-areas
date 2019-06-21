@@ -9,7 +9,7 @@ result:
     - requirement: Upper-Level Core
     - requirement: Physics
     - requirement: Mathematics
-    - requirement: Seminars
+    # - requirement: Seminars
 
 requirements:
   Introductory Sequence:
@@ -20,6 +20,13 @@ requirements:
             - course: CHEM 121
             - course: CHEM 123
             - course: CHEM 125
+
+      Option A2:
+        result:
+          all:
+            - course: CHEM 121
+            - course: CHEM 123
+            - course: CHEM 126
 
       Option B:
         result:
@@ -37,6 +44,7 @@ requirements:
     result:
       any:
         - requirement: Option A
+        - requirement: Option A2
         - requirement: Option B
         - requirement: Option C
 
