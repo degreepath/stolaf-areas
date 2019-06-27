@@ -183,6 +183,9 @@ requirements:
                   assert: {count(courses): {$gte: 1}}
 
           Artistic and Literary Studies:
+            message:
+              All ALS-A courses must be in the same subject code.
+
             saves:
               Courses with an ALS-A or ALS-L:
                 from: {student: courses}
@@ -198,7 +201,7 @@ requirements:
 
                 - from: {save: Courses with an ALS-A or ALS-L}
                   where: {gereqs: {$eq: ALS-A}}
-                  assert: {count(courses): {$gte: 1}}
+                  assert: {count(credits): {$gte: 1}}
 
                 - from: {save: Courses with an ALS-A or ALS-L}
                   where: {gereqs: {$eq: ALS-L}}
