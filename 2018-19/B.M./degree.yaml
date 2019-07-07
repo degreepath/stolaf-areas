@@ -1,0 +1,216 @@
+name: Bachelor of Music
+type: degree
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - requirement: Degree Requirements
+    - requirement: General Education
+
+requirements:
+  - name: Degree Requirements
+    result:
+      count: all
+      of:
+        - requirement: Courses
+        - requirement: Residency
+        - requirement: Interim
+        - requirement: Grade Point Average
+        - requirement: Course Level
+        - requirement: Graded Courses
+        - requirement: Major
+
+    requirements:
+      - name: Courses
+        result:
+          given: courses
+          what: credits
+          do: sum >= 35
+
+      - name: Residency
+        result:
+          given: courses
+          where: { institution: St. Olaf College }
+          what: credits
+          do: sum >= 17
+
+      - name: Interim
+        save:
+          - given: courses
+            where: { semester: Interim }
+            what: courses
+            name: Interim Courses
+        result:
+          both:
+            - { given: save, save: Interim Courses, what: credits, do: sum >= 3 }
+            - { given: save, save: Interim Courses, what: courses, do: count >= 3 }
+
+      - name: Grade Point Average
+        result:
+          given: courses
+          what: grades
+          do: average >= 2.0
+
+      - name: Course Level
+        result:
+          given: courses
+          where: { level: ">= 200" }
+          what: credits
+          do: sum >= 18
+
+      - name: Graded Courses
+        result:
+          given: courses
+          where: { graded: 'true' }
+          what: credits
+          do: sum >= 24
+
+      - name: Major
+        result:
+          given: areas
+          where: { type: major }
+          what: areas
+          do: count >= 1
+
+  - name: General Education
+    result:
+      count: all
+      of:
+        - requirement: Foundation
+        - requirement: Core
+        - requirement: Integrative
+
+    requirements:
+      - name: Foundation
+        result:
+          count: all
+          of:
+            - requirement: First-Year Writing
+            - requirement: Writing in Context
+            - requirement: Foreign Language
+            - requirement: Oral Communication
+            - requirement: Reasoning
+            - requirement: Studies in Physical Movement
+
+        requirements:
+          - name: First-Year Writing
+            result:
+              given: courses
+              where: { gereqs: FYW }
+              what: courses
+              do: count >= 1
+
+          - name: Writing in Context
+            result:
+              given: courses
+              where: { gereqs: WRI }
+              what: courses
+              do: count >= 4
+
+          - name: Foreign Language
+            result:
+              count: any
+              of:
+                - CHIN 112
+                - FREN 112
+                - GERM 112
+                - GREEK 112
+                - JAPAN 112
+                - LATIN 112
+                - NORW 112
+                - RUSSL 112
+                - SPAN 112
+
+          - name: Oral Communication
+            result:
+              given: courses
+              where: { gereqs: ORC }
+              what: courses
+              do: count >= 1
+
+          - name: Reasoning
+            result:
+              given: courses
+              where: { gereqs: AQR | SED | IST }
+              what: courses
+              do: count >= 1
+
+          - name: Studies in Physical Movement
+            result:
+              given: courses
+              where: { gereqs: SPM }
+              what: distinct-courses
+              do: count >= 2
+
+      - name: Core
+        result:
+          count: all
+          of:
+            - requirement: Historical Studies in Western Culture or Literary Studies
+            - requirement: Multicultural Studies
+            - requirement: Biblical and Theological Studies
+            - requirement: Studies in Human Behavior and Society
+
+        requirements:
+          - name: Historical Studies in Western Culture or Literary Studies
+            result:
+              given: courses
+              where: { gereqs: HWC | ALS-L }
+              what: courses
+              do: count >= 1
+
+          - name: Multicultural Studies
+            result:
+              given: courses
+              where: { gereqs: MCD | MCG }
+              what: courses
+              do: count >= 1
+
+          - name: Biblical and Theological Studies
+            save:
+              - given: courses
+                where: { gereqs: BTS-B | BTS-T }
+                what: courses
+                name: Courses with a BTS-B or BTS-T
+
+            result:
+              count: all
+              of:
+                - given: save
+                  save: Courses with a BTS-B or BTS-T
+                  what: courses
+                  do: count >= 2
+
+                - given: save
+                  save: Courses with a BTS-B or BTS-T
+                  where: { gereqs: "BTS-B" }
+                  what: courses
+                  do: count >= 1
+
+                - given: save
+                  save: Courses with a BTS-B or BTS-T
+                  where: { gereqs: "BTS-T" }
+                  what: courses
+                  do: count >= 1
+
+          - name: Studies in Human Behavior and Society
+            result:
+              given: courses
+              where: { gereqs: HBS }
+              what: courses
+              do: count >= 1
+
+      - name: Integrative
+        result:
+          count: all
+          of:
+            - requirement: Ethical Issues and Normative Perspectives
+
+        requirements:
+          - name: Ethical Issues and Normative Perspectives
+            result:
+              given: courses
+              where: { gereqs: EIN }
+              what: courses
+              do: count >= 1
