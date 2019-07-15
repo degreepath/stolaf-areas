@@ -58,6 +58,7 @@ requirements:
           both:
             - course: MATH 220
             - count: 1
+              at_most: true
               of:
                 - {course: MATH 232, hidden: true}
                 - course: MATH 244
