@@ -1,3 +1,4 @@
+---
 name: Exercise Science
 type: major
 degree: B.A.
@@ -16,6 +17,7 @@ result:
         - course: PSYCH 125
 
     - count: 2
+      at_most: true
       of:
         - course: BIO 247
         - course: ESTH 295
@@ -24,8 +26,7 @@ result:
         - course: NEURO 239
         - course: PSYCH 241
         - course: PSYCH 247
-        - count: 1
-          of:
+        - any:
             - course: STAT 110
             - course: STAT 212
             - course: STAT 214
