@@ -1,7 +1,7 @@
 ---
 name: B.M.
 type: degree
-catalog: 2015-16
+catalog: 2018-19
 
 result:
   count: all
@@ -10,7 +10,7 @@ result:
     - requirement: General Education
 
 requirements:
-  - name: Degree Requirements
+  Degree Requirements:
     result:
       count: all
       of:
@@ -23,58 +23,52 @@ requirements:
         - requirement: Major
 
     requirements:
-      - name: Courses
+      Courses:
         result:
-          given: courses
-          what: credits
-          do: sum >= 35
+          from: {student: courses}
+          assert: {sum(credits): {$gte: 35}}
 
-      - name: Residency
+      Residency:
         result:
-          given: courses
-          where: { institution: St. Olaf College }
-          what: credits
-          do: sum >= 17
+          from: {student: courses}
+          where: {institution: {$eq: St. Olaf College}}
+          assert: {sum(credits): {$gte: 17}}
 
-      - name: Interim
+      Interim:
         save:
-          - given: courses
-            where: { semester: Interim }
-            what: courses
-            name: Interim Courses
+          Interim Courses:
+            from: {student: courses}
+            where: {semester: {$eq: Interim}}
+
         result:
           both:
-            - { given: save, save: Interim Courses, what: credits, do: sum >= 3 }
-            - { given: save, save: Interim Courses, what: courses, do: count >= 3 }
+            - {from: {save: Interim Courses}, assert: {sum(credits): {$gte: 3}}}
+            - {from: {save: Interim Courses}, assert: {count(courses): {$gte: 3}}}
 
-      - name: Grade Point Average
+      Grade Point Average:
         result:
-          given: courses
-          what: grades
-          do: average >= 2.0
+          from: {student: courses}
+          assert: {average(grades): {$gte: 2.0}}
 
-      - name: Course Level
+      Course Level:
         result:
-          given: courses
-          where: { level: ">= 200" }
-          what: credits
-          do: sum >= 18
+          from: {student: courses}
+          where: {level: {$gte: 200}}
+          assert: {sum(credits): {$gte: 18}}
 
-      - name: Graded Courses
+      Graded Courses:
         result:
-          given: courses
-          where: { graded: 'true' }
-          what: credits
-          do: sum >= 24
+          from: {student: courses}
+          where: {graded: {$eq: true}}
+          assert: {sum(credits): {$gte: 24}}
 
-      - name: Major
+      Major:
         result:
-          given: areas
-          where: { type: major }
-          what: areas
-          do: count >= 1
+          from: {student: areas}
+          where: {type: {$eq: major}}
+          assert: {count(areas): {$gte: 1}}
 
-  - name: General Education
+  General Education:
     result:
       count: all
       of:
@@ -83,7 +77,7 @@ requirements:
         - requirement: Integrative
 
     requirements:
-      - name: Foundation
+      Foundation:
         result:
           count: all
           of:
@@ -95,56 +89,50 @@ requirements:
             - requirement: Studies in Physical Movement
 
         requirements:
-          - name: First-Year Writing
+          First-Year Writing:
             result:
-              given: courses
-              where: { gereqs: FYW }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: {gereqs: {$eq: FYW}}
+              assert: {count(courses): {$gte: 1}}
 
-          - name: Writing in Context
+          Writing in Context:
             result:
-              given: courses
-              where: { gereqs: WRI }
-              what: courses
-              do: count >= 4
+              from: {student: courses}
+              where: {gereqs: {$eq: WRI}}
+              assert: {count(courses): {$gte: 4}}
 
-          - name: Foreign Language
+          Foreign Language:
             result:
-              count: any
-              of:
-                - CHIN 112
-                - FREN 112
-                - GERM 112
-                - GREEK 112
-                - JAPAN 112
-                - LATIN 112
-                - NORW 112
-                - RUSSL 112
-                - SPAN 112
+              any:
+                - course: CHIN 112
+                - course: FREN 112
+                - course: GERM 112
+                - course: GREEK 112
+                - course: JAPAN 112
+                - course: LATIN 112
+                - course: NORW 112
+                - course: RUSSL 112
+                - course: SPAN 112
 
-          - name: Oral Communication
+          Oral Communication:
             result:
-              given: courses
-              where: { gereqs: ORC }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: {gereqs: {$eq: ORC}}
+              assert: {count(courses): {$gte: 1}}
 
-          - name: Reasoning
+          Reasoning:
             result:
-              given: courses
-              where: { gereqs: AQR | SED | IST }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: {gereqs: {$in: [AQR, SED, IST]}}
+              assert: {count(courses): {$gte: 1}}
 
-          - name: Studies in Physical Movement
+          Studies in Physical Movement:
             result:
-              given: courses
-              where: { gereqs: SPM }
-              what: distinct-courses
-              do: count >= 2
+              from: {student: courses}
+              where: {gereqs: {$eq: SPM}}
+              assert: {count(distinct courses): {$gte: 2}}
 
-      - name: Core
+      Core:
         result:
           count: all
           of:
@@ -154,64 +142,53 @@ requirements:
             - requirement: Studies in Human Behavior and Society
 
         requirements:
-          - name: Historical Studies in Western Culture or Literary Studies
+          Historical Studies in Western Culture or Literary Studies:
             result:
-              given: courses
-              where: { gereqs: HWC | ALS-L }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: {gereqs: {$in: [HWC, ALS-L]}}
+              assert: {count(courses): {$gte: 1}}
 
-          - name: Multicultural Studies
+          Multicultural Studies:
             result:
-              given: courses
-              where: { gereqs: MCD | MCG }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: {gereqs: {$in: [MCD, MCG]}}
+              assert: {count(courses): {$gte: 1}}
 
-          - name: Biblical and Theological Studies
+          Biblical and Theological Studies:
             save:
-              - given: courses
-                where: { gereqs: BTS-B | BTS-T }
-                what: courses
-                name: Courses with a BTS-B or BTS-T
+              Courses with a BTS-B or BTS-T:
+                from: {student: courses}
+                where: {gereqs: {$in: [BTS-B, BTS-T]}}
 
             result:
               count: all
               of:
-                - given: save
-                  save: Courses with a BTS-B or BTS-T
-                  what: courses
-                  do: count >= 2
+                - from: {save: Courses with a BTS-B or BTS-T}
+                  assert: {count(courses): {$gte: 2}}
 
-                - given: save
-                  save: Courses with a BTS-B or BTS-T
-                  where: { gereqs: "BTS-B" }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with a BTS-B or BTS-T}
+                  where: {gereqs: {$eq: BTS-B}}
+                  assert: {count(courses): {$gte: 1}}
 
-                - given: save
-                  save: Courses with a BTS-B or BTS-T
-                  where: { gereqs: "BTS-T" }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with a BTS-B or BTS-T}
+                  where: {gereqs: {$eq: BTS-T}}
+                  assert: {count(courses): {$gte: 1}}
 
-          - name: Studies in Human Behavior and Society
+          Studies in Human Behavior and Society:
             result:
-              given: courses
-              where: { gereqs: HBS }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: {gereqs: {$eq: HBS}}
+              assert: {count(courses): {$gte: 1}}
 
-      - name: Integrative
+      Integrative:
         result:
           count: all
           of:
             - requirement: Ethical Issues and Normative Perspectives
 
         requirements:
-          - name: Ethical Issues and Normative Perspectives
+          Ethical Issues and Normative Perspectives:
             result:
-              given: courses
-              where: { gereqs: EIN }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: {gereqs: {$eq: EIN}}
+              assert: {count(courses): {$gte: 1}}
