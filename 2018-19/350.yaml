@@ -1,3 +1,4 @@
+---
 name: History
 type: major
 degree: B.A.
@@ -5,8 +6,7 @@ catalog: 2018-19
 
 result:
   both:
-    - count: all
-      of:
+    - all:
         - requirement: Major Seminar
         - requirement: Level III
         - requirement: Non-Western World
@@ -14,19 +14,18 @@ result:
         - requirement: U.S.
         - requirement: Pre-Modern Period
 
-    - given: these-requirements
-      requirements:
-        - Major Seminar
-        - Level III
-        - Non-Western World
-        - European
-        - U.S.
-        - Pre-Modern Period
-      what: courses
-      do: count >= 9
+    - from:
+        requirements:
+          - Major Seminar
+          - Level III
+          - Non-Western World
+          - European
+          - U.S.
+          - Pre-Modern Period
+      assert: {count(courses): {$gte: 9}}
 
 
-limiters:
+limit:
   - where: {level: '100'}
     at_most: 3
   - where: {level: '100', type: 'Seminar'}
@@ -138,42 +137,36 @@ attributes:
 requirements:
   - name: European
     result:
-      given: courses
-      where: {attribute: history_region_europe}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: history_region_europe}}
+      assert: {count(courses): {$gte: 1}}
 
   - name: U.S.
     result:
-      given: courses
-      where: {attribute: history_region_us}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: history_region_us}}
+      assert: {count(courses): {$gte: 1}}
 
   - name: Non-Western World
     result:
-      given: courses
-      where: {attribute: history_region_nonwesternworld}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: history_region_nonwesternworld}}
+      assert: {count(courses): {$gte: 1}}
 
   - name: Pre-Modern Period
     result:
-      given: courses
-      where: {attribute: history_era_premodern}
-      what: courses
-      do: count >= 2
+      from: {student: courses}
+      where: {attribute: {$eq: history_era_premodern}}
+      assert: {count(courses): {$gte: 2}}
 
   - name: Major Seminar
     result:
-      given: courses
-      where: {attribute: history_l2_seminar}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: history_l2_seminar}}
+      assert: {count(courses): {$gte: 1}}
 
   - name: Level III
     result:
-      given: courses
-      where: {attribute: history_level_3}
-      what: courses
-      do: count >= 3
+      from: {student: courses}
+      where: {attribute: {$eq: history_level_3}}
+      assert: {count(courses): {$gte: 3}}
