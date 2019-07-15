@@ -22,10 +22,10 @@ limit:
 
 result:
   all:
-    - reference: Core
-    - reference: Spanish
-    - reference: Interdisciplinary Seminar
-    - reference: Electives
+    - requirement: Core
+    - requirement: Spanish
+    - requirement: Interdisciplinary Seminar
+    - requirement: Electives
 
 requirements:
   Core:

@@ -6,9 +6,9 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Core
-    - reference: Level III Seminars
-    - reference: Electives
+    - requirement: Core
+    - requirement: Level III Seminars
+    - requirement: Electives
 
 requirements:
   Core:

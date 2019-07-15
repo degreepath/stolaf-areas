@@ -1,3 +1,4 @@
+---
 name: Medieval Studies
 type: major
 degree: B.A.
@@ -5,11 +6,11 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Language
-    - reference: Medieval History
-    - reference: Medieval Literature
-    - reference: Electives
-    - reference: Independent Research
+    - requirement: Language
+    - requirement: Medieval History
+    - requirement: Medieval Literature
+    - requirement: Electives
+    - requirement: Independent Research
 
 requirements:
   Language:
@@ -28,20 +29,20 @@ requirements:
   Medieval History:
     result:
       from: {student: courses}
-      where: attribute = medieval_history
-      assert: count(courses) >= 1
+      where: {attribute: {$eq: medieval_history}}
+      assert: {count(courses): {$gte: 1}}
 
   Medieval Literature:
     result:
       from: {student: courses}
-      where: attribute = medieval_literature
-      assert: count(courses) >= 1
+      where: {attribute: {$eq: medieval_literature}}
+      assert: {count(courses): {$gte: 1}}
 
   Electives:
     result:
       from: {student: courses}
-      where: attribute = medieval_elective
-      assert: count(courses) >= 4
+      where: {attribute: {$eq: medieval_elective}}
+      assert: {count(courses): {$gte: 4}}
 
   Independent Research:
     department_audited: true

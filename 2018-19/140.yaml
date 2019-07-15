@@ -1,3 +1,4 @@
+---
 name: Studio Art
 type: major
 degree: B.A.
@@ -5,12 +6,12 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Foundations
-    - reference: Juried Show
-    - reference: Senior Studies in Studio Art
-    - reference: Electives
-    - reference: Areas
-    - reference: Art History
+    - requirement: Foundations
+    - requirement: Juried Show
+    - requirement: Senior Studies in Studio Art
+    - requirement: Electives
+    - requirement: Areas
+    - requirement: Art History
 
 attributes:
   courses:
@@ -70,26 +71,26 @@ requirements:
     result:
       all:
         - either:
-          - course: ART 102
-          - course: ART 106
+            - course: ART 102
+            - course: ART 106
         - course: ART 103
         - course: ART 104
 
   Areas:
     result:
       all:
-        - reference: 2D Media
-        - reference: 3D Media
-        - reference: New Media
+        - requirement: 2D Media
+        - requirement: 3D Media
+        - requirement: New Media
 
     requirements:
       2D Media:
         result:
           any:
-            - reference: Drawing
-            - reference: Painting
-            - reference: Printmaking
-            - reference: Graphic Design
+            - requirement: Drawing
+            - requirement: Painting
+            - requirement: Printmaking
+            - requirement: Graphic Design
 
         requirements:
           Drawing:
@@ -119,8 +120,8 @@ requirements:
       3D Media:
         result:
           any:
-            - reference: Ceramics
-            - reference: Sculpture
+            - requirement: Ceramics
+            - requirement: Sculpture
 
         requirements:
           Ceramics:
@@ -138,11 +139,11 @@ requirements:
       New Media:
         result:
           any:
-            - reference: Photography
-            - reference: Interactive Image
-            - reference: Digital Video
-            - reference: Performance
-            - reference: Graphic Design
+            - requirement: Photography
+            - requirement: Interactive Image
+            - requirement: Digital Video
+            - requirement: Performance
+            - requirement: Graphic Design
 
         requirements:
           Photography:
@@ -187,7 +188,7 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: art_elective}}
-      assert: count(courses) >= 1
+      assert: {count(courses): {$gte: 1}}
 
   Art History:
     message:
@@ -197,4 +198,4 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: art_history}}
-      do: count(courses) >= 1
+      assert: {count(courses): {$gte: 1}}

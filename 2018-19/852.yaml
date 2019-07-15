@@ -22,9 +22,9 @@ limit:
 
 result:
   all:
-    - reference: Core
-    - reference: Interdisciplinary Seminar
-    - reference: Electives
+    - requirement: Core
+    - requirement: Interdisciplinary Seminar
+    - requirement: Electives
 
 requirements:
   Core:

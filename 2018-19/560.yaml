@@ -1,3 +1,4 @@
+---
 name: Psychology
 type: major
 degree: B.A.
@@ -5,11 +6,11 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Foundation
-    - reference: Content Core
-    - reference: Level III Capstone
-    - reference: General Education
-    - reference: Electives
+    - requirement: Foundation
+    - requirement: Content Core
+    - requirement: Level III Capstone
+    - requirement: General Education
+    - requirement: Electives
 
 limits:
   - {at most: 2, where: institution != St. Olaf College and course != PSYCH 125}
@@ -60,8 +61,8 @@ requirements:
   Content Core:
     result:
       all:
-        - reference: Natural Science
-        - reference: Social Science
+        - requirement: Natural Science
+        - requirement: Social Science
 
     requirements:
       Natural Science:
@@ -85,10 +86,14 @@ requirements:
   Level III Capstone:
     result:
       from: {student: courses}
-      where: attribute = psych_level_3
+      where: {attribute: {$eq: psych_level_3}}
       limit:
-        - {at most: 1, where: course = PSYCH 396 or course = PSYCH 398}
-      assert: count(courses) >= 2
+        - at most: 1
+          where:
+            $or:
+              - {course: {$eq: PSYCH 396}}
+              - {course: {$eq: PSYCH 398}}
+      assert: {count(courses): {$gte: 2}}
 
   General Education:
     result:
@@ -101,5 +106,5 @@ requirements:
   Electives:
     result:
       from: {student: courses}
-      where: attribute = psych_elective
-      assert: count(courses) >= 2
+      where: {attribute: {$eq: psych_elective}}
+      assert: {count(courses): {$gte: 2}}
