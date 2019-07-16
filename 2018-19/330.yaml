@@ -35,19 +35,19 @@ attributes:
     CLASS 396: [classics_course]
 
 requirements:
-  - name: Language
+  Language:
     result:
       from: {student: courses}
       where: {attributes: {$eq: greek_language}}
       assert: {count(courses): {$gte: 7}}
 
-  - name: Classics
+  Classics:
     result:
       from: {student: courses}
       where: {attributes: {$eq: classics_course}}
       assert: {count(courses): {$gte: 1}}
 
-  - name: Ancient Greek History
+  Ancient Greek History:
     result:
       from: {student: courses}
       where: {attributes: {$eq: greek_elective}}

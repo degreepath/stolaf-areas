@@ -1,3 +1,4 @@
+---
 name: Latin
 type: major
 degree: B.A.
@@ -49,10 +50,9 @@ requirements:
 
   Ancient Roman History:
     result:
-      # given: courses
-      # where: {attributes: latin_elective}
-      # what: courses
-      # do: count >= 1
+      # from: {student: courses}
+      # where: {attributes: {$eq: latin_elective}}
+      # assert: {count(courses): {$eq: 1}}
       any:
         - course: HIST 204
         - course: HIST 303

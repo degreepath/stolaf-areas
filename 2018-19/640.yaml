@@ -18,7 +18,7 @@ limits:
         - credits: {$eq: 1.00}
 
 requirements:
-  - name: Part 1
+  Part 1:
     result:
       all:
         - course: THEAT 130
@@ -31,7 +31,7 @@ requirements:
         - course: THEAT 270
         - course: THEAT 271
 
-  - name: Part 2
+  Part 2:
     result:
       count: 2
       of:
@@ -41,7 +41,7 @@ requirements:
         - course: THEAT 394
         - course: THEAT 398
 
-  - name: Practicum
+  Practicum:
     message:
       All students must enroll in four practicum classes, of which at least one
       must be THEAT 233 and at least two must be THEAT 253; the fourth practicum
@@ -54,16 +54,17 @@ requirements:
 
         - from: {student: courses}
           where: {course: {$in: [THEAT 233, THEAT 253]}}
+          allow_claimed: true
           assert: {count(courses): {$gte: 4}}
 
     requirements:
-      - name: Acting
+      Acting:
         result:
           from: {student: courses}
           where: {course: {$eq: THEAT 233}}
           assert: {count(courses): {$gte: 1}}
 
-      - name: Tech
+      Tech:
         result:
           from: {student: courses}
           where: {course: {$eq: THEAT 253}}

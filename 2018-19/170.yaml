@@ -1,3 +1,4 @@
+---
 name: Chemistry
 type: major
 degree: B.A.
@@ -97,10 +98,11 @@ requirements:
 
   Seminars:
     message:
-      Attendance is required at 12 departmental seminars after declaration of major.
-    given: chemistry-seminars
-    where: {date: '>= major-declaration'}
-    action: {count: '>= 12'}
+      Attendance is required at 12 departmental seminars after
+      declaration of major.
+    from: {student: chemistry-seminars}
+    where: {date: {$gte: $major-declaration}}
+    action: {count(seminars): {$gte: 12}}
 
 attributes:
   courses:

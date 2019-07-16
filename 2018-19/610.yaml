@@ -27,7 +27,7 @@ requirements:
     message:
       Or any other higher-level statistics course
     result:
-      either:
+      any:
         - course: STAT 110
         - course: STAT 212
         - {course: ECON 263, hidden: true}

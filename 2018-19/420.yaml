@@ -1,3 +1,4 @@
+---
 name: Mathematics
 type: major
 degree: B.A.
@@ -31,7 +32,7 @@ requirements:
     result:
       all:
         - course: MATH 120
-        - either: 
+        - either:
             - course: MATH 126
             - course: MATH 128
         - course: MATH 220
@@ -92,21 +93,21 @@ requirements:
           both:
             - course: CHEM 371
             - from: {student: areas}
-              where: {$and: [ {type: {$eq: major}}, {name: {$eq: Chemistry}} ]}
+              where: {$and: [{type: {$eq: major}}, {name: {$eq: Chemistry}}]}
               assert: {count(areas): {$eq: 1}}
       Economics:
         result:
           both:
             - course: ECON 385
             - from: {student: areas}
-              where: {$and: [ {type: {$eq: major}}, {name: {$eq: Economics}} ]}
+              where: {$and: [{type: {$eq: major}}, {name: {$eq: Economics}}]}
               assert: {count(areas): {$eq: 1}}
       Physics:
         result:
           both:
             - course: PHYS 375
             - from: {student: areas}
-              where: {$and: [ {type: {$eq: major}}, {name: {$eq: Physics}} ]}
+              where: {$and: [{type: {$eq: major}}, {name: {$eq: Physics}}]}
               assert: {count(areas): {$eq: 1}}
 
   Level III:
@@ -120,51 +121,51 @@ requirements:
   Sequence:
     result:
       any:
-        - both: 
+        - both:
             - {course: MATH 220, including claimed: true}
             - {course: MATH 356, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 220, including claimed: true}
             - {course: MSCS 341, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 224, including claimed: true}
             - {course: MATH 348, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 226, including claimed: true}
             - {course: MATH 340, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 230, including claimed: true}
             - {course: MATH 330, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 232, including claimed: true}
             - {course: MATH 364, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 244, including claimed: true}
             - {course: MATH 344, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 252, including claimed: true}
             - {course: MATH 352, including claimed: true}
-        - both: 
+        - both:
             - {course: MATH 262, including claimed: true}
             - {course: STAT 322, including claimed: true}
 
 attributes:
   multicountable:
-    - - {attribute: math_perspective_a}
-      - {attribute: math_level_3}
-      - {attribute: math_transitions}
+    - - {attribute: {$eq: math_perspective_a}}
+      - {attribute: {$eq: math_level_3}}
+      - {attribute: {$eq: math_transitions}}
 
-    - - {attribute: math_perspective_c}
-      - {attribute: math_level_3}
-      - {attribute: math_transitions}
+    - - {attribute: {$eq: math_perspective_c}}
+      - {attribute: {$eq: math_level_3}}
+      - {attribute: {$eq: math_transitions}}
 
-    - - {attribute: math_perspective_d}
-      - {attribute: math_level_3}
-      - {attribute: math_transitions}
+    - - {attribute: {$eq: math_perspective_d}}
+      - {attribute: {$eq: math_level_3}}
+      - {attribute: {$eq: math_transitions}}
 
-    - - {attribute: math_perspective_m}
-      - {attribute: math_level_3}
-      - {attribute: math_transitions}
+    - - {attribute: {$eq: math_perspective_m}}
+      - {attribute: {$eq: math_level_3}}
+      - {attribute: {$eq: math_transitions}}
 
   courses:
     CSCI 315: [math_level_3]

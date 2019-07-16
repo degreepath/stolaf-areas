@@ -1,3 +1,4 @@
+---
 name: Art History
 type: major
 degree: B.A.
@@ -11,7 +12,6 @@ result:
     - requirement: Studio Art
     - requirement: Distribution
     - requirement: Lasting Legacy
-
 
 attributes:
   courses:
@@ -72,22 +72,21 @@ attributes:
 
 
 requirements:
-  - name: Intro
+  Intro:
     result:
       course: ART 153
 
-  - name: Methods
+  Methods:
     result:
       course: ART 350
 
-  - name: Studio Art
+  Studio Art:
     result:
-      given: courses
-      where: {attribute: art_studio_art}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: art_studio_art}}
+      assert: {count(courses): {$gte: 1}}
 
-  - name: Distribution
+  Distribution:
     message:
       At least two courses must focus on Asian, African, Indigenous American,
       or Near Eastern/Islamic art; at least two courses must focus on American
@@ -96,52 +95,52 @@ requirements:
 
     result:
       both:
-        - count: all
-          of:
+        - all:
             - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
             - requirement: European and American Art
             - requirement: Art created before 1700 CE
             - requirement: Art created after 1700 CE
 
-        - given: these-requirements
-          requirements:
-            - Asian, African, Indigenous American, or Near Eastern/Islamic Art
-            - European and American Art
-            - Art created before 1700 CE
-            - Art created after 1700 CE
-          what: courses
-          do: count >= 6
+        - from:
+            requirements:
+              - Asian, African, Indigenous American, or Near Eastern/Islamic Art
+              - European and American Art
+              - Art created before 1700 CE
+              - Art created after 1700 CE
+          assert: {count(courses): {$gte: 6}}
 
     requirements:
-      - name: Asian, African, Indigenous American, or Near Eastern/Islamic Art
+      Asian, African, Indigenous American, or Near Eastern/Islamic Art:
         result:
-          given: courses
-          where: {attribute: art_locale_asian | art_locale_african | art_locale_indigenous_american | art_locale_near_eastern}
-          what: courses
-          do: count >= 2
+          from: {student: courses}
+          where:
+            attribute:
+              $in:
+                - art_locale_asian
+                - art_locale_african
+                - art_locale_indigenous_american
+                - art_locale_near_eastern
+          assert: {count(courses): {$gte: 2}}
 
-      - name: European and American Art
+      European and American Art:
         result:
-          given: courses
-          where: {attribute: art_locale_european | art_locale_american}
-          what: courses
-          do: count >= 2
+          from: {student: courses}
+          where: {attribute: {$in: [art_locale_european, art_locale_american]}}
+          assert: {count(courses): {$gte: 2}}
 
-      - name: Art created before 1700 CE
+      Art created before 1700 CE:
         result:
-          given: courses
-          where: {attribute: art_period_pre1700}
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: {attribute: {$eq: art_period_pre1700}}
+          assert: {count(courses): {$gte: 1}}
 
-      - name: Art created after 1700 CE
+      Art created after 1700 CE:
         result:
-          given: courses
-          where: {attribute: art_period_post1700}
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: {attribute: {$eq: art_period_post1700}}
+          assert: {count(courses): {$gte: 1}}
 
-  - name: Lasting Legacy
+  Lasting Legacy:
     department_audited: true
     message:
       Majors must successfully complete the non-credit, senior "lasting legacy"

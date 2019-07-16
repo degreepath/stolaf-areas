@@ -28,9 +28,9 @@ requirements:
   Environmental Studies:
     result:
       all:
-        - ENVST 137
-        - ENVST 237
-        - ENVST 399
+        - course: ENVST 137
+        - course: ENVST 237
+        - course: ENVST 399
 
   Outside your Emphasis:
     result:

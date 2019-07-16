@@ -6,7 +6,8 @@ catalog: 2018-19
 result:
   all:
     - requirement: Core Courses
-    - requirement: Management Electives
+    - requirement: Management Elective
+    - requirement: Distributed Elective
     - requirement: Experiential Learning
     - requirement: Capstone
 

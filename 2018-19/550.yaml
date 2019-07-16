@@ -1,3 +1,4 @@
+---
 name: Political Science
 type: major
 degree: B.A.
@@ -37,33 +38,33 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: psci_topic_american}}
-      assert: count(courses) >= 1
+      assert: {count(courses): {$gte: 1}}
 
   Comparative Politics:
     result:
       from: {student: courses}
       where: {attribute: {$eq: psci_topic_comparative}}
-      assert: count(courses) >= 1
+      assert: {count(courses): {$gte: 1}}
 
   International Relations:
     result:
       from: {student: courses}
       where: {attribute: {$eq: psci_topic_international}}
-      assert: count(courses) >= 1
+      assert: {count(courses): {$gte: 1}}
 
   Political Theory:
     result:
       from: {student: courses}
       where: {attribute: {$eq: psci_topic_theory}}
-      assert: count(courses) >= 1
+      assert: {count(courses): {$gte: 1}}
 
   Level III:
     result:
       from: {student: courses}
       where: {attribute: {$eq: psci_level_3}}
       limit:
-        - {at-most: 0, where: institution != St. Olaf College}
-      assert: count(courses) >= 2
+        - {at-most: 0, where: {institution: {$neq: St. Olaf College}}}
+      assert: {count(courses): {$gte: 2}}
 
   Electives:
     saves:
@@ -74,7 +75,11 @@ requirements:
             - {subject: {$in: [PSCI, AS/PS, ES/PS]}}
             - {institution: {$eq: 'St. Olaf College'}}
         limit:
-          - {at-most: 1, where: {$and: [{course: {$eq: PSCI 294}}, {credit: {$lt: 1.0}}]}}
+          - at-most: 1
+            where:
+              $and:
+                - {course: {$eq: PSCI 294}}
+                - {credit: {$lt: 1.0}}
         store: courses
 
       Statistics:
@@ -108,7 +113,7 @@ requirements:
         - from: {save: Within PSCI}
           limit:
             - {at-most: 1, where: {course: {$exists: true}}}
-          assert: count(courses) = 1
+          assert: {count(courses): {$eq: 1}}
 
         - from:
             saves:
@@ -117,7 +122,7 @@ requirements:
               - Chinese / Greek / Latin / Japanese / Norwegian / Russian
           limit:
             - {at-most: 1, where: course is not None}
-          assert: count(courses) = 1
+          assert: {count(courses): {$eq: 1}}
 
 
 attributes:

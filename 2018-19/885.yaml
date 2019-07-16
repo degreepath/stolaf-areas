@@ -1,3 +1,4 @@
+---
 name: Nordic Studies
 type: concentration
 degree: B.A.
@@ -10,7 +11,7 @@ result:
     - requirement: Electives
 
 limits:
-  - {at_most: 1, where: {s/u: 'true'}}
+  - {at_most: 1, where: {s/u: {$eq: true}}}
 
 attributes:
   courses:
@@ -31,28 +32,27 @@ attributes:
 
 
 requirements:
-  - name: Language
+  Language:
     result:
-      count: any
-      of:
-        - NORW 232
-        - NORW 253
-        - NORW 371
-        - NORW 372
+      any:
+        - course: NORW 232
+        - course: NORW 253
+        - course: NORW 371
+        - course: NORW 372
 
-  - name: Electives
+  Electives:
     message: >
       Up to three courses from study abroad programs such as DIS, HECUA: The
       New Norway, and university direct-enroll programs may be counted toward
       the Nordic studies concentration
+
     result:
-      given: courses
-      where: {attribute: nordic_elective}
+      from: {student: courses}
+      where: {attribute: {$eq: nordic_elective}}
       limit:
         # > At least two of the five courses must have a focus on at least one
         # > Nordic country other than Norway.
-        - {at_most: 3, where: {attribute: 'nordic_focus_norway'}}
+        - {at_most: 3, where: {attribute: {$eq: nordic_focus_norway}}}
         # this addresses the "1-2 and 2-3" part of the major
-        - {at_most: 2, where: {department: 'NORW'}}
-      what: courses
-      do: count >= 5
+        - {at_most: 2, where: {subject: {$eq: NORW}}}
+      assert: {count(courses): {$gte: 5}}

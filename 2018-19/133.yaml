@@ -1,3 +1,4 @@
+---
 name: Ancient Studies
 type: major
 degree: B.A.
@@ -68,32 +69,32 @@ requirements:
   Language:
     result:
       any:
-        - GREEK 253
-        - GREEK 370
-        - GREEK 372
-        - GREEK 373
-        - GREEK 374
-        - GREEK 375
-        - LATIN 252
-        - LATIN 370
-        - LATIN 371
-        - LATIN 372
-        - LATIN 373
-        - LATIN 374
-        - LATIN 375
-        - LATIN 377
+        - course: GREEK 253
+        - course: GREEK 370
+        - course: GREEK 372
+        - course: GREEK 373
+        - course: GREEK 374
+        - course: GREEK 375
+        - course: LATIN 252
+        - course: LATIN 370
+        - course: LATIN 371
+        - course: LATIN 372
+        - course: LATIN 373
+        - course: LATIN 374
+        - course: LATIN 375
+        - course: LATIN 377
 
   Ancient History:
     result:
-      froom: {student: courses}
+      from: {student: courses}
       where: {attribute: {$eq: ancient_history}}
-      do: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1}}
 
   Classics:
     result:
-      froom: {student: courses}
+      from: {student: courses}
       where: {subject: {$eq: CLASS}}
-      do: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1}}
 
   Electives:
     message:
@@ -103,8 +104,7 @@ requirements:
       required language portion of the major with Greek courses.
 
     result:
-      count: any
-      of:
+      either:
         - both:
             - requirement: Took Greek
             - count: 0
@@ -131,21 +131,27 @@ requirements:
     requirements:
       Took Greek:
         result:
-          given: courses
-          where: {attribute: ancient_elective | ancient_elective_if_greek_lang}
+          from: {student: courses}
+          where:
+            attribute:
+              $in:
+                - ancient_elective
+                - ancient_elective_if_greek_lang
           limits:
-            - {at_most: 1, where: {subject: LATIN}}
-          what: courses
-          do: count >= 4
+            - {at_most: 1, where: {subject: {$eq: LATIN}}}
+          assert: {count(courses): {$gte: 4}}
 
       Took Latin:
         result:
-          given: courses
-          where: {attribute: ancient_elective | ancient_elective_if_latin_lang}
+          from: {student: courses}
+          where:
+            attribute:
+              $in:
+                - ancient_elective
+                - ancient_elective_if_latin_lang
           limits:
-            - {at_most: 1, where: {subject: GREEK}}
-          what: courses
-          do: count >= 4
+            - {at_most: 1, where: {subject: {$eq: GREEK}}}
+          assert: {count(courses): {$gte: 4}}
 
   Independent Research:
     department_audited: true

@@ -26,20 +26,20 @@ result:
 
 
 limit:
-  - where: {level: '100'}
-    at_most: 3
-  - where: {level: '100', type: 'Seminar'}
-    at_most: 2
+  - at_most: 3
+    where: {level: {$eq: 100}}
+  - at_most: 2
+    where: {$and: [{level: {$eq: 100}}, {type: {$eq: Seminar}}]}
 
 
 attributes:
   multicountable:
-    - - {attribute: history_era_premodern}
-      - {attribute: history_l2_seminar}
-      - {attribute: history_level_3}
-      - {attribute: history_region_europe}
-      - {attribute: history_region_nonwesternworld}
-      - {attribute: history_region_us}
+    - - {attribute: {$eq: history_era_premodern}}
+      - {attribute: {$eq: history_l2_seminar}}
+      - {attribute: {$eq: history_level_3}}
+      - {attribute: {$eq: history_region_europe}}
+      - {attribute: {$eq: history_region_nonwesternworld}}
+      - {attribute: {$eq: history_region_us}}
 
   courses:
     ASIAN 399: [history_level_3]
@@ -69,7 +69,10 @@ attributes:
     HIST 195: [history_region_nonwesternworld, history_era_premodern]
     HIST 198: [history_region_us, history_era_premodern]
     HIST 199: [history_region_us]
-    HIST 201: [history_l2_seminar, history_region_europe, history_region_nonwesternworld, history_era_premodern]
+    HIST 201: [
+      history_l2_seminar, history_region_europe,
+      history_region_nonwesternworld, history_era_premodern,
+    ]
     HIST 202: [history_region_europe, history_era_premodern]
     HIST 203: [history_region_europe, history_era_premodern]
     HIST 204: [history_region_europe, history_era_premodern]
@@ -135,37 +138,37 @@ attributes:
 
 
 requirements:
-  - name: European
+  European:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_europe}}
       assert: {count(courses): {$gte: 1}}
 
-  - name: U.S.
+  U.S.:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_us}}
       assert: {count(courses): {$gte: 1}}
 
-  - name: Non-Western World
+  Non-Western World:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_nonwesternworld}}
       assert: {count(courses): {$gte: 1}}
 
-  - name: Pre-Modern Period
+  Pre-Modern Period:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_era_premodern}}
       assert: {count(courses): {$gte: 2}}
 
-  - name: Major Seminar
+  Major Seminar:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_l2_seminar}}
       assert: {count(courses): {$gte: 1}}
 
-  - name: Level III
+  Level III:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_level_3}}

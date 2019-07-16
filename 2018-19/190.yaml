@@ -1,11 +1,11 @@
+---
 name: Classics
 type: major
 degree: B.A.
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Language
     - requirement: Classics
     - requirement: Ancient History
@@ -44,26 +44,40 @@ attributes:
     HIST 306: [classics_ancient_history]
 
 requirements:
-  - name: Language
+  Language:
+    requirements:
+      Primarily Latin:
+        result:
+          both:
+            - from: {student: courses}
+              where: {attributes: {$eq: classics_latin}}
+              assert: {count(courses): {$gte: 6}}
+            - from: {student: courses}
+              where: {attributes: {$eq: classics_greek}}
+              assert: {count(courses): {$gte: 3}}
+
+      Primarily Greek:
+        result:
+          both:
+            - from: {student: courses}
+              where: {attributes: {$eq: classics_greek}}
+              assert: {count(courses): {$gte: 6}}
+            - from: {student: courses}
+              where: {attributes: {$eq: classics_latin}}
+              assert: {count(courses): {$gte: 3}}
     result:
       either:
-        - both:
-          - {given: courses, where: {attributes: classics_latin}, what: courses, do: count >= 6}
-          - {given: courses, where: {attributes: classics_greek}, what: courses, do: count >= 3}
-        - both:
-          - {given: courses, where: {attributes: classics_greek}, what: courses, do: count >= 6}
-          - {given: courses, where: {attributes: classics_latin}, what: courses, do: count >= 3}
+        - requirement: Primarily Latin
+        - requirement: Primarily Greek
 
-  - name: Classics
+  Classics:
     result:
-      given: courses
-      where: {subject: CLASS}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {subject: {$eq: CLASS}}
+      assert: {count(courses): {$gte: 1}}
 
-  - name: Ancient History
+  Ancient History:
     result:
-      given: courses
-      where: {attributes: classics_ancient_history}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attributes: {$eq: classics_ancient_history}}
+      assert: {count(courses): {$gte: 1}}

@@ -1,3 +1,4 @@
+---
 name: Chinese
 type: major
 degree: B.A.
@@ -11,13 +12,12 @@ result:
         - requirement: Upper-Level Language
         - requirement: Language and Culture
 
-    - given: these-requirements
-      requirements:
-        - Core Language
-        - Upper-Level Language
-        - Language and Culture
-      what: credits
-      do: sum >= 9
+    - from:
+        requirements:
+          - Core Language
+          - Upper-Level Language
+          - Language and Culture
+      assert: {sum(credits): {$gte: 9}}
 
 attributes:
   courses:
@@ -56,20 +56,18 @@ attributes:
 requirements:
   Core Language:
     result:
-      count: all
-      of:
-        - CHIN 231
-        - CHIN 232
-        - CHIN 301
-        - CHIN 302
+      all:
+        - course: CHIN 231
+        - course: CHIN 232
+        - course: CHIN 301
+        - course: CHIN 302
 
   Upper-Level Language:
     result:
-      count: any
-      of:
-        - CHIN 320
-        - CHIN 351
-        - CHIN 360
+      any:
+        - course: CHIN 320
+        - course: CHIN 351
+        - course: CHIN 360
 
   Language and Culture:
     message: >
@@ -79,25 +77,24 @@ requirements:
       One of these courses may be an Independent Study (capstone project) or the
       Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
 
-    save:
-      - given: courses
-        where: {attribute: china_elective}
+    saves:
+      Allowed Courses:
+        from: {student: courses}
+        where: {attribute: {$eq: china_elective}}
         limit:
-          - {at_most: 2, where: {attribute: 'china_asiancon'}}
-          - {at_most: 1, where: {attribute: 'china_is | china_senior_seminar'}}
-          - {at_most: 1, where: {level: 100}}
-        name: Allowed Courses
+          - at_most: 2
+            where: {attribute: {$eq: china_asiancon}}
+          - at_most: 1
+            where: {attribute: {$in: [china_is, china_senior_seminar]}}
+          - at_most: 1
+            where: {level: {$eq: 100}}
 
     result:
       count: all
       of:
-        - given: save
-          save: Allowed Courses
-          what: courses
-          do: count >= 4
+        - from: {save: Allowed Courses}
+          assert: {count(courses): {$gte: 4}}
 
-        - given: save
-          save: Allowed Courses
-          what: courses
-          where: {level: 300}
-          do: count >= 1
+        - from: {save: Allowed Courses}
+          where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}

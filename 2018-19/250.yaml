@@ -1,3 +1,4 @@
+---
 name: English
 type: major
 degree: B.A.
@@ -17,25 +18,25 @@ result:
 
 attributes:
   multicountable:
-    - - {attribute: engl_elective}
-      - {attribute: engl_period_post1800}
-      - {attribute: engl_period_pre1800}
+    - - {attribute: {$eq: engl_elective}}
+      - {attribute: {$eq: engl_period_post1800}}
+      - {attribute: {$eq: engl_period_pre1800}}
 
-    - - {attribute: engl_topic_crosscultural}
-      - {attribute: engl_period_post1800}
-      - {attribute: engl_period_pre1800}
+    - - {attribute: {$eq: engl_topic_crosscultural}}
+      - {attribute: {$eq: engl_period_post1800}}
+      - {attribute: {$eq: engl_period_pre1800}}
 
-    - - {attribute: engl_topic_crossdisciplinary}
-      - {attribute: engl_period_post1800}
-      - {attribute: engl_period_pre1800}
+    - - {attribute: {$eq: engl_topic_crossdisciplinary}}
+      - {attribute: {$eq: engl_period_post1800}}
+      - {attribute: {$eq: engl_period_pre1800}}
 
-    - - {attribute: engl_topic_genre}
-      - {attribute: engl_period_post1800}
-      - {attribute: engl_period_pre1800}
+    - - {attribute: {$eq: engl_topic_genre}}
+      - {attribute: {$eq: engl_period_post1800}}
+      - {attribute: {$eq: engl_period_pre1800}}
 
-    - - {attribute: engl_topic_literary_history}
-      - {attribute: engl_period_post1800}
-      - {attribute: engl_period_pre1800}
+    - - {attribute: {$eq: engl_topic_literary_history}}
+      - {attribute: {$eq: engl_period_post1800}}
+      - {attribute: {$eq: engl_period_pre1800}}
 
   courses:
     # 2018-19 Fall
@@ -290,30 +291,31 @@ requirements:
 
   Electives:
     save:
-      - from: {student: courses}
+      electives:
+        from: {student: courses}
         where:
-          $or:
-            - {attribute: {$eq: engl_elective}}
-            - {attribute: {$eq: engl_topic_genre}}
-            - {attribute: {$eq: engl_topic_crosscultural}}
-            - {attribute: {$eq: engl_topic_literary_history}}
-            - {attribute: {$eq: engl_topic_crossdisciplinary}}
-        name: electives
+          attribute:
+            $in:
+              - engl_elective
+              - engl_topic_genre
+              - engl_topic_crosscultural
+              - engl_topic_literary_history
+              - engl_topic_crossdisciplinary
 
-      - from: {save: [electives]}
-        name: level3-electives
+      level3-electives:
+        from: {save: electives}
         where: {level: {$eq: 300}}
-        
+
     result:
       count: all
       of:
-        - from: {save: [electives]}
+        - from: {save: electives}
           assert: {count(courses): {$gte: 6}}
 
-        - from: {save: [level3-electives]}
+        - from: {save: level3-electives}
           assert: {count(courses): {$gte: 2}}
 
-        - from: {save: [level3-electives]}
+        - from: {save: level3-electives}
           where:
             $or:
               - {attribute: {$eq: engl_focus_literature}}
@@ -325,8 +327,8 @@ requirements:
       both:
         - from: {student: courses}
           where: {attribute: {$eq: engl_period_pre1800}}
-          do: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1}}
 
         - from: {student: courses}
           where: {attribute: {$eq: engl_period_post1800}}
-          do: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1}}

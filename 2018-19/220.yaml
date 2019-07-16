@@ -48,7 +48,7 @@ requirements:
     requirements:
       Ballet:
         result:
-          given: {student: courses}
+          from: {student: courses}
           where:
             course:
               $in:
@@ -63,7 +63,7 @@ requirements:
 
       International and Social:
         result:
-          given: {student: courses}
+          from: {student: courses}
           where:
             course:
               $in:
@@ -77,7 +77,7 @@ requirements:
 
       Modern:
         result:
-          given: {student: courses}
+          from: {student: courses}
           where:
             course:
               $in:
@@ -92,7 +92,7 @@ requirements:
 
       Other Topics:
         result:
-          given: {student: courses}
+          from: {student: courses}
           where:
             course:
               $in:

@@ -1,3 +1,4 @@
+---
 name: American Studies
 type: major
 degree: B.A.
@@ -10,97 +11,148 @@ result:
     - requirement: Electives
 
 requirements:
-  - name: American Culture
+  American Culture:
     result:
       course: AMST 100
 
-
-  - name: Electives
+  Electives:
     save:
-      - given: these-requirements
-        requirements:
-          - Topics
-          - Seminar
-          - Disciplinary
-        repeats: all
-        what: courses
-        name: Taken Electives
+      Taken Electives:
+        from:
+          requirements:
+            - Topics
+            - Seminar
+            - Disciplinary
 
     result:
-      count: all
-      of:
-        - given: save
-          save: Taken Electives
-          where: {gereqs: 'MCD'}
-          what: courses
-          do: count >= 2
+      all:
+        - from: {save: Taken Electives}
+          where: {gereqs: {$eq: {MCD}}}
+          assert: {count(courses): {$gte: 2}}
 
-        - given: save
-          save: Taken Electives
-          where: {level: '300'}
-          what: courses
-          do: count >= 2
+        - from: {save: Taken Electives}
+          where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
 
-        - given: save
-          save: Taken Electives
-          what: departments
-          do: count >= 3
+        - from: {save: Taken Electives}
+          assert: {count(subjects): {$gte: 3}}
 
-        - given: save
-          save: Taken Electives
-          what: courses
-          do: count >= 6
+        - from: {save: Taken Electives}
+          assert: {count(courses): {$gte: 6}}
 
     requirements:
-      - name: Topics
+      Topics:
         result:
-          given: these-courses
-          courses: [AMST 205, AMST 206, AMST 207, AMST 208, AMST 209, AMST 210]
-          repeats: all
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: {attribute: {$eq: amst_topics}}
+          assert: {count(courses): {$gte: 1}}
 
-      - name: Seminar
+      Seminar:
         result:
-          given: these-courses
-          courses: [AMST 301]
-          repeats: all
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: {attribute: {$eq: amst_seminar}}
+          assert: {count(courses): {$gte: 1}}
 
-      - name: Disciplinary
+      Disciplinary:
         result:
-          given: these-courses
-          courses: [
-            AFAM 231,
-            AMCON 101, AMCON 102, AMCON 110, AMCON 111, AMCON 201, AMCON 202,
-            AMST 100, AMST 207,
-            ART 253, ART 261,
-            DANCE 246,
-            ECON 220, ECON 242, ECON 245, ECON 371, ECON 374, ECON 376,
-            EDUC 170, EDUC 260, EDUC 378, EDUC 379,
-            ENGL 200, ENGL 205, ENGL 209, ENGL 220, ENGL 251, ENGL 260,
-            ENGL 275, ENGL 276, ENGL 340, ENGL 345, ENGL 392,
-            {course: ENGL 280, section: B, year: 2018, semester: Fall},
-            ENVST 202, ENVST 232, ENVST 270,
-            ES/PS 276,
-            FAMST 232, FAMST 242, FAMST 253,
-            FILM 101, FILM 201,
-            FREN 273,
-            HIST 165, HIST 169, HIST 181, HIST 182, HIST 188, HIST 198,
-            HIST 199, HIST 199, HIST 270, HIST 272, HIST 275, HIST 277,
-            HIST 282, HIST 288, HIST 290, HIST 299, HIST 370, HIST 375,
-            MEDIA 160, MEDIA 260, MUSIC 345,
-            PACON 280,
-            PHIL 253,
-            PSCI 111, PSCI 211, PSCI 244, PSCI 255, PSCI 272, PSCI 311,
-            PSYCH 227,
-            RACE 121, RACE 122,
-            REL 390,
-            SOAN 121, SOAN 234, SOAN 242, SOAN 246, SOAN 248, SOAN 260,
-            SOAN 264, SOAN 265, SWRK 221, SWRK 258,
-            WMGST 121,
-          ]
-          repeats: all
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: {attribute: {$eq: amst_id}}
+          assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    AMST 301: amst_seminar
+    AMST 205: amst_topics
+    AMST 206: amst_topics
+    AMST 207: amst_topics
+    AMST 208: amst_topics
+    AMST 209: amst_topics
+    AMST 210: amst_topics
+    AFAM 231: amst_id
+    AMCON 101: amst_id
+    AMCON 102: amst_id
+    AMCON 110: amst_id
+    AMCON 111: amst_id
+    AMCON 201: amst_id
+    AMCON 202: amst_id
+    AMST 100: amst_id
+    AMST 207: amst_id
+    ART 253: amst_id
+    ART 261: amst_id
+    DANCE 246: amst_id
+    ECON 220: amst_id
+    ECON 242: amst_id
+    ECON 245: amst_id
+    ECON 371: amst_id
+    ECON 374: amst_id
+    ECON 376: amst_id
+    EDUC 170: amst_id
+    EDUC 260: amst_id
+    EDUC 378: amst_id
+    EDUC 379: amst_id
+    ENGL 200: amst_id
+    ENGL 205: amst_id
+    ENGL 209: amst_id
+    ENGL 220: amst_id
+    ENGL 251: amst_id
+    ENGL 260: amst_id
+    ENGL 275: amst_id
+    ENGL 276: amst_id
+    ENGL 340: amst_id
+    ENGL 345: amst_id
+    ENGL 392: amst_id
+    ENGL 280.B 2018-Fall: amst_id
+    ENVST 202: amst_id
+    ENVST 232: amst_id
+    ENVST 270: amst_id
+    ES/PS 276: amst_id
+    FAMST 232: amst_id
+    FAMST 242: amst_id
+    FAMST 253: amst_id
+    FILM 101: amst_id
+    FILM 201: amst_id
+    FREN 273: amst_id
+    HIST 165: amst_id
+    HIST 169: amst_id
+    HIST 181: amst_id
+    HIST 182: amst_id
+    HIST 188: amst_id
+    HIST 198: amst_id
+    HIST 199: amst_id
+    HIST 199: amst_id
+    HIST 270: amst_id
+    HIST 272: amst_id
+    HIST 275: amst_id
+    HIST 277: amst_id
+    HIST 282: amst_id
+    HIST 288: amst_id
+    HIST 290: amst_id
+    HIST 299: amst_id
+    HIST 370: amst_id
+    HIST 375: amst_id
+    MEDIA 160: amst_id
+    MEDIA 260: amst_id
+    MUSIC 345: amst_id
+    PACON 280: amst_id
+    PHIL 253: amst_id
+    PSCI 111: amst_id
+    PSCI 211: amst_id
+    PSCI 244: amst_id
+    PSCI 255: amst_id
+    PSCI 272: amst_id
+    PSCI 311: amst_id
+    PSYCH 227: amst_id
+    RACE 121: amst_id
+    RACE 122: amst_id
+    REL 390: amst_id
+    SOAN 121: amst_id
+    SOAN 234: amst_id
+    SOAN 242: amst_id
+    SOAN 246: amst_id
+    SOAN 248: amst_id
+    SOAN 260: amst_id
+    SOAN 264: amst_id
+    SOAN 265: amst_id
+    SWRK 221: amst_id
+    SWRK 258: amst_id
+    WMGST 121: amst_id

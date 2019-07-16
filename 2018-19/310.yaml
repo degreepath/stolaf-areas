@@ -1,3 +1,4 @@
+---
 name: German
 type: major
 degree: B.A.
@@ -11,98 +12,79 @@ result:
     - requirement: Level III
     - requirement: Electives
 
-# attributes:
-#   GERM 251: [german_elective]
-#   GERM 252: [german_elective]
-#   GERM 253: [german_elective]
-#   GERM 271: [german_elective]
-#   GERM 272: [german_elective]
-#   GERM 273: [german_elective]
-#   GERM 276: [german_elective]
-#   GERM 371: [german_elective]
-#   GERM 372: [german_elective]
-
 requirements:
-  - name: Level 250
+  Level 250:
     result:
-      given: these-courses
-      courses: [GERM 251, GERM 252, GERM 253]
-      repeats: first
-      what: courses
+      from: {student: courses}
+      where: {course: {$in: [GERM 251, GERM 252, GERM 253]}}
       limit:
-        - { at_most: 1, where: { institution: "! St. Olaf College" } }
-      do: count >= 2
+        - {at_most: 1, where: {institution: {$neq: St. Olaf College}}}
+      assert: {count(courses): {$gte: 2}}
 
-  - name: Level 270
+  Level 270:
     result:
-      given: these-courses
-      courses: [GERM 271, GERM 272, GERM 273, GERM 276]
-      repeats: first
-      what: courses
+      from: {student: courses}
+      where: {course: {$in: [GERM 271, GERM 272, GERM 273, GERM 276]}}
       limit:
-        - { at_most: 1, where: { institution: "! St. Olaf College" } }
-      do: count >= 2
+        - {at_most: 1, where: {institution: {$neq: St. Olaf College}}}
+      assert: {count(courses): {$gte: 2}}
 
-  - name: Level III
+  Level III:
     message: This course will preferably be taken in the student's senior year.
     result:
-      either: [GERM 371, GERM 372]
+      either:
+        - course: GERM 371
+        - course: GERM 372
 
-  - name: Electives
+  Electives:
     result:
-      both:
-        - count: any
-          of:
-            - { requirement: Language, optional: true }
-            - { requirement: Interim In German, optional: true }
-            - { requirement: In Translation, optional: true }
-
-        - given: these-requirements
-          requirements:
-            - Language
-            - Interim In German
-            - In Translation
-          what: courses
-          do: count >= 3
+      from:
+        requirements:
+          - Language
+          - Interim In German
+          - In Translation
+      assert: {count(courses): {$gte: 3}}
 
     requirements:
-      - name: Language
+      Language:
         result:
           course: GERM 232
 
-      - name: Interim In German
-        message: You may count one German Interim abroad towards this requirement.
+      Interim In German:
+        message:
+          You may count one German Interim abroad towards this requirement.
         registrar_audited: true
 
-      - name: In Translation
+      In Translation:
         result:
-          given: these-courses
-          courses:
-            - GERM 147
-            - GERM 249
-            - GERM 263
-            - ART 252
-            - ART 271
-            - HIST 224
-            - MUSIC 342
-            - MUSIC 343
-            - PHIL 260
-            - PHIL 261
-            - PHIL 374
-            - PSCI 283
-            - PSCI 285
-            - REL 213
-            - REL 214
-            - REL 262
-            - REL 303
-            - REL 304
-          repeats: first
-          what: courses
+          from: {student: courses}
+          where: {attribute: {$eq: german_in_translation}}
           limit:
             # > a maximum of one course in English with a significant German
             # > focus taught by a St. Olaf instructor
             #
             # because all of these-courses are in english, we can just limit it
             # to at_most:1 here to accomplish this goal
-            - { at_most: 1, where: { institution: "St. Olaf College" } }
-          do: count = 1
+            - {at_most: 1, where: {institution: {$eq: St. Olaf College"}}}
+          assert: {count(courses): {$eq: 1}}
+
+attributes:
+  courses:
+    GERM 147: german_in_translation
+    GERM 249: german_in_translation
+    GERM 263: german_in_translation
+    ART 252: german_in_translation
+    ART 271: german_in_translation
+    HIST 224: german_in_translation
+    MUSIC 342: german_in_translation
+    MUSIC 343: german_in_translation
+    PHIL 260: german_in_translation
+    PHIL 261: german_in_translation
+    PHIL 374: german_in_translation
+    PSCI 283: german_in_translation
+    PSCI 285: german_in_translation
+    REL 213: german_in_translation
+    REL 214: german_in_translation
+    REL 262: german_in_translation
+    REL 303: german_in_translation
+    REL 304: german_in_translation

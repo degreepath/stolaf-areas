@@ -13,7 +13,11 @@ result:
     - requirement: Electives
 
 limits:
-  - {at most: 2, where: institution != St. Olaf College and course != PSYCH 125}
+  - at most: 2
+    where:
+      $and:
+        - {institution: {$neq: St. Olaf College}}
+        - {course: {$neq: PSYCH 125}}
 
 attributes:
   courses:

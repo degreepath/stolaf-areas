@@ -1,3 +1,4 @@
+---
 name: Economics
 type: major
 degree: B.A.
@@ -12,8 +13,8 @@ result:
 
 attributes:
   multicountable:
-    - - {course: ECON 385}
-      - {attribute: econ_level_3}
+    - - {course: {$eq: ECON 385}}
+      - {attribute: {$eq: econ_level_3}}
 
   courses:
     ECON 200: [econ_level_2]
@@ -45,7 +46,10 @@ requirements:
         - course: ECON 262
         - either:
             - course: ECON 263
-            - both: [{course: STAT 272}, {course: ECON 385}]
+            # or
+            - both:
+                - course: STAT 272
+                - course: ECON 385
 
   Foundation:
     result:
@@ -61,32 +65,29 @@ requirements:
         - requirement: Level II
         - requirement: Level III
 
-        - given: these-requirements
-          requirements:
-            - Level II
-            - Level III
-          what: courses
-          do: count >= 4
+        - from:
+            requirements:
+              - Level II
+              - Level III
+          assert: {count(courses): {$gte: 4}}
 
     requirements:
       Level II:
         result:
-          given: courses
-          where: {attribute: econ_level_2}
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: {attribute: {$eq: econ_level_2}}
+          assert: {count(courses): {$gte: 1}}
 
       Level III:
         result:
-          given: courses
-          where: {attribute: econ_level_3}
-          what: courses
-          do: count >= 2
+          from: {student: courses}
+          where: {attribute: {$eq: econ_level_3}}
+          assert: {count(courses): {$gte: 2}}
 
 
 emphases:
-  limits:
-    - {at_most: 0, where: {grade: '< 2.0'}}
+  limit:
+    - {at_most: 0, where: {grade: {$lt: 2.0}}}
 
   choices:
     International Economic Analysis and Policy:
@@ -115,8 +116,8 @@ emphases:
             Non-Econ International Topics:
               contract: true
               message:
-                You may also choose an course outside of Economics Department that
-                relates to international topics.
+                You may also choose an course outside of Economics Department
+                that relates to international topics.
 
     Public Policy:
       result:

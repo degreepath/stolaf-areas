@@ -15,7 +15,7 @@ limit:
   - {at most: 1, where: {s/u: {$eq: true}}}
 
 requirements:
-  - name: Language
+  Language:
     result:
       all:
         - course: NORW 111
@@ -23,20 +23,20 @@ requirements:
         - course: NORW 231
         - course: NORW 232
 
-  - name: Culture & Writing
+  Culture & Writing:
     result:
       all:
         - course: NORW 253
         - course: NORW 371
         - course: NORW 372
 
-  - name: History & Culture
+  History & Culture:
     result:
       from: {student: courses}
       where: {attribute: {$eq: norw_history_culture}}
       assert: {count(courses): {$gte: 1}}
 
-  - name: Upper-Level Elective
+  Upper-Level Elective:
     result:
       any:
         - course: NORW 224

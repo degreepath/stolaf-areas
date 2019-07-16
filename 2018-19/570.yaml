@@ -1,3 +1,4 @@
+---
 name: Religion
 type: major
 degree: B.A.
@@ -12,31 +13,30 @@ result:
     - requirement: Intensive Studies
 
 requirements:
-  - name: General Education
+  General Education:
     result:
       both:
-        - given: courses
-          where: { gereqs: BTS-B }
-          what: courses
-          do: count >= 1
+        - from: {student: courses}
+          where: {gereqs: {$eq: BTS-B}}
+          assert: {count(courses): {$gte: 1}}
 
-        - given: courses
-          where: { gereqs: BTS-T }
-          what: courses
-          do: count >= 1
+        - from: {student: courses}
+          where: {gereqs: {$eq: BTS-T}}
+          assert: {count(courses): {$gte: 1}}
 
-  - name: What is Religion?
+  What is Religion?:
     result:
       course: REL 285
 
-  - name: Religious Dimensions
+  Religious Dimensions:
     message: TODO. Not yet completed. At all.
 
     # result:
     #   count: 1
     #   of: []
 
-    # Courses that focus on three different dimensions of religion (and deal with at least two different religious traditions):
+    # Courses that focus on three different dimensions of religion (and deal
+    # with at least two different religious traditions):
     #   count: all
     #   of:
     #     - requirement: Sacred Texts
@@ -46,44 +46,39 @@ requirements:
     # requirements:
     #   Sacred Texts:
     #     result:
-    #       given: these-courses
+    #       from: these-courses
     #       courses: []
     #       what: courses
     #       do: count >= 1
     #   Religion in History and Culture:
     #     result:
-    #       given: these-courses
+    #       from: these-courses
     #       courses: []
     #       what: courses
     #       do: count >= 1
     #   Religious Thought:
     #     result:
-    #       given: these-courses
+    #       from: these-courses
     #       courses: []
     #       what: courses
     #       do: count >= 1
 
-  - name: Intensive Studies
+  Intensive Studies:
     result:
       both:
-        - count: 1
-          of:
-            - REL 302
-            - REL 303
-            - REL 304
-            - REL 320
-            - REL 341
-            - REL 344
+        - any:
+            - course: REL 302
+            - course: REL 303
+            - course: REL 304
+            - course: REL 320
+            - course: REL 341
+            - course: REL 344
 
-        - given: these-courses
-          courses:
-            - REL 390
-            - REL 391
-            - REL 392
-            - REL 393
-            - REL 395
-            - REL 397
-            - REL 399
-          repeats: all
-          what: courses
-          do: count >= 1
+        - any:
+            - course: REL 390
+            - course: REL 391
+            - course: REL 392
+            - course: REL 393
+            - course: REL 395
+            - course: REL 397
+            - course: REL 399

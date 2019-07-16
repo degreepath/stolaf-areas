@@ -1,3 +1,4 @@
+---
 name: Music
 type: major
 degree: B.A.
@@ -22,8 +23,8 @@ requirements:
         - {course: MUSIC 161, grade: B-}
         - {course: MUSIC 162, grade: B-}
         - either:
-          - course: MUSIC 212
-          - course: MUSIC 214
+            - course: MUSIC 212
+            - course: MUSIC 214
 
   Musicology:
     result:
@@ -51,7 +52,7 @@ requirements:
               - {level: {$eq: 300}}
       limit:
         - {at most: 3, where: {level: {$eq: 200}}}
-      assert: count(courses) >= 4
+      assert: {count(courses): {$gte: 4}}
 
   Performance Studies:
     message:
@@ -339,24 +340,24 @@ requirements:
   Official Ensemble Participation:
     result:
       from: {student: courses}
-      where: subject = MUSEN
-      assert: count(terms) >= 4
+      where: {subject: {$eq: MUSEN}}
+      assert: {count(terms): {$gte: 4}}
 
   Performances:
     message:
       Two solo performances on a St. Olaf Student Recital.
     result:
       from: {student: music performances}
-      where: solo = true
-      assert: count(performances) >= 2
+      where: {solo: {$eq: true}}
+      assert: {count(performances): {$gte: 2}}
 
   Recital Attendance:
     message:
       You must attend 10 recitals per semester on campus, with a minimum of 60 overall.
     result:
       from: {student: music performances}
-      where: attended = true
-      assert: count(performances) >= 60
+      where: {attended: {$eq: true}}
+      assert: {count(performances): {$gte: 60}}
 
 
 emphases:
@@ -381,24 +382,29 @@ emphases:
         Lessons:
           result:
             from: {student: courses}
-            where: course = MUSPF 326
-            assert: count(terms) >= 4
+            where: {course: {$eq: MUSPF 326}}
+            assert: {count(terms): {$gte: 4}}
 
         Performances:
           message:
             2 composition performances, at least 1 in junior or senior year
-          saves:
-            All Performances:
-              from: {student: music performances}
-              where: performed = true and (type = AAA or type = BBB)
-              store: performances
+
           result:
             both:
-              - from: {save: All Performances}
-                assert: count(performances) >= 2
-              - from: {save: All Performances}
-                where: year = $senior-year or year = $junior-year
-                assert: count(performances) >= 1
+              - from: {student: music performances}
+                where:
+                  $and:
+                    - {performed: {$eq: true}}
+                    - {type: {$in: [AAA, BBB]}}
+                assert: {count(performances): {$gte: 2}}
+
+              - from: {student: music performances}
+                where:
+                  $and:
+                    - {performed: {$eq: true}}
+                    - {type: {$in: [AAA, BBB]}}
+                    - {year: {$in: [$senior-year, $junior-year]}}
+                assert: {count(performances): {$gte: 1}}
 
         Portfolio:
           message:
@@ -467,15 +473,15 @@ emphases:
         Courses:
           result:
             all:
-              - MUSIC 312
-              - MUSIC 313
-              - MUSIC 314
+              - course: MUSIC 312
+              - course: MUSIC 313
+              - course: MUSIC 314
 
         Portfolio:
           message:
-            With approval of the theory faculty, the student submits a portfolio
-            of at least 3 papers previously submitted for Level III theory
-            courses to the Music Office by May 1 of the senior year. One of these
-            must be revised with faculty supervision to demonstrate the student's
-            best work in music analysis
+            With approval of the theory faculty, the student submits a
+            portfolio of at least 3 papers previously submitted for Level III
+            theory courses to the Music Office by May 1 of the senior year.
+            One of these must be revised with faculty supervision to
+            demonstrate the student's best work in music analysis
           department_audited: true

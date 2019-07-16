@@ -14,7 +14,7 @@ result:
         requirements:
           # we explicitly leave out the Environmental Studies requirement here
           - Outside your Emphasis
-          - Environmental Science - Level II
+          - Arts and Humanities - Level II
           - Arts and Humanities - Level III
       assert: {count(courses): {$gte: 9}}
 
@@ -22,18 +22,18 @@ requirements:
   Environmental Studies:
     result:
       all:
-        - ENVST 137
-        - ENVST 237
-        - ENVST 399
+        - course: ENVST 137
+        - course: ENVST 237
+        - course: ENVST 399
 
   Outside your Emphasis:
     result:
       all:
-        - requirement: Natural Science
+        - requirement: Natural Sciences
         - requirement: Social Sciences
         - from:
             requirements:
-              - Natural Science
+              - Natural Sciences
               - Social Sciences
           assert: {count(courses): {$gte: 3}}
 

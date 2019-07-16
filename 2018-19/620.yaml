@@ -62,11 +62,15 @@ requirements:
 
 attributes:
   multicountable:
-    - [{course: SPAN 313}, {attribute: spanish_elective}]
-    - [{course: SPAN 313}, {attribute: spanish_focus_spain}]
+    - - {course: {$eq: SPAN 313}}
+      - {attribute: {$eq: spanish_elective}}
+    - - {course: {$eq: SPAN 313}}
+      - {attribute: {$eq: spanish_focus_spain}}
 
-    - [{course: SPAN 314}, {attribute: spanish_elective}]
-    - [{course: SPAN 314}, {attribute: spanish_focus_latinamerica}]
+    - - {course: {$eq: SPAN 314}}
+      - {attribute: {$eq: spanish_elective}}
+    - - {course: {$eq: SPAN 314}}
+      - {attribute: {$eq: spanish_focus_latinamerica}}
 
   courses:
     SPAN 270: [spanish_elective, spanish_focus_spain]

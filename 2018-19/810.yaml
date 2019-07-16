@@ -1,10 +1,20 @@
+---
 name: Asian Studies
 type: concentration
 degree: B.A.
 catalog: 2018-19
 
 result:
-  requirement: Electives
+  result:
+    from: {student: courses}
+    where: {attribute: {$eq: asian_elective}}
+    limit:
+      # "At least two of the six courses must be taken on campus"
+      # aka "no more than 4 may be taken off-campus", since we need six total
+      - {at_most: 4, where: {institution: {$neq: St. Olaf College}}}
+      # and "No language courses may count toward this concentration" is
+      # taken care of by not listing them
+    assert: {count(courses): {$gte: 6}}
 
 
 attributes:
@@ -58,16 +68,3 @@ attributes:
     ECON 238: [asian_elective]
     HIST 240: [asian_elective]
     PHIL 127: [asian_elective]
-
-requirements:
-  - name: Electives
-    result:
-      given: courses
-      where: {attribute: asian_elective}
-      limit:
-        # "At least two of the six courses must be taken on campus"
-        # aka "no more than 4 may be taken off-campus", since we need six total
-        - {at_most: 4, where: {institution: '! St. Olaf College'}}
-        # and "No language courses may count toward this concentration" is taken care of by not listing them
-      what: courses
-      do: count >= 6
