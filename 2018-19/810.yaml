@@ -5,16 +5,15 @@ degree: B.A.
 catalog: 2018-19
 
 result:
-  result:
-    from: {student: courses}
-    where: {attribute: {$eq: asian_elective}}
-    limit:
-      # "At least two of the six courses must be taken on campus"
-      # aka "no more than 4 may be taken off-campus", since we need six total
-      - {at_most: 4, where: {institution: {$neq: St. Olaf College}}}
-      # and "No language courses may count toward this concentration" is
-      # taken care of by not listing them
-    assert: {count(courses): {$gte: 6}}
+  from: {student: courses}
+  where: {attribute: {$eq: asian_elective}}
+  limit:
+    # "At least two of the six courses must be taken on campus"
+    # aka "no more than 4 may be taken off-campus", since we need six total
+    - {at_most: 4, where: {institution: {$neq: St. Olaf College}}}
+    # and "No language courses may count toward this concentration" is
+    # taken care of by not listing them
+  assert: {count(courses): {$gte: 6}}
 
 
 attributes:

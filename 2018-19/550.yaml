@@ -23,7 +23,7 @@ result:
           - Political Theory
           - Level III
           - Electives
-      assert: count(courses) >= 9
+      assert: {count(courses): {$gte: 9}}
 
 limit:
   - {at-most: 3, where: {level: {$eq: 100}}}
@@ -95,16 +95,16 @@ requirements:
         from: {student: courses}
         where:
           $and:
-            - subject: {$in: [FREN, GERM, SPAN]}
-            - number: {$gte: 232}
+            - {subject: {$in: [FREN, GERM, SPAN]}}
+            - {number: {$gte: 232}}
         store: courses
 
       Chinese / Greek / Latin / Japanese / Norwegian / Russian:
         from: {student: courses}
         where:
           $and:
-            - subject: {$in: [CHIN, GREEK, LATIN, JAPAN, NORW, RUSSN]}
-            - number: {$gte: 231}
+            - {subject: {$in: [CHIN, GREEK, LATIN, JAPAN, NORW, RUSSN]}}
+            - {number: {$gte: 231}}
         store: courses
 
     result:
@@ -112,7 +112,7 @@ requirements:
       of:
         - from: {save: Within PSCI}
           limit:
-            - {at-most: 1, where: {course: {$exists: true}}}
+            - {at-most: 1, where: {course: {$neq: ''}}}
           assert: {count(courses): {$eq: 1}}
 
         - from:
@@ -121,7 +121,7 @@ requirements:
               - French / German / Spanish
               - Chinese / Greek / Latin / Japanese / Norwegian / Russian
           limit:
-            - {at-most: 1, where: course is not None}
+            - {at-most: 1, where: {course: {$neq: ''}}}
           assert: {count(courses): {$eq: 1}}
 
 

@@ -89,7 +89,7 @@ requirements:
       Bassoon:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 102}}, assert: {count(terms): {$gte: 4}}}
@@ -99,7 +99,7 @@ requirements:
       Clarinet:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 104}}, assert: {count(terms): {$gte: 4}}}
@@ -109,7 +109,7 @@ requirements:
       Coll Keyboard Perfor:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 106}}, assert: {count(terms): {$gte: 4}}}
@@ -119,7 +119,7 @@ requirements:
       Drumset:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 109}}, assert: {count(terms): {$gte: 4}}}
@@ -129,7 +129,7 @@ requirements:
       Euphonium:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 112}}, assert: {count(terms): {$gte: 4}}}
@@ -139,7 +139,7 @@ requirements:
       Flute:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 114}}, assert: {count(terms): {$gte: 4}}}
@@ -149,7 +149,7 @@ requirements:
       French Horn:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 116}}, assert: {count(terms): {$gte: 4}}}
@@ -159,7 +159,7 @@ requirements:
       Hardanger Fiddle:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 118}}, assert: {count(terms): {$gte: 4}}}
@@ -169,7 +169,7 @@ requirements:
       Harp:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 120}}, assert: {count(terms): {$gte: 4}}}
@@ -179,7 +179,7 @@ requirements:
       Harpsichord:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 122}}, assert: {count(terms): {$gte: 4}}}
@@ -189,7 +189,7 @@ requirements:
       Jazz Piano:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 124}}, assert: {count(terms): {$gte: 4}}}
@@ -199,7 +199,7 @@ requirements:
       Oboe:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 126}}, assert: {count(terms): {$gte: 4}}}
@@ -209,7 +209,7 @@ requirements:
       Organ:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 128}}, assert: {count(terms): {$gte: 4}}}
@@ -219,7 +219,7 @@ requirements:
       Percussion:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 132}}, assert: {count(terms): {$gte: 4}}}
@@ -229,7 +229,7 @@ requirements:
       Piano:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 134}}, assert: {count(terms): {$gte: 4}}}
@@ -239,7 +239,7 @@ requirements:
       Jazz Saxophone:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 135}}, assert: {count(terms): {$gte: 4}}}
@@ -249,7 +249,7 @@ requirements:
       Saxophone:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 136}}, assert: {count(terms): {$gte: 4}}}
@@ -259,7 +259,7 @@ requirements:
       String Bass:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 138}}, assert: {count(terms): {$gte: 4}}}
@@ -269,7 +269,7 @@ requirements:
       Trombone:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 140}}, assert: {count(terms): {$gte: 4}}}
@@ -279,7 +279,7 @@ requirements:
       Trumpet:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 142}}, assert: {count(terms): {$gte: 4}}}
@@ -289,7 +289,7 @@ requirements:
       Tuba:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 144}}, assert: {count(terms): {$gte: 4}}}
@@ -299,7 +299,7 @@ requirements:
       Viola:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 146}}, assert: {count(terms): {$gte: 4}}}
@@ -309,7 +309,7 @@ requirements:
       Violin:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 148}}, assert: {count(terms): {$gte: 4}}}
@@ -319,7 +319,7 @@ requirements:
       Violoncello:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 150}}, assert: {count(terms): {$gte: 4}}}
@@ -329,7 +329,7 @@ requirements:
       Voice:
         result:
           from: {requirements: [Lessons, Other Lessons]}
-          assert: count(terms) >= 6
+          assert: {count(terms): {$gte: 6}}
         requirements:
           Lessons:
             result: {from: {student: courses}, where: {course: {$eq: MUSPF 152}}, assert: {count(terms): {$gte: 4}}}
@@ -353,7 +353,8 @@ requirements:
 
   Recital Attendance:
     message:
-      You must attend 10 recitals per semester on campus, with a minimum of 60 overall.
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
     result:
       from: {student: music performances}
       where: {attended: {$eq: true}}
