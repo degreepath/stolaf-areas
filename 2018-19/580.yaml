@@ -25,4 +25,4 @@ requirements:
         year.
 
 attributes:
-  courses: []
+  courses: {}
