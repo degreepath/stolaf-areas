@@ -1,0 +1,28 @@
+---
+name: Public Policy
+type: emphasis
+degree: B.A.
+major: Economics
+catalog: 2018-19
+
+result:
+  both:
+    - requirement: Public Policy
+    - requirement: Electives
+
+limit:
+  - {at_most: 0, where: {grade: {$lt: 2.0}}}
+
+requirements:
+  Public Policy:
+    result:
+      course: ECON 371
+
+  Electives:
+    result:
+      count: 3
+      of:
+        - course: ECON 242
+        - course: ECON 245
+        - course: ECON 249
+        - course: ECON 385

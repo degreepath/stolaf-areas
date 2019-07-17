@@ -1,0 +1,38 @@
+---
+name: Management
+type: emphasis
+degree: B.A.
+major: Economics
+catalog: 2018-19
+
+result:
+  both:
+    - requirement: Management
+    - requirement: Electives
+
+limit:
+  - {at_most: 0, where: {grade: {$lt: 2.0}}}
+
+requirements:
+  Management:
+    result:
+      all:
+        - course: MGMT 225
+        - course: MGMT 237
+        - course: MGMT 251
+        - course: MGMT 383
+
+  Electives:
+    result:
+      any:
+        - course: MGMT 250
+        - course: MGMT 252
+        - course: MGMT 256
+        - course: MGMT 281
+        - requirement: Other MGMT Course
+
+    requirements:
+      Other MGMT Course:
+        contract: true
+        message:
+          You may also negotiate another MGMT course.

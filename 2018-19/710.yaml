@@ -1,0 +1,34 @@
+---
+name: Finance
+type: emphasis
+degree: B.A.
+major: Economics
+catalog: 2018-19
+
+result:
+  both:
+    - requirement: Finance
+    - requirement: Electives
+
+limit:
+  - {at_most: 0, where: {grade: {$lt: 2.0}}}
+
+requirements:
+  Finance:
+    result:
+      all:
+        - course: MGMT 225
+        - course: MGMT 237
+        - course: MGMT 281
+        - course: MGMT 380
+
+  Electives:
+    result:
+      any:
+        - both: [{course: MGMT 250}, {course: MGMT 251}]
+        - course: MGMT 252
+        - course: MGMT 256
+        - course: ECON 371
+        - course: ECON 374
+        - course: ECON 382
+        - course: ECON 385
