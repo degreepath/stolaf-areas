@@ -1,0 +1,11 @@
+---
+name: Environmental Studies
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - course: ENVST 137
+    - course: ENVST 237
+    - course: ENVST 399

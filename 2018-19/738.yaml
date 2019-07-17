@@ -1,12 +1,12 @@
 ---
-name: Environmental Studies - Social Science
-type: major
+name: Social Science
+type: emphasis
+major: Environmental Studies
 degree: B.A.
 catalog: 2018-19
 
 result:
   all:
-    - requirement: Environmental Studies
     - requirement: Outside your Emphasis
     - requirement: Methodological Analysis
     - requirement: Economic Analysis
@@ -14,7 +14,6 @@ result:
     - requirement: Social Science Electives
     - from:
         requirements:
-          # we explicitly leave out the Environmental Studies requirement here
           - Outside your Emphasis
           - Methodological Analysis
           - Economic Analysis
@@ -23,13 +22,6 @@ result:
       assert: {count(courses): {$gte: 9}}
 
 requirements:
-  Environmental Studies:
-    result:
-      all:
-        - course: ENVST 137
-        - course: ENVST 237
-        - course: ENVST 399
-
   Outside your Emphasis:
     result:
       all:

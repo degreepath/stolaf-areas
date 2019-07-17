@@ -1,12 +1,12 @@
 ---
-name: Environmental Studies - Natural Science
-type: major
+name: Natural Science
+type: emphasis
+major: Environmental Studies
 degree: B.A.
 catalog: 2018-19
 
 result:
   all:
-    - requirement: Environmental Studies
     - requirement: Outside your Emphasis
     - requirement: Statistics, Modeling, and Mapping
     - requirement: Intermediate Chemistry
@@ -15,7 +15,6 @@ result:
     - requirement: Environmental Science - Level III
     - from:
         requirements:
-          # we explicitly leave out the Environmental Studies requirement here
           - Outside your Emphasis
           - Statistics, Modeling, and Mapping
           - Intermediate Chemistry
@@ -25,13 +24,6 @@ result:
       assert: {count(courses): {$gte: 9}}
 
 requirements:
-  Environmental Studies:
-    result:
-      all:
-        - course: ENVST 137
-        - course: ENVST 237
-        - course: ENVST 399
-
   Outside your Emphasis:
     result:
       all:

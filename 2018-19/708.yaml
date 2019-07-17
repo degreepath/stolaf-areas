@@ -1,31 +1,23 @@
 ---
-name: Environmental Studies - Arts and Humanities
-type: major
+name: Arts and Humanities
+type: emphasis
+major: Environmental Studies
 degree: B.A.
 catalog: 2018-19
 
 result:
   all:
-    - requirement: Environmental Studies
     - requirement: Outside your Emphasis
     - requirement: Arts and Humanities - Level II
     - requirement: Arts and Humanities - Level III
     - from:
         requirements:
-          # we explicitly leave out the Environmental Studies requirement here
           - Outside your Emphasis
           - Arts and Humanities - Level II
           - Arts and Humanities - Level III
       assert: {count(courses): {$gte: 9}}
 
 requirements:
-  Environmental Studies:
-    result:
-      all:
-        - course: ENVST 137
-        - course: ENVST 237
-        - course: ENVST 399
-
   Outside your Emphasis:
     result:
       all:
