@@ -68,6 +68,7 @@ attributes:
 requirements:
   Language:
     result:
+      at_most: true
       any:
         - course: GREEK 253
         - course: GREEK 370
@@ -107,7 +108,7 @@ requirements:
       either:
         - both:
             - requirement: Took Greek
-            - count: 0
+            - count: 1
               of:
                 - {course: GREEK 253, can_match_used: true}
                 - {course: GREEK 370, can_match_used: true}
@@ -117,7 +118,7 @@ requirements:
                 - {course: GREEK 375, can_match_used: true}
         - both:
             - requirement: Took Latin
-            - count: 0
+            - count: 1
               of:
                 - {course: LATIN 252, can_match_used: true}
                 - {course: LATIN 370, can_match_used: true}
