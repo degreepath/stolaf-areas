@@ -18,6 +18,7 @@ attributes:
 requirements:
   Language:
     result:
+      at_most: true
       count: 7
       of:
         - course: LATIN 111
@@ -35,6 +36,7 @@ requirements:
 
   Classics:
     result:
+      at_most: true
       count: 1
       of:
         - course: CLASS 121
@@ -53,6 +55,7 @@ requirements:
       # from: {student: courses}
       # where: {attributes: {$eq: latin_elective}}
       # assert: {count(courses): {$eq: 1}}
+      at_most: true
       any:
         - course: HIST 204
         - course: HIST 303
