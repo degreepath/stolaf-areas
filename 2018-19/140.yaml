@@ -70,7 +70,8 @@ requirements:
   Foundations:
     result:
       all:
-        - either:
+        - at_most: true
+          either:
             - course: ART 102
             - course: ART 106
         - course: ART 103
@@ -86,6 +87,7 @@ requirements:
     requirements:
       2D Media:
         result:
+          at_most: true
           any:
             - requirement: Drawing
             - requirement: Painting
@@ -95,6 +97,7 @@ requirements:
         requirements:
           Drawing:
             result:
+              at_most: true
               any:
                 - course: ART 225
                 - course: ART 232
@@ -102,12 +105,14 @@ requirements:
 
           Painting:
             result:
+              at_most: true
               any:
                 - course: ART 221
                 - course: ART 222
 
           Printmaking:
             result:
+              at_most: true
               any:
                 - course: ART 226
                 - course: ART 227
@@ -119,6 +124,7 @@ requirements:
 
       3D Media:
         result:
+          at_most: true
           any:
             - requirement: Ceramics
             - requirement: Sculpture
@@ -126,18 +132,21 @@ requirements:
         requirements:
           Ceramics:
             result:
+              at_most: true
               any:
                 - course: ART 207
                 - course: ART 234
 
           Sculpture:
             result:
+              at_most: true
               any:
                 - course: ART 223
                 - course: ART 224
 
       New Media:
         result:
+          at_most: true
           any:
             - requirement: Photography
             - requirement: Interactive Image
@@ -148,27 +157,32 @@ requirements:
         requirements:
           Photography:
             result:
+              at_most: true
               any:
                 - course: ART 205
                 - course: ART 238
 
           Interactive Image:
             result:
+              at_most: true
               any:
                 - course: ART 228
 
           Digital Video:
             result:
+              at_most: true
               any:
                 - course: ART 229
 
           Performance:
             result:
+              at_most: true
               any:
                 - course: ART 240
 
           Graphic Design:
             result:
+              at_most: true
               any:
                 - course: ART 236
 
