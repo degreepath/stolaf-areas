@@ -71,6 +71,7 @@ requirements:
     requirements:
       Natural Science:
         result:
+          at_most: true
           count: 2
           of:
             - course: PSYCH 235
@@ -80,6 +81,7 @@ requirements:
 
       Social Science:
         result:
+          at_most: true
           count: 2
           of:
             - course: PSYCH 241
@@ -97,10 +99,11 @@ requirements:
             $or:
               - {course: {$eq: PSYCH 396}}
               - {course: {$eq: PSYCH 398}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   General Education:
     result:
+      at_most: true
       any:
         - course: STAT 110
         - course: STAT 212
@@ -111,4 +114,4 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: psych_elective}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 2, at_most: true}}

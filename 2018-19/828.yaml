@@ -26,7 +26,7 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: envst_natural}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
     limit:
       - at-most: 1
         where:
@@ -39,19 +39,19 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: envst_social}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Arts and Humanities:
     result:
       from: {student: courses}
       where: {attribute: {$eq: envst_arts}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Elective:
     result:
       from: {student: courses}
       where: {attribute: {$in: [envst_natural, envst_social, envst_arts]}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
 attributes:
   courses:

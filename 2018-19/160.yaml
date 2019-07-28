@@ -152,7 +152,7 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: bio_elective}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   Chemistry:
     result:

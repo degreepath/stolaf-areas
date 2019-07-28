@@ -202,7 +202,7 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: art_elective}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Art History:
     message:
@@ -212,4 +212,4 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: art_history}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
