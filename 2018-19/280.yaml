@@ -15,6 +15,7 @@ requirements:
   Speaking and Writing:
     result:
       count: 2
+      at_most: true
       of:
         - course: FREN 250
         - course: FREN 251
@@ -23,6 +24,7 @@ requirements:
   The Francophone World:
     result:
       count: 2
+      at_most: true
       of:
         - course: FREN 271
         - course: FREN 272
@@ -32,6 +34,7 @@ requirements:
   Level III:
     result:
       count: 2
+      at_most: true
       of:
         - course: FREN 372
         - course: FREN 373
@@ -44,7 +47,7 @@ requirements:
       where: {attribute: {$eq: french_elective}}
       limit:
         - {at-most: 1, where: {subject: {$neq: FREN}}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
 attributes:
   courses:

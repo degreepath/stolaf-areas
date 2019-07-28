@@ -84,7 +84,7 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: art_studio_art}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Distribution:
     message:
