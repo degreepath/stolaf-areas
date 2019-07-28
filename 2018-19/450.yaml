@@ -22,7 +22,8 @@ requirements:
         - course: MUSIC 141
         - {course: MUSIC 161, grade: B-}
         - {course: MUSIC 162, grade: B-}
-        - either:
+        - at_most: true
+          either:
             - course: MUSIC 212
             - course: MUSIC 214
 
@@ -61,7 +62,8 @@ requirements:
 
     result:
       at_most: true
-      any:
+      count: 1
+      of:
         - requirement: Bassoon
         - requirement: Clarinet
         - requirement: Drumset

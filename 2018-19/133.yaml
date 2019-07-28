@@ -89,13 +89,13 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: ancient_history}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Classics:
     result:
       from: {student: courses}
       where: {subject: {$eq: CLASS}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     message:
@@ -105,6 +105,7 @@ requirements:
       required language portion of the major with Greek courses.
 
     result:
+      at_most: true
       either:
         - both:
             - requirement: Took Greek
@@ -142,7 +143,7 @@ requirements:
                 - ancient_elective_if_greek_lang
           limit:
             - {at_most: 1, where: {subject: {$eq: LATIN}}}
-          assert: {count(courses): {$gte: 4}}
+          assert: {count(courses): {$gte: 4, at_most: true}}
 
       Took Latin:
         result:
@@ -154,7 +155,7 @@ requirements:
                 - ancient_elective_if_latin_lang
           limit:
             - {at_most: 1, where: {subject: {$eq: GREEK}}}
-          assert: {count(courses): {$gte: 4}}
+          assert: {count(courses): {$gte: 4, at_most: true}}
 
   Independent Research:
     department_audited: true
