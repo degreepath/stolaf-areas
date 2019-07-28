@@ -10,7 +10,7 @@ result:
     - requirement: Language
     - requirement: Electives
 
-limits:
+limit:
   - {at_most: 1, where: {s/u: {$eq: true}}}
 
 attributes:

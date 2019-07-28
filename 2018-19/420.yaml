@@ -13,16 +13,9 @@ result:
     - requirement: Sequence
     - requirement: Level III
 
-    - from:
-        requirements:
-          - Basics
-          - Transitions
-          - Perspectives
-          - Interdisciplinary
-          - Sequence
-          - Level III
-      where: {year: {$gte: $matriculation-year}}
-      assert: {count(courses): {$gte: 6}}
+  audit:
+    where: {year: {$gte: $matriculation-year}}
+    assert: {count(courses): {$gte: 6}}
 
 limit:
   - {at_most: 2, where: {subject: {$neq: MATH}}}
@@ -32,7 +25,8 @@ requirements:
     result:
       all:
         - course: MATH 120
-        - either:
+        - at_most: true
+          either:
             - course: MATH 126
             - course: MATH 128
         - course: MATH 220
@@ -41,12 +35,13 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: math_transitions}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$eq: 2}}
 
   Perspectives:
     message: One course from each of three of the four perspectives.
 
     result:
+      at_most: true
       count: 3
       of:
         - requirement: Axiomatic/Algebraic (A)
@@ -59,25 +54,25 @@ requirements:
         result:
           from: {student: courses}
           where: {attribute: {$eq: math_perspective_a}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$eq: 1}}
 
       Continuous/Analytic (C):
         result:
           from: {student: courses}
           where: {attribute: {$eq: math_perspective_c}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$eq: 1}}
 
       Discrete/Combinatorial (D):
         result:
           from: {student: courses}
           where: {attribute: {$eq: math_perspective_d}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$eq: 1}}
 
       Modeling/Computation (M):
         result:
           from: {student: courses}
           where: {attribute: {$eq: math_perspective_m}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$eq: 1}}
 
   Interdisciplinary:
     result:
@@ -116,10 +111,11 @@ requirements:
       where: {attribute: {$eq: math_level_3}}
       limit:
         - {at_most: 1, where: {subject: {$neq: MATH}}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   Sequence:
     result:
+      at_most: true
       any:
         - both:
             - {course: MATH 220, including claimed: true}
@@ -151,21 +147,21 @@ requirements:
 
 attributes:
   multicountable:
-    - - {attribute: {$eq: math_perspective_a}}
-      - {attribute: {$eq: math_level_3}}
-      - {attribute: {$eq: math_transitions}}
+    - - {attributes: {$eq: math_perspective_a}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
 
-    - - {attribute: {$eq: math_perspective_c}}
-      - {attribute: {$eq: math_level_3}}
-      - {attribute: {$eq: math_transitions}}
+    - - {attributes: {$eq: math_perspective_c}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
 
-    - - {attribute: {$eq: math_perspective_d}}
-      - {attribute: {$eq: math_level_3}}
-      - {attribute: {$eq: math_transitions}}
+    - - {attributes: {$eq: math_perspective_d}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
 
-    - - {attribute: {$eq: math_perspective_m}}
-      - {attribute: {$eq: math_level_3}}
-      - {attribute: {$eq: math_transitions}}
+    - - {attributes: {$eq: math_perspective_m}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
 
   courses:
     CSCI 315: [math_level_3]

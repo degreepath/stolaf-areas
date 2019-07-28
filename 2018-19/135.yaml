@@ -94,20 +94,14 @@ requirements:
       must cover art created after 1700 CE.
 
     result:
-      both:
-        - all:
-            - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
-            - requirement: European and American Art
-            - requirement: Art created before 1700 CE
-            - requirement: Art created after 1700 CE
+      all:
+        - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
+        - requirement: European and American Art
+        - requirement: Art created before 1700 CE
+        - requirement: Art created after 1700 CE
 
-        - from:
-            requirements:
-              - Asian, African, Indigenous American, or Near Eastern/Islamic Art
-              - European and American Art
-              - Art created before 1700 CE
-              - Art created after 1700 CE
-          assert: {count(courses): {$gte: 6}}
+      audit:
+        assert: {count(courses): {$gte: 6}}
 
     requirements:
       Asian, African, Indigenous American, or Near Eastern/Islamic Art:

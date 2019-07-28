@@ -5,24 +5,16 @@ degree: B.A.
 catalog: 2018-19
 
 result:
-  both:
-    - all:
-        - requirement: Major Seminar
-        - requirement: Level III
-        - requirement: Non-Western World
-        - requirement: European
-        - requirement: U.S.
-        - requirement: Pre-Modern Period
+  all:
+    - requirement: Major Seminar
+    - requirement: Level III
+    - requirement: Non-Western World
+    - requirement: European
+    - requirement: U.S.
+    - requirement: Pre-Modern Period
 
-    - from:
-        requirements:
-          - Major Seminar
-          - Level III
-          - Non-Western World
-          - European
-          - U.S.
-          - Pre-Modern Period
-      assert: {count(courses): {$gte: 9}}
+  audit:
+    assert: {count(courses): {$gte: 9}}
 
 
 limit:
@@ -34,12 +26,12 @@ limit:
 
 attributes:
   multicountable:
-    - - {attribute: {$eq: history_era_premodern}}
-      - {attribute: {$eq: history_l2_seminar}}
-      - {attribute: {$eq: history_level_3}}
-      - {attribute: {$eq: history_region_europe}}
-      - {attribute: {$eq: history_region_nonwesternworld}}
-      - {attribute: {$eq: history_region_us}}
+    - - {attributes: {$eq: history_era_premodern}}
+      - {attributes: {$eq: history_l2_seminar}}
+      - {attributes: {$eq: history_level_3}}
+      - {attributes: {$eq: history_region_europe}}
+      - {attributes: {$eq: history_region_nonwesternworld}}
+      - {attributes: {$eq: history_region_us}}
 
   courses:
     ASIAN 399: [history_level_3]

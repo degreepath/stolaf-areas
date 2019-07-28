@@ -12,14 +12,8 @@ result:
     - requirement: Economic Analysis
     - requirement: Environmental Political Policy and Institutions
     - requirement: Social Science Electives
-    - from:
-        requirements:
-          - Outside your Emphasis
-          - Methodological Analysis
-          - Economic Analysis
-          - Environmental Political Policy and Institutions
-          - Social Science Electives
-      assert: {count(courses): {$gte: 9}}
+  audit:
+    assert: {count(courses): {$gte: 9}}
 
 requirements:
   Outside your Emphasis:
@@ -27,11 +21,8 @@ requirements:
       all:
         - requirement: Natural Sciences
         - requirement: Arts and Humanities
-        - from:
-            requirements:
-              - Natural Sciences
-              - Arts and Humanities
-          assert: {count(courses): {$gte: 3}}
+      audit:
+        assert: {count(courses): {$gte: 3}}
 
     requirements:
       Natural Sciences:
@@ -75,7 +66,7 @@ requirements:
   Social Science Electives:
     result:
       from: {student: courses}
-      where: {attribute:: {$eq: envst_social_elective}}
+      where: {attribute: {$eq: envst_social_elective}}
       assert: {count(courses): {$gte: 2}}
 
 attributes:

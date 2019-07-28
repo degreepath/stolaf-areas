@@ -5,8 +5,7 @@ degree: B.A.
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Core
     - requirement: Electives
 
@@ -21,56 +20,46 @@ requirements:
         - course: SPAN 275
         - course: SPAN 276
         - either:
-            - {course: SPAN 313}
-            - {course: SPAN 314}
+            - course: SPAN 313
+            - course: SPAN 314
 
   Electives:
-    save:
-      Taken Electives:
-        from:
-          requirements:
-            - Focused Courses
-            - Other Elective
+    message: >
+      You must take one (1) additional level III course from St. Olaf College,
+      and three (3) electives above the the 250 level.
+
+      Of these four (4) courses, at least one must focus on Spain, and one on
+      Latin America.
 
     result:
+      from: {student: courses}
+      where: {attribute: {$in: spanish_elective}}
       all:
-        - from: {save: Taken Electives}
-          assert: {count(courses): {$gte: 4}}
+        - assert: {count(courses): {$gte: 4}}
 
-        - from: {save: Taken Electives}
-          where:
-            level: {$eq: 300}
-            institution: {$eq: 'St. Olaf College'}
+        - where: {attribute: {$eq: spanish_focus_spain}}
           assert: {count(courses): {$gte: 1}}
 
-    requirements:
-      Focused Courses:
-        all:
-          - from: {student: courses}
-            where: {attribute: {$eq: spanish_focus_spain}}
-            assert: {count(courses): {$gte: 1}}
+        - where: {attribute: {$eq: spanish_focus_latinamerica}}
+          assert: {count(courses): {$gte: 1}}
 
-          - from: {student: courses}
-            where: {attribute: {$eq: spanish_focus_latinamerica}}
-            assert: {count(courses): {$gte: 1}}
-
-      Other Elective:
-        result:
-          from: {student: courses}
-          where: {attribute: {$eq: spanish_elective}}
+        - where:
+            $and:
+              - level: {$eq: 300}
+              - institution: {$eq: 'St. Olaf College'}
           assert: {count(courses): {$gte: 1}}
 
 attributes:
   multicountable:
     - - {course: {$eq: SPAN 313}}
-      - {attribute: {$eq: spanish_elective}}
+      - {attributes: {$eq: spanish_elective}}
     - - {course: {$eq: SPAN 313}}
-      - {attribute: {$eq: spanish_focus_spain}}
+      - {attributes: {$eq: spanish_focus_spain}}
 
     - - {course: {$eq: SPAN 314}}
-      - {attribute: {$eq: spanish_elective}}
+      - {attributes: {$eq: spanish_elective}}
     - - {course: {$eq: SPAN 314}}
-      - {attribute: {$eq: spanish_focus_latinamerica}}
+      - {attributes: {$eq: spanish_focus_latinamerica}}
 
   courses:
     SPAN 270: [spanish_elective, spanish_focus_spain]

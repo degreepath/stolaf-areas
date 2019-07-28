@@ -12,9 +12,10 @@ result:
 
 requirements:
   Core:
-    either:
-      - course: RACE 121
-      - course: RACE 122
+    result:
+      either:
+        - course: RACE 121
+        - course: RACE 122
 
   Electives:
     result:

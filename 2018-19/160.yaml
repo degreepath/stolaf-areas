@@ -6,25 +6,22 @@ catalog: 2018-19
 
 result:
   all:
-    - all:
-        - requirement: Foundation
-        - requirement: Core
-        - requirement: Level III
-        - requirement: Electives
-        - requirement: Chemistry
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Level III
+    - requirement: Electives
+    - requirement: Chemistry
 
-    - from:
-        requirements:
-          - Foundation
-          - Core
-          - Level III
-          - Electives
-          - Chemistry
-      where: {grade: {$gte: C}, level: {$gte: 200}}
-      assert: {count(courses): {$gte: 4}}
+  audit:
+    where:
+      $and:
+        - grade: {$gte: C}
+        - level: {$gte: 200}
+    assert:
+      count(courses): {$gte: 4}
 
 
-limiters:
+limit:
   - {at-most: 2, where: {level: {$eq: 100}}}
   - {at-most: 2, where: {grade: {$lt: C}}}
 
@@ -99,12 +96,14 @@ requirements:
       Genetics:
         result:
           count: 1
+          at_most: true
           of:
             - course: BIO 233
 
       Cell Biology:
         result:
           count: 1
+          at_most: true
           of:
             - course: BIO 227
             - course: CH/BI 227
@@ -112,6 +111,7 @@ requirements:
       Comparative Organismal Biology:
         result:
           count: 1
+          at_most: true
           of:
             - course: BIO 224
             - course: BIO 242
@@ -125,6 +125,7 @@ requirements:
       Ecology:
         result:
           count: 1
+          at_most: true
           of:
             - course: BIO 226
             - course: BIO 261
@@ -132,6 +133,7 @@ requirements:
   Level III:
     result:
       count: 1
+      at_most: true
       of:
         - course: BIO 315
         - course: BIO 341
@@ -154,6 +156,7 @@ requirements:
 
   Chemistry:
     result:
+      at_most: true
       any:
         - all:
             - course: CHEM 121

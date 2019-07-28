@@ -33,6 +33,6 @@ requirements:
 
     requirements:
       Other MGMT Course:
-        contract: true
+        department-audited: true
         message:
           You may also negotiate another MGMT course.

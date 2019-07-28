@@ -5,19 +5,13 @@ degree: B.A.
 catalog: 2018-19
 
 result:
-  both:
-    - count: all
-      of:
-        - requirement: Core Language
-        - requirement: Upper-Level Language
-        - requirement: Language and Culture
+  all:
+    - requirement: Core Language
+    - requirement: Upper-Level Language
+    - requirement: Language and Culture
 
-    - from:
-        requirements:
-          - Core Language
-          - Upper-Level Language
-          - Language and Culture
-      assert: {sum(credits): {$gte: 9}}
+  audit:
+    assert: {sum(credits): {$gte: 9}}
 
 attributes:
   courses:
@@ -57,8 +51,7 @@ attributes:
 requirements:
   Core Language:
     result:
-      count: all
-      of:
+      all:
         - course: JAPAN 231
         - course: JAPAN 232
         - course: JAPAN 301
@@ -66,8 +59,7 @@ requirements:
 
   Upper-Level Language:
     result:
-      count: all
-      of:
+      any:
         - course: JAPAN 320
 
   Language and Culture:
@@ -78,23 +70,19 @@ requirements:
       One of these courses may be an Independent Study (capstone project) or the
       Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
 
-    save:
-      Allowed Courses:
-        from: {student: courses}
-        where: {attribute: {$eq: japan_elective}}
-        limit:
-          - at_most: 2
-            where: {attribute: {$eq: japan_asiancon}}
-          - at_most: 1
-            where: {attribute: {$in: [japan_is, japan_senior_seminar]}}
-          - at_most: 1
-            where: {level: {$eq: 100}}
-
     result:
-      all:
-        - from: {save: Allowed Courses}
-          assert: {count(courses): {$gte: 4}}
+      from: {student: courses}
+      where: {attribute: {$eq: japan_elective}}
+      limit:
+        - at_most: 2
+          where: {attribute: {$eq: japan_asiancon}}
+        - at_most: 1
+          where: {attribute: {$in: [japan_is, japan_senior_seminar]}}
+        - at_most: 1
+          where: {level: {$eq: 100}}
 
-        - from: {save: Allowed Courses}
-          where: {level: {$eq: 300}}
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
