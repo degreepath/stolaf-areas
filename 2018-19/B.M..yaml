@@ -4,16 +4,14 @@ type: degree
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Degree Requirements
     - requirement: General Education
 
 requirements:
   Degree Requirements:
     result:
-      count: all
-      of:
+      all:
         - requirement: Courses
         - requirement: Residency
         - requirement: Interim
@@ -26,44 +24,51 @@ requirements:
       Courses:
         result:
           from: {student: courses}
+          claim: false
           assert: {sum(credits): {$gte: 35}}
 
       Residency:
         result:
           from: {student: courses}
+          claim: false
           where: {institution: {$eq: St. Olaf College}}
           assert: {sum(credits): {$gte: 17}}
 
       Interim:
         result:
           from: {student: courses}
-          where: {semester: {$eq: Interim}}
+          claim: false
+          where: {semester: {$eq: 2}}
           assert:
             $and:
-              - sum(credits): {$gte: 3}
               - count(courses): {$gte: 3}
+              - sum(credits): {$gte: 3}
 
       Grade Point Average:
         result:
           from: {student: courses}
+          claim: false
           assert: {average(grades): {$gte: 2.0}}
 
       Course Level:
         result:
           from: {student: courses}
+          claim: false
           where: {level: {$gte: 200}}
           assert: {sum(credits): {$gte: 18}}
 
       Graded Courses:
         result:
           from: {student: courses}
-          where: {graded: {$eq: true}}
+          claim: false
+          where: {grade_type: {$eq: Graded}}
           assert: {sum(credits): {$gte: 24}}
 
       Major:
         result:
           from: {student: areas}
-          where: {type: {$eq: major}}
+          claim: false
+          where: {type: {$eq: Major}}
           assert: {count(areas): {$gte: 1}}
 
   General Education:
@@ -72,7 +77,7 @@ requirements:
       of:
         - requirement: Foundation
         - requirement: Core
-        - requirement: Integrative
+        - requirement: Ethical Issues and Normative Perspectives
 
     requirements:
       Foundation:
@@ -90,45 +95,55 @@ requirements:
           First-Year Writing:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$eq: FYW}}
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
 
           Writing in Context:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$eq: WRI}}
-              assert: {count(courses): {$gte: 4}}
+              assert: {count(courses): {$gte: 4, at_most: true}}
 
           Foreign Language:
             result:
-              any:
-                - course: CHIN 112
-                - course: FREN 112
-                - course: GERM 112
-                - course: GREEK 112
-                - course: JAPAN 112
-                - course: LATIN 112
-                - course: NORW 112
-                - course: RUSSL 112
-                - course: SPAN 112
+              from: {student: courses}
+              claim: false
+              where:
+                course:
+                  $in:
+                    - CHIN 112
+                    - FREN 112
+                    - GERM 112
+                    - GREEK 112
+                    - JAPAN 112
+                    - LATIN 112
+                    - NORW 112
+                    - RUSSL 112
+                    - SPAN 112
+              assert: {count(courses): {$gte: 1, at_most: true}}
 
           Oral Communication:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$eq: ORC}}
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
 
           Reasoning:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$in: [AQR, SED, IST]}}
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
 
           Studies in Physical Movement:
             result:
-              from: {student: courses}
+              from: {student: courses, repeats: first}
+              claim: false
               where: {gereqs: {$eq: SPM}}
-              assert: {count(distinct courses): {$gte: 2}}
+              assert: {count(courses): {$gte: 2, at_most: true}}
 
       Core:
         result:
@@ -143,18 +158,21 @@ requirements:
           Historical Studies in Western Culture or Literary Studies:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$in: [HWC, ALS-L]}}
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
 
           Multicultural Studies:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$in: [MCD, MCG]}}
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
 
           Biblical and Theological Studies:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$in: [BTS-B, BTS-T]}}
               all:
                 - assert: {count(courses): {$gte: 2}}
@@ -168,11 +186,13 @@ requirements:
           Studies in Human Behavior and Society:
             result:
               from: {student: courses}
+              claim: false
               where: {gereqs: {$eq: HBS}}
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
 
       Ethical Issues and Normative Perspectives:
         result:
           from: {student: courses}
+          claim: false
           where: {gereqs: {$eq: EIN}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
