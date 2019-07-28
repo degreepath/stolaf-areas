@@ -1,0 +1,49 @@
+---
+name: Educational Studies
+type: concentration
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Field Experience
+    - requirement: Electives
+
+limit:
+  - at_most: 2
+    where: {institution: {$neq: St. Olaf College}}
+  - at_most: 2
+    where: {s/u: {$eq: true}}
+
+gpa: 2.7
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: EDUC 260
+        - course: EDUC 290
+        - course: EDUC 372
+
+  Field Experience:
+    result:
+      at_most: true
+      any:
+        - course: EDUC 170
+        - course: EDUC 270
+        - course: EDUC 378
+
+  Electives:
+    count: 2
+    of:
+      - course: ENGL 205
+      - course: ENGL 242
+      - course: FAMST 242
+      - course: MEDIA 260
+      - course: MUSIC 237
+      - course: PSYCH 125
+      - course: PSYCH 236
+      - course: PSYCH 241
+      - course: SOAN 264
+      - course: WMGST 121

@@ -5,8 +5,7 @@ degree: B.A.
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Level 250
     - requirement: Level 270
     - requirement: Level III
@@ -65,27 +64,27 @@ requirements:
             # > focus taught by a St. Olaf instructor
             #
             # because all of these-courses are in english, we can just limit it
-            # to at_most:1 here to accomplish this goal
+            # to at_most: 1 here to accomplish this goal
             - {at_most: 1, where: {institution: {$eq: St. Olaf College"}}}
           assert: {count(courses): {$eq: 1}}
 
 attributes:
   courses:
-    GERM 147: german_in_translation
-    GERM 249: german_in_translation
-    GERM 263: german_in_translation
-    ART 252: german_in_translation
-    ART 271: german_in_translation
-    HIST 224: german_in_translation
-    MUSIC 342: german_in_translation
-    MUSIC 343: german_in_translation
-    PHIL 260: german_in_translation
-    PHIL 261: german_in_translation
-    PHIL 374: german_in_translation
-    PSCI 283: german_in_translation
-    PSCI 285: german_in_translation
-    REL 213: german_in_translation
-    REL 214: german_in_translation
-    REL 262: german_in_translation
-    REL 303: german_in_translation
-    REL 304: german_in_translation
+    GERM 147: [german_in_translation]
+    GERM 249: [german_in_translation]
+    GERM 263: [german_in_translation]
+    ART 252: [german_in_translation]
+    ART 271: [german_in_translation]
+    HIST 224: [german_in_translation]
+    MUSIC 342: [german_in_translation]
+    MUSIC 343: [german_in_translation]
+    PHIL 260: [german_in_translation]
+    PHIL 261: [german_in_translation]
+    PHIL 374: [german_in_translation]
+    PSCI 283: [german_in_translation]
+    PSCI 285: [german_in_translation]
+    REL 213: [german_in_translation]
+    REL 214: [german_in_translation]
+    REL 262: [german_in_translation]
+    REL 303: [german_in_translation]
+    REL 304: [german_in_translation]

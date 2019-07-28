@@ -1,6 +1,6 @@
 ---
 name: Statistics and Data Science
-type: major
+type: concentration
 degree: B.A.
 catalog: 2018-19
 
@@ -11,36 +11,23 @@ result:
     - requirement: Electives
 
 requirements:
-  Introductory:
-    result:
-      any:
-        - course: STAT 110
-        - course: STAT 212
-        - course: ECON 263
-
   Core:
     result:
       all:
-        - course: STAT 272
-        - course: MSCS 264
-        - {course: CSCI 125, year: 2015, term: 1, hidden: true}
-        - {course: CSCI 125, year: 2015, term: 3, hidden: true}
-        - {course: CSCI 125, year: 2016, term: 1, hidden: true}
-        - {course: CSCI 125, year: 2016, term: 3, hidden: true}
-        - {course: CSCI 125, year: 2017, term: 1, hidden: true}
-        - {course: CSCI 125, year: 2017, term: 3, hidden: true}
+        - {course: STAT 272}
+        - {course: MSCS 264}
 
   Level III:
     result:
       from: {student: courses}
       where: {attribute: {$eq: stat_level3}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
       from: {student: courses}
       where: {attribute: {$eq: stat_elective}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
 attributes:
   courses:

@@ -1,18 +1,23 @@
 ---
-name: Music
+name: Composition
 type: major
-degree: B.A.
+degree: B.M.
 catalog: 2018-19
 
 result:
   all:
     - requirement: Core
-    - requirement: Musicology
+    - requirement: Composition Lessons
+    - requirement: Conducting
     - requirement: Electives
+    - requirement: Musical Acoustics
     - requirement: Performance Studies
+    - requirement: Required Recital Attendance
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
-    - requirement: Required Recital Attendance
+    - requirement: Required Portfolio
+    - requirement: Continuance Examination
+    - requirement: Senior Recital
 
 requirements:
   Core:
@@ -22,16 +27,32 @@ requirements:
         - {course: MUSIC 141}
         - {course: MUSIC 161, grade: B-}
         - {course: MUSIC 162, grade: B-}
-        - at_most: true
-          either:
-            - course: MUSIC 212
-            - course: MUSIC 214
+        - {course: MUSIC 166}
+        - {course: MUSIC 167}
+        - {course: MUSIC 168}
+        - {course: MUSIC 169}
+        - {course: MUSIC 212}
+        - {course: MUSIC 214}
+        - {course: MUSIC 223}
+        - {course: MUSIC 225}
+        - {course: MUSIC 237}
+        - {course: MUSIC 251}
+        - {course: MUSIC 261, grade: B-}
+        - {course: MUSIC 262, grade: B-}
+        - {course: MUSIC 314}
+        - {course: MUSIC 324}
 
-  Musicology:
+  Composition Lessons:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: music_upper_musicology}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      where: {course: {$eq: MUSPF 326}}
+      assert: {count(courses): {$gte: 4}}
+
+  Conducting:
+    result:
+      either:
+        - course: MUSIC 252
+        - course: MUSIC 253
 
   Electives:
     result:
@@ -40,9 +61,18 @@ requirements:
         $and:
           - {subject: {$eq: MUSIC}}
           - {level: {$in: [200, 300]}}
-      limit:
-        - {at most: 3, where: {level: {$eq: 200}}}
-      assert: {count(courses): {$gte: 4, at_most: true}}
+      all:
+        - assert: {count(courses): {$gte: 8}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1}}
+
+  Musical Acoustics:
+    result:
+      course: PHYS 252
 
   Performance Studies:
     message:
@@ -56,10 +86,9 @@ requirements:
         - assert: {count(terms): {$gte: 6}}
 
   Official Ensemble Participation:
-    result:
-      from: {student: courses}
-      where: {subject: {$eq: MUSEN}}
-      assert: {count(terms): {$gte: 4, at_most: true}}
+    message:
+      Every semester in an official ensemble
+    department_audited: true
 
   Required Performances:
     message:
@@ -77,6 +106,21 @@ requirements:
       from: {student: music performances}
       where: {attended: {$eq: true}}
       assert: {count(performances): {$gte: 60, at_most: true}}
+
+  Required Portfolio:
+    message: >
+      With approval of the composition faculty, the student submits a
+      portfolio of at least 3 compositions previously submitted for Level III
+      composition courses to the music office by May 1 of the senior year.
+    department_audited: true
+
+  Continuance Examination:
+    message: Continuance examination must be completed before senior recital.
+    department_audited: true
+
+  Senior Recital:
+    message: Senior recital of original works.
+    department_audited: true
 
 attributes:
   courses:

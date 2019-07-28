@@ -1,0 +1,80 @@
+---
+name: International Relations
+type: concentration
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - course: PSCI 121
+    - requirement: Complementary
+    - requirement: Around The World
+    - requirement: International Political Science
+
+requirements:
+  Complementary:
+    result:
+      at_most: true
+      any:
+        - course: ECON 261
+        - course: ECON 382
+        - course: HIST 195
+        - course: SOAN 233
+        - course: SOAN 262
+
+  Around The World:
+    result:
+      either:
+        - requirement: World Language
+        - requirement: World Region
+
+    requirements:
+      World Language:
+        message: >
+          One course numbered 232 or higher in Chinese, Greek, Japanese,
+          Latin, Norwegian, or Russian; or one course numbered 250 or higher
+          in French, German, or Spanish.
+
+          The course must be taught in the target language.
+
+        result:
+          from: {student: courses}
+          where:
+            $or:
+              - $and:
+                  - subject: {$in: [GERM, FREN, SPAN]}
+                  - number: {$gte: 250}
+              - $and:
+                  - subject: {$in: [CHIN, GREEK, JAPAN, LATIN, NORW, RUSSN]}
+                  - number: {$gte: 232}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      World Region:
+        message: >
+          Two courses focused upon any single contemporary world region or
+          country (e.g., Africa, Asia, China, Germany, Japan, Latin America,
+          the Middle East, or Russia). Can be from any department and may
+          include courses completed in approved St. Olaf off-campus programs.
+          No more than one course in this option can come from the Political
+          Science Department. Area studies courses should have at least 50
+          percent of the course content dedicated to target country or region.
+        department_audited: true
+        # result:
+        #   from: {student: courses}
+        #   where: {attributes: {$eq: intl_region}}
+        #   assert: {count(most_common_attribute_from_course:intl_*): {$gte: 2}}
+
+  International Political Science:
+    result:
+      at_most: true
+      count: 2
+      of:
+        - course: ES/PS 201
+        - course: PSCI 205
+        - course: PSCI 222
+        - course: PSCI 231
+        - course: PSCI 245
+        - course: PSCI 258
+        - course: PSCI 285
+        - course: PSCI 321
+        - course: PSCI 322
