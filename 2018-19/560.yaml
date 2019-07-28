@@ -96,9 +96,10 @@ requirements:
       limit:
         - at most: 1
           where:
-            $or:
-              - {course: {$eq: PSYCH 396}}
-              - {course: {$eq: PSYCH 398}}
+            course:
+              $in:
+                - PSYCH 396
+                - PSYCH 398
       assert: {count(courses): {$gte: 2, at_most: true}}
 
   General Education:
