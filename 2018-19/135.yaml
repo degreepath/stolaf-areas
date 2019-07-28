@@ -119,19 +119,29 @@ requirements:
       European and American Art:
         result:
           from: {student: courses}
-          where: {attribute: {$in: [art_locale_european, art_locale_american]}}
+          where:
+            attribute:
+              $in:
+                - art_locale_european
+                - art_locale_american
           assert: {count(courses): {$gte: 2}}
 
       Art created before 1700 CE:
         result:
           from: {student: courses}
-          where: {attribute: {$eq: art_period_pre1700}}
+          where:
+            attribute:
+              $in:
+                - art_period_pre1700
           assert: {count(courses): {$gte: 1}}
 
       Art created after 1700 CE:
         result:
           from: {student: courses}
-          where: {attribute: {$eq: art_period_post1700}}
+          where:
+            attribute:
+              $in:
+                - art_period_post1700
           assert: {count(courses): {$gte: 1}}
 
   Lasting Legacy:
