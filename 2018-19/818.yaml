@@ -16,7 +16,8 @@ requirements:
     result:
       all:
         - course: BIO 150
-        - any:
+        - at_most: true
+          any:
             - all: [course: CHEM 125, course: CHEM 126, course: BIO 227]
             - all: [course: CHEM 122, course: CHEM 126, course: BIO 227]
             - all: [course: CHEM 121, course: CHEM 123, course: CHEM 126, course: BIO 227]
@@ -43,6 +44,7 @@ requirements:
 
   Electives:
     result:
+      at_most: true
       count: 2
       of:
         - course: BIO 315

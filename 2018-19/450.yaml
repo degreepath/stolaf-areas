@@ -28,6 +28,7 @@ requirements:
 
   Musicology:
     result:
+      at_most: true
       count: 1
       of:
         - course: MUSIC 340
@@ -52,13 +53,14 @@ requirements:
               - {level: {$eq: 300}}
       limit:
         - {at most: 3, where: {level: {$eq: 200}}}
-      assert: {count(courses): {$gte: 4}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
 
   Performance Studies:
     message:
       6 semesters; 4 in the same instrument/voice
 
     result:
+      at_most: true
       any:
         - requirement: Bassoon
         - requirement: Clarinet
@@ -342,7 +344,7 @@ requirements:
     result:
       from: {student: courses}
       where: {subject: {$eq: MUSEN}}
-      assert: {count(terms): {$gte: 4}}
+      assert: {count(terms): {$gte: 4, at_most: true}}
 
   Performances:
     message:
@@ -350,7 +352,7 @@ requirements:
     result:
       from: {student: music performances}
       where: {solo: {$eq: true}}
-      assert: {count(performances): {$gte: 2}}
+      assert: {count(performances): {$gte: 2, at_most: true}}
 
   Recital Attendance:
     message:
@@ -359,4 +361,4 @@ requirements:
     result:
       from: {student: music performances}
       where: {attended: {$eq: true}}
-      assert: {count(performances): {$gte: 60}}
+      assert: {count(performances): {$gte: 60, at_most: true}}
