@@ -40,9 +40,9 @@ requirements:
     result:
       count: 0
       of:
-        - Language
-        - Interim In German
-        - In Translation
+        - requirement: Language
+        - requirement: Interim In German
+        - requirement: In Translation
       audit:
         assert: {count(courses): {$gte: 3}}
 

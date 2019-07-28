@@ -18,11 +18,10 @@ result:
 
 requirements:
   Study Abroad:
-    result:
-      department-audited: true
-      message: >
-        Two additional courses taught in Russian, taken in Russia during senior
-        year.
+    department-audited: true
+    message: >
+      Two additional courses taught in Russian, taken in Russia during senior
+      year.
 
 attributes:
   courses: {}

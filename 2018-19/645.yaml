@@ -12,17 +12,17 @@ result:
 
 attributes:
   multicountable:
-    - - {attribute: {$eq: wmgst_theory}}
-      - {attribute: {$eq: wmgst_elective}}
+    - - {attributes: {$eq: wmgst_theory}}
+      - {attributes: {$eq: wmgst_elective}}
 
-    - - {attribute: {$eq: wmgst_diverse}}
-      - {attribute: {$eq: wmgst_elective}}
+    - - {attributes: {$eq: wmgst_diverse}}
+      - {attributes: {$eq: wmgst_elective}}
 
-    - - {attribute: {$eq: wmgst_historical}}
-      - {attribute: {$eq: wmgst_elective}}
+    - - {attributes: {$eq: wmgst_historical}}
+      - {attributes: {$eq: wmgst_elective}}
 
     - - {course: {$eq: WMGST 121}}
-      - {attribute: {$eq: wmgst_lived}}
+      - {attributes: {$eq: wmgst_lived}}
 
   courses:
     AMST 100: [wmgst_theory, wmgst_elective]

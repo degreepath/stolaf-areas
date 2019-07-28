@@ -35,7 +35,6 @@ requirements:
         - requirement: International and Social
         - requirement: Modern
         - requirement: Other Topics
-
       audit:
         assert: {sum(credits): {$gte: 1.5}}
 
