@@ -12,7 +12,7 @@ result:
     - requirement: General Education
     - requirement: Electives
 
-limits:
+limit:
   - at most: 2
     where:
       $and:

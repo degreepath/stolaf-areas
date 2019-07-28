@@ -14,16 +14,8 @@ result:
     - requirement: Level III
     - requirement: Electives
 
-    - from:
-        requirements:
-          - Research Methods
-          - American Politics and Public Policy
-          - Comparative Politics
-          - International Relations
-          - Political Theory
-          - Level III
-          - Electives
-      assert: {count(courses): {$gte: 9}}
+  audit:
+    assert: {count(courses): {$gte: 9}}
 
 limit:
   - {at-most: 3, where: {level: {$eq: 100}}}
@@ -67,61 +59,49 @@ requirements:
       assert: {count(courses): {$gte: 2}}
 
   Electives:
-    saves:
-      Within PSCI:
-        from: {student: courses}
-        where:
-          $and:
-            - {subject: {$in: [PSCI, AS/PS, ES/PS]}}
-            - {institution: {$eq: 'St. Olaf College'}}
-        limit:
-          - at-most: 1
-            where:
-              $and:
-                - {course: {$eq: PSCI 294}}
-                - {credit: {$lt: 1.0}}
-        store: courses
-
-      Statistics:
-        from: {student: courses}
-        where:
-          $and:
-            - {subject: {$eq: STAT}}
-            - {course: {$neq: STAT 111}}
-            - {institution: {$eq: 'St. Olaf College'}}
-        store: courses
-
-      French / German / Spanish:
-        from: {student: courses}
-        where:
-          $and:
-            - {subject: {$in: [FREN, GERM, SPAN]}}
-            - {number: {$gte: 232}}
-        store: courses
-
-      Chinese / Greek / Latin / Japanese / Norwegian / Russian:
-        from: {student: courses}
-        where:
-          $and:
-            - {subject: {$in: [CHIN, GREEK, LATIN, JAPAN, NORW, RUSSN]}}
-            - {number: {$gte: 231}}
-        store: courses
-
     result:
       count: 0
       of:
-        - from: {save: Within PSCI}
+        - from: {student: courses}
+          where:
+            $and:
+              - {subject: {$in: [PSCI, AS/PS, ES/PS]}}
+              - {institution: {$eq: 'St. Olaf College'}}
           limit:
+            - at-most: 1
+              where:
+                $and:
+                  - {course: {$eq: PSCI 294}}
+                  - {credit: {$lt: 1.0}}
+            # only select one course by specifying a restriction that's true
+            # for all courses
             - {at-most: 1, where: {course: {$neq: ''}}}
           assert: {count(courses): {$eq: 1}}
 
-        - from:
-            saves:
-              - Statistics
-              - French / German / Spanish
-              - Chinese / Greek / Latin / Japanese / Norwegian / Russian
+        - from: {student: courses}
+          where:
+            $or:
+              # statistics courses
+              - $and:
+                  - {subject: {$eq: STAT}}
+                  - {course: {$neq: STAT 111}}
+                  - {institution: {$eq: 'St. Olaf College'}}
+
+              # French / German / Spanish courses
+              - $and:
+                  - {subject: {$in: [FREN, GERM, SPAN]}}
+                  - {number: {$gte: 232}}
+
+              # Chinese / Greek / Latin / Japanese / Norwegian / Russian courses
+              - $and:
+                  - {subject: {$in: [CHIN, GREEK, LATIN, JAPAN, NORW, RUSSN]}}
+                  - {number: {$gte: 231}}
+
           limit:
+            # only select one course by specifying a restriction that's true
+            # for all courses
             - {at-most: 1, where: {course: {$neq: ''}}}
+
           assert: {count(courses): {$eq: 1}}
 
 

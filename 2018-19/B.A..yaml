@@ -5,7 +5,7 @@ catalog: 2015-16
 
 result:
   all:
-    # - requirement: Degree Requirements
+    - requirement: Degree Requirements
     - requirement: General Education
 
 requirements:
@@ -69,8 +69,8 @@ requirements:
     result:
       all:
         - requirement: Foundation
-        # - requirement: Core
-        # - requirement: Integrative
+        - requirement: Core
+        - requirement: Integrative
 
     requirements:
       Foundation:
@@ -146,130 +146,88 @@ requirements:
             message:
               One course must be taught by a St. Olaf professor.
 
-            saves:
-              Courses with an HWC:
-                from: {student: courses}
-                where: {gereqs: {$eq: HWC}}
-
             result:
+              from: {student: courses}
+              where: {gereqs: {$eq: HWC}}
               all:
-                - from: {save: Courses with an HWC}
-                  assert: {count(courses): {$gte: 2}}
+                - assert: {count(courses): {$gte: 2}}
 
-                - from: {save: Courses with an HWC}
-                  where: {institution: {$eq: St. Olaf College}}
+                - where: {institution: {$eq: St. Olaf College}}
                   assert: {count(courses): {$gte: 1}}
 
           Multicultural Studies:
-            saves:
-              Courses with an MCD or MCG:
-                from: {student: courses}
-                where: {$or: [{gereqs: {$eq: MCD}}, {gereqs: {$eq: MCG}}]}
-
             result:
-              all:
-                - from: {save: Courses with an MCD or MCG}
-                  assert:
-                    $and:
-                      - {count(courses): {$gte: 2}}
-                      - {count(subjects): {$gte: 2}}
+              from: {student: courses}
+              where: {gereqs: {$in: [MCD, MCG]}}
 
-                - from: {save: Courses with an MCD or MCG}
-                  where: {gereqs: {$eq: MCD}}
+              all:
+                - assert: {count(courses): {$gte: 2}}
+                - assert: {count(subjects): {$gte: 2}}
+
+                - where: {gereqs: {$eq: MCD}}
                   assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with an MCD or MCG}
-                  where: {gereqs: {$eq: MCG}}
+                - where: {gereqs: {$eq: MCG}}
                   assert: {count(courses): {$gte: 1}}
 
           Artistic and Literary Studies:
             message:
               All ALS-A courses must be in the same subject code.
 
-            saves:
-              Courses with an ALS-A or ALS-L:
-                from: {student: courses}
-                where:
-                  $or:
-                    - {gereqs: {$eq: ALS-A}}
-                    - {gereqs: {$eq: ALS-L}}
-
             result:
-              all:
-                - from: {save: Courses with an ALS-A or ALS-L}
-                  assert: {count(courses): {$gte: 2}}
+              from: {student: courses}
+              where: {gereqs: {$in: [ALS-A, AlS-L]}}
 
-                - from: {save: Courses with an ALS-A or ALS-L}
-                  where: {gereqs: {$eq: ALS-A}}
+              all:
+                - assert: {count(courses): {$gte: 2}}
+
+                - where: {gereqs: {$eq: ALS-A}}
                   assert: {count(credits): {$gte: 1}}
 
-                - from: {save: Courses with an ALS-A or ALS-L}
-                  where: {gereqs: {$eq: ALS-L}}
+                - where: {gereqs: {$eq: ALS-L}}
                   assert: {count(courses): {$gte: 1}}
 
           Biblical and Theological Studies:
-            saves:
-              Courses with a BTS-B or BTS-T:
-                from: {student: courses}
-                where:
-                  $or:
-                    - {gereqs: {$eq: BTS-B}}
-                    - {gereqs: {$eq: BTS-T}}
-
             result:
+              from: {student: courses}
+              where: {gereqs: {$in: [BTS-B, BTS-T]}}
               all:
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  assert: {count(courses): {$gte: 2}}
+                - assert: {count(courses): {$gte: 2}}
 
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  where: {gereqs: {$eq: BTS-B}}
+                - where: {gereqs: {$eq: BTS-B}}
                   assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  where: {gereqs: {$eq: BTS-T}}
+                - where: {gereqs: {$eq: BTS-T}}
                   assert: {count(courses): {$gte: 1}}
 
           Studies in Natural Science:
-            saves:
-              Courses with an SED or IST:
-                from: {student: courses}
-                where:
-                  $or:
-                    - {gereqs: {$eq: SED}}
-                    - {gereqs: {$eq: IST}}
-
             result:
+              from: {student: courses}
+              where: {gereqs: {$in: [SED, IST]}}
               all:
-                - from: {save: Courses with an SED or IST}
-                  assert:
+                - assert:
                     $and:
                       - {count(courses): {$gte: 2}}
                       - {count(subjects): {$gte: 2}}
 
-                - from: {save: Courses with an SED or IST}
-                  where: {gereqs: {$eq: SED}}
+                - where: {gereqs: {$eq: SED}}
                   assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with an SED or IST}
-                  where: {gereqs: {$eq: IST}}
+                - where: {gereqs: {$eq: IST}}
                   assert: {count(courses): {$gte: 1}}
 
           Studies in Human Behavior and Society:
-            saves:
-              Courses with an HBS:
-                from: {student: courses}
-                where: {gereqs: {$eq: HBS}}
-
             result:
+              from: {student: courses}
+              where: {gereqs: {$eq: HBS}}
+
               all:
-                - from: {save: Courses with an HBS}
-                  assert:
+                - assert:
                     $and:
                       - {count(courses): {$gte: 2}}
                       - {count(subjects): {$gte: 2}}
 
-                - from: {save: Courses with an HBS}
-                  where: {institution: {$eq: St. Olaf College}}
+                - where: {institution: {$eq: St. Olaf College}}
                   assert: {count(courses): {$gte: 1}}
 
       Integrative:
@@ -278,29 +236,9 @@ requirements:
 
         requirements:
           Ethical Issues and Normative Perspectives:
+            registrar-audited: true
+
             message:
               To complete any EIN course, you must have either completed your
               BTS-T general education requirement, or have obtained permission
               of the EIN instructor beforehand.
-
-            saves:
-              EIN courses:
-                from: {student: courses}
-                where: {gereqs: {$eq: EIN}}
-
-              bts_t:
-                from: {student: courses, including used: true}
-                where: {gereqs: {$eq: BTS-T}}
-                store: minimum(term)
-
-              ein:
-                from: {save: EIN courses}
-                store: maximum(term)
-
-            result:
-              all:
-                - from: {save: EIN courses}
-                  assert: {count(courses): {$gte: 1}}
-
-                - from: {stored-values: [bts_t, ein]}
-                  assert: {stored(bts_t): {$lt: stored(ein)}}

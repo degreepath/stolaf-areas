@@ -31,7 +31,7 @@ requirements:
 
     requirements:
       Non-Econ International Topics:
-        contract: true
+        department-audited: true
         message:
           You may also choose a course outside of Economics Department
           that relates to international topics.

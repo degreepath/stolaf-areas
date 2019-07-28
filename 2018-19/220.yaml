@@ -29,21 +29,15 @@ requirements:
       These will be selected in consultation with dance faculty.
 
     result:
-      all:
-        - count: 2
-          of:
-            - requirement: Ballet
-            - requirement: International and Social
-            - requirement: Modern
-            - requirement: Other Topics
+      count: 2
+      of:
+        - requirement: Ballet
+        - requirement: International and Social
+        - requirement: Modern
+        - requirement: Other Topics
 
-        - from:
-            requirements:
-              - Ballet
-              - International and Social
-              - Modern
-              - Other Topics
-          assert: {sum(credits): {$gte: 1.5}}
+      audit:
+        assert: {sum(credits): {$gte: 1.5}}
 
     requirements:
       Ballet:
@@ -101,6 +95,10 @@ requirements:
                 - DANCE 113
                 - DANCE 141
                 - DANCE 160
+                - DANCE 240
+                - DANCE 241
+                - DANCE 260
+                - DANCE 261
           assert: {count(courses): {$gte: 1}}
 
   Senior Dance Seminar:
@@ -112,7 +110,7 @@ requirements:
       course: DANCE 399
 
   Area of Speciality:
-    contract: true
+    department-audited: true
     message:
       Each student designs an individualized area of specialty derived
       from their own interests and investigation. Select at least two

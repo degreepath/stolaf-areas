@@ -10,12 +10,8 @@ result:
     - requirement: Outside your Emphasis
     - requirement: Arts and Humanities - Level II
     - requirement: Arts and Humanities - Level III
-    - from:
-        requirements:
-          - Outside your Emphasis
-          - Arts and Humanities - Level II
-          - Arts and Humanities - Level III
-      assert: {count(courses): {$gte: 9}}
+  audit:
+    assert: {count(courses): {$gte: 9}}
 
 requirements:
   Outside your Emphasis:
@@ -23,11 +19,8 @@ requirements:
       all:
         - requirement: Natural Sciences
         - requirement: Social Sciences
-        - from:
-            requirements:
-              - Natural Sciences
-              - Social Sciences
-          assert: {count(courses): {$gte: 3}}
+      audit:
+        assert: {count(courses): {$gte: 3}}
 
     requirements:
       Natural Sciences:

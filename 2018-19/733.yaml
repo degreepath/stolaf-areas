@@ -13,15 +13,8 @@ result:
     - requirement: Intermediate Ecology
     - requirement: Environmental Science - Level II
     - requirement: Environmental Science - Level III
-    - from:
-        requirements:
-          - Outside your Emphasis
-          - Statistics, Modeling, and Mapping
-          - Intermediate Chemistry
-          - Intermediate Ecology
-          - Environmental Science - Level II
-          - Environmental Science - Level III
-      assert: {count(courses): {$gte: 9}}
+  audit:
+    assert: {count(courses): {$gte: 9}}
 
 requirements:
   Outside your Emphasis:
@@ -29,11 +22,8 @@ requirements:
       all:
         - requirement: Social Sciences
         - requirement: Arts and Humanities
-        - from:
-            requirements:
-              - Social Sciences
-              - Arts and Humanities
-          assert: {count(courses): {$gte: 3}}
+      audit:
+        assert: {count(courses): {$gte: 3}}
 
     requirements:
       Social Sciences:

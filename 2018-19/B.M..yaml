@@ -35,15 +35,13 @@ requirements:
           assert: {sum(credits): {$gte: 17}}
 
       Interim:
-        save:
-          Interim Courses:
-            from: {student: courses}
-            where: {semester: {$eq: Interim}}
-
         result:
-          both:
-            - {from: {save: Interim Courses}, assert: {sum(credits): {$gte: 3}}}
-            - {from: {save: Interim Courses}, assert: {count(courses): {$gte: 3}}}
+          from: {student: courses}
+          where: {semester: {$eq: Interim}}
+          assert:
+            $and:
+              - sum(credits): {$gte: 3}
+              - count(courses): {$gte: 3}
 
       Grade Point Average:
         result:
@@ -155,23 +153,16 @@ requirements:
               assert: {count(courses): {$gte: 1}}
 
           Biblical and Theological Studies:
-            save:
-              Courses with a BTS-B or BTS-T:
-                from: {student: courses}
-                where: {gereqs: {$in: [BTS-B, BTS-T]}}
-
             result:
-              count: all
-              of:
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  assert: {count(courses): {$gte: 2}}
+              from: {student: courses}
+              where: {gereqs: {$in: [BTS-B, BTS-T]}}
+              all:
+                - assert: {count(courses): {$gte: 2}}
 
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  where: {gereqs: {$eq: BTS-B}}
+                - where: {gereqs: {$eq: BTS-B}}
                   assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  where: {gereqs: {$eq: BTS-T}}
+                - where: {gereqs: {$eq: BTS-T}}
                   assert: {count(courses): {$gte: 1}}
 
           Studies in Human Behavior and Society:
@@ -180,15 +171,8 @@ requirements:
               where: {gereqs: {$eq: HBS}}
               assert: {count(courses): {$gte: 1}}
 
-      Integrative:
+      Ethical Issues and Normative Perspectives:
         result:
-          count: all
-          of:
-            - requirement: Ethical Issues and Normative Perspectives
-
-        requirements:
-          Ethical Issues and Normative Perspectives:
-            result:
-              from: {student: courses}
-              where: {gereqs: {$eq: EIN}}
-              assert: {count(courses): {$gte: 1}}
+          from: {student: courses}
+          where: {gereqs: {$eq: EIN}}
+          assert: {count(courses): {$gte: 1}}

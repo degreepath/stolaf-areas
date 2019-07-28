@@ -14,7 +14,7 @@ result:
 attributes:
   multicountable:
     - - {course: {$eq: ECON 385}}
-      - {attribute: {$eq: econ_level_3}}
+      - {attributes: {$eq: econ_level_3}}
 
   courses:
     ECON 200: [econ_level_2]
@@ -60,26 +60,18 @@ requirements:
 
   Economic Analysis:
     result:
-      count: all
-      of:
-        - requirement: Level II
-        - requirement: Level III
+      from: {student: courses}
+      where:
+        attribute:
+          $in:
+            - econ_level_2
+            - econ_level_3
 
-        - from:
-            requirements:
-              - Level II
-              - Level III
-          assert: {count(courses): {$gte: 4}}
-
-    requirements:
-      Level II:
-        result:
-          from: {student: courses}
-          where: {attribute: {$eq: econ_level_2}}
+      all:
+        - where: {attribute: {$eq: econ_level_2}}
           assert: {count(courses): {$gte: 1}}
 
-      Level III:
-        result:
-          from: {student: courses}
-          where: {attribute: {$eq: econ_level_3}}
+        - where: {attribute: {$eq: econ_level_3}}
           assert: {count(courses): {$gte: 2}}
+
+        - assert: {count(courses): {$gte: 4}}

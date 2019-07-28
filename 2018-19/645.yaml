@@ -112,47 +112,30 @@ requirements:
       course: WMGST 399
 
   Additional Courses:
-    saves:
-      Taken Electives:
-        from: {student: courses}
-        where: {attributes: {$eq: wmgst_elective}}
-        store: courses
+    message: >
+      Seven additional courses, with the following criteria:
+
+      1. One must be at level III
+      2. One course must focus on women's lived experiences
+      3. One course from each of the following areas:
+          - Theory and methods applicable to studying gender
+          - Gender in historical contexts
+          - Gender in global, comparative, or diverse contexts
 
     result:
+      from: {student: courses}
+      where: {attributes: {$eq: wmgst_elective}}
       all:
-        - requirement: Theory and Methods
-        - requirement: Gender in Historical Context
-        - requirement: Gender in Global/Comparative/Diverse Contexts
-        - requirement: Lived Experiences
+        - assert: {count(courses): {$gte: 7}}
 
-        - from: {save: Taken Electives}
-          assert: {count(courses): {$gte: 7}}
-
-        - from: {save: Taken Electives}
-          where: {level: {$eq: 300}}
+        - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
 
-    requirements:
-      Theory and Methods:
-        result:
-          from: {student: courses}
-          where: {attributes: {$eq: wmgst_theory}}
+        - where: {attributes: {$eq: wmgst_theory}}
           assert: {count(courses): {$gte: 1}}
 
-      Gender in Historical Context:
-        result:
-          from: {student: courses}
-          where: {attributes: {$eq: wmgst_historical}}
+        - where: {attributes: {$eq: wmgst_historical}}
           assert: {count(courses): {$gte: 1}}
 
-      Gender in Global/Comparative/Diverse Contexts:
-        result:
-          from: {student: courses}
-          where: {attributes: {$eq: wmgst_diverse}}
-          assert: {count(courses): {$gte: 1}}
-
-      Lived Experiences:
-        result:
-          from: {student: courses}
-          where: {attributes: {$eq: wmgst_lived}}
+        - where: {attributes: {$eq: wmgst_diverse}}
           assert: {count(courses): {$gte: 1}}

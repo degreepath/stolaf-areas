@@ -10,7 +10,7 @@ result:
     - requirement: Part 2
     - requirement: Practicum
 
-limits:
+limit:
   - at-most: 1
     where:
       $and:

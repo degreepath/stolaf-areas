@@ -38,12 +38,13 @@ requirements:
 
   Electives:
     result:
-      from:
-        requirements:
-          - Language
-          - Interim In German
-          - In Translation
-      assert: {count(courses): {$gte: 3}}
+      count: 0
+      of:
+        - Language
+        - Interim In German
+        - In Translation
+      audit:
+        assert: {count(courses): {$gte: 3}}
 
     requirements:
       Language:
@@ -53,7 +54,7 @@ requirements:
       Interim In German:
         message:
           You may count one German Interim abroad towards this requirement.
-        registrar_audited: true
+        department_audited: true
 
       In Translation:
         result:
