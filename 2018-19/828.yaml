@@ -9,14 +9,14 @@ result:
     - requirement: Core
     - requirement: Field Experience
     - requirement: Electives
+  audit:
+    assert: {average(grades): {$gte: 2.7}}
 
 limit:
   - at_most: 2
     where: {institution: {$neq: St. Olaf College}}
   - at_most: 2
     where: {s/u: {$eq: true}}
-
-gpa: 2.7
 
 requirements:
   Core:
