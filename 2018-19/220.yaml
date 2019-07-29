@@ -29,76 +29,42 @@ requirements:
       These will be selected in consultation with dance faculty.
 
     result:
-      count: 2
-      of:
-        - requirement: Ballet
-        - requirement: International and Social
-        - requirement: Modern
-        - requirement: Other Topics
-      audit:
-        assert: {sum(credits): {$gte: 1.5}}
+      both:
+        - from: {student: courses}
+          where: {attributes: {$eq: dance_movement}}
+          assert: {sum(credits): {$gte: 1.5}}
+
+        - count: 2
+          of:
+            - requirement: Ballet
+            - requirement: International and Social
+            - requirement: Modern
+            - requirement: Other Topics
 
     requirements:
       Ballet:
         result:
           from: {student: courses}
-          where:
-            course:
-              $in:
-                - DANCE 121
-                - DANCE 130
-                - DANCE 131
-                - DANCE 220
-                - DANCE 221
-                - DANCE 320
-                - DANCE 321
-          assert: {count(courses): {$gte: 1}}
+          where: {attribute: {$eq: dance_genre_ballet}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       International and Social:
         result:
           from: {student: courses}
-          where:
-            course:
-              $in:
-                - DANCE 106
-                - DANCE 108
-                - DANCE 109
-                - DANCE 206
-                - DANCE 207
-                - DANCE 209
-          assert: {count(courses): {$gte: 1}}
+          where: {attribute: {$eq: dance_genre_international}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Modern:
         result:
           from: {student: courses}
-          where:
-            course:
-              $in:
-                - DANCE 111
-                - DANCE 210
-                - DANCE 211
-                - DANCE 250
-                - DANCE 251
-                - DANCE 310
-                - DANCE 311
-          assert: {count(courses): {$gte: 1}}
+          where: {attribute: {$eq: dance_genre_modern}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Other Topics:
         result:
           from: {student: courses}
-          where:
-            course:
-              $in:
-                - DANCE 107
-                - DANCE 112
-                - DANCE 113
-                - DANCE 141
-                - DANCE 160
-                - DANCE 240
-                - DANCE 241
-                - DANCE 260
-                - DANCE 261
-          assert: {count(courses): {$gte: 1}}
+          where: {attribute: {$eq: dance_genre_other}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Senior Dance Seminar:
     message:
@@ -127,3 +93,48 @@ requirements:
     message:
       Majors are required to contribute in managing a dance production
       for a minimum of one semester.
+
+attributes:
+  multicountable:
+    - - {attributes: {$eq: dance_movement}}
+      - {attributes: {$eq: dance_genre_ballet}}
+
+    - - {attributes: {$eq: dance_movement}}
+      - {attributes: {$eq: dance_genre_international}}
+
+    - - {attributes: {$eq: dance_movement}}
+      - {attributes: {$eq: dance_genre_modern}}
+
+    - - {attributes: {$eq: dance_movement}}
+      - {attributes: {$eq: dance_genre_other}}
+
+  courses:
+    DANCE 121: [dance_movement, dance_genre_ballet]
+    DANCE 130: [dance_movement, dance_genre_ballet]
+    DANCE 131: [dance_movement, dance_genre_ballet]
+    DANCE 220: [dance_movement, dance_genre_ballet]
+    DANCE 221: [dance_movement, dance_genre_ballet]
+    DANCE 320: [dance_movement, dance_genre_ballet]
+    DANCE 321: [dance_movement, dance_genre_ballet]
+    DANCE 106: [dance_movement, dance_genre_international]
+    DANCE 108: [dance_movement, dance_genre_international]
+    DANCE 109: [dance_movement, dance_genre_international]
+    DANCE 206: [dance_movement, dance_genre_international]
+    DANCE 207: [dance_movement, dance_genre_international]
+    DANCE 209: [dance_movement, dance_genre_international]
+    DANCE 111: [dance_movement, dance_genre_modern]
+    DANCE 210: [dance_movement, dance_genre_modern]
+    DANCE 211: [dance_movement, dance_genre_modern]
+    DANCE 250: [dance_movement, dance_genre_modern]
+    DANCE 251: [dance_movement, dance_genre_modern]
+    DANCE 310: [dance_movement, dance_genre_modern]
+    DANCE 311: [dance_movement, dance_genre_modern]
+    DANCE 107: [dance_movement, dance_genre_other]
+    DANCE 112: [dance_movement, dance_genre_other]
+    DANCE 113: [dance_movement, dance_genre_other]
+    DANCE 141: [dance_movement, dance_genre_other]
+    DANCE 160: [dance_movement, dance_genre_other]
+    DANCE 240: [dance_movement, dance_genre_other]
+    DANCE 241: [dance_movement, dance_genre_other]
+    DANCE 260: [dance_movement, dance_genre_other]
+    DANCE 261: [dance_movement, dance_genre_other]
