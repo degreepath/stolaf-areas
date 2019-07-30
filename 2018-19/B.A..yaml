@@ -192,7 +192,7 @@ requirements:
             result:
               from: {student: courses}
               claim: false
-              where: {gereqs: {$in: [ALS-A, AlS-L]}}
+              where: {gereqs: {$in: [ALS-A, ALS-L]}}
 
               all:
                 - assert: {count(courses): {$gte: 2}}
