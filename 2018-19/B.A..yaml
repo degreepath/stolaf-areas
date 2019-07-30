@@ -255,9 +255,6 @@ requirements:
 
         requirements:
           Ethical Issues and Normative Perspectives:
-            registrar-audited: true
-
-            message:
-              To complete any EIN course, you must have either completed your
-              BTS-T general education requirement, or have obtained permission
-              of the EIN instructor beforehand.
+            from: {student: courses}
+            where: {gereqs: {$eq: EIN}}
+            assert: {count(courses): {$gte: 1}}
