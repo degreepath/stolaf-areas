@@ -118,6 +118,7 @@ requirements:
                 - {course: GREEK 373, can_match_used: true}
                 - {course: GREEK 374, can_match_used: true}
                 - {course: GREEK 375, can_match_used: true}
+
         - both:
             - requirement: Took Latin
             - count: 1
