@@ -255,6 +255,7 @@ requirements:
 
         requirements:
           Ethical Issues and Normative Perspectives:
-            from: {student: courses}
-            where: {gereqs: {$eq: EIN}}
-            assert: {count(courses): {$gte: 1}}
+            result:
+              from: {student: courses}
+              where: {gereqs: {$eq: EIN}}
+              assert: {count(courses): {$gte: 1}}
