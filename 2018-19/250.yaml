@@ -10,7 +10,8 @@ result:
     - requirement: Literary Studies
     - requirement: Cross-Cultural Studies
     - requirement: Literary History
-    - either:
+    - at_most: true
+      either:
         - requirement: Cross-Disciplinary Studies
         - requirement: Genre Studies
     - requirement: Electives
