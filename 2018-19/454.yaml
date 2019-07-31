@@ -1,0 +1,68 @@
+---
+name: Church Music
+type: major
+degree: B.M.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 114
+        - course: MUSIC 141
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 235
+        - course: MUSIC 236
+        - course: MUSIC 237
+        - course: MUSIC 251
+        - course: MUSIC 252
+
+  Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - {subject: {$eq: MUSIC}}
+          - {level: {$eq: 300}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
+        - where:
+            number:
+              $in: [340, 341, 342, 343, 344, 345, 346, 347, 348, 349]
+          assert: {count(courses): {$gte: 1}}
+
+  Official Ensemble Participation:
+    department_audited: true
+    message: 'Official Ensemble Participation: 4 semesters'
+    # result:
+    #   from: {student: courses}
+    #   where: {subject: {$eq: MUSEN}}
+    #   assert: {count(terms): {$gte: 4, at_most: true}}
+
+  Required Performances:
+    message:
+      Two solo performances on a St. Olaf Student Recital.
+    department_audited: true
+    # result:
+    #   from: {student: music performances}
+    #   where: {solo: {$eq: true}}
+    #   assert: {count(performances): {$gte: 2, at_most: true}}
+
+  Required Recital Attendance:
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+    department_audited: true
+    # result:
+    #   from: {student: music performances}
+    #   where: {attended: {$eq: true}}
+    #   assert: {count(performances): {$gte: 60, at_most: true}}
