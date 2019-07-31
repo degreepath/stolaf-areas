@@ -66,11 +66,12 @@ requirements:
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 2}}
 
-        - where:
-            $and:
-              - level: {$eq: 300}
-              - attribute: {$in: [engl_focus_literature, engl_focus_film]}
-          assert: {count(courses): {$gte: 1}}
+        # TODO: meet with english to find out what courses count towards this
+        # - where:
+        #     $and:
+        #       - level: {$eq: 300}
+        #       - attribute: {$in: [engl_focus_literature, engl_focus_film]}
+        #   assert: {count(courses): {$gte: 1}}
 
   1800s:
     result:
