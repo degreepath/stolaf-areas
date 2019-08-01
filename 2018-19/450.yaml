@@ -42,6 +42,7 @@ requirements:
           - {level: {$in: [200, 300]}}
       limit:
         - {at most: 3, where: {level: {$eq: 200}}}
+        - {at most: 0, where: {number: {$in: [294, 298, 394, 398]}}}
       assert: {count(courses): {$gte: 4, at_most: true}}
 
   Performance Studies:
