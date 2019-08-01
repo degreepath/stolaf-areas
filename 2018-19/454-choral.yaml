@@ -1,0 +1,99 @@
+---
+name: Choral
+type: emphasis
+degree: B.M.
+major: 454
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Voice Performance Studies
+    - requirement: Keyboard Performance Studies
+    - requirement: Junior or Senior Half Voice Recital
+    - requirement: Capstone Performance Project
+
+requirements:
+  Core:
+    result:
+      all:
+        - {course: MUSIC 262, grade: B-}
+        - {course: MUSIC 263}
+        - {course: MUSIC 264}
+        - {course: MUSIC 287}
+        - {course: MUSIC 291}
+        - {course: MUSIC 292}
+        - {course: MUSIC 354}
+        - {course: EDUC 355}
+
+  Electives:
+    result:
+      from: {student: courses}
+
+      where:
+        $and:
+          - {subject: {$eq: MUSIC}}
+          - {level: {$in: [200, 300]}}
+
+      limit:
+        - {at most: 0, where: {number: {$in: [294, 298, 394, 398]}}}
+
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        # at least one upper-level Musicology elective
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1}}
+
+        # at least 2 at level 300
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+  Voice Performance Studies:
+    message:
+      6 semesters (0.50 credit following admission to the major)
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: voice_studies}}
+      all:
+        - assert: {count(terms): {$gte: 6}}
+
+  Keyboard Performance Studies:
+    message: >
+      5 semesters in addition to MUSIC 262 (any combination of 0.25-credit
+      piano lessons, organ lessons, or piano classes: MUSIC 161, MUSIC 162,
+      MUSIC 261)
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: keyboard_studies}}
+      all:
+        - assert: {count(terms): {$gte: 5}}
+
+  Junior or Senior Half Voice Recital:
+    department_audited: true
+
+  Capstone Performance Project:
+    result:
+      course: MUSPF 330
+
+attributes:
+  courses:
+    MUSIC 340: [music_upper_musicology]
+    MUSIC 341: [music_upper_musicology]
+    MUSIC 342: [music_upper_musicology]
+    MUSIC 343: [music_upper_musicology]
+    MUSIC 344: [music_upper_musicology]
+    MUSIC 345: [music_upper_musicology]
+    MUSIC 346: [music_upper_musicology]
+    MUSIC 347: [music_upper_musicology]
+    MUSIC 348: [music_upper_musicology]
+    MUSIC 349: [music_upper_musicology]
+
+    MUSPF 152: [voice_studies]
+    MUSPF 252: [voice_studies]
+
+    MUSIC 161: [keyboard_studies]
+    MUSIC 162: [keyboard_studies]
+    MUSIC 261: [keyboard_studies]
+    MUSIC 262: [keyboard_studies]
