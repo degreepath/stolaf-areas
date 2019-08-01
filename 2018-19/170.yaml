@@ -10,7 +10,24 @@ result:
     - requirement: Upper-Level Core
     - requirement: Physics
     - requirement: Mathematics
-    # - requirement: Seminars
+    - requirement: Seminars
+
+  audit:
+    all:
+      - where:
+          $and:
+            - {subject: {$eq: CHEM}}
+            - {grade: {$gte: C}}
+            - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
+        assert: {count(courses): {$gte: 6}}
+
+      - where:
+          $and:
+            - {subject: {$eq: CHEM}}
+            - {grade: {$gte: C}}
+            - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
+            - {number: {$gte: 240}}
+        assert: {count(courses): {$gte: 4}}
 
 requirements:
   Introductory Sequence:
@@ -20,22 +37,21 @@ requirements:
           all:
             - course: CHEM 121
             - course: CHEM 123
-            - course: CHEM 125
-
-      Option A2:
-        result:
-          all:
-            - course: CHEM 121
-            - course: CHEM 123
             - course: CHEM 126
 
       Option B:
         result:
           all:
-            - course: CHEM 125
+            - course: CHEM 122
             - course: CHEM 126
 
       Option C:
+        result:
+          all:
+            - course: CHEM 125
+            - course: CHEM 126
+
+      Option D:
         result:
           all:
             - course: CH/BI 125
@@ -45,9 +61,9 @@ requirements:
     result:
       any:
         - requirement: Option A
-        - requirement: Option A2
         - requirement: Option B
         - requirement: Option C
+        - requirement: Option D
 
   Upper-Level Core:
     result:
@@ -82,7 +98,7 @@ requirements:
         result:
           from: {student: courses}
           where: {attribute: {$eq: chem_elective}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Physics:
     result:
@@ -97,12 +113,13 @@ requirements:
         - course: MATH 128
 
   Seminars:
+    department_audited: true
     message:
       Attendance is required at 12 departmental seminars after
       declaration of major.
-    from: {student: chemistry-seminars}
-    where: {date: {$gte: $major-declaration}}
-    action: {count(seminars): {$gte: 12}}
+    # from: {student: chemistry-seminars}
+    # where: {date: {$gte: $major-declaration}}
+    # action: {count(seminars): {$gte: 12}}
 
 attributes:
   courses:
