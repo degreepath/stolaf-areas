@@ -104,6 +104,7 @@ requirements:
     result:
       from: {student: courses}
       where: {attributes: {$eq: asian_elective}}
+
       limit:
         # and "No level I or level II language courses may count." is taken
         # care of by not listing them as electives
@@ -116,13 +117,13 @@ requirements:
           where: {attributes: {$eq: asian_region_china}}
         - at_most: 4
           where: {attributes: {$eq: asian_region_japan}}
+
+      all:
+        - assert: {count(courses): {$gte: 6}}
+
         # "At least two at level II or level III, taken on campus"
-        # aka "no more than 4 may be taken off-campus", since we need six total
-        - at_most: 4
-          where:
+        - where:
             $and:
-              - institution: {$neq: 'St. Olaf College'}
-              - $or:
-                  - level: {$eq: 200}
-                  - level: {$eq: 300}
-      assert: {count(courses): {$gte: 6}}
+              - institution: {$eq: 'St. Olaf College'}
+              - level: {$eq: [200, 300]}
+          assert: {count(courses): {$gte: 2}}

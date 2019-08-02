@@ -1,0 +1,91 @@
+---
+name: Organ
+type: emphasis
+degree: B.M.
+major: 454
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Organ Performance Studies
+    - requirement: Voice Performance Studies
+    - requirement: Junior Half Recital
+    - requirement: Senior Half Recital
+
+requirements:
+  Core:
+    result:
+      all:
+        - {course: MUSIC 270, grade: B-}
+        - {course: MUSIC 290}
+        - either:
+            - {course: MUSIC 253}
+            - {course: MUSIC 354}
+
+  Electives:
+    result:
+      from: {student: courses}
+
+      where:
+        $and:
+          - {subject: {$eq: MUSIC}}
+          - {level: {$in: [200, 300]}}
+
+      limit:
+        - {at most: 0, where: {number: {$in: [294, 298, 394, 398]}}}
+
+      all:
+        - assert: {count(courses): {$gte: 5}}
+
+        # at least one upper-level Musicology elective
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1}}
+
+        # at least 2 at level 300
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+  Organ Performance Studies:
+    message:
+      Once accepted into the B.M. in Church Music program, students must
+      register for a minimum of 6 semesters of 1.0 credit organ lessons (4 at
+      Level I, subsequent at Level II)
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: organ_studies}}
+      all:
+        - assert: {count(terms): {$gte: 6}}
+
+        - where: {level: {$eq: 100}}
+          assert: {count(terms): {$gte: 4}}
+
+        - where: {level: {$eq: 200}}
+          assert: {count(terms): {$gte: 2}}
+
+  Voice Performance Studies:
+    result:
+      course: MUSPF 152
+
+  Junior Half Recital:
+    department_audited: true
+
+  Senior Half Recital:
+    department_audited: true
+
+attributes:
+  courses:
+    MUSIC 340: [music_upper_musicology]
+    MUSIC 341: [music_upper_musicology]
+    MUSIC 342: [music_upper_musicology]
+    MUSIC 343: [music_upper_musicology]
+    MUSIC 344: [music_upper_musicology]
+    MUSIC 345: [music_upper_musicology]
+    MUSIC 346: [music_upper_musicology]
+    MUSIC 347: [music_upper_musicology]
+    MUSIC 348: [music_upper_musicology]
+    MUSIC 349: [music_upper_musicology]
+
+    MUSPF 128: [organ_studies]
+    MUSPF 228: [organ_studies]

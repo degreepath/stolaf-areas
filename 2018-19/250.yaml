@@ -51,7 +51,7 @@ requirements:
     result:
       from: {student: courses}
       where:
-        attribute:
+        attributes:
           $in:
             - engl_level3
             - engl_elective
@@ -60,18 +60,15 @@ requirements:
             - engl_topic_literary_history
             - engl_topic_crossdisciplinary
 
+      limit:
+        - at_most: 1
+          where: {attributes: {$eq: engl_focus_creative_writing}}
+
       all:
         - assert: {count(courses): {$gte: 6}}
 
-        - where: {level: {$eq: 300}}
+        - where: {attributes: {$eq: engl_level3}}
           assert: {count(courses): {$gte: 2}}
-
-        # TODO: meet with english to find out what courses count towards this
-        # - where:
-        #     $and:
-        #       - level: {$eq: 300}
-        #       - attribute: {$in: [engl_focus_literature, engl_focus_film]}
-        #   assert: {count(courses): {$gte: 1}}
 
   1800s:
     result:
@@ -174,9 +171,9 @@ attributes:
     ENGL 340: [engl_level3]
     ENGL 347: [engl_level3]
     ENGL 360: [engl_level3]
-    ENGL 371: [engl_level3]
-    ENGL 372: [engl_level3]
-    ENGL 373: [engl_level3]
+    ENGL 371: [engl_level3, engl_focus_creative_writing]
+    ENGL 372: [engl_level3, engl_focus_creative_writing]
+    ENGL 373: [engl_level3, engl_focus_creative_writing]
     ENGL 380: [engl_level3]
     ENGL 385: [engl_level3]
     ENGL 391: [engl_level3]
