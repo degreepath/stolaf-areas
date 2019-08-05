@@ -19,13 +19,13 @@ result:
             - grade: {$gte: 2.0}
             - level: {$in: [200, 300]}
         assert: {count(courses): {$gte: 4}}
-      
-      - where: grade: {$gte: 2.0}
+
+      - where: {grade: {$gte: 2.0}}
         assert: {count(courses): {$gte: 6}}
 
 limit:
   - at-most: 2
-    where: 
+    where:
       $and:
         - {level: {$eq: 100}}
         - {subject: {$eq: BIO}}
