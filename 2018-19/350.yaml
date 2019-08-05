@@ -26,9 +26,10 @@ limit:
 
   - at_most: 2
     where:
-      - {subject: {$eq: HIST}}
-      - {level: {$eq: 100}}
-      - {type: {$eq: Seminar}}
+      $and:
+        - {subject: {$eq: HIST}}
+        - {level: {$eq: 100}}
+        - {type: {$eq: Seminar}}
 
 
 attributes:
