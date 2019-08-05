@@ -19,9 +19,16 @@ result:
 
 limit:
   - at_most: 3
-    where: {level: {$eq: 100}}
+    where:
+      $and:
+        - {subject: {$eq: HIST}}
+        - {level: {$eq: 100}}
+
   - at_most: 2
-    where: {$and: [{level: {$eq: 100}}, {type: {$eq: Seminar}}]}
+    where:
+      - {subject: {$eq: HIST}}
+      - {level: {$eq: 100}}
+      - {type: {$eq: Seminar}}
 
 
 attributes:
@@ -61,10 +68,7 @@ attributes:
     HIST 195: [history_region_nonwesternworld, history_era_premodern]
     HIST 198: [history_region_us, history_era_premodern]
     HIST 199: [history_region_us]
-    HIST 201: [
-      history_l2_seminar, history_region_europe,
-      history_region_nonwesternworld, history_era_premodern,
-    ]
+    HIST 201: [history_l2_seminar, history_region_europe, history_region_nonwesternworld, history_era_premodern]
     HIST 202: [history_region_europe, history_era_premodern]
     HIST 203: [history_region_europe, history_era_premodern]
     HIST 204: [history_region_europe, history_era_premodern]

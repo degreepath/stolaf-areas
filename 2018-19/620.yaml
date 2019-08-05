@@ -10,7 +10,8 @@ result:
     - requirement: Electives
 
 limit:
-  - {at-most: 2, where: {institution: {$neq: 'St. Olaf College'}}}
+  - at-most: 2
+    where: {institution: {$neq: 'St. Olaf College'}}
 
 requirements:
   Core:

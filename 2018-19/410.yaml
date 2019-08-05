@@ -7,7 +7,7 @@ catalog: 2018-19
 limit:
   - {at-most: 3, where: {institution: {$neq: 'St. Olaf College'}}}
   - {at-most: 1, where: {number: {$in: [398]}}}
-  - {at-most: 3, where: {attribute: {$eq: 'lamst_latinos_in_usa'}}}
+  - {at-most: 3, where: {attribute: {$eq: lamst_latinos_in_usa}}}
   # these are the "at most 2 from any one discipline"
   - {at-most: 2, where: {subject: {$eq: ART}}}
   - {at-most: 2, where: {subject: {$eq: ECON}}}

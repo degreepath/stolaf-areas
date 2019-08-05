@@ -6,7 +6,7 @@ catalog: 2018-19
 requires approval: true
 
 limit:
-  - at most: 0
+  - at-most: 0
     where: {grade: {$lt: C}}
 
 result:

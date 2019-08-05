@@ -11,7 +11,7 @@ result:
     - requirement: Electives
 
 limit:
-  - {at_most: 0, where: {grade: {$lt: 2.0}}}
+  - {at_most: 0, where: {grade: {$lt: C}}}
 
 requirements:
   Management:

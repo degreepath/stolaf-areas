@@ -11,10 +11,6 @@ result:
 
 limit:
   - {at-most: 1, where: {s/u: {$eq: true}}}
-  # Up to a maximum of two courses either taken off-campus with non St. Olaf
-  # faculty or transferred from other institutions may be included in the
-  # major.
-  # TODO: do off-campus courses taken _with_ Olaf faculty count?
   - {at-most: 2, where: {institution: {$neq: St. Olaf College}}}
 
 requirements:

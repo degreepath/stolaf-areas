@@ -9,7 +9,7 @@ result:
     - requirement: Basics
     - requirement: Transitions
     - requirement: Perspectives
-    - requirement: Interdisciplinary
+    # - requirement: Interdisciplinary
     - requirement: Sequence
     - requirement: Level III
 
@@ -18,7 +18,8 @@ result:
     assert: {count(courses): {$gte: 6}}
 
 limit:
-  - {at_most: 2, where: {subject: {$neq: MATH}}}
+  - at_most: 2
+    where: {subject: {$in: [STAT, CSCI, MSCS]}}
 
 requirements:
   Basics:

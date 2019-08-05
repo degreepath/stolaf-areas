@@ -11,11 +11,13 @@ result:
     - requirement: Practical Film Studies
     - requirement: Integrative Film Studies
 
+  audit:
+    where: {level: {$eq: 100}}
+    assert: {count(courses): {$lte: 2}}
+
 limit:
   - at-most: 1
     where: {institution: {$neq: St. Olaf College}}
-  - at-most: 2
-    where: {level: {$eq: 100}}
 
 requirements:
   Intro to Film Studies:

@@ -18,8 +18,13 @@ result:
     assert: {count(courses): {$gte: 9}}
 
 limit:
-  - {at-most: 3, where: {level: {$eq: 100}}}
-  - {at-most: 2, where: {institution: {$neq: St. Olaf College}}}
+  - at-most: 3
+    where:
+      $and:
+        - {subject: {$eq: PSCI}}
+        - {level: {$eq: 100}}
+  - at-most: 2
+    where: {institution: {$neq: St. Olaf College}}
 
 requirements:
   Research Methods:
