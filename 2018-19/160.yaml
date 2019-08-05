@@ -23,12 +23,11 @@ result:
       - where: {grade: {$gte: 2.0}}
         assert: {count(courses): {$gte: 6}}
 
-limit:
-  - at-most: 2
-    where:
-      $and:
-        - {level: {$eq: 100}}
-        - {subject: {$eq: BIO}}
+      - where:
+          $and:
+            - {level: {$eq: 100}}
+            - {subject: {$eq: BIO}}
+        assert: {count(courses): {$lte: 2}}
 
 attributes:
   courses:
