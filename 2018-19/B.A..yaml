@@ -39,10 +39,7 @@ requirements:
           from: {student: courses}
           claim: false
           where: {semester: {$eq: 2}}
-          assert:
-            $and:
-              - count(courses): {$gte: 3}
-              - sum(credits): {$gte: 3}
+          assert: {sum(credits): {$gte: 3}}
 
       Grade Point Average:
         result:
@@ -223,10 +220,8 @@ requirements:
               claim: false
               where: {gereqs: {$in: [SED, IST]}}
               all:
-                - assert:
-                    $and:
-                      - {count(courses): {$gte: 2}}
-                      - {count(subjects): {$gte: 2}}
+                - assert: {count(courses): {$gte: 2}}
+                - assert: {count(subjects): {$gte: 2}}
 
                 - where: {gereqs: {$eq: SED}}
                   assert: {count(courses): {$gte: 1}}
@@ -241,10 +236,8 @@ requirements:
               where: {gereqs: {$eq: HBS}}
 
               all:
-                - assert:
-                    $and:
-                      - {count(courses): {$gte: 2}}
-                      - {count(subjects): {$gte: 2}}
+                - assert: {count(courses): {$gte: 2}}
+                - assert: {count(subjects): {$gte: 2}}
 
                 - where: {institution: {$eq: St. Olaf College}}
                   assert: {count(courses): {$gte: 1}}
