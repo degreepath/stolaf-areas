@@ -14,20 +14,21 @@ result:
     - requirement: Pre-Modern Period
 
   audit:
-    - assert: {count(courses): {$gte: 9}}
+    all:
+      - assert: {count(courses): {$gte: 9}}
 
-    - assert: {count(courses): {$lte: 3}}
-      where:
-        $and:
-          - {subject: {$eq: HIST}}
-          - {level: {$eq: 100}}
+      - assert: {count(courses): {$lte: 3}}
+        where:
+          $and:
+            - {subject: {$eq: HIST}}
+            - {level: {$eq: 100}}
 
-    - assert: {count(courses): {$lte: 2}}
-      where:
-        $and:
-          - {subject: {$eq: HIST}}
-          - {level: {$eq: 100}}
-          - {type: {$eq: Seminar}}
+      - assert: {count(courses): {$lte: 2}}
+        where:
+          $and:
+            - {subject: {$eq: HIST}}
+            - {level: {$eq: 100}}
+            - {type: {$eq: Seminar}}
 
 attributes:
   multicountable:
