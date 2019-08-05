@@ -9,8 +9,8 @@ result:
     - requirement: Interdisciplinary Seminar
     - requirement: Electives
 
-limit:
-  - at-most: 1
+  audit:
+    assert: {count(courses): {$lte: 1}}
     where: {number: {$in: [298, 396, 398]}}
 
 requirements:

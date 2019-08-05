@@ -11,8 +11,9 @@ result:
     - requirement: History & Culture
     - requirement: Upper-Level Elective
 
-limit:
-  - {at most: 1, where: {s/u: {$eq: true}}}
+  audit:
+    where: {s/u: {$eq: true}}
+    assert: {count(courses): {$lte: 1}}
 
 requirements:
   Language:

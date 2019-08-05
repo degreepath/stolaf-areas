@@ -12,8 +12,8 @@ result:
     - requirement: General Education
     - requirement: Electives
 
-limit:
-  - at most: 2
+  audit:
+    assert: {count(courses): {$lte: 2}}
     where:
       $and:
         - {institution: {$neq: St. Olaf College}}

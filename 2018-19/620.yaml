@@ -9,9 +9,9 @@ result:
     - requirement: Core
     - requirement: Electives
 
-limit:
-  - at-most: 2
+  audit:
     where: {institution: {$neq: 'St. Olaf College'}}
+    assert: {count(courses): {$lte: 2}}
 
 requirements:
   Core:

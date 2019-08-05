@@ -9,9 +9,13 @@ result:
     - requirement: Prescribed Courses
     - requirement: Electives
 
-limit:
-  - {at-most: 1, where: {s/u: {$eq: true}}}
-  - {at-most: 2, where: {institution: {$neq: St. Olaf College}}}
+  audit:
+    all:
+      - where: {s/u: {$eq: true}}
+        assert: {count(courses): {$lte: 1}}
+
+      - where: {institution: {$neq: St. Olaf College}}
+        assert: {count(courses): {$lte: 2}}
 
 requirements:
   Prescribed Courses:

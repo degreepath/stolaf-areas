@@ -9,9 +9,9 @@ result:
     - requirement: Language
     - requirement: Electives
 
-limit:
-  - at_most: 1
+  audit:
     where: {s/u: {$eq: true}}
+    assert: {count(courses): {$lte: 1}}
 
 requirements:
   Language:

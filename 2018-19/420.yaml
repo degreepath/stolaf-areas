@@ -14,12 +14,11 @@ result:
     - requirement: Level III
 
   audit:
-    where: {year: {$gte: $matriculation-year}}
-    assert: {count(courses): {$gte: 6}}
-
-limit:
-  - at_most: 2
-    where: {subject: {$in: [STAT, CSCI, MSCS]}}
+    all:
+      - where: {year: {$gte: $matriculation-year}}
+        assert: {count(courses): {$gte: 6}}
+      - where: {subject: {$in: [STAT, CSCI, MSCS]}}
+        assert: {count(courses): {$lte: 2}}
 
 requirements:
   Basics:

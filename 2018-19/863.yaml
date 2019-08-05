@@ -12,12 +12,12 @@ result:
     - requirement: Experiential Learning
     - requirement: Capstone
 
-limit:
-  - at most: 0
+  audit:
     where:
       $or:
         - {grade: {$lte: C}}
         - {s/u: {$eq: true}}
+    assert: {count(courses): {$eq: 0}}
 
 requirements:
   Core Courses:

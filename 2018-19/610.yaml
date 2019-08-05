@@ -10,9 +10,9 @@ result:
     - requirement: Principles of Statistics
     - requirement: Electives
 
-limit:
-  - at-most: 1
+  audit:
     where: {institution: {$neq: 'St. Olaf College'}}
+    assert: {count(courses): {$lte: 1}}
 
 requirements:
   Core:

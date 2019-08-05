@@ -11,7 +11,8 @@ result:
     - requirement: Electives
 
 limit:
-  - {at_most: 0, where: {grade: {$lt: C}}}
+  - at-most: 0
+    where: {grade: {$lt: C}}
 
 requirements:
   International Economics:

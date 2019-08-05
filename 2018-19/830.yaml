@@ -13,13 +13,9 @@ result:
     - requirement: Arts and Humanities
     - requirement: Elective
 
-limit:
-  - at-most: 1
-    where:
-      course:
-        $in:
-          - REL 278
-          - PHIL 257
+  audit:
+    assert: {count(courses): {$lte: 1}}
+    where: {course: {$in: [REL 278, PHIL 257]}}
 
 requirements:
   Natural Science:
