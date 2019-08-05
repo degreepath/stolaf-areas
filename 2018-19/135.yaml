@@ -14,6 +14,31 @@ result:
     - requirement: Lasting Legacy
 
 attributes:
+  multicountable:
+    - - {attributes: {$eq: art_locale_american}}
+      - {attributes: {$eq: art_period_post1700}}
+      - {attributes: {$eq: art_period_pre1700}}
+
+    - - {attributes: {$eq: art_locale_african}}
+      - {attributes: {$eq: art_period_post1700}}
+      - {attributes: {$eq: art_period_pre1700}}
+
+    - - {attributes: {$eq: art_locale_european}}
+      - {attributes: {$eq: art_period_post1700}}
+      - {attributes: {$eq: art_period_pre1700}}
+
+    - - {attributes: {$eq: art_locale_asian}}
+      - {attributes: {$eq: art_period_post1700}}
+      - {attributes: {$eq: art_period_pre1700}}
+
+    - - {attributes: {$eq: art_locale_near_eastern}}
+      - {attributes: {$eq: art_period_post1700}}
+      - {attributes: {$eq: art_period_pre1700}}
+
+    - - {attributes: {$eq: art_locale_indigenous_american}}
+      - {attributes: {$eq: art_period_post1700}}
+      - {attributes: {$eq: art_period_pre1700}}
+
   courses:
     ART 161, 2000-1: [art_locale_american, art_period_post1700]
     ART 161, 2001-1: [art_locale_african, art_period_post1700]
