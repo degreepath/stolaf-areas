@@ -14,8 +14,7 @@ result:
 requirements:
   Core:
     result:
-      count: all
-      of:
+      all:
         - course: ECON 261
         - course: ECON 262
         - either:
@@ -27,10 +26,9 @@ requirements:
 
   Foundation:
     result:
-      count: any
-      of:
-        - course: MATH 120
+      any:
         - course: MATH 119
+        - course: MATH 120
 
   Economic Analysis:
     result:
@@ -59,10 +57,9 @@ emphases:
       both:
         - requirement: Finance
         - requirement: Electives
-
-    limit:
-      - at-most: 0
+      audit:
         where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
 
     requirements:
       Finance:
@@ -91,10 +88,9 @@ emphases:
       both:
         - requirement: International Economics
         - requirement: Electives
-
-    limit:
-      - at-most: 0
+      audit:
         where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
 
     requirements:
       International Economics:
@@ -126,10 +122,9 @@ emphases:
       both:
         - requirement: Management
         - requirement: Electives
-
-    limit:
-      - at-most: 0
+      audit:
         where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
 
     requirements:
       Management:
@@ -163,10 +158,9 @@ emphases:
       both:
         - requirement: Public Policy
         - requirement: Electives
-
-    limit:
-      - at-most: 0
+      audit:
         where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
 
     requirements:
       Public Policy:
