@@ -1,0 +1,231 @@
+---
+name: Music Education
+type: major
+degree: B.M.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Musicology
+    - requirement: Education
+    - requirement: Required Solo Performances
+    - requirement: Required Recital Attendance
+    - requirement: Senior Half Recital
+    - requirement: Art, Theater, or Lyric Theater
+
+requirements:
+  Core:
+    result:
+      all:
+        - {course: MUSIC 114}
+        - {course: MUSIC 141}
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
+        - {course: MUSIC 165}
+        - {course: MUSIC 212}
+        - {course: MUSIC 214}
+        - {course: MUSIC 237}
+        - {course: MUSIC 251}
+        - {course: MUSIC 261, grade: B-}
+
+  Musicology:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - {subject: {$eq: MUSIC}}
+          - {level: {$eq: 300}}
+          - {number: {$nin: [294, 298, 394, 398]}}
+      limit:
+        - {at most: 3, where: {level: {$eq: 200}}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
+
+  Education:
+    result:
+      all:
+        - course: EDUC 355
+        - course: EDUC 356
+        - course: EDUC 231
+        - course: EDUC 290
+        - course: EDUC 291
+        - course: EDUC 330
+        - course: EDUC 372
+        - course: EDUC 374
+        - course: EDUC 375
+        - at_most: true
+          any:
+            - course: EDUC 170
+            - course: EDUC 347
+            - course: EDUC 378
+            - course: EDUC 379
+        - course: EDUC 381
+        - course: EDUC 382
+        - course: EDUC 385
+        - course: EDUC 389
+
+  Art, Theater, or Lyric Theater:
+    message: Required elective in Art, Theater, or Lyric Theater
+    department_audited: true
+
+  Required Solo Performances:
+    message: Two solo performances on a St. Olaf Student Recital.
+    department_audited: true
+
+  Required Recital Attendance:
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+    department_audited: true
+
+  Senior Half Recital:
+    message: Senior Half Recital
+    department_audited: true
+
+
+emphases:
+  455-instrumental:
+    name: Instrumental
+
+    result:
+      all:
+        - requirement: Core
+        - requirement: Electives
+        - requirement: Education
+        - requirement: Performance Studies
+        - requirement: Official Choral Ensemble Participation
+        - requirement: Official Instrumental Ensemble Participation
+        - requirement: Required Chamber Music Performances
+
+    requirements:
+      Core:
+        result:
+          all:
+            - course: MUSIC 166
+            - course: MUSIC 167
+            - course: MUSIC 168
+            - course: MUSIC 169
+            - course: MUSIC 221
+            - course: MUSIC 253
+            - course: MUSIC 290
+            - at_most: true
+              any:
+                - course: MUSIC 252
+                - course: MUSIC 354
+
+      Electives:
+        result:
+          from: {student: courses}
+          where:
+            $and:
+              - {subject: {$eq: MUSIC}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Education:
+        result:
+          all:
+            - course: EDUC 359
+
+      Performance Studies:
+        message:
+          Prior to entrance into B.M. Music Ed program, lessons on licensure
+          instrument will be 0.25 cr; following entrance (typically spring
+          of sophomore year), lessons will be 0.50 cr.
+        result:
+          from: {student: courses}
+          where: {subject: {$eq: MUSPF}}
+          assert: {count(terms): {$gte: 6}}
+
+      Official Instrumental Ensemble Participation:
+        department_audited: true
+        message: Every semester in an official instrumental ensemble
+
+      Official Choral Ensemble Participation:
+        department_audited: true
+        message: 1 semester in an official choral ensemble
+
+      Required Chamber Music Performances:
+        department_audited: true
+        message: 2 chamber music performances
+
+  455-vocal:
+    name: Vocal
+
+    result:
+      all:
+        - requirement: Core
+        - requirement: Electives
+        - requirement: Education
+        - requirement: Performance Studies
+        - requirement: Official Choral Ensemble Participation
+        - requirement: Required Vocal Chamber Music Performances
+
+    requirements:
+      Core:
+        result:
+          all:
+            - course: MUSIC 252
+            - at_most: true
+              any:
+                - course: MUSIC 253
+                - course: MUSIC 354
+            - {course: MUSIC 262, grade: B-}
+            - course: MUSIC 287
+            - course: MUSIC 291
+            - course: MUSIC 292
+
+      Electives:
+        result:
+          from: {student: courses}
+          where:
+            $and:
+              - {subject: {$eq: MUSIC}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {sum(credits): {$gte: 1.75, at_most: true}}
+
+      Education:
+        result:
+          all:
+            - course: EDUC 358
+
+      Performance Studies:
+        message:
+          Prior to entrance into B.M. Music Ed program, lessons on licensure
+          instrument will be 0.25 cr; following entrance (typically spring
+          of sophomore year), lessons will be 0.50 cr.
+        result:
+          from: {student: courses}
+          where: {subject: {$eq: MUSPF}}
+          assert: {count(terms): {$gte: 6}}
+
+      Official Choral Ensemble Participation:
+        department_audited: true
+        message: Every semester in an official choral ensemble
+
+      Required Vocal Chamber Music Performances:
+        department_audited: true
+        message: 2 chamber music performances
+
+
+attributes:
+  courses:
+    MUSIC 340: [music_upper_musicology]
+    MUSIC 341: [music_upper_musicology]
+    MUSIC 342: [music_upper_musicology]
+    MUSIC 343: [music_upper_musicology]
+    MUSIC 344: [music_upper_musicology]
+    MUSIC 345: [music_upper_musicology]
+    MUSIC 346: [music_upper_musicology]
+    MUSIC 347: [music_upper_musicology]
+    MUSIC 348: [music_upper_musicology]
+    MUSIC 349: [music_upper_musicology]

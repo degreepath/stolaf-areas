@@ -11,6 +11,172 @@ result:
     - requirement: Core
     - requirement: Economic Analysis
 
+requirements:
+  Core:
+    result:
+      all:
+        - course: ECON 261
+        - course: ECON 262
+        - either:
+            - course: ECON 263
+            # or
+            - both:
+                - course: STAT 272
+                - course: ECON 385
+
+  Foundation:
+    result:
+      any:
+        - course: MATH 119
+        - course: MATH 120
+
+  Economic Analysis:
+    result:
+      from: {student: courses}
+      where:
+        attribute:
+          $in:
+            - econ_level_2
+            - econ_level_3
+
+      all:
+        - where: {attribute: {$eq: econ_level_2}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attribute: {$eq: econ_level_3}}
+          assert: {count(courses): {$gte: 2}}
+
+        - assert: {count(courses): {$gte: 4}}
+
+
+emphases:
+  710:
+    name: Finance
+
+    result:
+      both:
+        - requirement: Finance
+        - requirement: Electives
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Finance:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 281
+            - course: MGMT 380
+
+      Electives:
+        result:
+          any:
+            - both: [{course: MGMT 250}, {course: MGMT 251}]
+            - course: MGMT 252
+            - course: MGMT 256
+            - course: ECON 371
+            - course: ECON 374
+            - course: ECON 382
+            - course: ECON 385
+
+  720:
+    name: International Economic Analysis and Policy
+
+    result:
+      both:
+        - requirement: International Economics
+        - requirement: Electives
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      International Economics:
+        result:
+          course: ECON 382
+
+      Electives:
+        message:
+          You may also choose a course outside of Economics Department that
+          relates to international topics.
+        result:
+          count: 2
+          of:
+            - course: ECON 218
+            - course: ECON 243
+            - requirement: Non-Econ International Topics
+
+        requirements:
+          Non-Econ International Topics:
+            department-audited: true
+            message:
+              You may also choose a course outside of Economics Department
+              that relates to international topics.
+
+  725:
+    name: Management
+
+    result:
+      both:
+        - requirement: Management
+        - requirement: Electives
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Management:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 251
+            - course: MGMT 383
+
+      Electives:
+        result:
+          any:
+            - course: MGMT 250
+            - course: MGMT 252
+            - course: MGMT 256
+            - course: MGMT 281
+            - requirement: Other MGMT Course
+
+        requirements:
+          Other MGMT Course:
+            department-audited: true
+            message:
+              You may also negotiate another MGMT course.
+
+
+  736:
+    name: Public Policy
+
+    result:
+      both:
+        - requirement: Public Policy
+        - requirement: Electives
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Public Policy:
+        result:
+          course: ECON 371
+
+      Electives:
+        result:
+          count: 3
+          of:
+            - course: ECON 242
+            - course: ECON 245
+            - course: ECON 249
+            - course: ECON 385
+
+
 attributes:
   multicountable:
     - - {course: {$eq: ECON 385}}
@@ -35,43 +201,3 @@ attributes:
     ECON 382: [econ_level_3]
     ECON 385: [econ_level_3]
     ECON 399: [econ_level_3]
-
-
-requirements:
-  Core:
-    result:
-      count: all
-      of:
-        - course: ECON 261
-        - course: ECON 262
-        - either:
-            - course: ECON 263
-            # or
-            - both:
-                - course: STAT 272
-                - course: ECON 385
-
-  Foundation:
-    result:
-      count: any
-      of:
-        - course: MATH 120
-        - course: MATH 119
-
-  Economic Analysis:
-    result:
-      from: {student: courses}
-      where:
-        attribute:
-          $in:
-            - econ_level_2
-            - econ_level_3
-
-      all:
-        - where: {attribute: {$eq: econ_level_2}}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {attribute: {$eq: econ_level_3}}
-          assert: {count(courses): {$gte: 2}}
-
-        - assert: {count(courses): {$gte: 4}}
