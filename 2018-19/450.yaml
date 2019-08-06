@@ -40,15 +40,13 @@ requirements:
         $and:
           - {subject: {$eq: MUSIC}}
           - {level: {$in: [200, 300]}}
+          - {number: {$nin: [294, 298, 394, 398]}}
       limit:
         - {at most: 3, where: {level: {$eq: 200}}}
-        - {at most: 0, where: {number: {$in: [294, 298, 394, 398]}}}
       assert: {count(courses): {$gte: 4, at_most: true}}
 
   Performance Studies:
-    message:
-      6 semesters; 4 in the same instrument/voice
-
+    message: 6 semesters; 4 in the same instrument/voice
     result:
       from: {student: courses}
       where: {subject: {$eq: MUSPF}}
@@ -57,27 +55,24 @@ requirements:
         - assert: {count(terms): {$gte: 6}}
 
   Official Ensemble Participation:
-    department_audited: true
-    message: 'Official Ensemble Participation: 4 semesters'
-    # result:
-    #   from: {student: courses}
-    #   where: {subject: {$eq: MUSEN}}
-    #   assert: {count(terms): {$gte: 4, at_most: true}}
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSEN}}
+      assert: {count(terms): {$gte: 4, at_most: true}}
 
   Required Performances:
-    message:
-      Two solo performances on a St. Olaf Student Recital.
     department_audited: true
+    message: Two solo performances on a St. Olaf Student Recital.
     # result:
     #   from: {student: music performances}
     #   where: {solo: {$eq: true}}
     #   assert: {count(performances): {$gte: 2, at_most: true}}
 
   Required Recital Attendance:
+    department_audited: true
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
-    department_audited: true
     # result:
     #   from: {student: music performances}
     #   where: {attended: {$eq: true}}
