@@ -50,23 +50,13 @@ requirements:
 
     result:
       all:
-        - requirement: Acting
-        - requirement: Tech
-
         - from: {student: courses}
-          allow_claimed: true
           where: {course: {$in: [THEAT 233, THEAT 253]}}
-          assert: {count(courses): {$gte: 4}}
+          all:
+            - where: {course: {$eq: THEAT 233}}
+              assert: {count(courses): {$gte: 1}}
 
-    requirements:
-      Acting:
-        result:
-          from: {student: courses}
-          where: {course: {$eq: THEAT 233}}
-          assert: {count(courses): {$gte: 1}}
+            - where: {course: {$eq: THEAT 253}}
+              assert: {count(courses): {$gte: 2}}
 
-      Tech:
-        result:
-          from: {student: courses}
-          where: {course: {$eq: THEAT 253}}
-          assert: {count(courses): {$gte: 2}}
+            - assert: {count(courses): {$gte: 4}}
