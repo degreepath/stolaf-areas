@@ -85,7 +85,7 @@ emphases:
     name: International Economic Analysis and Policy
 
     result:
-      both:
+      all:
         - requirement: International Economics
         - requirement: Electives
         - requirement: Non-Econ International Topics
