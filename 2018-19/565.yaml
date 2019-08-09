@@ -23,7 +23,7 @@ requirements:
       where: {attribute: {$eq: race_elective}}
       limit:
         - {at-most: 1, where: {number: {$in: [296, 298, 396, 398]}}}
-        - {at-most: 1, where: {institution: {$neq: 'St. Olaf College'}}}
+        - {at-most: 1, where: {is_stolaf: {$eq: false}}}
       assert:
         $and:
           - count(courses): {$gte: 7}

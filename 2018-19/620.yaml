@@ -10,7 +10,7 @@ result:
     - requirement: Electives
 
   audit:
-    where: {institution: {$neq: 'St. Olaf College'}}
+    where: {is_stolaf: {$eq: false}}
     assert: {count(courses): {$lte: 2}}
 
 requirements:
@@ -47,7 +47,7 @@ requirements:
         - where:
             $and:
               - level: {$eq: 300}
-              - institution: {$eq: 'St. Olaf College'}
+              - {is_stolaf: {$eq: true}}
           assert: {count(courses): {$gte: 1}}
 
 attributes:

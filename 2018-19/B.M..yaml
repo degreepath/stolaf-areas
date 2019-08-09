@@ -31,7 +31,7 @@ requirements:
         result:
           from: {student: courses}
           claim: false
-          where: {institution: {$eq: St. Olaf College}}
+          where: {is_stolaf: {$eq: true}}
           assert: {sum(credits): {$gte: 17}}
 
       Interim:
@@ -61,7 +61,7 @@ requirements:
         result:
           from: {student: courses}
           claim: false
-          where: {grade_type: {$eq: Graded}}
+          where: {grade_option: {$eq: grade}}
           assert: {sum(credits): {$gte: 24}}
 
       Major:

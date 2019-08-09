@@ -17,7 +17,7 @@ requirements:
       from: {student: courses}
       where: {course: {$in: [GERM 251, GERM 252, GERM 253]}}
       limit:
-        - {at_most: 1, where: {institution: {$neq: St. Olaf College}}}
+        - {at_most: 1, where: {is_stolaf: {$eq: false}}}
       assert: {count(courses): {$gte: 2}}
 
   Level 270:
@@ -25,7 +25,7 @@ requirements:
       from: {student: courses}
       where: {course: {$in: [GERM 271, GERM 272, GERM 273, GERM 276]}}
       limit:
-        - {at_most: 1, where: {institution: {$neq: St. Olaf College}}}
+        - {at_most: 1, where: {is_stolaf: {$eq: false}}}
       assert: {count(courses): {$gte: 2}}
 
   Level III:
@@ -65,7 +65,7 @@ requirements:
             #
             # because all of these-courses are in english, we can just limit it
             # to at_most: 1 here to accomplish this goal
-            - {at_most: 1, where: {institution: {$eq: St. Olaf College"}}}
+            - {at_most: 1, where: {is_stolaf: {$eq: true}}}
           assert: {count(courses): {$eq: 1}}
 
 attributes:

@@ -14,7 +14,7 @@ result:
       - where: {s/u: {$eq: true}}
         assert: {count(courses): {$lte: 1}}
 
-      - where: {institution: {$neq: St. Olaf College}}
+      - where: {is_stolaf: {$eq: false}}
         assert: {count(courses): {$lte: 2}}
 
 requirements:

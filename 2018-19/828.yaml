@@ -13,7 +13,7 @@ result:
     all:
       - assert: {average(grades): {$gte: 2.7}}
       - assert: {count(courses): {$lte: 2}}
-        where: {institution: {$neq: St. Olaf College}}
+        where: {is_stolaf: {$eq: false}}
       - assert: {count(courses): {$lte: 2}}
         where: {s/u: {$eq: true}}
 

@@ -10,7 +10,7 @@ result:
   limit:
     # "At least two of the six courses must be taken on campus"
     # aka "no more than 4 may be taken off-campus", since we need six total
-    - {at_most: 4, where: {institution: {$neq: St. Olaf College}}}
+    - {at_most: 4, where: {is_stolaf: {$eq: false}}}
     # and "No language courses may count toward this concentration" is
     # taken care of by not listing them
   assert: {count(courses): {$gte: 6}}

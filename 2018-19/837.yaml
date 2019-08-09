@@ -22,7 +22,7 @@ requirements:
           - subject: {$eq: GERM}
           - number: {$gte: 232}
       limit:
-        - {at_most: 1, where: {institution: {$neq: St. Olaf College}}}
+        - {at_most: 1, where: {is_stolaf: {$eq: false}}}
       assert: {count(courses): {$gte: 3}}
 
   Electives:

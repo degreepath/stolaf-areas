@@ -16,7 +16,7 @@ result:
     assert: {count(courses): {$lte: 2}}
     where:
       $and:
-        - {institution: {$neq: St. Olaf College}}
+        - {is_stolaf: {$eq: false}}
         - {course: {$neq: PSYCH 125}}
 
 attributes:

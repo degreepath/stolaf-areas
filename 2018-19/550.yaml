@@ -23,7 +23,7 @@ result:
             - {subject: {$eq: PSCI}}
             - {level: {$eq: 100}}
       - assert: {count(courses): {$lte: 2}}
-        where: {institution: {$neq: St. Olaf College}}
+        where: {is_stolaf: {$eq: false}}
 
 requirements:
   Research Methods:
@@ -59,7 +59,7 @@ requirements:
       from: {student: courses}
       where: {attribute: {$eq: psci_level_3}}
       limit:
-        - {at-most: 0, where: {institution: {$neq: St. Olaf College}}}
+        - {at-most: 0, where: {is_stolaf: {$eq: false}}}
       assert: {count(courses): {$gte: 2}}
 
   Electives:
@@ -70,7 +70,7 @@ requirements:
           where:
             $and:
               - {subject: {$in: [PSCI, AS/PS, ES/PS]}}
-              - {institution: {$eq: 'St. Olaf College'}}
+              - {is_stolaf: {$eq: true}}
           limit:
             - at-most: 1
               where:
@@ -89,7 +89,7 @@ requirements:
               - $and:
                   - {subject: {$eq: STAT}}
                   - {course: {$neq: STAT 111}}
-                  - {institution: {$eq: 'St. Olaf College'}}
+                  - {is_stolaf: {$eq: true}}
 
               # French / German / Spanish courses
               - $and:

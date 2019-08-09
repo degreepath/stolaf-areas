@@ -13,7 +13,7 @@ result:
 
   audit:
     all:
-      - where: {institution: {$neq: 'St. Olaf College'}}
+      - where: {is_stolaf: {$eq: false}}
         assert: {count(courses): {$lte: 2}}
       - where: {number: {$in: [398]}}
         assert: {count(courses): {$lte: 1}}

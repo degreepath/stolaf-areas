@@ -31,7 +31,10 @@ requirements:
         result:
           from: {student: courses}
           claim: false
-          where: {institution: {$eq: St. Olaf College}}
+          where:
+            $and:
+              - is_stolaf: {$eq: true}
+              - subject: {$neq: REG}
           assert: {sum(credits): {$gte: 17}}
 
       Interim:
@@ -58,7 +61,7 @@ requirements:
         result:
           from: {student: courses}
           claim: false
-          where: {grade_type: {$eq: Graded}}
+          where: {grade_option: {$eq: grade}}
           assert: {sum(credits): {$gte: 24}}
 
       Major:
@@ -163,7 +166,7 @@ requirements:
               all:
                 - assert: {count(courses): {$gte: 2}}
 
-                - where: {institution: {$eq: St. Olaf College}}
+                - where: {is_stolaf: {$eq: true}}
                   assert: {count(courses): {$gte: 1}}
 
           Multicultural Studies:
@@ -239,7 +242,7 @@ requirements:
                 - assert: {count(courses): {$gte: 2}}
                 - assert: {count(subjects): {$gte: 2}}
 
-                - where: {institution: {$eq: St. Olaf College}}
+                - where: {is_stolaf: {$eq: true}}
                   assert: {count(courses): {$gte: 1}}
 
       Integrative:
