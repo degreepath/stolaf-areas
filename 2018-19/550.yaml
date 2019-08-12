@@ -76,7 +76,7 @@ requirements:
               where:
                 $and:
                   - {course: {$eq: PSCI 294}}
-                  - {credit: {$lt: 1.0}}
+                  - {credits: {$lt: 1.0}}
             # only select one course by specifying a restriction that's true
             # for all courses
             - {at-most: 1, where: {course: {$neq: ''}}}
