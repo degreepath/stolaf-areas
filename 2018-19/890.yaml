@@ -8,7 +8,6 @@ result:
   all:
     - requirement: Prerequisite
     - requirement: Core
-    - requirement: Level III
     - requirement: Electives
 
 requirements:
