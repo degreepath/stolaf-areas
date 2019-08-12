@@ -107,22 +107,24 @@ empahses:
         message:
           2 composition performances, at least 1 in junior or senior year
 
-        result:
-          both:
-            - from: {student: music performances}
-              where:
-                $and:
-                  - {performed: {$eq: true}}
-                  - {type: {$in: [AAA, BBB]}}
-              assert: {count(performances): {$gte: 2}}
+        department_audited: true
 
-            - from: {student: music performances}
-              where:
-                $and:
-                  - {performed: {$eq: true}}
-                  - {type: {$in: [AAA, BBB]}}
-                  - {year: {$in: [$senior-year, $junior-year]}}
-              assert: {count(performances): {$gte: 1}}
+        # result:
+        #   both:
+        #     - from: {student: music performances}
+        #       where:
+        #         $and:
+        #           - {performed: {$eq: true}}
+        #           - {type: {$in: [AAA, BBB]}}
+        #       assert: {count(performances): {$gte: 2}}
+
+        #     - from: {student: music performances}
+        #       where:
+        #         $and:
+        #           - {performed: {$eq: true}}
+        #           - {type: {$in: [AAA, BBB]}}
+        #           - {year: {$in: [$senior-year, $junior-year]}}
+        #       assert: {count(performances): {$gte: 1}}
 
       Portfolio:
         message:

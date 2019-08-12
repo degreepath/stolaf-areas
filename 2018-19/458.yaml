@@ -93,19 +93,21 @@ requirements:
   Required Performances:
     message:
       Two solo performances on a St. Olaf Student Recital.
-    result:
-      from: {student: music performances}
-      where: {solo: {$eq: true}}
-      assert: {count(performances): {$gte: 2, at_most: true}}
+    department_audited: true
+    # result:
+    #   from: {student: music performances}
+    #   where: {solo: {$eq: true}}
+    #   assert: {count(performances): {$gte: 2, at_most: true}}
 
   Required Recital Attendance:
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
-    result:
-      from: {student: music performances}
-      where: {attended: {$eq: true}}
-      assert: {count(performances): {$gte: 60, at_most: true}}
+    department_audited: true
+    # result:
+    #   from: {student: music performances}
+    #   where: {attended: {$eq: true}}
+    #   assert: {count(performances): {$gte: 60, at_most: true}}
 
   Required Portfolio:
     message: >
