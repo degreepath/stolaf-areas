@@ -5,254 +5,259 @@ catalog: 2018-19
 
 result:
   all:
-    - requirement: Degree Requirements
-    - requirement: General Education
+    - requirement: Required Course Credit
+    - requirement: Credits Taken At/Through St. Olaf College
+    # - requirement: Transfer Credit
+    - requirement: Interim Credit
+    - requirement: Cumulative Grade Point Average
+    - requirement: Level II/III Course Credit
+    - requirement: Graded Course Credit
+    - requirement: Declared Major
+    - requirement: Allowed S/U Course Credit
+
+    # - {separator: true, label: General Education}
+
+    - requirement: First-Year Writing
+    - requirement: Writing in Context
+    - requirement: Foreign Language
+    - requirement: Oral Communication
+    - requirement: Abstract and Quantitative Reasoning
+    - requirement: Studies in Physical Movement
+    - requirement: Historical Studies in Western Culture
+    - requirement: Multicultural Studies
+    - requirement: Artistic and Literary Studies
+    - requirement: Biblical and Theological Studies
+    - requirement: Studies in Natural Science
+    - requirement: Studies in Human Behavior and Society
+    - requirement: Ethical Issues and Normative Perspectives
 
 requirements:
-  Degree Requirements:
+  Required Course Credit:
     result:
-      all:
-        - requirement: Courses
-        - requirement: Residency
-        - requirement: Interim
-        - requirement: Grade Point Average
-        - requirement: Course Level
-        - requirement: Graded Courses
-        - requirement: Major
+      from: {student: courses}
+      claim: false
+      assert: {sum(credits): {$gte: 35}}
 
-    requirements:
-      Courses:
-        result:
-          from: {student: courses}
-          claim: false
-          assert: {sum(credits): {$gte: 35}}
-
-      Residency:
-        result:
-          from: {student: courses}
-          claim: false
-          where:
-            $and:
-              - is_stolaf: {$eq: true}
-              - subject: {$neq: REG}
-          assert: {sum(credits): {$gte: 17}}
-
-      Interim:
-        result:
-          from: {student: courses}
-          claim: false
-          where: {semester: {$eq: 2}}
-          assert: {sum(credits): {$gte: 3}}
-
-      Grade Point Average:
-        result:
-          from: {student: courses}
-          claim: false
-          assert: {average(grades): {$gte: 2.0}}
-
-      Course Level:
-        result:
-          from: {student: courses}
-          claim: false
-          where: {level: {$gte: 200}}
-          assert: {sum(credits): {$gte: 18}}
-
-      Graded Courses:
-        result:
-          from: {student: courses}
-          claim: false
-          where: {grade_option: {$eq: grade}}
-          assert: {sum(credits): {$gte: 24}}
-
-      Major:
-        result:
-          from: {student: areas}
-          claim: false
-          where: {type: {$eq: Major}}
-          assert: {count(areas): {$gte: 1}}
-
-
-  General Education:
+  Credits Taken At/Through St. Olaf College:
     result:
+      from: {student: courses}
+      claim: false
+      where:
+        $and:
+          - is_stolaf: {$eq: true}
+          - subject: {$neq: REG}
+      assert: {sum(credits): {$gte: 17}}
+
+  Transfer Credit:
+    message:
+      After matriculation, you may transfer 4 credits from other institutions
+      to St. Olaf college.
+    result:
+      from: {student: transfer_credit}
+      claim: false
+      assert: {value: {$lte: 4}}
+
+  Interim Credit:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {semester: {$eq: 2}}
+      assert: {sum(credits): {$gte: 3}}
+
+  Cumulative Grade Point Average:
+    result:
+      from: {student: courses}
+      claim: false
+      assert: {average(grades): {$gte: 2.0}}
+
+  Level II/III Course Credit:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {level: {$gte: 200}}
+      assert: {sum(credits): {$gte: 18}}
+
+  Graded Course Credit:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {grade_option: {$eq: grade}}
+      assert: {sum(credits): {$gte: 24}}
+
+  Declared Major:
+    message:
+      You must declare a major by the spring of your sophomore year.
+    result:
+      from: {student: areas}
+      claim: false
+      where: {type: {$eq: Major}}
+      assert: {count(areas): {$gte: 1}}
+
+  Allowed S/U Course Credit:
+    message:
+      In completing the minimum of 35 full credits required for graduation,
+      students may take up to six full-course equivalents (6.00 credits) on an
+      S/U basis.
+    result:
+      from: {student: courses}
+      claim: false
+      where: {s/u: {$eq: true}}
+      assert: {sum(credits): {$lte: 6.00}}
+
+  First-Year Writing:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$eq: FYW}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Writing in Context:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$eq: WRI}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
+
+  Foreign Language:
+    result:
+      from: {student: courses}
+      claim: false
+      where:
+        gereqs:
+          $in:
+            - FOL-C
+            - FOL-F
+            - FOL-G
+            - FOL-K
+            - FOL-J
+            - FOL-L
+            - FOL-N
+            - FOL-R
+            - FOL-S
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Oral Communication:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$eq: ORC}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Abstract and Quantitative Reasoning:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$eq: AQR}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Studies in Physical Movement:
+    result:
+      from: {student: courses, repeats: first}
+      claim: false
+      where: {gereqs: {$eq: SPM}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  Historical Studies in Western Culture:
+    message:
+      One course must be taught by a St. Olaf professor.
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$eq: HWC}}
       all:
-        - requirement: Foundation
-        - requirement: Core
-        - requirement: Integrative
+        - assert: {count(courses): {$gte: 2}}
 
-    requirements:
-      Foundation:
-        result:
-          all:
-            - requirement: First-Year Writing
-            - requirement: Writing in Context
-            - requirement: Foreign Language
-            - requirement: Oral Communication
-            - requirement: Abstract and Quantitative Reasoning
-            - requirement: Studies in Physical Movement
+        - where: {is_stolaf: {$eq: true}}
+          assert: {count(courses): {$gte: 1}}
 
-        requirements:
-          First-Year Writing:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$eq: FYW}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
+  Multicultural Studies:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$in: [MCD, MCG]}}
 
-          Writing in Context:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$eq: WRI}}
-              assert: {count(courses): {$gte: 4, at_most: true}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
+        - assert: {count(subjects): {$gte: 2}}
 
-          Foreign Language:
-            result:
-              from: {student: courses}
-              claim: false
-              where:
-                gereqs:
-                  $in:
-                    - FOL-C
-                    - FOL-F
-                    - FOL-G
-                    - FOL-K
-                    - FOL-J
-                    - FOL-L
-                    - FOL-N
-                    - FOL-R
-                    - FOL-S
-              assert: {count(courses): {$gte: 1, at_most: true}}
+        - where: {gereqs: {$eq: MCD}}
+          assert: {count(courses): {$gte: 1}}
 
-          Oral Communication:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$eq: ORC}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
+        - where: {gereqs: {$eq: MCG}}
+          assert: {count(courses): {$gte: 1}}
 
-          Abstract and Quantitative Reasoning:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$eq: AQR}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
+  Artistic and Literary Studies:
+    message:
+      All ALS-A courses must be in the same subject code.
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$in: [ALS-A, ALS-L]}}
 
-          Studies in Physical Movement:
-            result:
-              from: {student: courses, repeats: first}
-              claim: false
-              where: {gereqs: {$eq: SPM}}
-              assert: {count(courses): {$gte: 2, at_most: true}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
 
-      Core:
-        result:
-          all:
-            - requirement: Historical Studies in Western Culture
-            - requirement: Multicultural Studies
-            - requirement: Artistic and Literary Studies
-            - requirement: Biblical and Theological Studies
-            - requirement: Studies in Natural Science
-            - requirement: Studies in Human Behavior and Society
+        - where: {gereqs: {$eq: ALS-A}}
+          assert: {sum(credits): {$gte: 1}}
 
-        requirements:
-          Historical Studies in Western Culture:
-            message:
-              One course must be taught by a St. Olaf professor.
+        # where `credits_from_most_common_subject` finds the most common
+        # subject in a set of items, then returns the .credits prop from the
+        # courses with that subject
+        # - where: {gereqs: {$eq: ALS-A}}
+        #   assert: {sum(credits_from_most_common_subject): {$gte: 1}}
 
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$eq: HWC}}
-              all:
-                - assert: {count(courses): {$gte: 2}}
+        - where: {gereqs: {$eq: ALS-L}}
+          assert: {count(courses): {$gte: 1}}
 
-                - where: {is_stolaf: {$eq: true}}
-                  assert: {count(courses): {$gte: 1}}
+  Biblical and Theological Studies:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$in: [BTS-B, BTS-T]}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
 
-          Multicultural Studies:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$in: [MCD, MCG]}}
+        - where: {gereqs: {$eq: BTS-B}}
+          assert: {count(courses): {$gte: 1}}
 
-              all:
-                - assert: {count(courses): {$gte: 2}}
-                - assert: {count(subjects): {$gte: 2}}
+        - where: {gereqs: {$eq: BTS-T}}
+          assert: {count(courses): {$gte: 1}}
 
-                - where: {gereqs: {$eq: MCD}}
-                  assert: {count(courses): {$gte: 1}}
+  Studies in Natural Science:
+    message:
+      One course must be taught by a St. Olaf professor.
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$in: [SED, IST]}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
+        - assert: {count(subjects): {$gte: 2}}
 
-                - where: {gereqs: {$eq: MCG}}
-                  assert: {count(courses): {$gte: 1}}
+        - where: {gereqs: {$eq: SED}}
+          assert: {count(courses): {$gte: 1}}
 
-          Artistic and Literary Studies:
-            message:
-              All ALS-A courses must be in the same subject code.
+        - where: {gereqs: {$eq: IST}}
+          assert: {count(courses): {$gte: 1}}
 
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$in: [ALS-A, ALS-L]}}
+  Studies in Human Behavior and Society:
+    message:
+      One course must be taught by a St. Olaf professor.
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$eq: HBS}}
 
-              all:
-                - assert: {count(courses): {$gte: 2}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
+        - assert: {count(subjects): {$gte: 2}}
 
-                - where: {gereqs: {$eq: ALS-A}}
-                  assert: {sum(credits): {$gte: 1}}
+        - where: {is_stolaf: {$eq: true}}
+          assert: {count(courses): {$gte: 1}}
 
-                - where: {gereqs: {$eq: ALS-L}}
-                  assert: {count(courses): {$gte: 1}}
-
-          Biblical and Theological Studies:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$in: [BTS-B, BTS-T]}}
-              all:
-                - assert: {count(courses): {$gte: 2}}
-
-                - where: {gereqs: {$eq: BTS-B}}
-                  assert: {count(courses): {$gte: 1}}
-
-                - where: {gereqs: {$eq: BTS-T}}
-                  assert: {count(courses): {$gte: 1}}
-
-          Studies in Natural Science:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$in: [SED, IST]}}
-              all:
-                - assert: {count(courses): {$gte: 2}}
-                - assert: {count(subjects): {$gte: 2}}
-
-                - where: {gereqs: {$eq: SED}}
-                  assert: {count(courses): {$gte: 1}}
-
-                - where: {gereqs: {$eq: IST}}
-                  assert: {count(courses): {$gte: 1}}
-
-          Studies in Human Behavior and Society:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$eq: HBS}}
-
-              all:
-                - assert: {count(courses): {$gte: 2}}
-                - assert: {count(subjects): {$gte: 2}}
-
-                - where: {is_stolaf: {$eq: true}}
-                  assert: {count(courses): {$gte: 1}}
-
-      Integrative:
-        result:
-          requirement: Ethical Issues and Normative Perspectives
-
-        requirements:
-          Ethical Issues and Normative Perspectives:
-            result:
-              from: {student: courses}
-              claim: false
-              where: {gereqs: {$eq: EIN}}
-              assert: {count(courses): {$gte: 1}}
+  Ethical Issues and Normative Perspectives:
+    result:
+      from: {student: courses}
+      claim: false
+      where: {gereqs: {$eq: EIN}}
+      assert: {count(courses): {$gte: 1}}
