@@ -25,16 +25,16 @@ requirements:
   Core:
     result:
       all:
-        - course: MUSIC 114
-        - course: MUSIC 141
+        - {course: MUSIC 114}
+        - {course: MUSIC 141}
         - {course: MUSIC 161, grade: B-}
         - {course: MUSIC 162, grade: B-}
-        - course: MUSIC 212
-        - course: MUSIC 214
-        - course: MUSIC 237
-        - course: MUSIC 251
+        - {course: MUSIC 212}
+        - {course: MUSIC 214}
+        - {course: MUSIC 237}
+        - {course: MUSIC 251}
         - {course: MUSIC 261, grade: B-}
-        - course: MUSIC 298
+        - {course: MUSIC 298}
 
   Electives:
     result:
