@@ -121,7 +121,7 @@ attributes:
     ENGL 221: [engl_topic_literary_history]
     ENGL 223: [engl_topic_literary_history]
     ENGL 225: [engl_topic_literary_history]
-    ENGL 227: [engl_topic_literary_history]
+    ENGL 227: [engl_topic_literary_history, engl_period_pre1800]
     ENGL 228: [engl_topic_literary_history, engl_period_post1800]
     ENGL 229: [engl_topic_literary_history, engl_period_post1800]
     ENGL 232: [engl_topic_literary_history, engl_period_pre1800]
