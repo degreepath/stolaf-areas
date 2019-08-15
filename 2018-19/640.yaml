@@ -49,14 +49,13 @@ requirements:
       class is then a choice of either 233 or 253.
 
     result:
+      from: {student: courses}
+      where: {course: {$in: [THEAT 233, THEAT 253]}}
       all:
-        - from: {student: courses}
-          where: {course: {$in: [THEAT 233, THEAT 253]}}
-          all:
-            - where: {course: {$eq: THEAT 233}}
-              assert: {count(courses): {$gte: 1}}
+        - where: {course: {$eq: THEAT 233}}
+          assert: {count(courses): {$gte: 1}}
 
-            - where: {course: {$eq: THEAT 253}}
-              assert: {count(courses): {$gte: 2}}
+        - where: {course: {$eq: THEAT 253}}
+          assert: {count(courses): {$gte: 2}}
 
-            - assert: {count(courses): {$gte: 4}}
+        - assert: {count(courses): {$gte: 4}}
