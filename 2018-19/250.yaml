@@ -75,11 +75,11 @@ requirements:
       both:
         - from: {student: courses}
           where: {attribute: {$eq: engl_period_pre1800}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
         - from: {student: courses}
           where: {attribute: {$eq: engl_period_post1800}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
 
 attributes:
