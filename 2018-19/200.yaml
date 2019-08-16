@@ -25,7 +25,7 @@ attributes:
     CSCI 350: [csci_electives]
     MSCS 389: [csci_electives]
     ID 259: [csci_electives]
-    CSCI 300B 2018.1: [csci_systems]
+    CSCI 300B 2018-1: [csci_systems]
 
 requirements:
   Foundation:

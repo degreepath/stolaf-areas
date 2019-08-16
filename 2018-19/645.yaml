@@ -39,8 +39,8 @@ attributes:
     ENGL 251: [wmgst_diverse, wmgst_elective]
     ENGL 253: [wmgst_historical, wmgst_elective]  # southern women writers
     ENGL 264: [wmgst_theory, wmgst_elective]
-    ENGL 280.2000.1: [wmgst_diverse, wmgst_elective]  # Muslim Women Writers
-    ENGL 280.2001.1: [wmgst_theory, wmgst_elective]  # Queer Literature and Theory
+    ENGL 280 2000-1: [wmgst_diverse, wmgst_elective]  # Muslim Women Writers
+    ENGL 280 2001-1: [wmgst_theory, wmgst_elective]  # Queer Literature and Theory
     ENGL 340:
       - wmgst_theory  # always?
       - wmgst_historical  # Money and American Literature
@@ -48,22 +48,22 @@ attributes:
       - wmgst_elective
     FAMST 242: [wmgst_theory, wmgst_elective]
     FAMST 253: [wmgst_theory, wmgst_diverse, wmgst_historical, wmgst_elective]
-    FREN 273.2000.1: [wmgst_diverse, wmgst_elective]  # French Women Writers
-    FREN 372.2017.1: [wmgst_diverse, wmgst_historical, wmgst_elective]  # Women in Identity
+    FREN 273 2000-1: [wmgst_diverse, wmgst_elective]  # French Women Writers
+    FREN 372 2017-1: [wmgst_diverse, wmgst_historical, wmgst_elective]  # Women in Identity
     HIST 121: [wmgst_diverse, wmgst_historical, wmgst_elective]
     HIST 122: [wmgst_historical, wmgst_elective]
     HIST 182: [wmgst_historical, wmgst_elective]
-    HIST 189.2000.1: [wmgst_historical, wmgst_diverse, wmgst_elective]  # Women in African Colonial History
+    HIST 189 2000-1: [wmgst_historical, wmgst_diverse, wmgst_elective]  # Women in African Colonial History
     HIST 201: [wmgst_historical, wmgst_elective]  # Alexander + Kleopatra
     HIST 224: [wmgst_diverse, wmgst_elective]
     HIST 231: [wmgst_diverse, wmgst_elective]
     HIST 237: [wmgst_diverse, wmgst_elective]
     HIST 272: [wmgst_diverse, wmgst_historical, wmgst_elective]
     HIST 297: [wmgst_elective]
-    HIST 320.2011.1: [wmgst_diverse, wmgst_elective]
-    HIST 320.2013.1: [wmgst_diverse, wmgst_elective]
-    HIST 320.2014.3: [wmgst_historical, wmgst_elective]
-    HIST 320.2000.1:
+    HIST 320 2011-1: [wmgst_diverse, wmgst_elective]
+    HIST 320 2013-1: [wmgst_diverse, wmgst_elective]
+    HIST 320 2014-3: [wmgst_historical, wmgst_elective]
+    HIST 320 2000-1:
       - wmgst_elective
       # when Race, Gender, Medicine
       - wmgst_historical
@@ -86,9 +86,9 @@ attributes:
     PSYCH 223: [wmgst_diverse, wmgst_elective]
     PSYCH 241: [wmgst_diverse, wmgst_elective]
     PSYCH 350: [wmgst_elective]
-    PSYCH 390.2000.1: [wmgst_theory, wmgst_elective]  # Intimate Relationships
-    PSYCH 396.2013.3: [wmgst_theory, wmgst_elective]
-    RACE 250.2000.1: [wmgst_theory, wmgst_elective]
+    PSYCH 390 2000-1: [wmgst_theory, wmgst_elective]  # Intimate Relationships
+    PSYCH 396 2013-3: [wmgst_theory, wmgst_elective]
+    RACE 250 2000-1: [wmgst_theory, wmgst_elective]
     REL 209: [wmgst_theory, wmgst_diverse, wmgst_historical, wmgst_elective]
     REL 264: [wmgst_historical, wmgst_diverse, wmgst_elective]
     REL 344: [wmgst_theory, wmgst_elective]

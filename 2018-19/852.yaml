@@ -73,12 +73,12 @@ attributes:
     ENGL 251: [lamst_elective, lamst_latinos_in_usa]
     HIST 126: [lamst_elective]
     HIST 193: [lamst_elective]
-    HIST 240.2000.1: [lamst_elective]
+    HIST 240 2000-1: [lamst_elective]
     HIST 243: [lamst_elective]
     HIST 244: [lamst_elective]
     HIST 245: [lamst_elective]
-    HIST 397.2000.1: [lamst_elective]
-    PSCI 252.2000.1: [lamst_elective]
+    HIST 397 2000-1: [lamst_elective]
+    PSCI 252 2000-1: [lamst_elective]
     PSCI 257: [lamst_elective]
     PSCI 264: [lamst_elective]
     PSCI 367: [lamst_elective]
@@ -88,5 +88,5 @@ attributes:
     SPAN 271: [lamst_spanish_culture]
     SPAN 273: [lamst_latinos_in_usa]
     SPAN 272: [lamst_latinamerican_culture]
-    SPAN 274.2000.1: [lamst_spanish_culture]  # depending on topic
-    SPAN 274.2001.1: [lamst_latinamerican_culture]  # depending on topic
+    SPAN 274 2000-1: [lamst_spanish_culture]  # depending on topic
+    SPAN 274 2001-1: [lamst_latinamerican_culture]  # depending on topic

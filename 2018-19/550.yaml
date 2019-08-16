@@ -157,4 +157,4 @@ attributes:
     PSCI 384: [psci_level_3]
     PSCI 385: [psci_level_3]
     # 2000-01 Fall
-    PSCI 299.2000.1: [psci_topic_theory]
+    PSCI 299 2000-1: [psci_topic_theory]

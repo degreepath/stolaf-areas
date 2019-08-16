@@ -253,7 +253,7 @@ attributes:
       - envst_intermediate_ecology
     BIO 371:
       - envst_envsci_level_3
-    BIO 391 2000.1:
+    BIO 391 2000-1:
       - envst_natural  # when environmental studies
       - envst_envsci_level_3  # when environmental studies
 
@@ -264,7 +264,7 @@ attributes:
     CHEM 255:
       - envst_natural
       - envst_intermediate_chem
-    CHEM 391 2000.1:
+    CHEM 391 2000-1:
       - envst_natural  # when environmental science
       - envst_envsci_level_3  # when environmental science
 
@@ -303,22 +303,22 @@ attributes:
       - envst_envsci
     ENVST 270:
       - envst_humanities
-    ENVST 281 2000.1:
+    ENVST 281 2000-1:
       - envst_natural  # when natural science
       - envst_humanities  # when arts and humanities
       - envst_social_elective  # when social science
       - envst_social  # when social science
       - envst_envsci  # when taught with natural science focus
-    ENVST 281 2014.5:
+    ENVST 281 2014-5:
       - envst_social
-    ENVST 381 2000.1:
+    ENVST 381 2000-1:
       - envst_natural  # when natural science
       - envst_humanities  # when arts and humanities
       - envst_social_elective  # when social science
       - envst_social  # when social science
       - envst_envsci_level_3  # when taught with environmental science focus
       - envst_humanities_level_3  # when arts/humanities focus
-    ENVST 396 2000.1:
+    ENVST 396 2000-1:
       - envst_social_elective  # when social science
 
     ES/PS 201:
@@ -345,7 +345,7 @@ attributes:
       - envst_social_elective
       - envst_social
 
-    NORW 224 2000.1:
+    NORW 224 2000-1:
       - envst_humanities  # when taught with ENVST focus
 
     PSYCH 230:
@@ -375,7 +375,7 @@ attributes:
     SOAN 297:
       - envst_social_elective  # when environmental anthropology
       - envst_social  # when environmental anthropology
-    SOAN 297 2015.3:
+    SOAN 297 2015-3:
       - envst_social  # when taught as Environmental Anthropology
     SOAN 371:
       - envst_methods
