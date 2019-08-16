@@ -43,6 +43,15 @@ requirements:
           - {subject: {$in: [MUSIC, MUSPF]}}
           - {level: {$in: [200, 300]}}
           - {number: {$nin: [294, 298, 394, 398]}}
+          - course:
+              $nin:
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 212
+                - MUSIC 214
+                - MUSIC 237
+                - MUSIC 251
       limit:
         - {at most: 2, where: {level: {$eq: 200}}}
       assert: {count(courses): {$gte: 4, at_most: true}}
@@ -54,11 +63,16 @@ requirements:
       subsequent at Level II)
     result:
       from: {student: courses}
-      where: {subject: {$eq: MUSPF}}
-      limit:
-        - {at-most: 4, where: {level: {$eq: 100}}}
+      where:
+        $and:
+          - subject: {$eq: MUSPF}
+          - credits: {$eq: 1.0}
+      # limit:
+      #   - {at-most: 4, where: {level: {$eq: 100}}}
       all:
         - assert: {sum(credits): {$gte: 6}}
+        - where: {level: {$eq: 100}}
+          assert: {sum(credits): {$lte: 4}}
 
   Required Performances:
     result:

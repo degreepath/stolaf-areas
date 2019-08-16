@@ -61,6 +61,30 @@ requirements:
         $and:
           - {subject: {$eq: MUSIC}}
           - {level: {$in: [200, 300]}}
+          - course:
+              $nin:
+                # exclude the Conducting courses
+                - MUSIC 252
+                - MUSIC 253
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 161
+                - MUSIC 162
+                - MUSIC 166
+                - MUSIC 167
+                - MUSIC 168
+                - MUSIC 169
+                - MUSIC 212
+                - MUSIC 214
+                - MUSIC 223
+                - MUSIC 225
+                - MUSIC 237
+                - MUSIC 251
+                - MUSIC 261
+                - MUSIC 262
+                - MUSIC 314
+                - MUSIC 324
       all:
         - assert: {count(courses): {$gte: 8}}
 
@@ -80,7 +104,10 @@ requirements:
 
     result:
       from: {student: courses}
-      where: {subject: {$eq: MUSPF}}
+      where:
+        $and:
+          - subject: {$eq: MUSPF}
+          - number: {$neq: 326}
       all:
         - assert: {count(terms_from_most_common_course): {$gte: 4}}
         - assert: {count(terms): {$gte: 6}}
