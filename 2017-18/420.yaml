@@ -1,0 +1,195 @@
+---
+name: Mathematics
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Basics
+    - requirement: Transitions
+    - requirement: Perspectives
+    # - requirement: Interdisciplinary
+    - requirement: Sequence
+    - requirement: Level III
+
+  audit:
+    all:
+      - where: {year: {$gte: $matriculation-year}}
+        assert: {count(courses): {$gte: 6}}
+      - where: {subject: {$in: [STAT, CSCI, MSCS]}}
+        assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Basics:
+    result:
+      all:
+        - course: MATH 120
+        - at_most: true
+          either:
+            - course: MATH 126
+            - course: MATH 128
+        - course: MATH 220
+
+  Transitions:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: math_transitions}}
+      assert: {count(courses): {$eq: 2, at_most: true}}
+
+  Perspectives:
+    message: One course from each of three of the four perspectives.
+
+    result:
+      at_most: true
+      count: 3
+      of:
+        - requirement: Axiomatic/Algebraic (A)
+        - requirement: Continuous/Analytic (C)
+        - requirement: Discrete/Combinatorial (D)
+        - requirement: Modeling/Computation (M)
+
+    requirements:
+      Axiomatic/Algebraic (A):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_a}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+      Continuous/Analytic (C):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_c}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+      Discrete/Combinatorial (D):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_d}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+      Modeling/Computation (M):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_m}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+  Interdisciplinary:
+    result:
+      count: 0
+      of:
+        - requirement: Chemistry
+        - requirement: Economics
+        - requirement: Physics
+
+    requirements:
+      Chemistry:
+        result:
+          both:
+            - course: CHEM 371
+            - from: {student: areas}
+              where: {$and: [{type: {$eq: major}}, {name: {$eq: Chemistry}}]}
+              assert: {count(areas): {$eq: 1}}
+      Economics:
+        result:
+          both:
+            - course: ECON 385
+            - from: {student: areas}
+              where: {$and: [{type: {$eq: major}}, {name: {$eq: Economics}}]}
+              assert: {count(areas): {$eq: 1}}
+      Physics:
+        result:
+          both:
+            - course: PHYS 375
+            - from: {student: areas}
+              where: {$and: [{type: {$eq: major}}, {name: {$eq: Physics}}]}
+              assert: {count(areas): {$eq: 1}}
+
+  Level III:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: math_level_3}}
+      limit:
+        - {at_most: 1, where: {subject: {$neq: MATH}}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  Sequence:
+    result:
+      at_most: true
+      any:
+        - both:
+            - {course: MATH 220, including claimed: true}
+            - {course: MATH 356, including claimed: true}
+        - both:
+            - {course: MATH 220, including claimed: true}
+            - {course: MSCS 341, including claimed: true}
+        - both:
+            - {course: MATH 224, including claimed: true}
+            - {course: MATH 348, including claimed: true}
+        - both:
+            - {course: MATH 226, including claimed: true}
+            - {course: MATH 340, including claimed: true}
+        - both:
+            - {course: MATH 230, including claimed: true}
+            - {course: MATH 330, including claimed: true}
+        - both:
+            - {course: MATH 232, including claimed: true}
+            - {course: MATH 364, including claimed: true}
+        - both:
+            - {course: MATH 244, including claimed: true}
+            - {course: MATH 344, including claimed: true}
+        - both:
+            - {course: MATH 252, including claimed: true}
+            - {course: MATH 352, including claimed: true}
+        - both:
+            - {course: MATH 262, including claimed: true}
+            - {course: STAT 322, including claimed: true}
+
+attributes:
+  multicountable:
+    - - {attributes: {$eq: math_perspective_a}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
+
+    - - {attributes: {$eq: math_perspective_c}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
+
+    - - {attributes: {$eq: math_perspective_d}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
+
+    - - {attributes: {$eq: math_perspective_m}}
+      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_transitions}}
+
+  courses:
+    CSCI 315: [math_level_3]
+    CSCI 333: [math_level_3]
+    MATH 226: [math_perspective_c]
+    MATH 230: [math_perspective_c, math_perspective_m]
+    MATH 232: [math_perspective_d]
+    MATH 236: [math_perspective_m]
+    MATH 239: [math_perspective_d]
+    MATH 242: [math_perspective_m, math_transitions]
+    MATH 244: [math_perspective_c, math_transitions]
+    MATH 252: [math_perspective_a, math_transitions]
+    MATH 262: [math_perspective_c, math_perspective_d, math_perspective_m]
+    MATH 266: [math_perspective_m]
+    MATH 330: [math_perspective_m, math_level_3]
+    MATH 340: [math_perspective_c, math_level_3]
+    MATH 344: [math_perspective_c, math_level_3]
+    MATH 348: [math_perspective_a, math_level_3]
+    MATH 352: [math_perspective_a, math_level_3]
+    MATH 356: [math_perspective_a, math_level_3]
+    MATH 364: [math_perspective_d, math_level_3]
+    MATH 382: [math_level_3]
+    MATH 384: [math_level_3]
+    MATH 396: [math_level_3]
+    MSCS 341: [math_perspective_m, math_level_3]
+    MSCS 390: [math_level_3]
+    STAT 212: [math_perspective_m]
+    STAT 214: [math_perspective_m]
+    STAT 272: [math_perspective_m]
+    STAT 316: [math_perspective_m]
+    STAT 322: [math_level_3]

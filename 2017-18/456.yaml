@@ -1,0 +1,300 @@
+---
+name: Performance
+type: major
+degree: B.M.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Musicology
+    - requirement: Electives
+    - requirement: Performance Studies
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 114
+        - course: MUSIC 141
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 237
+        - course: MUSIC 251
+
+  Musicology:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - {subject: {$in: [MUSIC, MUSPF]}}
+          - {level: {$in: [200, 300]}}
+          - {number: {$nin: [294, 298, 394, 398]}}
+          - course:
+              $nin:
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 212
+                - MUSIC 214
+                - MUSIC 237
+                - MUSIC 251
+      limit:
+        - {at most: 2, where: {level: {$eq: 200}}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
+
+  Performance Studies:
+    message:
+      Once accepted into the B.M. Performance program, students must register
+      for a minimum of 6 semesters of 1.0 credit lessons (4 at Level I,
+      subsequent at Level II)
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSPF}
+          - credits: {$eq: 1.0}
+      # limit:
+      #   - {at-most: 4, where: {level: {$eq: 100}}}
+      all:
+        - assert: {sum(credits): {$gte: 6}}
+        - where: {level: {$eq: 100}}
+          assert: {sum(credits): {$lte: 4}}
+
+  Required Performances:
+    result:
+      all:
+        - requirement: Solos
+        - requirement: Entrance Examination
+        - requirement: Continuance Examination
+        - requirement: Junior half recital
+        - requirement: Senior half recital
+
+    requirements:
+      Solos:
+        department_audited: true
+        message: >
+          2 solo performances on a St. Olaf Student Recital (may include
+          Entrance and Continuance)
+
+      Entrance Examination:
+        department_audited: true
+
+      Continuance Examination:
+        department_audited: true
+
+      Junior half recital:
+        department_audited: true
+
+      Senior half recital:
+        department_audited: true
+
+  Official Ensemble Participation:
+    department_audited: true
+    message:
+      Every semester in an official ensemble
+
+  Required Recital Attendance:
+    department_audited: true
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+
+
+empahses:
+  voice:
+    name: Voice
+
+    result:
+      all:
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
+        - {course: MUSIC 261, grade: B-}
+        - {course: MUSIC 262, grade: B-}
+        - {course: MUSIC 263}
+        - {course: MUSIC 264}
+        - {course: MUSIC 281}
+        - {course: MUSIC 282}
+        - {course: MUSIC 291}
+        - {course: MUSIC 292}
+
+        - at_most: true
+          any:
+            - course: MUSIC 267
+            - course: MUSIC 268
+            - course: MUSIC 269
+
+        - from: {student: courses}
+          where:
+            $and:
+              - {subject: {$in: [MUSIC, MUSPF]}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {sum(credits): {$gte: 0.5}}
+
+        - requirement: Foreign Language
+
+    requirements:
+      Foreign Language:
+        department_audited: true
+        message:
+          Students are required to do two semesters of either French or German
+          (or proficiency exam) plus two semesters of a second foreign
+          language (or profiency exam)
+
+  strings:
+    name: Strings
+
+    result:
+      all:
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
+        - {course: MUSIC 261, grade: B-}
+        - {course: MUSIC 295}
+
+        - from: {student: courses}
+          where: {course: {$eq: {MUSIC 275}}}
+          assert: {sum(credits): {$gte: 0.5}}
+
+        - from: {student: courses}
+          where:
+            $and:
+              - {subject: {$in: [MUSIC, MUSPF]}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {sum(credits): {$gte: 2.25}}
+
+  piano:
+    name: Piano
+
+    result:
+      all:
+        - {course: MUSIC 270, grade: B-}
+        - {course: MUSIC 283}
+        - {course: MUSIC 293}
+
+        - from: {student: courses}
+          where:
+            $and:
+              - {subject: {$in: [MUSIC, MUSPF]}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {sum(credits): {$gte: 2.75}}
+
+  winds/brass/percussion:
+    name: Winds, Brass, Percussion
+
+    result:
+      all:
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
+        - {course: MUSIC 261, grade: B-}
+        - {course: MUSIC 298}
+
+        - from: {student: courses}
+          where: {course: {$eq: {MUSIC 275}}}
+          assert: {sum(credits): {$gte: 0.5}}
+
+        - from: {student: courses}
+          where:
+            $and:
+              - {subject: {$in: [MUSIC, MUSPF]}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {sum(credits): {$gte: 1.75}}
+
+  organ:
+    name: Organ
+
+    result:
+      all:
+        - {course: MUSIC 270, grade: B-}
+        - course: MUSIC 293
+        - course: MUSIC 298
+
+        - from: {student: courses}
+          where:
+            $and:
+              - {subject: {$in: [MUSIC, MUSPF]}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {sum(credits): {$gte: 2.25}}
+
+  702:
+    name: Collaborative Keyboard Performance
+
+    result:
+      all:
+        - requirement: Chamber Music
+        - requirement: Vocal Solo Literature
+        - requirement: Collaborative Keyboard
+        - requirement: Electives
+
+    requirements:
+      Chamber Music:
+        result:
+          from: {student: courses}
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$gte: 0.5}}
+
+      Vocal Solo Literature:
+        result:
+          all:
+            - course: MUSIC 281
+            - course: MUSIC 282
+
+      Collaborative Keyboard:
+        result:
+          from: {student: courses}
+          where: {course: {$eq: MUSPF 106}}
+          assert: {sum(credits): {$gte: 1}}
+
+      Electives:
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: music_coll_keyboard_elective}}
+          assert: {sum(credits): {$gte: 1}}
+
+      Required Performances:
+        message:
+          2 collaborative performances on student recitals,
+          with at least one of those performances
+          during junior or senior year.
+        department_audited: true
+
+
+attributes:
+  courses:
+    MUSIC 340: [music_upper_musicology]
+    MUSIC 341: [music_upper_musicology]
+    MUSIC 342: [music_upper_musicology]
+    MUSIC 343: [music_upper_musicology]
+    MUSIC 344: [music_upper_musicology]
+    MUSIC 345: [music_upper_musicology]
+    MUSIC 346: [music_upper_musicology]
+    MUSIC 347: [music_upper_musicology]
+    MUSIC 348: [music_upper_musicology]
+    MUSIC 349: [music_upper_musicology]
+
+    MUSIC 252: [music_coll_keyboard_elective]
+    MUSIC 253: [music_coll_keyboard_elective]
+    MUSIC 263: [music_coll_keyboard_elective]
+    MUSIC 264: [music_coll_keyboard_elective]
+    MUSIC 267: [music_coll_keyboard_elective]
+    MUSIC 268: [music_coll_keyboard_elective]
+    MUSIC 269: [music_coll_keyboard_elective]
+    MUSIC 275: [music_coll_keyboard_elective]
+    MUSPF 106: [music_coll_keyboard_elective]

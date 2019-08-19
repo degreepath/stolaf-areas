@@ -1,0 +1,60 @@
+name: Nursing
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Prerequisites
+    - requirement: Requirements
+    - requirement: Ethics
+
+requirements:
+  Prerequisites:
+    message:
+      These courses must be completed before beginning any level III nursing
+      courses.
+    result:
+      all:
+        - course: BIO 143
+        - course: BIO 243
+        - course: ID 210
+        - any:
+            - {course: ESTH 110, hidden: true}
+            - {course: ID 110, hidden: true}
+            - course: NURS 110
+        - course: PSYCH 125
+        - course: PSYCH 241
+        - either:
+            - course: BIO 121
+            - course: BIO 231
+        - any:
+            - course: SOAN 121
+            - course: SOAN 128
+            - course: SOAN 260
+            - course: SOAN 264
+            - course: SOAN 267
+
+  Ethics:
+    message:
+      The Nursing department recommends taking the Biomedical Ethics (PHIL 250)
+      course for this requirement
+    result:
+      from: {student: courses}
+      where: {gereqs: {$eq: EIN}}
+      assert: {count(courses): {$gte: 1}}
+
+  Requirements:
+    result:
+      all:
+        - course: NURS 211
+        - course: NURS 311
+        - course: NURS 312
+        - course: NURS 313
+        - course: NURS 314
+        - course: NURS 315
+        - course: NURS 316
+        - course: NURS 317
+        - course: NURS 318
+        - course: NURS 319
+        - course: NURS 399

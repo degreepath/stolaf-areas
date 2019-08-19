@@ -1,0 +1,61 @@
+---
+name: Theater
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Part 1
+    - requirement: Part 2
+    - requirement: Practicum
+
+  audit:
+    assert: {count(courses): {$lte: 1}}
+    where:
+      $and:
+        - subject: {$eq: THEAT}
+        - s/u: {$eq: true}
+        - credits: {$eq: 1.00}
+
+requirements:
+  Part 1:
+    result:
+      all:
+        - course: THEAT 130
+        - course: THEAT 140
+        - course: THEAT 180
+        - course: THEAT 232
+        - either:
+            - course: THEAT 240
+            - course: THEAT 250
+        - course: THEAT 270
+        - course: THEAT 271
+
+  Part 2:
+    result:
+      count: 2
+      of:
+        - course: THEAT 338
+        - course: THEAT 379
+        - course: THEAT 380
+        - course: THEAT 394
+        - course: THEAT 398
+
+  Practicum:
+    message:
+      All students must enroll in four practicum classes, of which at least one
+      must be THEAT 233 and at least two must be THEAT 253; the fourth practicum
+      class is then a choice of either 233 or 253.
+
+    result:
+      from: {student: courses, repeats: all}
+      where: {course: {$in: [THEAT 233, THEAT 253]}}
+      all:
+        - where: {course: {$eq: THEAT 233}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {course: {$eq: THEAT 253}}
+          assert: {count(courses): {$gte: 2}}
+
+        - assert: {count(courses): {$gte: 4}}

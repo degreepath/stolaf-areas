@@ -1,0 +1,184 @@
+---
+name: English
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Literary Studies
+    - requirement: Cross-Cultural Studies
+    - requirement: Literary History
+    - at_most: true
+      either:
+        - requirement: Cross-Disciplinary Studies
+        - requirement: Genre Studies
+    - requirement: Electives
+    - requirement: 1800s
+
+
+requirements:
+  Literary Studies:
+    result:
+      course: ENGL 185
+
+  Cross-Cultural Studies:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_crosscultural}}
+      assert: {count(courses): {$gte: 1}}
+
+  Literary History:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_literary_history}}
+      assert: {count(courses): {$gte: 1}}
+
+  Cross-Disciplinary Studies:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_crossdisciplinary}}
+      assert: {count(courses): {$gte: 1}}
+
+  Genre Studies:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_genre}}
+      assert: {count(courses): {$gte: 1}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where:
+        attributes:
+          $in:
+            - engl_level3
+            - engl_elective
+            - engl_topic_genre
+            - engl_topic_crosscultural
+            - engl_topic_literary_history
+            - engl_topic_crossdisciplinary
+
+      limit:
+        - at_most: 1
+          where: {attributes: {$eq: engl_focus_creative_writing}}
+
+      all:
+        - assert: {count(courses): {$gte: 6}}
+
+        - where: {attributes: {$eq: engl_level3}}
+          assert: {count(courses): {$gte: 2}}
+
+  1800s:
+    result:
+      both:
+        - from: {student: courses}
+          where: {attribute: {$eq: engl_period_pre1800}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+        - from: {student: courses}
+          where: {attribute: {$eq: engl_period_post1800}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+
+attributes:
+  multicountable:
+    - - {attributes: {$eq: engl_elective}}
+      - {attributes: {$eq: engl_period_post1800}}
+      - {attributes: {$eq: engl_period_pre1800}}
+
+    - - {attributes: {$eq: engl_topic_crosscultural}}
+      - {attributes: {$eq: engl_period_post1800}}
+      - {attributes: {$eq: engl_period_pre1800}}
+
+    - - {attributes: {$eq: engl_topic_crossdisciplinary}}
+      - {attributes: {$eq: engl_period_post1800}}
+      - {attributes: {$eq: engl_period_pre1800}}
+
+    - - {attributes: {$eq: engl_topic_genre}}
+      - {attributes: {$eq: engl_period_post1800}}
+      - {attributes: {$eq: engl_period_pre1800}}
+
+    - - {attributes: {$eq: engl_topic_literary_history}}
+      - {attributes: {$eq: engl_period_post1800}}
+      - {attributes: {$eq: engl_period_pre1800}}
+
+  courses:
+    ENGL 200: [engl_topic_crosscultural, engl_period_post1800]
+    ENGL 201: [engl_topic_crosscultural]
+    ENGL 203: [engl_topic_crosscultural, engl_period_post1800]
+    ENGL 204: [engl_topic_crosscultural, engl_period_post1800]
+    ENGL 205: [engl_topic_crosscultural]
+    ENGL 206: [engl_topic_crosscultural]
+    ENGL 207: [engl_topic_crosscultural, engl_period_post1800]
+    ENGL 208: [engl_topic_crosscultural, engl_period_post1800]
+    ENGL 209: [engl_topic_crosscultural]
+    ENGL 210: [engl_topic_crosscultural]
+    ENGL 211: [engl_topic_crosscultural]
+    ENGL 212: [engl_topic_crosscultural]
+    ENGL 220: [engl_topic_literary_history, engl_period_pre1800]
+    ENGL 221: [engl_topic_literary_history]
+    ENGL 223: [engl_topic_literary_history]
+    ENGL 225: [engl_topic_literary_history]
+    ENGL 227: [engl_topic_literary_history, engl_period_pre1800]
+    ENGL 228: [engl_topic_literary_history, engl_period_post1800]
+    ENGL 229: [engl_topic_literary_history, engl_period_post1800]
+    ENGL 232: [engl_topic_literary_history, engl_period_pre1800]
+    ENGL 242: [engl_topic_genre, engl_period_post1800]
+    ENGL 246: [engl_elective]
+    ENGL 250: [engl_elective]
+    ENGL 251: [engl_topic_crosscultural, engl_period_post1800]
+    ENGL 252: [engl_elective]
+    ENGL 253: [engl_elective]
+    ENGL 255: [engl_elective]
+    ENGL 256: [engl_elective, engl_period_pre1800]
+    ENGL 258: [engl_elective]
+    ENGL 260: [engl_topic_crossdisciplinary, engl_period_post1800, engl_period_pre1800]
+    ENGL 261: [engl_topic_crossdisciplinary]
+    ENGL 262: [engl_topic_crossdisciplinary]
+    ENGL 263: [engl_topic_crossdisciplinary, engl_period_post1800]
+    ENGL 264: [engl_topic_crossdisciplinary]
+    ENGL 266: [engl_topic_crossdisciplinary, engl_period_post1800]
+    ENGL 267: [engl_topic_crossdisciplinary, engl_period_post1800]
+    ENGL 268: [engl_topic_crossdisciplinary]
+    ENGL 269: [engl_topic_crossdisciplinary, engl_period_post1800]
+    ENGL 271: [engl_topic_crossdisciplinary, engl_topic_literary_history, engl_period_pre1800]
+    ENGL 273: [engl_topic_crossdisciplinary]
+    ENGL 275: [engl_topic_crossdisciplinary]
+    ENGL 276: [engl_topic_crossdisciplinary]
+    ENGL 279: [engl_topic_crossdisciplinary]
+    ENGL 280: [engl_topic_genre, engl_period_post1800]
+    ENGL 282: [engl_topic_genre, engl_period_post1800]
+    ENGL 283: [engl_topic_genre, engl_period_post1800]
+    ENGL 284: [engl_topic_genre]
+    ENGL 285: [engl_topic_genre, engl_period_post1800]
+    ENGL 286: [engl_topic_genre, engl_period_post1800]
+    ENGL 287: [engl_topic_genre, engl_period_post1800]
+    ENGL 288: [engl_topic_genre]
+    ENGL 289: [engl_topic_genre, engl_period_post1800]
+    ENGL 290: [engl_topic_crossdisciplinary, engl_period_post1800]
+    ENGL 291: [engl_topic_genre, engl_period_post1800]
+    ENGL 292: [engl_topic_genre, engl_period_post1800]
+    ENGL 293: [engl_topic_genre, engl_period_post1800]
+    ENGL 294: [engl_topic_genre]
+    ENGL 296: [engl_topic_genre, engl_period_post1800]
+    ENGL 298: [engl_topic_genre]
+    ID 257: [engl_topic_crossdisciplinary, engl_period_post1800]
+    ID 258: [engl_topic_crossdisciplinary, engl_period_post1800]
+
+    ENGL 330: [engl_level3]
+    ENGL 340: [engl_level3]
+    ENGL 347: [engl_level3]
+    ENGL 360: [engl_level3]
+    ENGL 371: [engl_level3, engl_focus_creative_writing]
+    ENGL 372: [engl_level3, engl_focus_creative_writing]
+    ENGL 373: [engl_level3, engl_focus_creative_writing]
+    ENGL 380: [engl_level3]
+    ENGL 385: [engl_level3]
+    ENGL 391: [engl_level3]
+    ENGL 392: [engl_level3]
+    ENGL 393: [engl_level3]
+    ENGL 395: [engl_level3]
+    ENGL 398: [engl_level3]
+    ENGL 399: [engl_level3]

@@ -1,0 +1,57 @@
+---
+name: Norwegian
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Culture & Writing
+    - requirement: History & Culture
+    - requirement: Upper-Level Elective
+
+  audit:
+    where: {s/u: {$eq: true}}
+    assert: {count(courses): {$lte: 1}}
+
+requirements:
+  Language:
+    result:
+      all:
+        - course: NORW 111
+        - course: NORW 112
+        - course: NORW 231
+        - course: NORW 232
+
+  Culture & Writing:
+    result:
+      all:
+        - course: NORW 253
+        - course: NORW 371
+        - course: NORW 372
+
+  History & Culture:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: norw_history_culture}}
+      assert: {count(courses): {$gte: 1}}
+
+  Upper-Level Elective:
+    result:
+      any:
+        - course: NORW 224
+        - course: NORW 240
+        - course: NORW 244
+        - course: NORW 246
+        - course: NORW 282
+        - course: NORW 296
+        - course: HIST 211
+        - course: HIST 222
+
+attributes:
+  courses:
+    NORW 130: [norw_history_culture]
+    NORW 140: [norw_history_culture]
+    NORW 244: [norw_history_culture]
+    HIST 222: [norw_history_culture]
