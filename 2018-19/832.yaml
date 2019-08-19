@@ -20,7 +20,11 @@ requirements:
   Electives:
     from: {student: courses}
     where: {attribute: {$eq: famst_elective}}
-    assert: {count(courses): {$gte: 2}}
+    all:
+      - assert: {count(courses): {$gte: 2}}
+
+      - where: {subject: {$nin: [SWRK, FAMST]}}
+        assert: {count(courses): {$gte: 1}}
 
   Experiential:
     message: >

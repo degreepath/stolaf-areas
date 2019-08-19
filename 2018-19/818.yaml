@@ -6,13 +6,12 @@ catalog: 2018-19
 
 result:
   all:
-    - requirement: Prerequisites
     - requirement: Core
     - requirement: Experiential Learning
     - requirement: Electives
 
 requirements:
-  Prerequisites:
+  Core:
     result:
       all:
         - course: BIO 150
@@ -22,10 +21,6 @@ requirements:
             - all: [course: CHEM 122, course: CHEM 126, course: BIO 227]
             - all: [course: CHEM 121, course: CHEM 123, course: CHEM 126, course: BIO 227]
             - all: [course: CH/BI 125, course: CH/BI 126, course: CH/BI 227]
-
-  Core:
-    result:
-      all:
         - course: BMOLS 201
         - course: BIO 233
         - both: [course: CHEM 247, course: CHEM 253]
@@ -44,16 +39,22 @@ requirements:
 
   Electives:
     result:
-      at_most: true
-      count: 2
-      of:
-        - course: BIO 315
-        - course: BIO 341
-        - course: BIO 364
-        - course: BIO 372
-        - course: BIO 382
-        - course: BIO 383
-        - course: CHEM 384
-        - course: CHEM 385
-        - course: CHEM 391
-        - course: CSCI 315
+      from: {student: courses}
+      where: {attributes: {$eq: biomol_elective}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+attributes:
+  courses:
+    BIO 315: [biomol_elective]
+    BIO 324: [biomol_elective]
+    BIO 347: [biomol_elective]
+    BIO 364: [biomol_elective]
+    BIO 372: [biomol_elective]
+    BIO 382: [biomol_elective]
+    BIO 383: [biomol_elective]
+    BIO 391: [biomol_elective]
+    CHEM 360: [biomol_elective]
+    CHEM 384: [biomol_elective]
+    CHEM 385: [biomol_elective]
+    CHEM 391: [biomol_elective]
+    CSCI 315: [biomol_elective]

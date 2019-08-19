@@ -82,11 +82,14 @@ requirements:
       credits from within or outside the department.
 
   Dance Companies:
-    department-audited: true
     message:
       Majors are required to participate in one of the dance companies
       (Companydance™ or Veselica™ International Dance Ensemble) for a
       minimum of three semesters.
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: dance_company}}
+      assert: {count(terms): {$gte: 3}}
 
   Productions:
     department-audited: true
@@ -109,32 +112,35 @@ attributes:
       - {attributes: {$eq: dance_genre_other}}
 
   courses:
+    DANCE 106: [dance_movement, dance_genre_international]
+    DANCE 107: [dance_movement, dance_genre_other]
+    DANCE 108: [dance_movement, dance_genre_international]
+    DANCE 109: [dance_movement, dance_genre_international]
+    DANCE 111: [dance_movement, dance_genre_modern]
+    DANCE 112: [dance_movement, dance_genre_other]
+    DANCE 113: [dance_movement, dance_genre_other]
     DANCE 121: [dance_movement, dance_genre_ballet]
     DANCE 130: [dance_movement, dance_genre_ballet]
     DANCE 131: [dance_movement, dance_genre_ballet]
-    DANCE 220: [dance_movement, dance_genre_ballet]
-    DANCE 221: [dance_movement, dance_genre_ballet]
-    DANCE 320: [dance_movement, dance_genre_ballet]
-    DANCE 321: [dance_movement, dance_genre_ballet]
-    DANCE 106: [dance_movement, dance_genre_international]
-    DANCE 108: [dance_movement, dance_genre_international]
-    DANCE 109: [dance_movement, dance_genre_international]
+    DANCE 141: [dance_movement, dance_genre_other]
+    DANCE 160: [dance_movement, dance_genre_other]
     DANCE 206: [dance_movement, dance_genre_international]
     DANCE 207: [dance_movement, dance_genre_international]
     DANCE 209: [dance_movement, dance_genre_international]
-    DANCE 111: [dance_movement, dance_genre_modern]
     DANCE 210: [dance_movement, dance_genre_modern]
     DANCE 211: [dance_movement, dance_genre_modern]
-    DANCE 250: [dance_movement, dance_genre_modern]
-    DANCE 251: [dance_movement, dance_genre_modern]
-    DANCE 310: [dance_movement, dance_genre_modern]
-    DANCE 311: [dance_movement, dance_genre_modern]
-    DANCE 107: [dance_movement, dance_genre_other]
-    DANCE 112: [dance_movement, dance_genre_other]
-    DANCE 113: [dance_movement, dance_genre_other]
-    DANCE 141: [dance_movement, dance_genre_other]
-    DANCE 160: [dance_movement, dance_genre_other]
+    DANCE 220: [dance_movement, dance_genre_ballet]
+    DANCE 221: [dance_movement, dance_genre_ballet]
     DANCE 240: [dance_movement, dance_genre_other]
     DANCE 241: [dance_movement, dance_genre_other]
+    DANCE 250: [dance_movement, dance_genre_modern]
+    DANCE 251: [dance_movement, dance_genre_modern]
     DANCE 260: [dance_movement, dance_genre_other]
     DANCE 261: [dance_movement, dance_genre_other]
+    DANCE 310: [dance_movement, dance_genre_modern]
+    DANCE 311: [dance_movement, dance_genre_modern]
+    DANCE 320: [dance_movement, dance_genre_ballet]
+    DANCE 321: [dance_movement, dance_genre_ballet]
+
+    DANCE 170: [dance_company]
+    DANCE 180: [dance_company]

@@ -17,12 +17,7 @@ requirements:
   Language:
     result:
       from: {student: courses}
-      where:
-        $and:
-          - subject: {$eq: GERM}
-          - number: {$gte: 232}
-      limit:
-        - {at_most: 1, where: {is_stolaf: {$eq: false}}}
+      where: {attributes: {$eq: german_langauge}}
       assert: {count(courses): {$gte: 3}}
 
   Electives:
@@ -33,12 +28,12 @@ requirements:
 
 attributes:
   courses:
-    GERM 147: [german_elective]
-    GERM 249: [german_elective]
-    GERM 263: [german_elective]
     ART 252: [german_elective]
     EDUC 346: [german_elective]
     GCON 218: [german_elective]
+    GERM 147: [german_elective]
+    GERM 249: [german_elective]
+    GERM 263: [german_elective]
     HIST 191: [german_elective]
     MUSIC 241: [german_elective]
     MUSIC 343: [german_elective]
@@ -53,3 +48,13 @@ attributes:
     REL 262: [german_elective]
     REL 303: [german_elective]
     REL 304: [german_elective]
+
+    GERM 232: [german_langauge]
+    GERM 251: [german_langauge]
+    GERM 252: [german_langauge]
+    GERM 253: [german_langauge]
+    GERM 272: [german_langauge]
+    GERM 273: [german_langauge]
+    GERM 276: [german_langauge]
+    GERM 371: [german_langauge]
+    GERM 372: [german_langauge]

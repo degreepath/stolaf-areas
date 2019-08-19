@@ -15,76 +15,82 @@ requirements:
   Level 250:
     result:
       from: {student: courses}
-      where: {course: {$in: [GERM 251, GERM 252, GERM 253]}}
-      limit:
-        - {at_most: 1, where: {is_stolaf: {$eq: false}}}
+      where:
+        $and:
+          - subject: {$eq: GERM}
+          - number: {$gte: 250}
+          - number: {$lte: 259}
       assert: {count(courses): {$gte: 2}}
 
   Level 270:
     result:
       from: {student: courses}
-      where: {course: {$in: [GERM 271, GERM 272, GERM 273, GERM 276]}}
-      limit:
-        - {at_most: 1, where: {is_stolaf: {$eq: false}}}
+      where:
+        $and:
+          - subject: {$eq: GERM}
+          - number: {$gte: 270}
+          - number: {$lte: 279}
       assert: {count(courses): {$gte: 2}}
 
   Level III:
     message: This course will preferably be taken in the student's senior year.
     result:
-      either:
-        - course: GERM 371
-        - course: GERM 372
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: GERM}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 1}}
 
   Electives:
+    message:
+      Three additional courses relevant to German language, culture, or
+      history (may include German 232, a German Interim abroad, and a maximum
+      of one course in English with a significant German focus taught by a St.
+      Olaf instructor)
     result:
-      count: 0
-      of:
-        - requirement: Language
-        - requirement: Interim In German
-        - requirement: In Translation
-      audit:
-        assert: {count(courses): {$gte: 3}}
-
-    requirements:
-      Language:
-        result:
-          course: GERM 232
-
-      Interim In German:
-        message:
-          You may count one German Interim abroad towards this requirement.
-        department_audited: true
-
-      In Translation:
-        result:
-          from: {student: courses}
-          where: {attribute: {$eq: german_in_translation}}
-          limit:
-            # > a maximum of one course in English with a significant German
-            # > focus taught by a St. Olaf instructor
-            #
-            # because all of these-courses are in english, we can just limit it
-            # to at_most: 1 here to accomplish this goal
-            - {at_most: 1, where: {is_stolaf: {$eq: true}}}
-          assert: {count(courses): {$eq: 1}}
+      from: {student: courses}
+      where: {attribute: {$eq: german_elective}}
+      limit:
+        # > a maximum of one course in English with a significant German
+        # > focus taught by a St. Olaf instructor
+        #
+        # because all of these-courses are in english, we can just limit it
+        # to at_most: 1 here to accomplish this goal
+        - at-most: 1
+          where:
+            $and:
+              - is_stolaf: {$eq: true}
+              - attribute: {$eq: german_in_translation}
+      assert: {count(courses): {$eq: 3}}
 
 attributes:
   courses:
-    GERM 147: [german_in_translation]
-    GERM 249: [german_in_translation]
-    GERM 263: [german_in_translation]
-    ART 252: [german_in_translation]
-    ART 271: [german_in_translation]
-    HIST 224: [german_in_translation]
-    MUSIC 342: [german_in_translation]
-    MUSIC 343: [german_in_translation]
-    PHIL 260: [german_in_translation]
-    PHIL 261: [german_in_translation]
-    PHIL 374: [german_in_translation]
-    PSCI 283: [german_in_translation]
-    PSCI 285: [german_in_translation]
-    REL 213: [german_in_translation]
-    REL 214: [german_in_translation]
-    REL 262: [german_in_translation]
-    REL 303: [german_in_translation]
-    REL 304: [german_in_translation]
+    GERM 147: [german_in_translation, german_elective]
+    GERM 232: [german_elective]
+    GERM 249: [german_in_translation, german_elective]
+    GERM 251: [german_elective]
+    GERM 252: [german_elective]
+    GERM 253: [german_elective]
+    GERM 263: [german_in_translation, german_elective]
+    GERM 271: [german_elective]
+    GERM 272: [german_elective]
+    GERM 273: [german_elective]
+    GERM 276: [german_elective]
+    GERM 371: [german_elective]
+    GERM 372: [german_elective]
+    ART 252: [german_in_translation, german_elective]
+    ART 271: [german_in_translation, german_elective]
+    HIST 224: [german_in_translation, german_elective]
+    MUSIC 342: [german_in_translation, german_elective]
+    MUSIC 343: [german_in_translation, german_elective]
+    PHIL 260: [german_in_translation, german_elective]
+    PHIL 261: [german_in_translation, german_elective]
+    PHIL 374: [german_in_translation, german_elective]
+    PSCI 283: [german_in_translation, german_elective]
+    PSCI 285: [german_in_translation, german_elective]
+    REL 213: [german_in_translation, german_elective]
+    REL 214: [german_in_translation, german_elective]
+    REL 262: [german_in_translation, german_elective]
+    REL 303: [german_in_translation, german_elective]
+    REL 304: [german_in_translation, german_elective]

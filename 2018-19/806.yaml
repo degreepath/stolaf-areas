@@ -18,7 +18,6 @@ requirements:
     result:
       any:
         - course: AFAD 231
-        - {course: AFAM 231, hidden: true}
 
   Electives:
     message: >

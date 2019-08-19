@@ -6,13 +6,13 @@ catalog: 2018-19
 
 result:
   all:
-    - requirement: Core
+    - requirement: Foundation
     - requirement: Lab Electives
     - requirement: Interdisciplinary Elective
     - requirement: Capstone Seminar
 
 requirements:
-  Core:
+  Foundation:
     result:
       all:
         - course: PSYCH 238

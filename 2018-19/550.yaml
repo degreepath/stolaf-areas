@@ -12,18 +12,16 @@ result:
     - requirement: International Relations
     - requirement: Political Theory
     - requirement: Level III
-    - requirement: Electives
 
   audit:
     all:
       - assert: {count(courses): {$gte: 9}}
-      - assert: {count(courses): {$lte: 3}}
-        where:
+
+      - where:
           $and:
             - {subject: {$eq: PSCI}}
             - {level: {$eq: 100}}
-      - assert: {count(courses): {$lte: 2}}
-        where: {is_stolaf: {$eq: false}}
+        assert: {count(courses): {$lte: 3}}
 
 requirements:
   Research Methods:
@@ -58,56 +56,7 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: psci_level_3}}
-      limit:
-        - {at-most: 0, where: {is_stolaf: {$eq: false}}}
       assert: {count(courses): {$gte: 2}}
-
-  Electives:
-    result:
-      count: 0
-      of:
-        - from: {student: courses}
-          where:
-            $and:
-              - {subject: {$in: [PSCI, AS/PS, ES/PS]}}
-              - {is_stolaf: {$eq: true}}
-          limit:
-            - at-most: 1
-              where:
-                $and:
-                  - {course: {$eq: PSCI 294}}
-                  - {credits: {$lt: 1.0}}
-            # only select one course by specifying a restriction that's true
-            # for all courses
-            - {at-most: 1, where: {course: {$neq: ''}}}
-          assert: {count(courses): {$eq: 1}}
-
-        - from: {student: courses}
-          where:
-            $or:
-              # statistics courses
-              - $and:
-                  - {subject: {$eq: STAT}}
-                  - {course: {$neq: STAT 111}}
-                  - {is_stolaf: {$eq: true}}
-
-              # French / German / Spanish courses
-              - $and:
-                  - {subject: {$in: [FREN, GERM, SPAN]}}
-                  - {number: {$gte: 232}}
-
-              # Chinese / Greek / Latin / Japanese / Norwegian / Russian courses
-              - $and:
-                  - {subject: {$in: [CHIN, GREEK, LATIN, JAPAN, NORW, RUSSN]}}
-                  - {number: {$gte: 231}}
-
-          limit:
-            # only select one course by specifying a restriction that's true
-            # for all courses
-            - {at-most: 1, where: {course: {$neq: ''}}}
-
-          assert: {count(courses): {$eq: 1}}
-
 
 attributes:
   courses:
@@ -115,7 +64,6 @@ attributes:
     AS/PS 245: [psci_topic_international]
     AS/PS 250: [psci_topic_international]
     ES/PS 201: [psci_topic_international]
-    ES/PS 225: [psci_topic_theory]
     ES/PS 276: [psci_topic_american]
     PSCI 111: [psci_topic_american]
     PSCI 112: [psci_topic_comparative]
@@ -134,7 +82,6 @@ attributes:
     PSCI 251: [psci_topic_comparative]
     PSCI 252: [psci_topic_comparative]
     PSCI 255: [psci_topic_american]
-    PSCI 257: [psci_topic_international]
     PSCI 258: [psci_topic_international]
     PSCI 259: [psci_topic_theory]
     PSCI 260: [psci_topic_theory]

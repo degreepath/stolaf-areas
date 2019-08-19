@@ -56,7 +56,6 @@ requirements:
           all:
             - course: CH/BI 125
             - course: CH/BI 126
-            - course: CH/BI 227
 
     result:
       any:
@@ -117,9 +116,6 @@ requirements:
     message:
       Attendance is required at 12 departmental seminars after
       declaration of major.
-    # from: {student: chemistry-seminars}
-    # where: {date: {$gte: $major-declaration}}
-    # action: {count(seminars): {$gte: 12}}
 
 attributes:
   courses:

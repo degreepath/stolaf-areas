@@ -51,7 +51,6 @@ attributes:
     ART 259: [art_locale_asian, art_locale_african, art_locale_near_eastern, art_period_pre1700]
     ART 260: [art_locale_asian, art_locale_african, art_locale_near_eastern, art_period_pre1700]
     ART 261: [art_locale_european, art_locale_american, art_period_post1700]
-    ART 262: [art_locale_asian, art_locale_african, art_locale_near_eastern, art_period_pre1700]
     ART 263: [art_locale_european, art_locale_american, art_period_pre1700]
     ART 265: [art_locale_european, art_locale_american, art_period_post1700]
     ART 267: [art_locale_asian, art_locale_african, art_locale_near_eastern, art_period_pre1700]

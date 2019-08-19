@@ -13,10 +13,7 @@ result:
     - requirement: Capstone
 
   audit:
-    where:
-      $or:
-        - {grade: {$lte: C}}
-        - {s/u: {$eq: true}}
+    where: {grade: {$lt: C}}
     assert: {count(courses): {$eq: 0}}
 
 requirements:
@@ -79,6 +76,7 @@ requirements:
 
 attributes:
   courses:
+    MGMT 201: [mgmt_elective]
     MGMT 229: [mgmt_elective]
     MGMT 237: [mgmt_elective]
     MGMT 250: [mgmt_elective]
@@ -150,7 +148,7 @@ attributes:
     HIST 275: [mgmt_dist_elective]
     HIST 370: [mgmt_dist_elective]
 
-    'what. IS 2XX – The Arts and Democracy: An Interdisciplinary Fine Arts Interim in Washington D.C.': [mgmt_dist_elective]
+    ID 229: [mgmt_elective]
 
     MATH 220: [mgmt_dist_elective]
     MATH 230: [mgmt_dist_elective]

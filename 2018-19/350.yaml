@@ -6,165 +6,149 @@ catalog: 2018-19
 
 result:
   all:
-    - requirement: Major Seminar
-    - requirement: Level III
-    - requirement: Non-Western World
-    - requirement: European
-    - requirement: U.S.
-    - requirement: Pre-Modern Period
+    - requirement: Level II Seminar
+    - requirement: Level III Seminars
+    - requirement: Africa, Asia, and Latin America
+    - requirement: Europe and Russia
+    - requirement: The United States
+    - requirement: Additional Courses
 
   audit:
     all:
-      - assert: {count(courses): {$gte: 9}}
-
-      - assert: {count(courses): {$lte: 3}}
-        where:
-          $and:
-            - {subject: {$eq: HIST}}
-            - {level: {$eq: 100}}
-
-      - assert: {count(courses): {$lte: 2}}
-        where:
-          $and:
-            - {subject: {$eq: HIST}}
-            - {level: {$eq: 100}}
-            - {type: {$eq: Seminar}}
+      - where: {level: {$eq: 100}}
+        assert: {count(courses): {$lte: 3}}
 
 attributes:
   multicountable:
-    - - {attributes: {$eq: history_era_premodern}}
-      - {attributes: {$eq: history_l2_seminar}}
-      - {attributes: {$eq: history_level_3}}
-      - {attributes: {$eq: history_region_europe}}
-      - {attributes: {$eq: history_region_nonwesternworld}}
+    - - {attributes: {$eq: history_l2_seminar}}
+      - {attributes: {$eq: history_l3_seminar}}
+      - {attributes: {$eq: history_region_af_as_la}}
+      - {attributes: {$eq: history_region_eu_ru}}
       - {attributes: {$eq: history_region_us}}
+      - {attributes: {$eq: hist_public_elective}}
 
   courses:
-    ASIAN 399: [history_level_3]
-    HIST 101: [history_region_europe, history_era_premodern]
-    HIST 111: [history_region_europe, history_era_premodern]
-    HIST 115: [history_region_europe, history_era_premodern]
-    HIST 117: [history_region_europe, history_era_premodern]
-    HIST 121: [history_region_europe]
-    HIST 122: [history_region_europe]
-    HIST 125: [history_region_nonwesternworld, history_era_premodern]
-    HIST 126: [history_region_nonwesternworld, history_era_premodern]
-    HIST 135: [history_region_nonwesternworld]
-    HIST 140: [history_era_premodern]
-    HIST 151: [history_region_nonwesternworld, history_era_premodern]
-    HIST 161: [history_region_us, history_era_premodern]
-    HIST 165: [history_region_us, history_era_premodern]
+    HIST 161: [history_region_us]
+    HIST 165: [history_region_us]
     HIST 168: [history_region_us]
     HIST 169: [history_region_us]
     HIST 175: [history_region_us]
     HIST 181: [history_region_us]
     HIST 182: [history_region_us]
-    HIST 188: [history_region_europe, history_region_us, history_era_premodern]
-    HIST 189: [history_region_nonwesternworld]
-    HIST 190: [history_region_europe, history_era_premodern]
-    HIST 191: [history_region_europe, history_era_premodern]
-    HIST 194: [history_region_nonwesternworld, history_era_premodern]
-    HIST 195: [history_region_nonwesternworld, history_era_premodern]
-    HIST 198: [history_region_us, history_era_premodern]
+    HIST 188: [history_region_us]
+    HIST 198: [history_region_us]
     HIST 199: [history_region_us]
-    HIST 201: [history_l2_seminar, history_region_europe, history_region_nonwesternworld, history_era_premodern]
-    HIST 202: [history_region_europe, history_era_premodern]
-    HIST 203: [history_region_europe, history_era_premodern]
-    HIST 204: [history_region_europe, history_era_premodern]
-    HIST 205: [history_era_premodern]
-    HIST 210: [history_l2_seminar, history_region_europe, history_era_premodern]
-    HIST 211: [history_region_europe, history_era_premodern]
-    HIST 212: [history_region_europe, history_era_premodern]
-    HIST 217: [history_region_europe, history_era_premodern]
-    HIST 218: [history_region_europe, history_era_premodern]
-    HIST 219: [history_region_europe, history_era_premodern]
-    HIST 220: [history_region_europe, history_era_premodern]
-    HIST 222: [history_region_europe, history_era_premodern]
-    HIST 224: [history_region_europe, history_era_premodern]
-    HIST 226: [history_region_europe, history_era_premodern]
-    HIST 227: [history_region_europe]
-    HIST 230: [history_region_europe, history_era_premodern]
-    HIST 231: [history_region_europe]
-    HIST 237: [history_region_europe, history_era_premodern]
-    HIST 238: [history_region_europe, history_era_premodern]
-    HIST 239: [history_region_europe, history_era_premodern]
-    HIST 240: [history_l2_seminar, history_region_nonwesternworld]
-    HIST 241: [history_region_nonwesternworld, history_era_premodern]
-    HIST 242: [history_region_nonwesternworld]
-    HIST 243: [history_region_nonwesternworld]
-    HIST 244: [history_region_nonwesternworld]
-    HIST 245: [history_region_nonwesternworld]
-    HIST 250: [history_region_nonwesternworld, history_era_premodern]
-    HIST 251: [history_region_nonwesternworld]
-    HIST 252: [history_region_nonwesternworld, history_era_premodern]
-    HIST 253: [history_region_nonwesternworld]
-    HIST 260: [history_region_nonwesternworld]
-    HIST 262: [history_region_nonwesternworld]
-    HIST 270: [history_l2_seminar, history_region_us, history_era_premodern]
-    HIST 272: [history_region_us, history_era_premodern]
+    HIST 201: [history_l2_seminar]
+    HIST 210: [history_l2_seminar, history_region_eu_ru]
+    HIST 211: [history_region_eu_ru]
+    HIST 212: [history_region_eu_ru]
+    HIST 213: [history_region_eu_ru]
+    HIST 214: [history_region_eu_ru]
+    HIST 215: [history_region_eu_ru]
+    HIST 216: [history_region_eu_ru]
+    HIST 217: [history_region_eu_ru]
+    HIST 218: [history_region_eu_ru]
+    HIST 219: [history_region_eu_ru]
+    HIST 240: [history_l2_seminar, history_region_af_as_la]
+    HIST 241: [history_region_af_as_la]
+    HIST 242: [history_region_af_as_la]
+    HIST 243: [history_region_af_as_la]
+    HIST 244: [history_region_af_as_la, hist_public_elective]
+    HIST 245: [history_region_af_as_la]
+    HIST 246: [history_region_af_as_la]
+    HIST 247: [history_region_af_as_la]
+    HIST 248: [history_region_af_as_la]
+    HIST 249: [history_region_af_as_la]
+    HIST 256: [hist_public_elective]
+    HIST 270: [history_l2_seminar, history_region_us]
+    HIST 271: [history_region_us]
+    HIST 272: [history_region_us]
+    HIST 273: [history_region_us]
+    HIST 274: [history_region_us]
     HIST 275: [history_region_us]
+    HIST 276: [history_region_us]
     HIST 277: [history_region_us]
-    HIST 280: [history_region_us]
-    HIST 282: [history_region_us, history_era_premodern]
-    HIST 288: [history_region_us, history_era_premodern]
-    HIST 289: [history_region_nonwesternworld, history_era_premodern]
-    HIST 290: [history_region_us]
-    HIST 292: [history_region_nonwesternworld, history_era_premodern]
+    HIST 278: [hist_public_elective, history_region_us]
+    HIST 279: [history_region_us]
+    HIST 290: [history_region_us, hist_public_elective]
     HIST 293: [history_region_us]
-    HIST 295: [history_region_nonwesternworld, history_era_premodern]
-    HIST 296: [history_region_europe, history_era_premodern]
     HIST 297: [history_region_us]
-    HIST 299: [history_region_europe, history_era_premodern]
-    HIST 301: [history_level_3]
-    HIST 302: [history_level_3]
-    HIST 303: [history_level_3]
-    HIST 310: [history_level_3]
-    HIST 315: [history_level_3]
-    HIST 320: [history_level_3]
-    HIST 340: [history_level_3]
-    HIST 345: [history_level_3]
-    HIST 370: [history_level_3]
-    HIST 375: [history_level_3]
-    HIST 394: [history_level_3]
-    HIST 395: [history_level_3]
-    HIST 396: [history_level_3]
-    HIST 397: [history_level_3]
-    HIST 398: [history_level_3]
+    HIST 299: [hist_public_elective]
+    HIST 302: [history_l3_seminar]
+    HIST 303: [history_l3_seminar]
+    HIST 320: [history_l3_seminar]
+    HIST 345: [history_l3_seminar]
+    HIST 370: [history_l3_seminar]
+    HIST 375: [history_l3_seminar]
+    HIST 393: [hist_public_elective]
+    HIST 395: [hist_public_elective]
+    HIST 397: [history_l3_seminar]
 
 
 requirements:
-  European:
+  Europe and Russia:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_region_europe}}
-      assert: {count(courses): {$gte: 1}}
+      where: {attribute: {$eq: history_region_eu_ru}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
-  U.S.:
+  The United States:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_us}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Non-Western World:
+  Africa, Asia, and Latin America:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_region_nonwesternworld}}
-      assert: {count(courses): {$gte: 1}}
+      where: {attribute: {$eq: history_region_af_as_la}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Pre-Modern Period:
-    result:
-      from: {student: courses}
-      where: {attribute: {$eq: history_era_premodern}}
-      assert: {count(courses): {$gte: 2}}
-
-  Major Seminar:
+  Level II Seminar:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_l2_seminar}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Level III:
+  Level III Seminars:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_level_3}}
-      assert: {count(courses): {$gte: 3}}
+      where: {attribute: {$eq: history_l3_seminar}}
+      assert: {count(courses): {$gte: 3, at_most: true}}
+
+  Additional Courses:
+    result:
+      from: {student: courses}
+      where:
+        attribute:
+          $in:
+            -
+            - history_l2_seminar
+            - history_l3_seminar
+            - history_region_eu_ru
+            - history_region_af_as_la
+            - history_region_us
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+
+emphases:
+  737:
+    name: Public History
+
+    result:
+      - requirement: Core
+      - requirement: Electives
+
+    requirements:
+      Core:
+        result:
+          all:
+            - course: HIST 280
+            - course: HIST 294
+            - course: HIST 296
+
+      Electives:
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: hist_public_elective}}
+          assert: {count(courses): {$gte: 3}}

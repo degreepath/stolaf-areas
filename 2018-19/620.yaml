@@ -32,6 +32,9 @@ requirements:
       Of these four (4) courses, at least one must focus on Spain, and one on
       Latin America.
 
+      Courses from abroad or other U.S. institutions count as 270-level
+      electives.
+
     result:
       from: {student: courses}
       where: {attribute: {$in: spanish_elective}}
@@ -47,8 +50,11 @@ requirements:
         - where:
             $and:
               - level: {$eq: 300}
-              - {is_stolaf: {$eq: true}}
+              - is_stolaf: {$eq: true}
           assert: {count(courses): {$gte: 1}}
+
+        - where: {number: {$gte: 250}}
+          assert: {count(courses): {$gte: 3}}
 
 attributes:
   multicountable:

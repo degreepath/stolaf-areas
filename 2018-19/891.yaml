@@ -6,16 +6,24 @@ catalog: 2018-19
 
 result:
   all:
+    - requirement: Prerequisite
     - requirement: Core
     - requirement: Level III
     - requirement: Electives
 
 requirements:
+  Prerequisite:
+    result:
+      any:
+        - course: STAT 110
+        - course: STAT 212
+        - course: ECON 263
+
   Core:
     result:
       all:
-        - {course: STAT 272}
-        - {course: MSCS 264}
+        - course: STAT 272
+        - course: MSCS 264
 
   Level III:
     result:

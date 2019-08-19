@@ -132,29 +132,6 @@ emphases:
           where: {attributes: {$eq: econ_emph_mgmt_elective}}
           assert: {count(courses): {$gte: 1}}
 
-  736:
-    name: Public Policy
-
-    result:
-      both:
-        - requirement: Public Policy
-        - requirement: Electives
-      audit:
-        where: {grade: {$lt: C}}
-        assert: {count(courses): {$eq: 0}}
-
-    requirements:
-      Public Policy:
-        result:
-          course: ECON 371
-
-      Electives:
-        result:
-          from: {student: courses}
-          where: {attributes: {$eq: econ_emph_pubpol_elective}}
-          assert: {count(courses): {$gte: 3}}
-
-
 attributes:
   multicountable:
     - - {course: {$eq: ECON 385}}
@@ -166,11 +143,11 @@ attributes:
     ECON 218: [econ_lvl2, econ_emph_intl_elective]
     ECON 220: [econ_lvl2]
     ECON 222: [econ_lvl2]
-    ECON 242: [econ_lvl2, econ_emph_pubpol_elective]
+    ECON 242: [econ_lvl2]
     ECON 243: [econ_lvl2, econ_emph_intl_elective]
-    ECON 245: [econ_lvl2, econ_emph_pubpol_elective]
+    ECON 245: [econ_lvl2]
     ECON 247: [econ_lvl2]
-    ECON 249: [econ_lvl2, econ_emph_pubpol_elective]
+    ECON 249: [econ_lvl2]
 
     ECON 371: [econ_lvl3, econ_emph_finance_elective]
     ECON 372: [econ_lvl3]
@@ -178,7 +155,7 @@ attributes:
     ECON 374: [econ_lvl3, econ_emph_finance_elective]
     ECON 376: [econ_lvl3]
     ECON 382: [econ_lvl3, econ_emph_finance_elective]
-    ECON 385: [econ_lvl3, econ_emph_pubpol_elective, econ_emph_finance_elective]
+    ECON 385: [econ_lvl3, econ_emph_finance_elective]
     ECON 399: [econ_lvl3]
 
     MGMT 250: [econ_emph_mgmt_elective]

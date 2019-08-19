@@ -6,27 +6,39 @@ catalog: 2018-19
 
 result:
   all:
-    - all:
+    - requirement: Core
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
         - course: BIO 143
         - course: BIO 243
-        - course: ESTH 255
+        - course: ESTH 150
+        - course: NURS 110
         - course: ESTH 374
         - course: ESTH 375
         - course: ESTH 390
-        - course: NURS 110
         - course: PSYCH 125
 
-    - count: 2
-      at_most: true
-      of:
-        - course: BIO 247
-        - course: ESTH 295
-        - course: ESTH 373
-        - course: ESTH 376
-        - course: NEURO 239
-        - course: PSYCH 241
-        - course: PSYCH 247
-        - any:
-            - course: STAT 110
-            - course: STAT 212
-            - course: STAT 214
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: esth_elective}}
+      limit:
+        - at-most: 1
+          where: {course: {$in: [STAT 110, STAT 212]}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+attributes:
+  courses:
+    BIO 247: [esth_elective]
+    ESTH 295: [esth_elective]
+    ESTH 373: [esth_elective]
+    ESTH 376: [esth_elective]
+    NEURO 239: [esth_elective]
+    PSYCH 241: [esth_elective]
+    PSYCH 247: [esth_elective]
+    STAT 110: [esth_elective]
+    STAT 212: [esth_elective]

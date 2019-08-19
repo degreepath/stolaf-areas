@@ -15,20 +15,24 @@ result:
 
 attributes:
   courses:
-    NORW 130: [nordic_elective, nordic_focus_norway]
-    NORW 140: [nordic_elective, nordic_focus_norway]
-    NORW 224: [nordic_elective, nordic_focus_norway]
-    NORW 244: [nordic_elective]
-    NORW 253: [nordic_elective, nordic_focus_norway]
-    NORW 282: [nordic_elective, nordic_focus_norway]
-    NORW 371: [nordic_elective, nordic_focus_norway]
-    NORW 372: [nordic_elective, nordic_focus_norway]
-    HIST 222: [nordic_elective]
-    HIST 169: [nordic_elective]
-    PHIL 233: [nordic_elective]
-    PSCI 283: [nordic_elective]
-    PSCI 382: [nordic_elective]
-    REL 213 2000-0: [nordic_elective]
+    HIST 169: [nordic_elective]  # Norwegian-American History
+    HIST 211: [nordic_elective]  # Viking and Medieval Scandinavia
+    HIST 222: [nordic_elective]  # Modern Scandinavia
+    MUSPF 118: [nordic_elective]  # Hardanger Fiddle
+    MUSPF 218: [nordic_elective]  # Hardanger Fiddle
+    NORST 200: [nordic_elective]  # Transdisciplinary Topics in Nordic
+    NORW 130: [nordic_elective, nordic_focus_norway]  # Nordic Film Today
+    NORW 140: [nordic_elective, nordic_focus_norway]  # Norway: Contin/Change
+    NORW 224: [nordic_elective, nordic_focus_norway]  # Top: Contemporary Nordic Lit
+    NORW 232: [nordic_elective]  # Intermed Norwegian II
+    NORW 244: [nordic_elective]  # Sami:Tradition/Transition
+    NORW 253: [nordic_elective, nordic_focus_norway]  # Advanced Conv & Comp
+    NORW 282: [nordic_elective, nordic_focus_norway]  # Ibsen
+    NORW 371: [nordic_elective, nordic_focus_norway]  # Norwegian Literature: An Overview
+    NORW 372: [nordic_elective, nordic_focus_norway]  # Topics in Norwegian Lit/Culture
+    PHIL 233: [nordic_elective]  # Kierkegaard
+    PSCI 283: [nordic_elective]  # European Social Democracy
+    PSCI 382: [nordic_elective]  # Geopolitics Eurasian Ener
 
 
 requirements:
@@ -53,6 +57,8 @@ requirements:
         # > At least two of the five courses must have a focus on at least one
         # > Nordic country other than Norway.
         - {at_most: 3, where: {attribute: {$eq: nordic_focus_norway}}}
-        # this addresses the "1-2 and 2-3" part of the major
+        # > Two or three courses from other departments
+        # in other words, at most 2 of the five courses must be from a subject
+        # other than NORW
         - {at_most: 2, where: {subject: {$eq: NORW}}}
       assert: {count(courses): {$gte: 5}}

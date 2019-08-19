@@ -8,7 +8,7 @@ result:
   all:
     - requirement: Part 1
     - requirement: Part 2
-    - requirement: Practicum
+    - requirement: Lab
 
   audit:
     assert: {count(courses): {$lte: 1}}
@@ -42,14 +42,14 @@ requirements:
         - course: THEAT 394
         - course: THEAT 398
 
-  Practicum:
+  Lab:
     message:
-      All students must enroll in four practicum classes, of which at least one
-      must be THEAT 233 and at least two must be THEAT 253; the fourth practicum
+      All students must enroll in four lab classes, of which at least one
+      must be THEAT 233 and at least two must be THEAT 253; the fourth lab
       class is then a choice of either 233 or 253.
 
     result:
-      from: {student: courses}
+      from: {student: courses, repeats: all}
       where: {course: {$in: [THEAT 233, THEAT 253]}}
       all:
         - where: {course: {$eq: THEAT 233}}

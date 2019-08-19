@@ -5,19 +5,48 @@ degree: B.A.
 catalog: 2018-19
 
 result:
-  from: {student: courses}
-  where: {attribute: {$eq: asian_elective}}
-  limit:
-    # "At least two of the six courses must be taken on campus"
-    # aka "no more than 4 may be taken off-campus", since we need six total
-    - {at_most: 4, where: {is_stolaf: {$eq: false}}}
-    # and "No language courses may count toward this concentration" is
-    # taken care of by not listing them
-  assert: {count(courses): {$gte: 6}}
+  all:
+    - requirement: Electives
+  audit:
+    all:
+      # "At least two of the six courses must be taken at level II or level III on campus"
+      - where:
+          $and:
+            - is_stolaf: {$eq: true}
+            - level: {$in: [200, 300]}
+        assert: {count(courses): {$gte: 2}}
 
+requirements:
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: asian_elective}}
+      limit:
+        # "Only one language course may count towards the concentration"
+        - at-most: 1
+          where: {attributes: {$eq: asian_language}}
+      assert: {count(courses): {$gte: 6}}
 
 attributes:
   courses:
+    CHIN 111: [asian_elective, asian_language]
+    CHIN 112: [asian_elective, asian_language]
+    CHIN 231: [asian_elective, asian_language]
+    CHIN 232: [asian_elective, asian_language]
+    CHIN 301: [asian_elective, asian_language]
+    CHIN 302: [asian_elective, asian_language]
+    CHIN 320: [asian_elective, asian_language]
+    CHIN 351: [asian_elective, asian_language]
+    CHIN 360: [asian_elective, asian_language]
+
+    JAPAN 111: [asian_elective, asian_language]
+    JAPAN 112: [asian_elective, asian_language]
+    JAPAN 231: [asian_elective, asian_language]
+    JAPAN 232: [asian_elective, asian_language]
+    JAPAN 301: [asian_elective, asian_language]
+    JAPAN 302: [asian_elective, asian_language]
+    JAPAN 320: [asian_elective, asian_language]
+
     ASIAN 121: [asian_elective]
     ASIAN 123: [asian_elective]
     ASIAN 126: [asian_elective]
