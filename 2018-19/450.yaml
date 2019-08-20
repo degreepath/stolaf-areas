@@ -79,7 +79,7 @@ requirements:
     #   assert: {count(performances): {$gte: 60, at_most: true}}
 
 
-empahses:
+emphases:
   700:
     name: Composition
 
