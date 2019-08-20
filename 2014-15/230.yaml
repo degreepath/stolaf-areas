@@ -1,0 +1,187 @@
+---
+name: Economics
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Economic Analysis
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: ECON 261
+        - course: ECON 262
+        - either:
+            - course: ECON 263
+            # or
+            - both:
+                - course: STAT 272
+                - course: ECON 385
+
+  Foundation:
+    result:
+      any:
+        - course: MATH 119
+        - course: MATH 120
+
+  Economic Analysis:
+    result:
+      from: {student: courses}
+      where: {attribute: {$in: [econ_lvl2, econ_lvl3]}}
+
+      all:
+        - where: {attribute: {$eq: econ_lvl2}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attribute: {$eq: econ_lvl3}}
+          assert: {count(courses): {$gte: 2}}
+
+        - assert: {count(courses): {$gte: 4}}
+
+
+emphases:
+  710:
+    name: Finance
+
+    result:
+      both:
+        - requirement: Finance
+        - requirement: Electives
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Finance:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 281
+            - course: MGMT 380
+
+      Electives:
+        result:
+          either:
+            - both:
+                - course: MGMT 250
+                - course: MGMT 251
+
+            - from: {student: courses}
+              where: {attributes: {$eq: econ_emph_finance_elective}}
+              assert: {count(courses): {$gte: 1}}
+
+  720:
+    name: International Economic Analysis and Policy
+
+    result:
+      all:
+        - requirement: International Economics
+        - requirement: Electives
+        - requirement: Non-Econ International Topics
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      International Economics:
+        result:
+          course: ECON 382
+
+      Electives:
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: econ_emph_intl_elective}}
+          assert: {count(courses): {$gte: 2}}
+
+      Non-Econ International Topics:
+        department-audited: true
+        message:
+          An elective course outside of Economics Department that relates to
+          international topics.
+
+  725:
+    name: Management
+
+    result:
+      both:
+        - requirement: Management
+        - requirement: Electives
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Management:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 251
+            - course: MGMT 383
+
+      Electives:
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: econ_emph_mgmt_elective}}
+          assert: {count(courses): {$gte: 1}}
+
+  736:
+    name: Public Policy
+
+    result:
+      both:
+        - requirement: Public Policy
+        - requirement: Electives
+      audit:
+        where: {grade: {$lt: C}}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Public Policy:
+        result:
+          course: ECON 371
+
+      Electives:
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: econ_emph_pubpol_elective}}
+          assert: {count(courses): {$gte: 3}}
+
+
+attributes:
+  multicountable:
+    - - {course: {$eq: ECON 385}}
+      - {attributes: {$eq: econ_lvl3}}
+
+  courses:
+    ECON 200: [econ_lvl2]
+    ECON 210: [econ_lvl2, econ_emph_intl_elective]
+    ECON 218: [econ_lvl2, econ_emph_intl_elective]
+    ECON 220: [econ_lvl2]
+    ECON 222: [econ_lvl2]
+    ECON 242: [econ_lvl2, econ_emph_pubpol_elective]
+    ECON 243: [econ_lvl2, econ_emph_intl_elective]
+    ECON 245: [econ_lvl2, econ_emph_pubpol_elective]
+    ECON 247: [econ_lvl2]
+    ECON 249: [econ_lvl2, econ_emph_pubpol_elective]
+
+    ECON 371: [econ_lvl3, econ_emph_finance_elective]
+    ECON 372: [econ_lvl3]
+    ECON 373: [econ_lvl3]
+    ECON 374: [econ_lvl3, econ_emph_finance_elective]
+    ECON 376: [econ_lvl3]
+    ECON 382: [econ_lvl3, econ_emph_finance_elective]
+    ECON 385: [econ_lvl3, econ_emph_pubpol_elective, econ_emph_finance_elective]
+    ECON 399: [econ_lvl3]
+
+    MGMT 250: [econ_emph_mgmt_elective]
+    MGMT 252: [econ_emph_mgmt_elective, econ_emph_finance_elective]
+    MGMT 256: [econ_emph_mgmt_elective, econ_emph_finance_elective]
+    MGMT 281: [econ_emph_mgmt_elective]

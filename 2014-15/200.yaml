@@ -1,0 +1,88 @@
+---
+name: Computer Science
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Capstone
+
+attributes:
+  courses:
+    CSCI 273: [csci_electives, csci_systems]
+    CSCI 276: [csci_electives]
+    CSCI 284: [csci_electives, csci_systems]
+    CSCI 300: [csci_electives]
+    CSCI 315: [csci_electives]
+    CSCI 333: [csci_electives]
+    CSCI 336: [csci_electives]
+    MSCS 341: [csci_electives]
+    CSCI 350: [csci_electives]
+    MSCS 389: [csci_electives]
+    ID 259: [csci_electives]
+    CSCI 300B 2018-1: [csci_systems]
+
+requirements:
+  Foundation:
+    result:
+      all:
+        - requirement: Principles
+        - requirement: Hardware
+        - requirement: Software
+        - requirement: Mathematics
+
+    requirements:
+      Principles:
+        result:
+          any:
+            - course: CSCI 121
+            - course: CSCI 125
+
+      Hardware:
+        result:
+          course: CSCI 241
+
+      Software:
+        result:
+          both:
+            - course: CSCI 251
+            - course: CSCI 252.L
+
+      Mathematics:
+        result:
+          any:
+            - course: MATH 282
+            - course: MATH 244
+            - course: MATH 252
+
+  Core:
+    result:
+      all:
+        - course: CSCI 253
+        - course: CSCI 263
+        - either:
+            - course: CSCI 276
+            - course: CSCI 333
+        - requirement: Systems
+
+    requirements:
+      Systems:
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: csci_systems}}
+          assert: {count(courses): {$gte: 1}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: csci_electives}}
+      assert: {count(courses): {$gte: 2}}
+
+  Capstone:
+    result:
+      course: CSCI 390
