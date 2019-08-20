@@ -1,0 +1,211 @@
+---
+name: Music Education
+type: major
+degree: B.M.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: History of Music
+    - requirement: Electives
+    - requirement: Education
+    - requirement: Other Courses
+    - requirement: Principle Performance Studies
+    - requirement: Secondary Performance Studies
+    - requirement: Keyboard Proficiency
+    - requirement: Required Solo Performances
+    - requirement: Required Senior Recital
+    - requirement: Performance
+    - requirement: Concert Attendance
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 112
+        - course: MUSIC 114
+        - course: MUSIC 161
+        - course: MUSIC 162
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 241
+        - course: MUSIC 242
+        - course: MUSIC 261
+        - course: MUSIC 262
+        - course: MUSIC 237
+        - course: MUSIC 251
+        - course: MUSIC 365
+
+  History of Music:
+    result:
+      any:
+        - course: MUSIC 341
+        - course: MUSIC 342
+        - course: MUSIC 343
+        - course: MUSIC 344
+        - course: MUSIC 345
+
+  Electives:
+    result:
+      any:
+        - course: MUSIC 222
+        - course: MUSIC 223
+        - course: MUSIC 313
+        - course: MUSIC 314
+        - course: MUSIC 341
+        - course: MUSIC 342
+        - course: MUSIC 343
+        - course: MUSIC 344
+        - course: MUSIC 345
+
+  Education:
+    result:
+      all:
+        - course: EDUC 231
+        - course: EDUC 290
+        - course: EDUC 291
+        - course: EDUC 330
+        - course: EDUC 355
+        - course: EDUC 356
+        - course: EDUC 372
+        - course: EDUC 374
+        - course: EDUC 375
+        - at_most: true
+          any:
+            - course: EDUC 170
+            - course: EDUC 347
+            - course: EDUC 378
+            - course: EDUC 379
+        - course: EDUC 381
+        - course: EDUC 382
+        - course: EDUC 385
+        - course: EDUC 389
+
+  Other Courses:
+    result:
+      both:
+        - from: {student: courses}
+          where: {attributes: {$eq: dance_technique}}
+          assert: {count(courses): {$gte: 1}}
+
+        - from: {student: courses}
+          where:
+            $or:
+              - subject: {$in: [ART, DANCE, THEAT]}
+              - course: {$in: [MUSIC 267, MUSIC 269]}
+          assert: {sum(credits): {$gte: 1}}
+
+  Principle Performance Studies:
+    department_audited: true
+    message: >
+      Every semester prior to and including the semester of application for
+      entrance into the BM Music Education program, .25 each; every semester
+      thereafter, prior to the professional semester, .50 each
+
+      Vocal: licensure area must be voice; primary instrument may be piano
+
+      Instrumental: licensure area must be a standard orchestra or band
+      instrument; primary instrument may be piano
+
+      Instrumental: principal may be any brass, percussion, string, or
+      woodwind instrument, or piano
+
+  Secondary Performance Studies:
+    department_audited: true
+    message: >
+      Vocal: 2 semesters
+
+      Vocal exception: piano primaries - 4 semesters of voice
+
+      Instrumental: 2 semesters. MUSIC 164 may count as the first semester of
+      secondary voice study.
+
+      Instrumental exception: piano primaries - 4 semesters of brass,
+      percussion, string or woodwind study
+
+  Keyboard Proficiency:
+    department_audited: true
+    message: Level IV
+
+  Required Solo Performances:
+    department_audited: true
+    message: >
+      2 solo performances on licensure instrument in official student
+      recitals; one must be in junior or senior year
+
+  Required Senior Recital:
+    department_audited: true
+    message: >
+      30-minute senior recital on principal instrument/voice
+
+  Performance:
+    department_audited: true
+    message: >
+      2 small ensemble performances on licensure instrument
+
+  Concert Attendance:
+    department_audited: true
+    message: Documented attendance at 60 concerts.
+
+
+emphases:
+  455-instrumental:
+    name: Instrumental
+
+    result:
+      all:
+        - requirement: Core
+        - requirement: Electives
+        - requirement: Education
+        - requirement: Performance Studies
+        - requirement: Official Choral Ensemble Participation
+        - requirement: Official Instrumental Ensemble Participation
+        - requirement: Required Chamber Music Performances
+
+    requirements:
+      Core:
+        result:
+          all:
+            - course: EDUC 358
+            - course: MUSIC 252
+            - either:
+                - course: MUSIC 253
+                - course: MUSIC 354
+            - either:
+                - course: MUSIC 220
+                - all:
+                    - course: MUSIC 166
+                    - course: MUSIC 167
+                    - course: MUSIC 168
+                    - course: MUSIC 169
+            - course: MUSIC 287
+            - course: MUSIC 364
+
+  455-vocal:
+    name: Vocal
+
+    result:
+      all:
+        - requirement: Core
+        - requirement: Electives
+        - requirement: Education
+        - requirement: Performance Studies
+        - requirement: Official Choral Ensemble Participation
+        - requirement: Required Vocal Chamber Music Performances
+
+    requirements:
+      Core:
+        result:
+          all:
+            - course: EDUC 359
+            - course: MUSIC 253
+            - either:
+                - course: MUSIC 252
+                - course: MUSIC 354
+            - course: MUSIC 221
+            - course: MUSIC 166
+            - course: MUSIC 167
+            - course: MUSIC 168
+            - course: MUSIC 169
+            - course: MUSIC 164

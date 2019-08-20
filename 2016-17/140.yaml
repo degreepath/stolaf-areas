@@ -1,0 +1,210 @@
+---
+name: Studio Art
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Foundations
+    - requirement: Juried Show
+    - requirement: Senior Studies in Studio Art
+    - requirement: Electives
+    - requirement: Areas
+    - requirement: Art History
+
+requirements:
+  Foundations:
+    result:
+      all:
+        - at_most: true
+          either:
+            - course: ART 102
+            - course: ART 106
+        - course: ART 103
+        - course: ART 104
+
+  Areas:
+    result:
+      all:
+        - requirement: 2D Media
+        - requirement: 3D Media
+        - requirement: New Media
+
+    requirements:
+      2D Media:
+        result:
+          at_most: true
+          any:
+            - requirement: Drawing
+            - requirement: Painting
+            - requirement: Printmaking
+            - requirement: Graphic Design
+
+        requirements:
+          Drawing:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_drawing}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Painting:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_painting}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Printmaking:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_printmaking}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Graphic Design:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_design}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+      3D Media:
+        result:
+          at_most: true
+          any:
+            - requirement: Ceramics
+            - requirement: Sculpture
+
+        requirements:
+          Ceramics:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_ceramics}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Sculpture:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_sculpture}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+      New Media:
+        result:
+          at_most: true
+          any:
+            - requirement: Photography
+            - requirement: Interactive Image
+            - requirement: Digital Video
+            - requirement: Performance
+            - requirement: Graphic Design
+
+        requirements:
+          Photography:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_photography}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Interactive Image:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_interactive_image}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Digital Video:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_digital_video}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Performance:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_performance}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          Graphic Design:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: art_area_design}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Juried Show:
+    department_audited: true
+    message:
+      Majors must participate in two juried shows. To fulfill the the
+      requirements of the studio art major, you must either enter the student
+      juried show in spring semester twice, or enter our student juried show
+      once and one other non-class related exhibition on or off campus.
+
+  Senior Studies in Studio Art:
+    result:
+      course: ART 343
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: art_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Art History:
+    message:
+      The department strongly recommends that you take
+      ART 252 or 253 as one of your art history courses.
+
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: art_history}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+attributes:
+  courses:
+    ART 205: [art_area_photography, art_elective]
+    ART 207: [art_area_ceramics, art_elective]
+    ART 221: [art_area_painting, art_elective]
+    ART 222: [art_area_painting, art_elective]
+    ART 223: [art_area_sculpture, art_elective]
+    ART 224: [art_area_sculpture, art_elective]
+    ART 225: [art_area_drawing, art_elective]
+    ART 226: [art_area_printmaking, art_elective]
+    ART 227: [art_area_printmaking, art_elective]
+    ART 228: [art_area_interactive_image, art_elective]
+    ART 229: [art_area_digital_video, art_elective]
+    ART 232: [art_area_drawing, art_elective]
+    ART 233: [art_area_drawing, art_elective]
+    ART 234: [art_area_ceramics, art_elective]
+    ART 236: [art_area_design, art_elective]
+    ART 238: [art_area_photography, art_elective]
+    ART 240: [art_area_performance, art_elective]
+
+    ART 106: [art_elective]
+    ART 153: [art_history]
+    ART 161: [art_history]
+    ART 246: [art_elective]
+    ART 251: [art_history]
+    ART 252: [art_history]
+    ART 253: [art_history]
+    ART 254: [art_history]
+    ART 255: [art_history]
+    ART 256: [art_history]
+    ART 259: [art_history]
+    ART 260: [art_history]
+    ART 261: [art_history]
+    ART 262: [art_history]
+    ART 263: [art_history]
+    ART 265: [art_history]
+    ART 267: [art_history]
+    ART 269: [art_history]
+    ART 271: [art_history]
+    ART 273: [art_history]
+    ART 277: [art_history]
+    ART 280: [art_history]
+    ART 294: [art_elective]
+    ART 298: [art_elective]
+    ART 340: [art_elective]
+    ART 350: [art_history]
+    ART 370: [art_history]
+    ART 394: [art_elective]
+    ART 398: [art_elective]
+    ASIAN 270: [art_history]
+    ASIAN 310: [art_history]
+    ENVST 270: [art_history]
+    PHIL 243: [art_history]

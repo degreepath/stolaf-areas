@@ -1,0 +1,50 @@
+---
+name: Educational Studies
+type: concentration
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Field Experience
+    - requirement: Electives
+  audit:
+    all:
+      - assert: {average(grades): {$gte: 2.7}}
+      - assert: {count(courses): {$lte: 2}}
+        where: {is_stolaf: {$eq: false}}
+      - assert: {count(courses): {$lte: 2}}
+        where: {s/u: {$eq: true}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: EDUC 260
+        - course: EDUC 290
+        - course: EDUC 372
+
+  Field Experience:
+    result:
+      any:
+        - course: EDUC 170
+        - course: EDUC 270
+        - course: EDUC 378
+
+  Electives:
+    count: 2
+    of:
+      - course: ENGL 205
+      - course: ENGL 242
+      - course: ESTH 238
+      - course: FAMST 242
+      - course: MEDIA 260
+      - course: MUSIC 237
+      - course: PSYCH 125
+      - course: PSYCH 236
+      - course: PSYCH 241
+      - course: PSYCH 350
+      - course: SOAN 242
+      - course: SOAN 264
+      - course: WMGST 121

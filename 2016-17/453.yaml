@@ -1,0 +1,105 @@
+---
+name: Elective Studies
+type: major
+degree: B.M.
+catalog: 2018-19
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
+result:
+  all:
+    - requirement: Core
+    - requirement: History of Music
+    - requirement: Performance Studies
+    - requirement: Required Performances
+    - requirement: Keyboard Proficiency
+    - requirement: Official Ensemble Participation
+    - requirement: Concert Attendance
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 112
+        - course: MUSIC 114
+        - course: MUSIC 161
+        - course: MUSIC 162
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 237
+        - course: MUSIC 241
+        - course: MUSIC 242
+        - course: MUSIC 251
+        - course: MUSIC 261
+        - course: MUSIC 262
+        - course: MUSIC 298
+
+  History of Music:
+    result:
+      any:
+        - course: MUSIC 341
+        - course: MUSIC 342
+        - course: MUSIC 343
+        - course: MUSIC 344
+        - course: MUSIC 345
+
+  Additional Music Courses:
+    result:
+      count: 2
+      of:
+        - course: MUSIC 222
+        - course: MUSIC 223
+        - course: MUSIC 313
+        - course: MUSIC 314
+        - course: MUSIC 341
+        - course: MUSIC 342
+        - course: MUSIC 343
+        - course: MUSIC 344
+        - course: MUSIC 345
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSIC}}
+      assert: {count(credits): {$gte: 3}}
+
+  Performance Studies:
+    message: 6 semesters; 4 in the same instrument/voice
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSPF}}
+      all:
+        - assert: {count(terms): {$gte: 6}}
+
+        - assert: {sum(credits): {$gte: 2.5}}
+
+        - where: {credits: {$eq: 0.5}}
+          assert: {count(terms): {$gte: 4}}
+
+  Required Performances:
+    department_audited: true
+    message: >
+      2 solo performances on principal instrument in official student
+      recitals; one must be in junior or senior year
+
+  Keyboard Proficiency:
+    department_audited: true
+    message:
+      Level IV Keyboard Proficiency Exam
+
+  Official Ensemble Participation:
+    department_audited: true
+    message:
+      Every semester once admitted
+
+  Concert Attendance:
+    department_audited: true
+    message:
+      Documented attendance at 60 concerts.
+
+  Additional Courses from Other Departments:
+    department_audited: true
+    message:
+      5-6 courses in the area of Elective Studies.
