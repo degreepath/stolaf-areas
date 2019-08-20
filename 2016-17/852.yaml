@@ -70,7 +70,7 @@ requirements:
 attributes:
   courses:
     ECON 243: [lamst_elective]
-    ENGL 251: [lamst_elective, lamst_latinos_in_usa]
+    ENGL 251: [lamst_elective]
     HIST 126: [lamst_elective]
     HIST 193: [lamst_elective]
     HIST 240 2000-1: [lamst_elective]
@@ -84,9 +84,7 @@ attributes:
     PSCI 367: [lamst_elective]
     RACE 121: [lamst_elective]
     SOAN 237: [lamst_elective]
-    SPAN 270: [lamst_spanish_culture]
-    SPAN 271: [lamst_spanish_culture]
-    SPAN 273: [lamst_latinos_in_usa]
-    SPAN 272: [lamst_latinamerican_culture]
-    SPAN 274 2000-1: [lamst_spanish_culture]  # depending on topic
-    SPAN 274 2001-1: [lamst_latinamerican_culture]  # depending on topic
+    SPAN 272: [lamst_elective]
+    SPAN 273: [lamst_elective]
+    SPAN 274 2000-1: [lamst_elective]  # depending on topic
+    SPAN 274 2001-1: [lamst_elective]  # depending on topic
