@@ -1,0 +1,235 @@
+---
+name: Performance
+type: major
+degree: B.M.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: History of Music
+    - requirement: Electives
+    - requirement: Performance Studies
+    - requirement: Secondary Performance Studies
+    - requirement: Official Ensemble Participation
+    - requirement: Keyboard Proficiency
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 112
+        - course: MUSIC 114
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 237
+        - course: MUSIC 241
+        - course: MUSIC 242
+        - course: MUSIC 251
+
+  History of Music:
+    result:
+      any:
+        - course: MUSIC 341
+        - course: MUSIC 342
+        - course: MUSIC 343
+        - course: MUSIC 344
+        - course: MUSIC 345
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: music_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Performance Studies:
+    message:
+      Once accepted into the B.M. Performance program, students must register
+      for a minimum of 6 semesters of 1.0 credit lessons (4 at Level I,
+      subsequent at Level II)
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSPF}
+          - credits: {$eq: 1.0}
+      assert: {sum(credits): {$gte: 6}}
+
+  Secondary Performance Studies:
+    department_audited: true
+    message:
+      4 semesters on 1 instrument. Up to 2 semseters of secondary voice may be
+      taken in voice class (MUSIC 164). Up to 4 semesters of secondary piano
+      may be taken in piano classes (MUSIC 161, MUSIC 162, MUSIC 261, MUSIC
+      262).
+
+  Required Performances:
+    result:
+      all:
+        - requirement: Solos
+        - requirement: Junior Recital
+        - requirement: Senior Recital
+
+    requirements:
+      Solos:
+        department_audited: true
+        message: >
+          2 solo performances on official student recitals
+
+      Junior Recital:
+        department_audited: true
+        message: >
+          30 minute Junior recital (or, by petition only: 3 additional solo
+          performances on official student recitals)
+
+      Senior Recital:
+        department_audited: true
+        message: >
+          60-minute Senior recital
+
+  Keyboard Proficiency:
+    department_audited: true
+    message:
+      Level IV Keyboard Proficiency Exam
+
+  Official Ensemble Participation:
+    department_audited: true
+    message:
+      Every semester once admitted to BM performance
+
+  Required Recital Attendance:
+    department_audited: true
+    message:
+      Documented attendance at 60 concerts.
+
+
+emphases:
+  voice:
+    name: Voice
+
+    result:
+      all:
+        - course: MUSIC 263
+        - course: MUSIC 264
+        - course: MUSIC 281
+        - course: MUSIC 282
+        - course: MUSIC 364
+
+        - from: {student: courses}
+          where: {subject: {$in: [MUSIC]}}
+          assert: {sum(credits): {$gte: 1.75}}
+
+  strings:
+    name: Strings
+
+    result:
+      all:
+        - course: MUSIC 368
+
+        - from: {student: courses}
+          where: {course: {$eq: MUSIC 275}}
+          assert: {count(terms): {$gte: 2}}
+
+        - from: {student: courses}
+          where: {subject: {$in: [MUSIC]}}
+          assert: {sum(credits): {$gte: 2}}
+
+  piano:
+    name: Piano
+
+    result:
+      all:
+        - course: MUSIC 283
+        - course: MUSIC 361
+
+        - from: {student: courses}
+          where: {subject: {$in: [MUSIC]}}
+          assert: {sum(credits): {$gte: 2}}
+
+  winds/brass/percussion:
+    name: Winds, Brass, Percussion
+
+    result:
+      all:
+        - course: MUSIC 298
+
+        - from: {student: courses}
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$gte: 0.5}}
+
+        - from: {student: courses}
+          where: {subject: {$in: [MUSIC]}}
+          assert: {sum(credits): {$gte: 1.5}}
+
+  other:
+    name: Other Instruments
+
+    result:
+      from: {student: courses}
+      where: {subject: {$in: [MUSIC]}}
+      assert: {sum(credits): {$gte: 3}}
+
+  702:
+    name: Collaborative Keyboard Performance
+
+    result:
+      all:
+        - requirement: Chamber Music
+        - requirement: Vocal Solo Literature
+        - requirement: Collaborative Keyboard
+        - requirement: Electives
+
+    requirements:
+      Chamber Music:
+        result:
+          from: {student: courses}
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$gte: 0.5}}
+
+      Vocal Solo Literature:
+        result:
+          all:
+            - course: MUSIC 281
+            - course: MUSIC 282
+
+      Collaborative Keyboard:
+        result:
+          from: {student: courses}
+          where: {course: {$eq: MUSPF 106}}
+          assert: {count(terms): {$gte: 1}}
+
+      Electives:
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: music_coll_keyboard_elective}}
+          assert: {sum(credits): {$gte: 1}}
+
+
+attributes:
+  courses:
+    MUSIC 222: [music_elective]
+    MUSIC 223: [music_elective]
+    MUSIC 313: [music_elective]
+    MUSIC 314: [music_elective]
+    MUSIC 341: [music_elective]
+    MUSIC 342: [music_elective]
+    MUSIC 343: [music_elective]
+    MUSIC 344: [music_elective]
+    MUSIC 345: [music_elective]
+
+    MUSIC 252: [music_coll_keyboard_elective]
+    MUSIC 253: [music_coll_keyboard_elective]
+    MUSIC 263: [music_coll_keyboard_elective]
+    MUSIC 264: [music_coll_keyboard_elective]
+    MUSIC 267: [music_coll_keyboard_elective]
+    MUSIC 268: [music_coll_keyboard_elective]
+    MUSIC 269: [music_coll_keyboard_elective]
+    MUSIC 354: [music_coll_keyboard_elective]
+    MUSIC 275: [music_coll_keyboard_elective]
+    MUSPF 106: [music_coll_keyboard_elective]

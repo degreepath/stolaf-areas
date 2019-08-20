@@ -1,0 +1,62 @@
+---
+name: Japan Studies
+type: concentration
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Langauge
+    - requirement: Electives
+
+requirements:
+  Langauge:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: japan_language}}
+      assert: {count(courses): {$gte: 6}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: japan_elective}}
+      assert: {count(courses): {$gte: 6}}
+
+attributes:
+  courses:
+    JAPAN 231: [japan_language]
+    JAPAN 232: [japan_language]
+    JAPAN 301: [japan_language, japan_elective]
+    JAPAN 302: [japan_language, japan_elective]
+    JAPAN 320: [japan_language, japan_elective]
+
+    ART 260: [japan_elective]
+    AS/ES 377: [japan_elective]
+    AS/PS 255: [japan_elective]
+    AS/RE 256: [japan_elective]
+    AS/RE 257: [japan_elective]
+    AS/RE 289: [japan_elective]
+    ASIAN 121: [japan_elective]
+    ASIAN 123: [japan_elective]
+    ASIAN 126: [japan_elective]
+    ASIAN 130: [japan_elective]
+    ASIAN 200: [japan_elective]
+    ASIAN 210: [japan_elective]
+    ASIAN 215: [japan_elective]
+    ASIAN 216: [japan_elective]
+    ASIAN 220: [japan_elective]
+    ASIAN 230: [japan_elective]
+    ASIAN 235: [japan_elective]
+    ASIAN 240: [japan_elective]
+    ASIAN 268: [japan_elective]
+    ASIAN 282: [japan_elective]
+    ASIAN 300: [japan_elective]
+    ASIAN 310: [japan_elective]
+    ASIAN 333: [japan_elective]
+    ASIAN 397: [japan_elective]
+    ASIAN 399: [japan_elective]
+    HIST 252: [japan_elective]
+    HIST 253: [japan_elective]
+    HIST 345: [japan_elective]
+    PHIL 251: [japan_elective]
+    PSCI 245: [japan_elective]

@@ -1,0 +1,109 @@
+---
+name: Political Science
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Research Methods
+    - requirement: American Politics and Public Policy
+    - requirement: Comparative Politics
+    - requirement: International Relations
+    - requirement: Political Theory
+    - requirement: Level III
+
+  audit:
+    all:
+      - assert: {count(courses): {$gte: 9}}
+
+      - where:
+          $and:
+            - {subject: {$eq: PSCI}}
+            - {level: {$eq: 100}}
+        assert: {count(courses): {$lte: 3}}
+
+requirements:
+  Research Methods:
+    result:
+      course: PSCI 220
+
+  American Politics and Public Policy:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: psci_topic_american}}
+      assert: {count(courses): {$gte: 1}}
+
+  Comparative Politics:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: psci_topic_comparative}}
+      assert: {count(courses): {$gte: 1}}
+
+  International Relations:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: psci_topic_international}}
+      assert: {count(courses): {$gte: 1}}
+
+  Political Theory:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: psci_topic_theory}}
+      assert: {count(courses): {$gte: 1}}
+
+  Level III:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: psci_level_3}}
+      assert: {count(courses): {$gte: 2}}
+
+attributes:
+  courses:
+    AS/PS 245: [psci_topic_international]
+    AS/PS 250: [psci_topic_comparative]
+    ES/PS 201: [psci_topic_international]
+    ES/PS 225: [psci_topic_theory]
+    ES/PS 276: [psci_topic_american]
+    PSCI 111: [psci_topic_american]
+    PSCI 112: [psci_topic_comparative]
+    PSCI 113: [psci_topic_theory]
+    PSCI 115: [psci_topic_comparative, psci_topic_international]
+    PSCI 117: [psci_topic_comparative]
+    PSCI 119: [psci_topic_international, psci_topic_theory]
+    PSCI 121: [psci_topic_international]
+    PSCI 204: [psci_topic_american]
+    PSCI 211: [psci_topic_american]
+    PSCI 222: [psci_topic_international]
+    PSCI 232: [psci_topic_theory]
+    PSCI 244: [psci_topic_american]
+    PSCI 245: [psci_topic_international]
+    PSCI 246: [psci_topic_american]
+    PSCI 250: [psci_topic_comparative]
+    PSCI 251: [psci_topic_comparative]
+    PSCI 252: [psci_topic_comparative]
+    PSCI 255: [psci_topic_american]
+    PSCI 257: [psci_topic_international]
+    PSCI 258: [psci_topic_international]
+    PSCI 259: [psci_topic_theory]
+    PSCI 260: [psci_topic_theory]
+    PSCI 262: [psci_topic_theory]
+    PSCI 264: [psci_topic_comparative]
+    PSCI 272: [psci_topic_american]
+    PSCI 278: [psci_topic_theory]
+    PSCI 280: [psci_topic_comparative]
+    PSCI 282: [psci_topic_comparative]
+    PSCI 283: [psci_topic_comparative]
+    PSCI 284: [psci_topic_theory]
+    PSCI 285: [psci_topic_international]
+    PSCI 311: [psci_level_3]
+    PSCI 321: [psci_level_3]
+    PSCI 322: [psci_level_3]
+    PSCI 350: [psci_level_3]
+    PSCI 367: [psci_level_3]
+    PSCI 370: [psci_level_3]
+    PSCI 382: [psci_level_3]
+    PSCI 384: [psci_level_3]
+    PSCI 385: [psci_level_3]
+    # 2000-01 Fall
+    PSCI 299 2000-1: [psci_topic_theory]

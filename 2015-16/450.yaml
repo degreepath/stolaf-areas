@@ -1,0 +1,148 @@
+---
+name: Music
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: History of Music
+    - requirement: Electives
+    - requirement: Performance Studies
+    - requirement: Keyboard Proficiency
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Concert Attendance
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 112
+        - course: MUSIC 114
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 241
+        - course: MUSIC 242
+
+  History of Music:
+    result:
+      any:
+        - course: MUSIC 341
+        - course: MUSIC 342
+        - course: MUSIC 343
+        - course: MUSIC 344
+        - course: MUSIC 345
+
+  Electives:
+    if:
+      from: {student: areas}
+      where: {code: {$in: ['745', '715']}}
+      assert: {count(areas): {$eq: 0}}
+
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: music_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Performance Studies:
+    message: 6 semesters; 4 in the same instrument/voice
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSPF}}
+      all:
+        - assert: {count(terms_from_most_common_course): {$gte: 4}}
+        - assert: {count(terms): {$gte: 6}}
+
+  Keyboard Proficiency:
+    department_audited: true
+    message:
+      Level II Keyboard Proficiency Exam
+
+  Official Ensemble Participation:
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSEN}}
+      assert: {count(terms): {$gte: 4, at_most: true}}
+
+  Required Performances:
+    department_audited: true
+    message: >
+      2 solo performances on official student recitals; one must be in junior
+      or senior year.
+
+  Required Concert Attendance:
+    department_audited: true
+    message: Documented attendance at 60 concerts.
+
+
+emphases:
+  745:
+    name: Theory-Composition
+
+    result:
+      all:
+        - requirement: Courses
+        - requirement: Electives
+
+    requirements:
+      Courses:
+        result:
+          all:
+            - course: MUSIC 221
+            - course: MUSIC 223
+            - course: MUSIC 225
+
+      Electives:
+        result:
+          from: {student: courses, repeats: all}
+          where: {attributes: {$eq: music_em_tc_elective}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+  715:
+    name: History-Literature
+
+    result:
+      all:
+        - requirement: Courses
+        - requirement: Electives
+
+    requirements:
+      Courses:
+        result:
+          count: 3
+          of:
+            - course: MUSIC 237
+            - course: MUSIC 341
+            - course: MUSIC 342
+            - course: MUSIC 343
+            - course: MUSIC 344
+            - course: MUSIC 345
+
+      Electives:
+        result:
+          any:
+            - course: MUSIC 222
+            - course: MUSIC 313
+            - course: MUSIC 314
+
+      Senior Writing Portfolio:
+        department_audited: true
+        message:
+          3 Level III music papers, one revised with faculty supervision.
+
+attributes:
+  courses:
+    MUSIC 222: [music_elective, music_em_tc_elective]
+    MUSIC 223: [music_elective]
+    MUSIC 237: [music_elective]
+    MUSIC 313: [music_elective, music_em_tc_elective]
+    MUSIC 314: [music_elective, music_em_tc_elective]
+    MUSIC 324: [music_em_tc_elective]
+    MUSIC 325: [music_em_tc_elective]
+    MUSIC 341: [music_elective]
+    MUSIC 342: [music_elective]
+    MUSIC 343: [music_elective]
+    MUSIC 344: [music_elective]
+    MUSIC 345: [music_elective]

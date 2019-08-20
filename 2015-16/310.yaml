@@ -1,0 +1,41 @@
+---
+name: German
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Intermediate German 1
+    - requirement: Electives
+
+requirements:
+  Intermediate German 1:
+    result:
+      course: GERM 231
+
+  Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: GERM}
+          - number: {$gt: 231}
+
+      limit:
+        - at-most: 1
+          where: {attributes: {$eq: german_in_translation}}
+
+      all:
+        - assert: {count(courses): {$gte: 9}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    GERM 147: [german_in_translation]
+    GERM 246: [german_in_translation]
+    GERM 249: [german_in_translation]
+    GERM 263: [german_in_translation]
+    GERM 266: [german_in_translation]

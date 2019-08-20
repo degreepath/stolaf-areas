@@ -1,0 +1,81 @@
+---
+name: Linguistic Studies
+type: concentration
+catalog: 2018-19
+degree: B.A.
+
+result:
+  all:
+    - requirement: English Language and Linguistics
+    - requirement: Electives
+    - requirement: Seminar
+
+requirements:
+  English Language and Linguistics:
+    result:
+      course: EN/LI 250
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: lngst_elective}}
+      limit:
+        - at-most: 1
+          where:
+            course:
+              $in:
+                - CSCI 121
+                - PHYS 130
+                - CSCI 125
+                - CSCI 251
+      all:
+        - assert: {count(courses): {$gte: 3}}
+        - assert: {count(subjects): {$gte: 2}}
+
+  Seminar:
+    message:
+      One approved level III seminar or approved advanced study experience.
+    department-audited: true
+
+attributes:
+  courses:
+    ASIAN 126: [lngst_elective]
+    ASIAN 240: [lngst_elective]
+    ASIAN 282: [lngst_elective]
+    ASIAN 300 2000-1: [lngst_elective]  # when East Asian Languages and Linguistics
+    CSCI 121: [lngst_elective]
+    PHYS 130: [lngst_elective]
+    CSCI 125: [lngst_elective]
+    CSCI 251: [lngst_elective]
+    CSCI 276: [lngst_elective]
+    CSCI 333: [lngst_elective]
+    EDUC 245: [lngst_elective]
+    EDUC 250: [lngst_elective]
+    EDUC 321: [lngst_elective]
+    EDUC 345: [lngst_elective]
+    EDUC 347: [lngst_elective]
+    EDUC 348: [lngst_elective]
+    EDUC 353: [lngst_elective]
+    FREN 272: [lngst_elective]
+    FREN 372 2000-1: [lngst_elective]  # when Translation: An Art or Science?
+    GREEK 231: [lngst_elective]
+    GREEK 253: [lngst_elective]
+    GREEK 375: [lngst_elective]
+    LATIN 231: [lngst_elective]
+    LATIN 235: [lngst_elective]
+    LNGST 245: [lngst_elective]
+    LNGST 396: [lngst_elective]
+    MUSIC 264: [lngst_elective]
+    NORW 244: [lngst_elective]
+    NORW 372 2000-1: [lngst_elective]  # when TV & Språk
+    PHIL 240: [lngst_elective]
+    PSYCH 222: [lngst_elective]
+    PSYCH 237: [lngst_elective]
+    PSYCH 339: [lngst_elective]
+    PSYCH 396 2000-1: [lngst_elective]  # when Research in Auditory Cognition
+    SPAN 270 2000-1: [lngst_elective]  # when taught by Maggie Broner
+    SPAN 274 2000-1: [lngst_elective]  # when taught by Maggie Broner
+    SPAN 276: [lngst_elective]
+    SPAN 311: [lngst_elective]
+    SPAN 315 2000-1: [lngst_elective]  # when taught by Maggie Broner
+    THEAT 200: [lngst_elective]

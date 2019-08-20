@@ -1,0 +1,47 @@
+---
+name: Exercise Science
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: BIO 143
+        - course: BIO 243
+        - course: ESTH 110
+        - course: ESTH 255
+        - course: ESTH 374
+        - course: ESTH 375
+        - course: ESTH 390
+        - course: PSYCH 125
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: esth_elective}}
+      limit:
+        - at-most: 1
+          where: {course: {$in: [STAT 110, STAT 212, STAT 214]}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+attributes:
+  courses:
+    BIO 247: [esth_elective]
+    ESTH 290: [esth_elective]
+    ESTH 295: [esth_elective]
+    ESTH 373: [esth_elective]
+    ESTH 376: [esth_elective]
+    NEURO 239: [esth_elective]
+    PSYCH 230: [esth_elective]
+    PSYCH 241: [esth_elective]
+    PSYCH 247: [esth_elective]
+    STAT 110: [esth_elective]
+    STAT 212: [esth_elective]
+    STAT 214: [esth_elective]

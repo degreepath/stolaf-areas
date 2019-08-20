@@ -1,0 +1,17 @@
+---
+name: Women's and Gender Studies
+type: concentration
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - course: WMGST 121
+    - requirement: Interdisciplinary Focus
+
+requirements:
+  Interdisciplinary Focus:
+    message: >
+      Four additional courses, three of which must be at level II or III, and
+      they must be drawn from at least three departments
+    department_audited: true

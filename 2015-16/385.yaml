@@ -1,0 +1,88 @@
+---
+name: Japanese
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core Language
+    - requirement: Upper-Level Language
+    - requirement: Language and Culture
+
+  audit:
+    assert: {sum(credits): {$gte: 9}}
+
+attributes:
+  courses:
+    ART 260: [japan_elective]
+    AS/ES 377: [japan_elective]
+    AS/PS 255: [japan_elective]
+    AS/RE 256: [japan_elective]
+    AS/RE 257: [japan_elective]
+    AS/RE 289: [japan_elective]
+    ASIAN 121: [japan_elective]
+    ASIAN 123: [japan_elective]
+    ASIAN 126: [japan_elective]
+    ASIAN 130: [japan_elective]
+    ASIAN 200: [japan_elective]
+    ASIAN 210: [japan_elective, japan_asiancon]
+    ASIAN 215: [japan_elective, japan_asiancon]
+    ASIAN 216: [japan_elective, japan_asiancon]
+    ASIAN 220: [japan_elective, japan_asiancon]
+    ASIAN 230: [japan_elective]
+    ASIAN 235: [japan_elective]
+    ASIAN 240: [japan_elective]
+    ASIAN 268: [japan_elective]
+    ASIAN 282: [japan_elective]
+    ASIAN 298: [japan_is]
+    ASIAN 300: [japan_elective]
+    ASIAN 310: [japan_elective]
+    ASIAN 333: [japan_elective]
+    ASIAN 397: [japan_elective, japan_senior_seminar]
+    ASIAN 398: [japan_is]
+    ASIAN 399: [japan_elective, japan_senior_seminar]
+    HIST 252: [japan_elective]
+    HIST 253: [japan_elective]
+    HIST 345: [japan_elective]
+    PHIL 251: [japan_elective]
+    PSCI 245: [japan_elective]
+
+requirements:
+  Core Language:
+    result:
+      all:
+        - course: JAPAN 231
+        - course: JAPAN 232
+        - course: JAPAN 301
+        - course: JAPAN 302
+
+  Upper-Level Language:
+    result:
+      any:
+        - course: JAPAN 320
+
+  Language and Culture:
+    message: >
+      The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216, ASIAN
+      220) will count for no more than two courses.
+
+      One of these courses may be an Independent Study (capstone project) or the
+      Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
+
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: japan_elective}}
+      limit:
+        - at_most: 2
+          where: {attribute: {$eq: japan_asiancon}}
+        - at_most: 1
+          where: {attribute: {$in: [japan_is, japan_senior_seminar]}}
+        - at_most: 1
+          where: {level: {$eq: 100}}
+
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}

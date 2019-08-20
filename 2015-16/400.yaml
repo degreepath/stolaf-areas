@@ -1,0 +1,63 @@
+---
+name: Latin
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Classics
+    - requirement: Ancient Roman History
+
+attributes:
+  courses:
+    HIST 204: [latin_elective]
+    HIST 303: [latin_elective]
+
+requirements:
+  Language:
+    result:
+      at_most: true
+      count: 7
+      of:
+        - course: LATIN 111
+        - course: LATIN 112
+        - course: LATIN 231
+        - course: LATIN 235
+        - course: LATIN 252
+        - course: LATIN 370
+        - course: LATIN 371
+        - course: LATIN 372
+        - course: LATIN 373
+        - course: LATIN 374
+        - course: LATIN 375
+        - course: LATIN 377
+
+  Classics:
+    result:
+      at_most: true
+      count: 1
+      of:
+        - course: CLASS 121
+        - course: CLASS 123
+        - course: CLASS 126
+        - course: CLASS 129
+        - course: CLASS 241
+        - course: CLASS 243
+        - course: CLASS 244
+        - course: CLASS 251
+        - course: CLASS 253
+        - course: CLASS 396
+
+  Ancient Roman History:
+    result:
+      # from: {student: courses}
+      # where: {attributes: {$eq: latin_elective}}
+      # assert: {count(courses): {$eq: 1}}
+      at_most: true
+      any:
+        - course: HIST 204
+        - course: HIST 303
+        - {course: CLASS 253, hidden: true}
+        - {course: CLASS 244, hidden: true}

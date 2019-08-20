@@ -1,0 +1,98 @@
+---
+name: Dance
+type: major
+degree: B.A.
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Language-Intensive Courses (Theory)
+    - requirement: Articulate Body
+    - requirement: Movement-Intensive Courses (Technique)
+    - requirement: Senior Dance Seminar
+    - requirement: Area of Speciality
+    - requirement: Dance Companies
+    - requirement: Productions
+
+requirements:
+  Language-Intensive Courses (Theory):
+    result:
+      all:
+        - course: DANCE 100
+        - course: DANCE 124
+        - course: DANCE 150
+        - course: DANCE 231
+        - course: DANCE 246
+        - course: DANCE 270
+
+  Articulate Body:
+    result:
+      either:
+        - course: DANCE 212
+        - course: DANCE 213
+
+  Movement-Intensive Courses (Technique):
+    message:
+      These will be selected in consultation with dance faculty.
+
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: dance_movement}}
+      assert: {sum(credits): {$gte: 1.5}}
+
+  Senior Dance Seminar:
+    message:
+      Must be taken fall of senior year. Final projects may take the
+      form of a research paper, performance, choreography, or blended
+      project.
+    result:
+      course: DANCE 399
+
+  Area of Speciality:
+    department-audited: true
+    message:
+      Each student designs an individualized area of specialty derived
+      from their own interests and investigation. Select at least two
+      credits from within or outside the department.
+
+  Dance Companies:
+    department-audited: true
+    message:
+      Majors are required to participate in one of the dance companies
+      (Companydance™ or Veselica™ International Dance Ensemble) for a
+      minimum of three semesters.
+
+  Productions:
+    department-audited: true
+    message:
+      Majors are required to contribute in managing a dance production
+      for a minimum of one semester.
+
+attributes:
+  courses:
+    DANCE 105: [dance_movement]
+    DANCE 106: [dance_movement]
+    DANCE 107: [dance_movement]
+    DANCE 108: [dance_movement]
+    DANCE 109: [dance_movement]
+    DANCE 111: [dance_movement]
+    DANCE 115: [dance_movement]
+    DANCE 121: [dance_movement]
+    DANCE 130: [dance_movement]
+    DANCE 131: [dance_movement]
+    DANCE 141: [dance_movement]
+    DANCE 160: [dance_movement]
+    DANCE 205: [dance_movement]
+    DANCE 206: [dance_movement]
+    DANCE 207: [dance_movement]
+    DANCE 209: [dance_movement]
+    DANCE 210: [dance_movement]
+    DANCE 211: [dance_movement]
+    DANCE 220: [dance_movement]
+    DANCE 221: [dance_movement]
+    DANCE 250: [dance_movement]
+    DANCE 251: [dance_movement]
+    DANCE 310: [dance_movement]
+    DANCE 311: [dance_movement]
+    DANCE 320: [dance_movement]
+    DANCE 321: [dance_movement]
