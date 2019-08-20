@@ -27,7 +27,6 @@ requirements:
 
   Field Experience:
     result:
-      at_most: true
       any:
         - course: EDUC 170
         - course: EDUC 270

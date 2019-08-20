@@ -56,7 +56,7 @@ requirements:
       Mathematics:
         result:
           any:
-            - {course: MATH 232, hidden: true}
+            - course: MATH 232
             - course: MATH 244
             - course: MATH 252
 

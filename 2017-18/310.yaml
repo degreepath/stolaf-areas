@@ -31,3 +31,10 @@ requirements:
 
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    GERM 147: [german_in_translation]
+    GERM 249: [german_in_translation]
+    GERM 263: [german_in_translation]
+    GERM 266: [german_in_translation]

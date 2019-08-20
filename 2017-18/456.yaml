@@ -114,7 +114,7 @@ requirements:
       with a minimum of 60 overall.
 
 
-empahses:
+emphases:
   voice:
     name: Voice
 
@@ -267,13 +267,6 @@ empahses:
           from: {student: courses}
           where: {attributes: {$eq: music_coll_keyboard_elective}}
           assert: {sum(credits): {$gte: 1}}
-
-      Required Performances:
-        message:
-          2 collaborative performances on student recitals,
-          with at least one of those performances
-          during junior or senior year.
-        department_audited: true
 
 
 attributes:
