@@ -12,11 +12,14 @@ result:
   all:
     - requirement: Core
     - requirement: History of Music
+    - requirement: Additional Music Courses
+    - requirement: Electives
     - requirement: Performance Studies
     - requirement: Required Performances
     - requirement: Keyboard Proficiency
     - requirement: Official Ensemble Participation
     - requirement: Concert Attendance
+    - requirement: Additional Courses from Other Departments
 
 requirements:
   Core:

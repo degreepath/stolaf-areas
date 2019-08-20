@@ -9,7 +9,6 @@ result:
     - requirement: Basics
     - requirement: Transitions
     - requirement: Perspectives
-    # - requirement: Interdisciplinary
     - requirement: Sequence
     - requirement: Level III
 
@@ -73,37 +72,6 @@ requirements:
           from: {student: courses}
           where: {attribute: {$eq: math_perspective_m}}
           assert: {count(courses): {$eq: 1, at_most: true}}
-
-  Interdisciplinary:
-    result:
-      count: 0
-      of:
-        - requirement: Chemistry
-        - requirement: Economics
-        - requirement: Physics
-
-    requirements:
-      Chemistry:
-        result:
-          both:
-            - course: CHEM 371
-            - from: {student: areas}
-              where: {$and: [{type: {$eq: major}}, {name: {$eq: Chemistry}}]}
-              assert: {count(areas): {$eq: 1}}
-      Economics:
-        result:
-          both:
-            - course: ECON 385
-            - from: {student: areas}
-              where: {$and: [{type: {$eq: major}}, {name: {$eq: Economics}}]}
-              assert: {count(areas): {$eq: 1}}
-      Physics:
-        result:
-          both:
-            - course: PHYS 375
-            - from: {student: areas}
-              where: {$and: [{type: {$eq: major}}, {name: {$eq: Physics}}]}
-              assert: {count(areas): {$eq: 1}}
 
   Level III:
     result:

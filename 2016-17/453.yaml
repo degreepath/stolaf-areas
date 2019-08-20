@@ -17,6 +17,9 @@ result:
     - requirement: Keyboard Proficiency
     - requirement: Official Ensemble Participation
     - requirement: Concert Attendance
+    - requirement: Additional Music Courses
+    - requirement: Electives
+    - requirement: Additional Courses from Other Departments
 
 requirements:
   Core:

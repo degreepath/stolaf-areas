@@ -127,11 +127,6 @@ emphases:
             - course: MUSIC 313
             - course: MUSIC 314
 
-      Senior Writing Portfolio:
-        department_audited: true
-        message:
-          3 Level III music papers, one revised with faculty supervision.
-
 attributes:
   courses:
     MUSIC 222: [music_elective, music_em_tc_elective]

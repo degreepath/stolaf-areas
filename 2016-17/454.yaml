@@ -8,10 +8,8 @@ result:
   all:
     - requirement: Core
     - requirement: History of Music
-    - requirement: Entrance Examination
-    - requirement: Continuance Examination
     - requirement: Official Ensemble Participation
-    - requirement: Required Solo Performances
+    - requirement: Required Performances
     - requirement: Concert Attendance
 
 requirements:
@@ -195,8 +193,6 @@ attributes:
     MUSIC 343: [music_choral_elective, music_organ_elective]
     MUSIC 344: [music_choral_elective, music_organ_elective]
     MUSIC 345: [music_choral_elective, music_organ_elective]
-
-    x: [music_organ_elective]
 
     MUSPF 152: [voice_studies]
     MUSPF 252: [voice_studies]

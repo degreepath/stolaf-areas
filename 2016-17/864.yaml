@@ -9,6 +9,8 @@ result:
     - requirement: Mathematical Biology Core
     - requirement: MSCS Electives
     - requirement: BIO Electives
+    - requirement: Integrative Project
+    - requirement: Senior Math Biology Symposium
 
 requirements:
   Mathematical Biology Core:

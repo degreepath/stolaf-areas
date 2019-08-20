@@ -9,6 +9,7 @@ result:
     - requirement: Core
     - requirement: Electives
     - requirement: Interdisciplinary Elective
+    - requirement: Interdisciplinary Reflection
     - requirement: Capstone Seminar
 
 requirements:

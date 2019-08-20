@@ -48,14 +48,14 @@ requirements:
           - subject: {$neq: REG}
       assert: {sum(credits): {$gte: 17}}
 
-  Transfer Credit:
-    message:
-      After matriculation, you may transfer 4 credits from other institutions
-      to St. Olaf college.
-    result:
-      from: {student: transfer_credit}
-      claim: false
-      assert: {value: {$lte: 4}}
+  # Transfer Credit:
+  #   message:
+  #     After matriculation, you may transfer 4 credits from other institutions
+  #     to St. Olaf college.
+  #   result:
+  #     from: {student: transfer_credit}
+  #     claim: false
+  #     assert: {value: {$lte: 4}}
 
   Interim Credit:
     result:

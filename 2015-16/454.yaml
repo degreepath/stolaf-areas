@@ -8,10 +8,8 @@ result:
   all:
     - requirement: Core
     - requirement: History of Music
-    - requirement: Entrance Examination
-    - requirement: Continuance Examination
     - requirement: Official Ensemble Participation
-    - requirement: Required Solo Performances
+    - requirement: Required Performances
     - requirement: Concert Attendance
 
 requirements:

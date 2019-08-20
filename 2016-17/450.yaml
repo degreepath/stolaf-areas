@@ -109,6 +109,7 @@ emphases:
       all:
         - requirement: Courses
         - requirement: Electives
+        - requirement: Senior Writing Portfolio
 
     requirements:
       Courses:

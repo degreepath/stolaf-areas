@@ -8,6 +8,7 @@ result:
   count: all
   of:
     - requirement: Language
+    - requirement: Interdisciplinary Approaches to Asia
     - requirement: Seminar
     - requirement: Electives
 

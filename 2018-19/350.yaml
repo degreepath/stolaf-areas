@@ -136,8 +136,9 @@ emphases:
     name: Public History
 
     result:
-      - requirement: Core
-      - requirement: Electives
+      all:
+        - requirement: Core
+        - requirement: Electives
 
     requirements:
       Core:

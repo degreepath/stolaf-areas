@@ -155,57 +155,34 @@ emphases:
 
     result:
       all:
-        - requirement: Core
-        - requirement: Electives
-        - requirement: Education
-        - requirement: Performance Studies
-        - requirement: Official Choral Ensemble Participation
-        - requirement: Official Instrumental Ensemble Participation
-        - requirement: Required Chamber Music Performances
-
-    requirements:
-      Core:
-        result:
-          all:
-            - course: EDUC 358
-            - course: MUSIC 252
-            - either:
-                - course: MUSIC 253
-                - course: MUSIC 354
-            - either:
-                - course: MUSIC 220
-                - all:
-                    - course: MUSIC 166
-                    - course: MUSIC 167
-                    - course: MUSIC 168
-                    - course: MUSIC 169
-            - course: MUSIC 287
-            - course: MUSIC 364
+        - course: EDUC 358
+        - course: MUSIC 252
+        - either:
+            - course: MUSIC 253
+            - course: MUSIC 354
+        - either:
+            - course: MUSIC 220
+            - all:
+                - course: MUSIC 166
+                - course: MUSIC 167
+                - course: MUSIC 168
+                - course: MUSIC 169
+        - course: MUSIC 287
+        - course: MUSIC 364
 
   455-vocal:
     name: Vocal
 
     result:
       all:
-        - requirement: Core
-        - requirement: Electives
-        - requirement: Education
-        - requirement: Performance Studies
-        - requirement: Official Choral Ensemble Participation
-        - requirement: Required Vocal Chamber Music Performances
-
-    requirements:
-      Core:
-        result:
-          all:
-            - course: EDUC 359
-            - course: MUSIC 253
-            - either:
-                - course: MUSIC 252
-                - course: MUSIC 354
-            - course: MUSIC 221
-            - course: MUSIC 166
-            - course: MUSIC 167
-            - course: MUSIC 168
-            - course: MUSIC 169
-            - course: MUSIC 164
+        - course: EDUC 359
+        - course: MUSIC 253
+        - either:
+            - course: MUSIC 252
+            - course: MUSIC 354
+        - course: MUSIC 221
+        - course: MUSIC 166
+        - course: MUSIC 167
+        - course: MUSIC 168
+        - course: MUSIC 169
+        - course: MUSIC 164
