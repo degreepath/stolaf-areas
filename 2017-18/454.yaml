@@ -79,26 +79,51 @@ emphases:
             - {course: MUSIC 354}
             - {course: EDUC 355}
 
+      Musicology:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Additional Upper-Level Elective:
+        result:
+          from: {student: courses}
+          where:
+            $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+              - attribute: {$neq: music_upper_musicology}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
       Electives:
         result:
           from: {student: courses}
-
           where:
             $and:
-              - {subject: {$eq: MUSIC}}
-              - {level: {$in: [200, 300]}}
-              - {number: {$nin: [294, 298, 394, 398]}}
-
-          all:
-            - assert: {count(courses): {$gte: 4}}
-
-            # at least one upper-level Musicology elective
-            - where: {attribute: {$eq: music_upper_musicology}}
-              assert: {count(courses): {$gte: 1}}
-
-            # at least 2 at level 300
-            - where: {level: {$eq: 300}}
-              assert: {count(courses): {$gte: 2}}
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+              - attributes: {$neq: music_upper_musicology}
+              - course:
+                  $nin:
+                    # exclude the outer core courses
+                    - MUSIC 114
+                    - MUSIC 141
+                    - MUSIC 212
+                    - MUSIC 214
+                    - MUSIC 235
+                    - MUSIC 236
+                    - MUSIC 237
+                    - MUSIC 251
+                    - MUSIC 252
+                    # exclude the Core courses
+                    - MUSIC 262
+                    - MUSIC 263
+                    - MUSIC 264
+                    - MUSIC 287
+                    - MUSIC 291
+                    - MUSIC 292
+                    - MUSIC 354
+          assert: {count(courses): {$gte: 2}}
 
       Voice Performance Studies:
         message:
@@ -152,9 +177,9 @@ emphases:
       Conducting:
         result:
           at_most: true
-              either:
-                - {course: MUSIC 253}
-                - {course: MUSIC 354}
+          either:
+            - {course: MUSIC 253}
+            - {course: MUSIC 354}
 
       Musicology:
         result:
@@ -195,7 +220,7 @@ emphases:
                     # exclude the Core courses
                     - MUSIC 270
                     - MUSIC 290
-              assert: {count(courses): {$gte: 2}}
+          assert: {count(courses): {$gte: 2}}
 
       Organ Performance Studies:
         message:
