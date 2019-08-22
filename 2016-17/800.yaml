@@ -27,5 +27,5 @@ requirements:
       depending on the relevance of their content to the concentration.
     result:
       from: {student: courses}
-      where: {attribute: {$eq: afad_elective}}
+      where: {attribute: {$eq: afam_elective}}
       assert: {count(courses): {$gte: 4}}
