@@ -7,7 +7,7 @@ result:
     - requirement: Required Course Credit
     - requirement: Credits Taken At/Through St. Olaf College
     # - requirement: Transfer Credit
-    - requirement: Interim Credit
+    - requirement: Interim Credits
     - requirement: Cumulative Grade Point Average
     - requirement: Level II/III Course Credit
     - requirement: Graded Course Credit
@@ -56,7 +56,7 @@ requirements:
   #     claim: false
   #     assert: {value: {$lte: 4}}
 
-  Interim Credit:
+  Interim Credits:
     result:
       from: {student: courses}
       claim: false
