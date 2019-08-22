@@ -46,12 +46,6 @@ requirements:
 
   Ancient Roman History:
     result:
-      # from: {student: courses}
-      # where: {attributes: {$eq: latin_elective}}
-      # assert: {count(courses): {$eq: 1}}
-      at_most: true
-      any:
-        - course: HIST 204
-        - course: HIST 303
-        - {course: CLASS 253, hidden: true}
-        - {course: CLASS 244, hidden: true}
+      from: {student: courses}
+      where: {attributes: {$eq: latin_elective}}
+      assert: {count(courses): {$eq: 1, at_most: true}}
