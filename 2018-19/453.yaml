@@ -2,7 +2,6 @@
 name: Elective Studies
 type: major
 degree: B.M.
-catalog: 2018-19
 
 result:
   all:
@@ -107,16 +106,3 @@ requirements:
   Secondary Field of Study:
     message: "Electives in secondary field of study: 6"
     department_audited: true
-
-attributes:
-  courses:
-    MUSIC 340: [music_upper_musicology]
-    MUSIC 341: [music_upper_musicology]
-    MUSIC 342: [music_upper_musicology]
-    MUSIC 343: [music_upper_musicology]
-    MUSIC 344: [music_upper_musicology]
-    MUSIC 345: [music_upper_musicology]
-    MUSIC 346: [music_upper_musicology]
-    MUSIC 347: [music_upper_musicology]
-    MUSIC 348: [music_upper_musicology]
-    MUSIC 349: [music_upper_musicology]

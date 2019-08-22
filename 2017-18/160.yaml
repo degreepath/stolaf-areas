@@ -2,7 +2,6 @@
 name: Biology
 type: major
 degree: B.A.
-catalog: 2017-18
 
 result:
   all:
@@ -28,59 +27,6 @@ result:
             - {level: {$eq: 100}}
             - {subject: {$eq: BIO}}
         assert: {count(courses): {$lte: 2}}
-
-attributes:
-  courses:
-    BIO 121: [bio_elective]
-    BIO 123: [bio_elective]
-    BIO 124: [bio_elective]
-    BIO 127: [bio_elective]
-    BIO 128: [bio_elective]
-    BIO 130: [bio_elective]
-    BIO 131: [bio_elective]
-    BIO 135: [bio_elective]
-    BIO 143: [bio_elective]
-    BIO 150: [bio_elective]
-    BIO 224: [bio_elective]
-    BIO 226: [bio_elective]
-    BIO 227: [bio_elective]
-    BIO 231: [bio_elective]
-    BIO 233: [bio_elective]
-    BIO 242: [bio_elective]
-    BIO 243: [bio_elective]
-    BIO 247: [bio_elective]
-    BIO 248: [bio_elective]
-    BIO 249: [bio_elective]
-    BIO 251: [bio_elective]
-    BIO 252: [bio_elective]
-    BIO 261: [bio_elective]
-    BIO 266: [bio_elective]
-    BIO 275: [bio_elective]
-    BIO 282: [bio_elective]
-    BIO 284: [bio_elective]
-    BIO 287: [bio_elective]
-    BIO 288: [bio_elective]
-    BIO 292: [bio_elective]
-    BIO 298: [bio_elective]
-    BIO 315: [bio_elective]
-    BIO 341: [bio_elective]
-    BIO 348: [bio_elective]
-    BIO 363: [bio_elective]
-    BIO 364: [bio_elective]
-    BIO 371: [bio_elective]
-    BIO 372: [bio_elective]
-    BIO 382: [bio_elective]
-    BIO 383: [bio_elective]
-    BIO 385: [bio_elective]
-    BIO 386: [bio_elective]
-    BIO 391: [bio_elective]
-    BIO 396: [bio_elective]
-    BIO 398: [bio_elective]
-    CH/BI 227: [bio_elective]
-    CHEM 379: [bio_elective]
-    ENVST 281 2000-1: [bio_elective]
-    NEURO 239: [bio_elective]
-    PSYCH 238: [bio_elective]
 
 requirements:
   Foundation:

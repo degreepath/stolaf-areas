@@ -2,7 +2,6 @@
 name: Composition
 type: major
 degree: B.M.
-catalog: 2016-17
 
 result:
   all:
@@ -18,6 +17,10 @@ result:
     - requirement: Required Portfolio
     - requirement: Continuance Examination
     - requirement: Senior Recital
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -121,20 +124,12 @@ requirements:
     message:
       Two solo performances on a St. Olaf Student Recital.
     department_audited: true
-    # result:
-    #   from: {student: music performances}
-    #   where: {solo: {$eq: true}}
-    #   assert: {count(performances): {$gte: 2, at_most: true}}
 
   Required Recital Attendance:
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
     department_audited: true
-    # result:
-    #   from: {student: music performances}
-    #   where: {attended: {$eq: true}}
-    #   assert: {count(performances): {$gte: 60, at_most: true}}
 
   Required Portfolio:
     message: >
@@ -150,16 +145,3 @@ requirements:
   Senior Recital:
     message: Senior recital of original works.
     department_audited: true
-
-attributes:
-  courses:
-    MUSIC 340: [music_upper_musicology]
-    MUSIC 341: [music_upper_musicology]
-    MUSIC 342: [music_upper_musicology]
-    MUSIC 343: [music_upper_musicology]
-    MUSIC 344: [music_upper_musicology]
-    MUSIC 345: [music_upper_musicology]
-    MUSIC 346: [music_upper_musicology]
-    MUSIC 347: [music_upper_musicology]
-    MUSIC 348: [music_upper_musicology]
-    MUSIC 349: [music_upper_musicology]

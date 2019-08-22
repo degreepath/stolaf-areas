@@ -2,7 +2,6 @@
 name: Music Education
 type: major
 degree: B.M.
-catalog: 2015-16
 
 result:
   all:
@@ -19,6 +18,10 @@ result:
     - requirement: Required Senior Recital
     - requirement: Performance
     - requirement: Concert Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -142,7 +145,6 @@ requirements:
   Concert Attendance:
     department_audited: true
     message: Documented attendance at 60 concerts.
-
 
 emphases:
   455-instrumental:

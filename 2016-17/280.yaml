@@ -2,7 +2,6 @@
 name: French
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -48,32 +47,3 @@ requirements:
       limit:
         - {at-most: 1, where: {subject: {$neq: FREN}}}
       assert: {count(courses): {$gte: 2, at_most: true}}
-
-attributes:
-  courses:
-    FREN 250: [french_elective]
-    FREN 251: [french_elective]
-    FREN 253: [french_elective]
-    ART 251: [french_elective]
-    ART 252: [french_elective]
-    ART 263: [french_elective]
-    ART 271: [french_elective]
-    FREN 231: [french_elective]
-    FREN 232: [french_elective]
-    FREN 235: [french_elective]
-    FREN 271: [french_elective]
-    FREN 272: [french_elective]
-    FREN 273: [french_elective]
-    FREN 275: [french_elective]
-    FREN 372: [french_elective]
-    FREN 373: [french_elective]
-    FREN 397: [french_elective]
-    FREN 399: [french_elective]
-    HIST 210: [french_elective]
-    HIST 226: [french_elective]
-    HIST 227: [french_elective]
-    MUSIC 343: [french_elective]
-    PHIL 236: [french_elective]
-    PSCI 260: [french_elective]
-    PSCI 283: [french_elective]
-    THEAT 270: [french_elective]

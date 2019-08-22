@@ -2,7 +2,6 @@
 name: Spanish
 type: major
 degree: B.A.
-catalog: 2017-18
 
 result:
   all:
@@ -61,18 +60,3 @@ attributes:
       - {attributes: {$eq: spanish_elective}}
     - - {course: {$eq: SPAN 314}}
       - {attributes: {$eq: spanish_focus_latinamerica}}
-
-  courses:
-    SPAN 270: [spanish_elective, spanish_focus_spain]
-    SPAN 271: [spanish_elective, spanish_focus_spain]
-    SPAN 272: [spanish_elective, spanish_focus_latinamerica]
-    SPAN 273: [spanish_elective, spanish_focus_latinx_in_us]
-    SPAN 274: [spanish_elective]  # focus depends on topic
-    SPAN 275: [spanish_elective]
-    SPAN 276: [spanish_elective]
-    SPAN 311: [spanish_elective]  # focus depends on topic
-    SPAN 312: [spanish_elective]  # focus depends on topic
-    SPAN 313: [spanish_elective, spanish_focus_spain]
-    SPAN 314: [spanish_elective, spanish_focus_latinamerica]
-    SPAN 315: [spanish_elective, spanish_focus_spain]
-    SPAN 399: [spanish_elective]  # focus depends on topic

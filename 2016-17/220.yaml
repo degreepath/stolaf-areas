@@ -2,7 +2,6 @@
 name: Dance
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -60,30 +59,3 @@ requirements:
     message:
       Majors are required to contribute in managing a dance production
       for a minimum of one semester.
-
-attributes:
-  courses:
-    DANCE 106: [dance_movement]
-    DANCE 107: [dance_movement]
-    DANCE 108: [dance_movement]
-    DANCE 109: [dance_movement]
-    DANCE 111: [dance_movement]
-    DANCE 121: [dance_movement]
-    DANCE 130: [dance_movement]
-    DANCE 131: [dance_movement]
-    DANCE 141: [dance_movement]
-    DANCE 160: [dance_movement]
-    DANCE 205: [dance_movement]
-    DANCE 206: [dance_movement]
-    DANCE 207: [dance_movement]
-    DANCE 209: [dance_movement]
-    DANCE 210: [dance_movement]
-    DANCE 211: [dance_movement]
-    DANCE 220: [dance_movement]
-    DANCE 221: [dance_movement]
-    DANCE 250: [dance_movement]
-    DANCE 251: [dance_movement]
-    DANCE 310: [dance_movement]
-    DANCE 311: [dance_movement]
-    DANCE 320: [dance_movement]
-    DANCE 321: [dance_movement]

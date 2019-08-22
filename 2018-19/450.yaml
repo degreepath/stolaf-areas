@@ -2,7 +2,6 @@
 name: Music
 type: major
 degree: B.A.
-catalog: 2018-19
 
 result:
   all:
@@ -13,6 +12,10 @@ result:
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
     - requirement: Required Recital Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -211,17 +214,3 @@ emphases:
           One of these must be revised with faculty supervision to demonstrate
           the student's best work in musiciology
         department_audited: true
-
-
-attributes:
-  courses:
-    MUSIC 340: [music_upper_musicology]
-    MUSIC 341: [music_upper_musicology]
-    MUSIC 342: [music_upper_musicology]
-    MUSIC 343: [music_upper_musicology]
-    MUSIC 344: [music_upper_musicology]
-    MUSIC 345: [music_upper_musicology]
-    MUSIC 346: [music_upper_musicology]
-    MUSIC 347: [music_upper_musicology]
-    MUSIC 348: [music_upper_musicology]
-    MUSIC 349: [music_upper_musicology]

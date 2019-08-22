@@ -2,7 +2,6 @@
 name: Music Education
 type: major
 degree: B.M.
-catalog: 2017-18
 
 result:
   all:
@@ -215,17 +214,3 @@ emphases:
       Required Vocal Chamber Music Performances:
         department_audited: true
         message: 2 chamber music performances
-
-
-attributes:
-  courses:
-    MUSIC 340: [music_upper_musicology]
-    MUSIC 341: [music_upper_musicology]
-    MUSIC 342: [music_upper_musicology]
-    MUSIC 343: [music_upper_musicology]
-    MUSIC 344: [music_upper_musicology]
-    MUSIC 345: [music_upper_musicology]
-    MUSIC 346: [music_upper_musicology]
-    MUSIC 347: [music_upper_musicology]
-    MUSIC 348: [music_upper_musicology]
-    MUSIC 349: [music_upper_musicology]

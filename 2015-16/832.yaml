@@ -2,7 +2,6 @@
 name: Family Studies
 type: concentration
 degree: B.A.
-catalog: 2015-16
 
 result:
   all:
@@ -41,16 +40,3 @@ requirements:
       studies.
 
     department_audited: true
-
-attributes:
-  courses:
-    FAMST 253: [famst_elective]
-    HIST 272: [famst_elective]
-    NURS 312: [famst_elective]
-    PSYCH 223: [famst_elective]
-    PSYCH 241: [famst_elective]
-    PSYCH 350: [famst_elective]
-    SOAN 125: [famst_elective]
-    SOAN 248: [famst_elective]
-    SOAN 260: [famst_elective]
-    SPAN 250: [famst_elective]

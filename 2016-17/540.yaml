@@ -2,7 +2,6 @@
 name: Physics
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -35,15 +34,3 @@ requirements:
       from: {student: courses}
       where: {attribute: {$eq: phys_upper_elective}}
       assert: {count(courses): {$gte: 1}}
-
-attributes:
-  courses:
-    PHYS 154: [phys_elective]
-    PHYS 246: [phys_elective]
-    PHYS 252: [phys_elective]
-    PHYS 360: [phys_elective, phys_upper_elective]
-    PHYS 362: [phys_elective, phys_upper_elective]
-    PHYS 376: [phys_elective, phys_upper_elective]
-    PHYS 379: [phys_elective, phys_upper_elective]
-    PHYS 390: [phys_elective, phys_upper_elective]
-    PHYS 396: [phys_elective]

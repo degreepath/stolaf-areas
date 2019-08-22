@@ -2,7 +2,6 @@
 name: German
 type: major
 degree: B.A.
-catalog: 2018-19
 
 result:
   all:
@@ -63,34 +62,3 @@ requirements:
               - is_stolaf: {$eq: true}
               - attribute: {$eq: german_in_translation}
       assert: {count(courses): {$eq: 3}}
-
-attributes:
-  courses:
-    GERM 147: [german_in_translation, german_elective]
-    GERM 232: [german_elective]
-    GERM 249: [german_in_translation, german_elective]
-    GERM 251: [german_elective]
-    GERM 252: [german_elective]
-    GERM 253: [german_elective]
-    GERM 263: [german_in_translation, german_elective]
-    GERM 271: [german_elective]
-    GERM 272: [german_elective]
-    GERM 273: [german_elective]
-    GERM 276: [german_elective]
-    GERM 371: [german_elective]
-    GERM 372: [german_elective]
-    ART 252: [german_in_translation, german_elective]
-    ART 271: [german_in_translation, german_elective]
-    HIST 224: [german_in_translation, german_elective]
-    MUSIC 342: [german_in_translation, german_elective]
-    MUSIC 343: [german_in_translation, german_elective]
-    PHIL 260: [german_in_translation, german_elective]
-    PHIL 261: [german_in_translation, german_elective]
-    PHIL 374: [german_in_translation, german_elective]
-    PSCI 283: [german_in_translation, german_elective]
-    PSCI 285: [german_in_translation, german_elective]
-    REL 213: [german_in_translation, german_elective]
-    REL 214: [german_in_translation, german_elective]
-    REL 262: [german_in_translation, german_elective]
-    REL 303: [german_in_translation, german_elective]
-    REL 304: [german_in_translation, german_elective]

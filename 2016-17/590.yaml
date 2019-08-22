@@ -2,7 +2,6 @@
 name: Russian Area Studies
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -60,21 +59,3 @@ requirements:
       This may be taken for course credit as RUSSN 398 (Independent Research).
       Guidelines are available from the department chair. The project is due
       on April 15.
-
-attributes:
-  courses:
-    HIST 230: [russian_area_elective]
-    HIST 231: [russian_area_elective]
-    PSCI 282: [russian_area_elective]
-    RUSSN 250: [russian_area_elective]
-    RUSSN 256: [russian_area_elective]
-    RUSSN 261: [russian_area_elective]
-    RUSSN 262: [russian_area_elective]
-    RUSSN 265: [russian_area_elective]
-    RUSSN 371: [russian_area_elective]
-    RUSSN 372: [russian_area_elective]
-    RUSSN 398: [russian_area_elective]
-
-    # these only count if not also taking Russian Language major
-    RUSSN 251: [russian_area_elective, russian_area_elective_if_not_rusn_lang]
-    RUSSN 254: [russian_area_elective, russian_area_elective_if_not_rusn_lang]

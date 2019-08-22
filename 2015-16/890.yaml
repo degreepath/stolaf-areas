@@ -2,7 +2,6 @@
 name: Statistics
 type: concentration
 degree: B.A.
-catalog: 2015-16
 
 result:
   all:
@@ -30,15 +29,3 @@ requirements:
       from: {student: courses}
       where: {attribute: {$eq: stat_elective}}
       assert: {count(courses): {$gte: 2, at_most: true}}
-
-attributes:
-  courses:
-    CSCI 125: [stat_elective]
-    ECON 385: [stat_elective]
-    MATH 262: [stat_elective]
-    PSYCH 230: [stat_elective]
-    SOAN 371: [stat_elective]
-    STAT 270: [stat_elective]
-    STAT 282: [stat_elective]
-    STAT 302: [stat_elective]
-    STAT 322: [stat_elective]

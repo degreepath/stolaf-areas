@@ -2,18 +2,12 @@
 name: Latin
 type: major
 degree: B.A.
-catalog: 2017-18
 
 result:
   all:
     - requirement: Language
     - requirement: Classics
     - requirement: Ancient Roman History
-
-attributes:
-  courses:
-    HIST 204: [latin_elective]
-    HIST 303: [latin_elective]
 
 requirements:
   Language:

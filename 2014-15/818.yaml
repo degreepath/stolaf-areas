@@ -2,7 +2,6 @@
 name: Biomolecular Science
 type: concentration
 degree: B.A.
-catalog: 2014-15
 
 result:
   all:
@@ -41,16 +40,3 @@ requirements:
       from: {student: courses}
       where: {attributes: {$eq: biomol_elective}}
       assert: {count(courses): {$gte: 2, at_most: true}}
-
-attributes:
-  courses:
-    BIO 315: [biomol_elective]
-    BIO 341: [biomol_elective]
-    BIO 364: [biomol_elective]
-    BIO 372: [biomol_elective]
-    BIO 382: [biomol_elective]
-    BIO 383: [biomol_elective]
-    CHEM 384: [biomol_elective]
-    CHEM 385: [biomol_elective]
-    CHEM 391: [biomol_elective]
-    CSCI 315: [biomol_elective]

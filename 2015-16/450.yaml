@@ -2,7 +2,6 @@
 name: Music
 type: major
 degree: B.A.
-catalog: 2015-16
 
 result:
   all:
@@ -14,6 +13,10 @@ result:
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
     - requirement: Required Concert Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -76,7 +79,6 @@ requirements:
     department_audited: true
     message: Documented attendance at 60 concerts.
 
-
 emphases:
   745:
     name: Theory-Composition
@@ -126,18 +128,3 @@ emphases:
             - course: MUSIC 222
             - course: MUSIC 313
             - course: MUSIC 314
-
-attributes:
-  courses:
-    MUSIC 222: [music_elective, music_em_tc_elective]
-    MUSIC 223: [music_elective]
-    MUSIC 237: [music_elective]
-    MUSIC 313: [music_elective, music_em_tc_elective]
-    MUSIC 314: [music_elective, music_em_tc_elective]
-    MUSIC 324: [music_em_tc_elective]
-    MUSIC 325: [music_em_tc_elective]
-    MUSIC 341: [music_elective]
-    MUSIC 342: [music_elective]
-    MUSIC 343: [music_elective]
-    MUSIC 344: [music_elective]
-    MUSIC 345: [music_elective]

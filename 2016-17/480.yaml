@@ -2,7 +2,6 @@
 name: Norwegian
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -48,10 +47,3 @@ requirements:
         - course: NORW 296
         - course: HIST 211
         - course: HIST 222
-
-attributes:
-  courses:
-    NORW 130: [norw_history_culture]
-    NORW 140: [norw_history_culture]
-    NORW 244: [norw_history_culture]
-    HIST 222: [norw_history_culture]

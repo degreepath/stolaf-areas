@@ -2,7 +2,6 @@
 name: Computer Science
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   count: all
@@ -11,21 +10,6 @@ result:
     - requirement: Core
     - requirement: Electives
     - requirement: Capstone
-
-attributes:
-  courses:
-    CSCI 273: [csci_electives, csci_systems]
-    CSCI 276: [csci_electives, csci_languages]
-    CSCI 284: [csci_electives, csci_systems]
-    CSCI 300: [csci_electives]
-    CSCI 315: [csci_electives]
-    CSCI 333: [csci_electives, csci_languages]
-    CSCI 336: [csci_electives, csci_languages]
-    MSCS 341: [csci_electives]
-    CSCI 350: [csci_electives]
-    MSCS 389: [csci_electives]
-    ID 259: [csci_electives]
-    CSCI 300B 2018-1: [csci_systems]
 
 requirements:
   Foundation:

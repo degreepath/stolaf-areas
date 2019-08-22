@@ -2,7 +2,6 @@
 name: German Studies
 type: concentration
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -29,36 +28,3 @@ requirements:
 
         - where: {subject: {$neq: GERM}}
           assert: {count(courses): {$gte: 2}}
-
-attributes:
-  courses:
-    GERM 147: [german_elective]
-    GERM 249: [german_elective]
-    GERM 263: [german_elective]
-    ART 252: [german_elective]
-    EDUC 346: [german_elective]
-    GCON 218: [german_elective]
-    HIST 191: [german_elective]
-    MUSIC 241: [german_elective]
-    MUSIC 343: [german_elective]
-    PHIL 260: [german_elective]
-    PHIL 261: [german_elective]
-    PHIL 374: [german_elective]
-    PSCI 113: [german_elective]
-    PSCI 283: [german_elective]
-    PSCI 285: [german_elective]
-    REL 213: [german_elective]
-    REL 214: [german_elective]
-    REL 262: [german_elective]
-    REL 303: [german_elective]
-    REL 304: [german_elective]
-
-    GERM 232: [german_langauge]
-    GERM 251: [german_langauge]
-    GERM 252: [german_langauge]
-    GERM 253: [german_langauge]
-    GERM 272: [german_langauge]
-    GERM 273: [german_langauge]
-    GERM 276: [german_langauge]
-    GERM 371: [german_langauge]
-    GERM 372: [german_langauge]

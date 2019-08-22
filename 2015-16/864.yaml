@@ -2,7 +2,6 @@
 name: Mathematical Biology
 type: concentration
 degree: B.A.
-catalog: 2015-16
 
 result:
   all:
@@ -49,26 +48,3 @@ requirements:
       Seniors present their independent project in the form of a poster in a
       Mathematical Biology Symposium held at St. Olaf in the spring.
     department-audited: true
-
-attributes:
-  courses:
-    CSCI 125: [mabio_mscs_elective]
-    CSCI 251: [mabio_mscs_elective]
-    CSCI 315: [mabio_mscs_elective]
-    MATH 230: [mabio_mscs_elective]
-    MATH 242: [mabio_mscs_elective]
-    MATH 330: [mabio_mscs_elective]
-    STAT 212: [mabio_mscs_elective]
-    STAT 214: [mabio_mscs_elective]
-    STAT 272: [mabio_mscs_elective]
-    STAT 302: [mabio_mscs_elective]
-    STAT 284: [mabio_mscs_elective]
-
-    BIO 233: [mabio_bio_elective]
-    BIO 247: [mabio_bio_elective]
-    BIO 261: [mabio_bio_elective]
-    BIO 315: [mabio_bio_elective]
-    BIO 371: [mabio_bio_elective]
-    BIO 383: [mabio_bio_elective]
-    BI/ES 350: [mabio_bio_elective]
-    NEURO 239: [mabio_bio_elective]

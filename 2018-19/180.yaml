@@ -2,50 +2,13 @@
 name: Chinese
 type: major
 degree: B.A.
-catalog: 2018-19
 
 result:
   all:
     - requirement: Core Language
     - requirement: Upper-Level Language
     - requirement: Language and Culture
-
-  audit:
-    assert: {sum(credits): {$gte: 9}}
-
-attributes:
-  courses:
-    ART 259: [china_elective]
-    AS/PS 255: [china_elective]
-    AS/RE 256: [china_elective]
-    AS/RE 257: [china_elective]
-    AS/RE 289: [china_elective]
-    ASIAN 121: [china_elective]
-    ASIAN 123: [china_elective]
-    ASIAN 156: [china_elective]
-    ASIAN 200: [china_elective]
-    ASIAN 210: [china_elective, china_asiancon]
-    ASIAN 215: [china_elective, china_asiancon]
-    ASIAN 216: [china_elective, china_asiancon]
-    ASIAN 220: [china_elective, china_asiancon]
-    ASIAN 236: [china_elective]
-    ASIAN 237: [china_elective]
-    ASIAN 268: [china_elective]
-    ASIAN 270: [china_elective]
-    ASIAN 282: [china_elective]
-    ASIAN 298: [china_is]
-    ASIAN 300: [china_elective]
-    ASIAN 310: [china_elective]
-    ASIAN 333: [china_elective]
-    ASIAN 397: [china_elective, china_senior_seminar]
-    ASIAN 398: [china_is]
-    ASIAN 399: [china_elective, china_senior_seminar]
-    HIST 250: [china_elective]
-    HIST 251: [china_elective]
-    HIST 262: [china_elective]
-    HIST 345: [china_elective]
-    PHIL 251: [china_elective]
-    PSCI 245: [china_elective]
+    - requirement: Double-Majors
 
 requirements:
   Core Language:
@@ -86,3 +49,28 @@ requirements:
 
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
+
+  Double-Majors:
+    if:
+      from: {student: areas}
+      # asian studies or japanese
+      where: {code: {$in: ['150', '385']}}
+      assert: {count(areas): {$gte: 1}}
+
+    department-audited: true
+
+    message: >
+      For students double-majoring in Asian Studies and Chinese or Japanese,
+      the following rules apply:
+
+      1. 231 and 232 can count for both the language and area studies majors.
+
+      2. one 300-level course can count for both the language and area studies
+         major.
+
+      3. two level three language courses can count for both the language and
+         area studies major.
+
+      4. two of the three Asian Conversations courses can count towards the
+         language majors with the third course counting for the area studies
+         major.

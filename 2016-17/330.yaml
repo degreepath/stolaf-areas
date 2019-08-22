@@ -1,7 +1,7 @@
+---
 name: Greek
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   count: all
@@ -9,30 +9,6 @@ result:
     - requirement: Language
     - requirement: Classics
     - requirement: Ancient Greek History
-
-attributes:
-  courses:
-    GREEK 111: [greek_language]
-    GREEK 112: [greek_language]
-    GREEK 231: [greek_language]
-    GREEK 253: [greek_language]
-    GREEK 370: [greek_language]
-    GREEK 372: [greek_language]
-    GREEK 373: [greek_language]
-    GREEK 374: [greek_language]
-    GREEK 375: [greek_language]
-    HIST 203: [greek_elective]
-    HIST 302: [greek_elective]
-    CLASS 121: [classics_course]
-    CLASS 123: [classics_course]
-    CLASS 126: [classics_course]
-    CLASS 129: [classics_course]
-    CLASS 241: [classics_course]
-    CLASS 243: [classics_course]
-    CLASS 244: [classics_course]
-    CLASS 251: [classics_course]
-    CLASS 253: [classics_course]
-    CLASS 396: [classics_course]
 
 requirements:
   Language:

@@ -2,7 +2,6 @@
 name: Ancient Studies
 type: major
 degree: B.A.
-catalog: 2015-16
 
 result:
   count: all
@@ -12,58 +11,6 @@ result:
     - requirement: Classics
     - requirement: Electives
     - requirement: Independent Research
-
-attributes:
-  courses:
-    ART 267: [ancient_elective]
-    CLASS 124: [ancient_classics, ancient_elective]
-    CLASS 125: [ancient_classics, ancient_elective]
-    CLASS 126: [ancient_classics, ancient_elective]
-    CLASS 129: [ancient_elective]
-    CLASS 240: [ancient_classics, ancient_elective]
-    CLASS 241: [ancient_elective]
-    CLASS 243: [ancient_classics, ancient_elective]
-    CLASS 244: [ancient_elective]
-    CLASS 251: [ancient_elective]
-    CLASS 253: [ancient_classics, ancient_elective]
-    GCON 113: [ancient_elective]
-    GCON 115: [ancient_elective]
-    GREEK 111: [ancient_elective_if_latin_lang]
-    GREEK 112: [ancient_elective_if_latin_lang]
-    GREEK 231: [ancient_elective_if_latin_lang]
-    GREEK 253: [ancient_elective_if_latin_lang]
-    GREEK 374: [ancient_elective_if_latin_lang]
-    GREEK 375: [ancient_elective_if_latin_lang]
-    HIST 101: [ancient_history, ancient_elective]
-    HIST 190: [ancient_history, ancient_elective]
-    HIST 201: [ancient_history, ancient_elective]
-    HIST 203: [ancient_history, ancient_elective]
-    HIST 204: [ancient_history, ancient_elective]
-    HIST 205: [ancient_history, ancient_elective]
-    HIST 302: [ancient_history, ancient_elective]
-    HIST 303: [ancient_history, ancient_elective]
-    HIST 306: [ancient_history, ancient_elective]
-    LATIN 111: [ancient_elective_if_greek_lang]
-    LATIN 112: [ancient_elective_if_greek_lang]
-    LATIN 231: [ancient_elective_if_greek_lang]
-    LATIN 235: [ancient_elective_if_greek_lang]
-    LATIN 373: [ancient_elective_if_greek_lang]
-    LATIN 375: [ancient_elective_if_greek_lang]
-    PHIL 235: [ancient_elective]
-    PHIL 374: [ancient_elective]
-    PSCI 259: [ancient_elective]
-    REL 221: [ancient_elective]
-    REL 222: [ancient_elective]
-    REL 223: [ancient_elective]
-    REL 227: [ancient_elective]
-    REL 271: [ancient_elective]
-    REL 272: [ancient_elective]
-    REL 273: [ancient_elective]
-    REL 276: [ancient_elective]
-    REL 302: [ancient_elective]
-    REL 320: [ancient_elective]
-    REL 391: [ancient_elective]
-    THEAT 270: [ancient_elective]
 
 requirements:
   Language:

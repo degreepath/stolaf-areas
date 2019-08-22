@@ -2,7 +2,6 @@
 name: Chemistry
 type: major
 degree: B.A.
-catalog: 2018-19
 
 result:
   all:
@@ -116,16 +115,3 @@ requirements:
     message:
       Attendance is required at 12 departmental seminars after
       declaration of major.
-
-attributes:
-  courses:
-    CHEM 252: [chem_elective]
-    CHEM 280: [chem_elective]
-    CHEM 360: [chem_elective]
-    CHEM 379: [chem_elective]
-    CHEM 382: [chem_elective]
-    CHEM 384: [chem_elective]
-    CHEM 386: [chem_elective]
-    CHEM 388: [chem_elective]
-    CHEM 391: [chem_elective]
-    CHEM 396: [chem_elective]

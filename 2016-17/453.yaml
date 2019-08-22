@@ -2,7 +2,6 @@
 name: Elective Studies
 type: major
 degree: B.M.
-catalog: 2016-17
 
 limit:
   - at-most: 0
@@ -66,10 +65,6 @@ requirements:
     department_audited: true
     message: >
       Select three courses in music electives (or fractional equivalent)
-    # result:
-    #   from: {student: courses}
-    #   where: {subject: {$eq: MUSIC}}
-    #   assert: {sum(credits): {$gte: 3}}
 
   Performance Studies:
     message: 6 semesters; 4 in the same instrument/voice

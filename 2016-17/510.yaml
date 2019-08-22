@@ -2,7 +2,6 @@
 name: Philosophy
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -34,12 +33,3 @@ requirements:
           - subject: {$eq: PHIL}
           - attribute: {$eq: phil_elective}
       assert: {count(courses): {$gte: 3}}
-
-attributes:
-  courses:
-    GCON 218: [phil_elective]
-    PHIL 371: [phil_l3_seminar]
-    PHIL 372: [phil_l3_seminar]
-    PHIL 373: [phil_l3_seminar]
-    PHIL 374: [phil_l3_seminar]
-    PHIL 375: [phil_l3_seminar]

@@ -2,7 +2,6 @@
 name: Educational Studies
 type: concentration
 degree: B.A.
-catalog: 2017-18
 
 result:
   all:
@@ -27,6 +26,7 @@ requirements:
 
   Field Experience:
     result:
+      at_most: true
       any:
         - course: EDUC 170
         - course: EDUC 270

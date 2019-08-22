@@ -2,7 +2,6 @@
 name: German
 type: major
 degree: B.A.
-catalog: 2016-17
 
 result:
   all:
@@ -31,11 +30,3 @@ requirements:
 
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
-
-attributes:
-  courses:
-    GERM 147: [german_in_translation]
-    GERM 246: [german_in_translation]
-    GERM 249: [german_in_translation]
-    GERM 263: [german_in_translation]
-    GERM 266: [german_in_translation]

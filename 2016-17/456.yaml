@@ -2,7 +2,6 @@
 name: Performance
 type: major
 degree: B.M.
-catalog: 2016-17
 
 result:
   all:
@@ -113,7 +112,6 @@ requirements:
     message:
       Documented attendance at 60 concerts.
 
-
 emphases:
   voice:
     name: Voice
@@ -217,27 +215,3 @@ emphases:
           from: {student: courses}
           where: {attributes: {$eq: music_coll_keyboard_elective}}
           assert: {sum(credits): {$gte: 1}}
-
-
-attributes:
-  courses:
-    MUSIC 222: [music_elective]
-    MUSIC 223: [music_elective]
-    MUSIC 313: [music_elective]
-    MUSIC 314: [music_elective]
-    MUSIC 341: [music_elective]
-    MUSIC 342: [music_elective]
-    MUSIC 343: [music_elective]
-    MUSIC 344: [music_elective]
-    MUSIC 345: [music_elective]
-
-    MUSIC 252: [music_coll_keyboard_elective]
-    MUSIC 253: [music_coll_keyboard_elective]
-    MUSIC 263: [music_coll_keyboard_elective]
-    MUSIC 264: [music_coll_keyboard_elective]
-    MUSIC 267: [music_coll_keyboard_elective]
-    MUSIC 268: [music_coll_keyboard_elective]
-    MUSIC 269: [music_coll_keyboard_elective]
-    MUSIC 354: [music_coll_keyboard_elective]
-    MUSIC 275: [music_coll_keyboard_elective]
-    MUSPF 106: [music_coll_keyboard_elective]

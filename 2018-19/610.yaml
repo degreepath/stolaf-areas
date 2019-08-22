@@ -2,7 +2,6 @@
 name: Sociology/Anthropology
 type: major
 degree: B.A.
-catalog: 2018-19
 
 result:
   all:
@@ -47,39 +46,3 @@ requirements:
         - {at-most: 1, where: {number: {$in: [298, 398]}}}
         - {at-most: 1, where: {number: {$in: [396]}}}
       assert: {count(courses): {$gte: 4}}
-
-attributes:
-  courses:
-    SOAN 121: [soan_elective]
-    SOAN 128: [soan_elective]
-    SOAN 232: [soan_elective]  # may not be offered again
-    SOAN 233: [soan_elective]
-    SOAN 234: [soan_elective]  # remove as faculty has retired
-    SOAN 235: [soan_elective]
-    SOAN 236: [soan_elective]
-    SOAN 237: [soan_elective]
-    SOAN 242: [soan_elective]  # remove as faculty has retired
-    SOAN 244: [soan_elective]  # may not be offered again
-    SOAN 246: [soan_elective]  # remove as faculty has retired
-    SOAN 247: [soan_elective]
-    SOAN 248: [soan_elective]
-    SOAN 250: [soan_elective]
-    SOAN 260: [soan_elective]
-    SOAN 261: [soan_elective]
-    SOAN 262: [soan_elective]
-    SOAN 263: [soan_elective]
-    SOAN 264: [soan_elective]
-    SOAN 265: [soan_elective]
-    SOAN 266: [soan_elective]  # remove as faculty has retired
-    SOAN 267: [soan_elective]
-    SOAN 269: [soan_elective]
-    SOAN 294: [soan_elective]
-    SOAN 296: [soan_elective]
-    SOAN 297: [soan_elective]
-    SOAN 299: [soan_elective]
-    SOAN 394: [soan_elective]
-    SOAN 298: [soan_elective]
-    SOAN 398: [soan_elective]
-    SOAN 396: [soan_elective]
-    ID 245: [soan_elective]
-    AS/SA 239: [soan_elective]

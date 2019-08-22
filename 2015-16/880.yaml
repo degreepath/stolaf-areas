@@ -2,7 +2,6 @@
 name: Neuroscience
 type: concentration
 degree: B.A.
-catalog: 2015-16
 
 result:
   all:
@@ -73,46 +72,3 @@ requirements:
       from: {student: courses}
       where: {attribute: {$eq: neuro_capstone}}
       assert: {count(courses): {$gte: 1}}
-
-attributes:
-  courses:
-    BIO 227: [neuro_foundation_lab]
-    BIO 233: [neuro_foundation_lab]
-    BIO 243: [neuro_foundation_lab]
-    BIO 247: [neuro_foundation_lab]
-    BIO 248: [neuro_foundation_lab]
-    MATH 236: [neuro_foundation_lab, neuro_interdisciplinary_elective]
-    PHYS 246: [neuro_foundation_lab]
-    PSYCH 235: [neuro_foundation_lab]
-    PSYCH 236: [neuro_foundation_lab]
-    PSYCH 237: [neuro_foundation_lab]
-
-    BIO 341: [neuro_adv_lab]
-    BIO 364: [neuro_adv_lab]
-    BIO 372: [neuro_adv_lab]
-    BIO 386: [neuro_adv_lab]
-    CHEM 373: [neuro_adv_lab]
-    PHYS 390: [neuro_adv_lab]
-    PSYCH 395: [neuro_adv_lab]
-
-    CSCI 253: [neuro_interdisciplinary_elective]
-    CSCI 315: [neuro_interdisciplinary_elective]
-    CSCI 333: [neuro_interdisciplinary_elective]
-    ESTH 373: [neuro_interdisciplinary_elective]
-    ESTH 374: [neuro_interdisciplinary_elective]
-    ESTH 375: [neuro_interdisciplinary_elective]
-    MATH 230: [neuro_interdisciplinary_elective]
-    MATH 330: [neuro_interdisciplinary_elective]
-    PHIL 231: [neuro_interdisciplinary_elective]
-    PHIL 244: [neuro_interdisciplinary_elective]
-    PHIL 250: [neuro_interdisciplinary_elective]
-    PHIL 251: [neuro_interdisciplinary_elective]
-    STAT 272: [neuro_interdisciplinary_elective]
-    STAT 316: [neuro_interdisciplinary_elective]
-    STAT 322: [neuro_interdisciplinary_elective]
-
-    BIO 385: [neuro_capstone]
-    PSYCH 336: [neuro_capstone]
-    PSYCH 337: [neuro_capstone]
-    PSYCH 338: [neuro_capstone]
-    PSYCH 339: [neuro_capstone]

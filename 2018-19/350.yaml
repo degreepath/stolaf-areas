@@ -2,7 +2,6 @@
 name: History
 type: major
 degree: B.A.
-catalog: 2018-19
 
 result:
   all:
@@ -26,64 +25,6 @@ attributes:
       - {attributes: {$eq: history_region_eu_ru}}
       - {attributes: {$eq: history_region_us}}
       - {attributes: {$eq: hist_public_elective}}
-
-  courses:
-    HIST 161: [history_region_us]
-    HIST 165: [history_region_us]
-    HIST 168: [history_region_us]
-    HIST 169: [history_region_us]
-    HIST 175: [history_region_us]
-    HIST 181: [history_region_us]
-    HIST 182: [history_region_us]
-    HIST 188: [history_region_us]
-    HIST 198: [history_region_us]
-    HIST 199: [history_region_us]
-    HIST 201: [history_l2_seminar]
-    HIST 210: [history_l2_seminar, history_region_eu_ru]
-    HIST 211: [history_region_eu_ru]
-    HIST 212: [history_region_eu_ru]
-    HIST 213: [history_region_eu_ru]
-    HIST 214: [history_region_eu_ru]
-    HIST 215: [history_region_eu_ru]
-    HIST 216: [history_region_eu_ru]
-    HIST 217: [history_region_eu_ru]
-    HIST 218: [history_region_eu_ru]
-    HIST 219: [history_region_eu_ru]
-    HIST 240: [history_l2_seminar, history_region_af_as_la]
-    HIST 241: [history_region_af_as_la]
-    HIST 242: [history_region_af_as_la]
-    HIST 243: [history_region_af_as_la]
-    HIST 244: [history_region_af_as_la, hist_public_elective]
-    HIST 245: [history_region_af_as_la]
-    HIST 246: [history_region_af_as_la]
-    HIST 247: [history_region_af_as_la]
-    HIST 248: [history_region_af_as_la]
-    HIST 249: [history_region_af_as_la]
-    HIST 256: [hist_public_elective]
-    HIST 270: [history_l2_seminar, history_region_us]
-    HIST 271: [history_region_us]
-    HIST 272: [history_region_us]
-    HIST 273: [history_region_us]
-    HIST 274: [history_region_us]
-    HIST 275: [history_region_us]
-    HIST 276: [history_region_us]
-    HIST 277: [history_region_us]
-    HIST 278: [hist_public_elective, history_region_us]
-    HIST 279: [history_region_us]
-    HIST 290: [history_region_us, hist_public_elective]
-    HIST 293: [history_region_us]
-    HIST 297: [history_region_us]
-    HIST 299: [hist_public_elective]
-    HIST 302: [history_l3_seminar]
-    HIST 303: [history_l3_seminar]
-    HIST 320: [history_l3_seminar]
-    HIST 345: [history_l3_seminar]
-    HIST 370: [history_l3_seminar]
-    HIST 375: [history_l3_seminar]
-    HIST 393: [hist_public_elective]
-    HIST 395: [hist_public_elective]
-    HIST 397: [history_l3_seminar]
-
 
 requirements:
   Europe and Russia:
@@ -129,7 +70,6 @@ requirements:
             - history_region_af_as_la
             - history_region_us
       assert: {count(courses): {$gte: 2, at_most: true}}
-
 
 emphases:
   737:

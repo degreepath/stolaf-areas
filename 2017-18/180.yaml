@@ -2,7 +2,6 @@
 name: Chinese
 type: major
 degree: B.A.
-catalog: 2017-18
 
 result:
   all:
@@ -10,42 +9,6 @@ result:
     - requirement: Upper-Level Language
     - requirement: Language and Culture
 
-  audit:
-    assert: {sum(credits): {$gte: 9}}
-
-attributes:
-  courses:
-    ART 259: [china_elective]
-    AS/PS 255: [china_elective]
-    AS/RE 256: [china_elective]
-    AS/RE 257: [china_elective]
-    AS/RE 289: [china_elective]
-    ASIAN 121: [china_elective]
-    ASIAN 123: [china_elective]
-    ASIAN 156: [china_elective]
-    ASIAN 200: [china_elective]
-    ASIAN 210: [china_elective, china_asiancon]
-    ASIAN 215: [china_elective, china_asiancon]
-    ASIAN 216: [china_elective, china_asiancon]
-    ASIAN 220: [china_elective, china_asiancon]
-    ASIAN 236: [china_elective]
-    ASIAN 237: [china_elective]
-    ASIAN 268: [china_elective]
-    ASIAN 270: [china_elective]
-    ASIAN 282: [china_elective]
-    ASIAN 298: [china_is]
-    ASIAN 300: [china_elective]
-    ASIAN 310: [china_elective]
-    ASIAN 333: [china_elective]
-    ASIAN 397: [china_elective, china_senior_seminar]
-    ASIAN 398: [china_is]
-    ASIAN 399: [china_elective, china_senior_seminar]
-    HIST 250: [china_elective]
-    HIST 251: [china_elective]
-    HIST 262: [china_elective]
-    HIST 345: [china_elective]
-    PHIL 251: [china_elective]
-    PSCI 245: [china_elective]
 
 requirements:
   Core Language:

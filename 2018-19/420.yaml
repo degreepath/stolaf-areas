@@ -2,7 +2,6 @@
 name: Mathematics
 type: major
 degree: B.A.
-catalog: 2018-19
 
 result:
   all:
@@ -130,34 +129,3 @@ attributes:
     - - {attributes: {$eq: math_perspective_m}}
       - {attributes: {$eq: math_level_3}}
       - {attributes: {$eq: math_transitions}}
-
-  courses:
-    CSCI 315: [math_level_3]
-    CSCI 333: [math_level_3]
-    MATH 226: [math_perspective_c]
-    MATH 230: [math_perspective_c, math_perspective_m]
-    MATH 232: [math_perspective_d]
-    MATH 236: [math_perspective_m]
-    MATH 239: [math_perspective_d]
-    MATH 242: [math_perspective_m, math_transitions]
-    MATH 244: [math_perspective_c, math_transitions]
-    MATH 252: [math_perspective_a, math_transitions]
-    MATH 262: [math_perspective_c, math_perspective_d, math_perspective_m]
-    MATH 266: [math_perspective_m]
-    MATH 330: [math_perspective_m, math_level_3]
-    MATH 340: [math_perspective_c, math_level_3]
-    MATH 344: [math_perspective_c, math_level_3]
-    MATH 348: [math_perspective_a, math_level_3]
-    MATH 352: [math_perspective_a, math_level_3]
-    MATH 356: [math_perspective_a, math_level_3]
-    MATH 364: [math_perspective_d, math_level_3]
-    MATH 382: [math_level_3]
-    MATH 384: [math_level_3]
-    MATH 396: [math_level_3]
-    MSCS 341: [math_perspective_m, math_level_3]
-    MSCS 390: [math_level_3]
-    STAT 212: [math_perspective_m]
-    STAT 214: [math_perspective_m]
-    STAT 272: [math_perspective_m]
-    STAT 316: [math_perspective_m]
-    STAT 322: [math_level_3]

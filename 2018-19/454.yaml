@@ -2,7 +2,6 @@
 name: Church Music
 type: major
 degree: B.M.
-catalog: 2018-19
 
 result:
   all:
@@ -12,6 +11,10 @@ result:
     - requirement: Official Ensemble Participation
     - requirement: Required Solo Performances
     - requirement: Required Recital Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -205,27 +208,3 @@ emphases:
 
       Senior Half Recital:
         department_audited: true
-
-
-attributes:
-  courses:
-    MUSIC 340: [music_upper_musicology]
-    MUSIC 341: [music_upper_musicology]
-    MUSIC 342: [music_upper_musicology]
-    MUSIC 343: [music_upper_musicology]
-    MUSIC 344: [music_upper_musicology]
-    MUSIC 345: [music_upper_musicology]
-    MUSIC 346: [music_upper_musicology]
-    MUSIC 347: [music_upper_musicology]
-    MUSIC 348: [music_upper_musicology]
-    MUSIC 349: [music_upper_musicology]
-
-    MUSPF 152: [voice_studies]
-    MUSPF 252: [voice_studies]
-    MUSPF 128: [organ_studies]
-    MUSPF 228: [organ_studies]
-
-    MUSIC 161: [keyboard_studies]
-    MUSIC 162: [keyboard_studies]
-    MUSIC 261: [keyboard_studies]
-    MUSIC 262: [keyboard_studies]

@@ -2,7 +2,6 @@
 name: Race and Ethnic Studies
 type: major
 degree: B.A.
-catalog: 2014-15
 
 result:
   all:
@@ -35,61 +34,3 @@ requirements:
       and to give an oral presentation of their findings before the program
       faculty in early May of their senior year.
     department-audited: true
-
-attributes:
-  courses:
-    RACE 250: [race_elective]
-
-    RACE 296: [race_elective]
-    RACE 298: [race_elective]
-    RACE 396: [race_elective]
-    RACE 398: [race_elective]
-
-    AFAM 231: [race_elective]
-    AFAM 232: [race_elective]
-
-    AMCON 202: [race_elective]
-
-    ART 261: [race_elective]
-    ART 265: [race_elective]
-    ART 278: [race_elective]
-
-    ASIAN 123: [race_elective]
-
-    DANCE 246: [race_elective]
-
-    EDUC 170: [race_elective]
-    EDUC 246: [race_elective]
-    EDUC 260: [race_elective]
-    EDUC 378: [race_elective]
-    EDUC 379: [race_elective]
-
-    ENGL 108: [race_elective]
-    ENGL 200: [race_elective]
-    ENGL 203: [race_elective]
-    ENGL 205: [race_elective]
-    ENGL 251: [race_elective]
-    ENGL 345: [race_elective]
-
-    HIST 165: [race_elective]
-    HIST 181: [race_elective]
-    HIST 277: [race_elective]
-    HIST 278: [race_elective]
-    HIST 282: [race_elective]
-    HIST 288: [race_elective]
-
-    MUSIC 231: [race_elective]
-    MUSIC 237: [race_elective]
-
-    PHIL 255: [race_elective]
-
-    PSCI 244: [race_elective]
-
-    SOAN 234: [race_elective]
-    SOAN 242: [race_elective]
-    SOAN 264: [race_elective]
-    SOAN 266: [race_elective]
-
-    SPAN 273: [race_elective]
-
-    SWRK 373: [race_elective]

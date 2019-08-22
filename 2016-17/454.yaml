@@ -2,7 +2,6 @@
 name: Church Music
 type: major
 degree: B.M.
-catalog: 2016-17
 
 result:
   all:
@@ -11,6 +10,10 @@ result:
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
     - requirement: Concert Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -61,7 +64,6 @@ requirements:
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
-
 
 emphases:
   454-choral:
@@ -179,27 +181,3 @@ emphases:
         department_audited: true
         message:
           60-minute Senior recital
-
-
-attributes:
-  courses:
-    MUSIC 222: [music_choral_elective, music_organ_elective]
-    MUSIC 223: [music_choral_elective, music_organ_elective]
-    MUSIC 313: [music_choral_elective, music_organ_elective]
-    MUSIC 314: [music_choral_elective, music_organ_elective]
-
-    MUSIC 341: [music_choral_elective, music_organ_elective]
-    MUSIC 342: [music_choral_elective, music_organ_elective]
-    MUSIC 343: [music_choral_elective, music_organ_elective]
-    MUSIC 344: [music_choral_elective, music_organ_elective]
-    MUSIC 345: [music_choral_elective, music_organ_elective]
-
-    MUSPF 152: [voice_studies]
-    MUSPF 252: [voice_studies]
-    MUSPF 128: [organ_studies]
-    MUSPF 228: [organ_studies]
-
-    MUSIC 161: [keyboard_studies]
-    MUSIC 162: [keyboard_studies]
-    MUSIC 261: [keyboard_studies]
-    MUSIC 262: [keyboard_studies]

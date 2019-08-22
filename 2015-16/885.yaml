@@ -2,7 +2,6 @@
 name: Nordic Studies
 type: concentration
 degree: B.A.
-catalog: 2015-16
 
 result:
   all:
@@ -12,28 +11,6 @@ result:
   audit:
     where: {s/u: {$eq: true}}
     assert: {count(courses): {$lte: 1}}
-
-attributes:
-  courses:
-    HIST 169: [nordic_elective]  # Norwegian-American History
-    HIST 211: [nordic_elective]  # Viking and Medieval Scandinavia
-    HIST 222: [nordic_elective]  # Modern Scandinavia
-    MUSPF 118: [nordic_elective]  # Hardanger Fiddle
-    MUSPF 218: [nordic_elective]  # Hardanger Fiddle
-    NORST 200: [nordic_elective]  # Transdisciplinary Topics in Nordic
-    NORW 130: [nordic_elective, nordic_focus_norway]  # Nordic Film Today
-    NORW 140: [nordic_elective, nordic_focus_norway]  # Norway: Contin/Change
-    NORW 224: [nordic_elective, nordic_focus_norway]  # Top: Contemporary Nordic Lit
-    NORW 232: [nordic_elective]  # Intermed Norwegian II
-    NORW 244: [nordic_elective]  # Sami:Tradition/Transition
-    NORW 253: [nordic_elective, nordic_focus_norway]  # Advanced Conv & Comp
-    NORW 282: [nordic_elective, nordic_focus_norway]  # Ibsen
-    NORW 371: [nordic_elective, nordic_focus_norway]  # Norwegian Literature: An Overview
-    NORW 372: [nordic_elective, nordic_focus_norway]  # Topics in Norwegian Lit/Culture
-    PHIL 233: [nordic_elective]  # Kierkegaard
-    PSCI 283: [nordic_elective]  # European Social Democracy
-    PSCI 382: [nordic_elective]  # Geopolitics Eurasian Ener
-
 
 requirements:
   Language:
