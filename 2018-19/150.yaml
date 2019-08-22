@@ -19,7 +19,7 @@ requirements:
         $or:
           - {attributes: {$eq: asian_language_chinese}}
           - {attributes: {$eq: asian_language_japanese}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Seminar:
     result:
@@ -46,7 +46,7 @@ requirements:
           where: {attributes: {$eq: asian_region_japan}}
 
       all:
-        - assert: {count(courses): {$gte: 6}}
+        - assert: {count(courses): {$gte: 6, at_most: true}}
 
         # "At least two at level II or level III, taken on campus"
         - where:
