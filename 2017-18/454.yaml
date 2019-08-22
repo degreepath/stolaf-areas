@@ -12,6 +12,10 @@ result:
     - requirement: Required Solo Performances
     - requirement: Required Recital Attendance
 
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
 requirements:
   Core:
     result:
@@ -35,30 +39,17 @@ requirements:
   Official Ensemble Participation:
     department_audited: true
     message: 'Official Ensemble Participation: 4 semesters'
-    # result:
-    #   from: {student: courses}
-    #   where: {subject: {$eq: MUSEN}}
-    #   assert: {count(terms): {$gte: 4, at_most: true}}
 
   Required Solo Performances:
     message:
       Two solo performances on a St. Olaf Student Recital.
     department_audited: true
-    # result:
-    #   from: {student: music performances}
-    #   where: {solo: {$eq: true}}
-    #   assert: {count(performances): {$gte: 2, at_most: true}}
 
   Required Recital Attendance:
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
     department_audited: true
-    # result:
-    #   from: {student: music performances}
-    #   where: {attended: {$eq: true}}
-    #   assert: {count(performances): {$gte: 60, at_most: true}}
-
 
 emphases:
   454-choral:
@@ -67,7 +58,9 @@ emphases:
     result:
       all:
         - requirement: Core
+        - requirement: Musicology
         - requirement: Electives
+        - requirement: Additional Upper-Level Elective
         - requirement: Voice Performance Studies
         - requirement: Keyboard Performance Studies
         - requirement: Junior or Senior Half Voice Recital
@@ -140,7 +133,10 @@ emphases:
     result:
       all:
         - requirement: Core
+        - requirement: Conducting
+        - requirement: Musicology
         - requirement: Electives
+        - requirement: Additional Upper-Level Elective
         - requirement: Organ Performance Studies
         - requirement: Voice Performance Studies
         - requirement: Junior Half Recital
@@ -152,30 +148,53 @@ emphases:
           all:
             - {course: MUSIC 270, grade: B-}
             - {course: MUSIC 290}
-            - at_most: true
+
+      Conducting:
+        result:
+          at_most: true
               either:
                 - {course: MUSIC 253}
                 - {course: MUSIC 354}
 
+      Musicology:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Additional Upper-Level Elective:
+        result:
+          from: {student: courses}
+          where:
+            $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+              - attribute: {$neq: music_upper_musicology}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
       Electives:
         result:
           from: {student: courses}
-
           where:
             $and:
-              - {subject: {$eq: MUSIC}}
-              - {level: {$in: [200, 300]}}
-              - {number: {$nin: [294, 298, 394, 398]}}
-
-          all:
-            - assert: {count(courses): {$gte: 5}}
-
-            # at least one upper-level Musicology elective
-            - where: {attribute: {$eq: music_upper_musicology}}
-              assert: {count(courses): {$gte: 1}}
-
-            # at least 2 at level 300
-            - where: {level: {$eq: 300}}
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+              - attributes: {$neq: music_upper_musicology}
+              - course:
+                  $nin:
+                    # exclude the outer core courses
+                    - MUSIC 114
+                    - MUSIC 141
+                    - MUSIC 212
+                    - MUSIC 214
+                    - MUSIC 235
+                    - MUSIC 236
+                    - MUSIC 237
+                    - MUSIC 251
+                    - MUSIC 252
+                    # exclude the Core courses
+                    - MUSIC 270
+                    - MUSIC 290
               assert: {count(courses): {$gte: 2}}
 
       Organ Performance Studies:

@@ -6,13 +6,18 @@ degree: B.M.
 result:
   all:
     - requirement: Core
-    - requirement: Electives
     - requirement: Musicology
+    - requirement: Additional Upper-Level Elective
+    - requirement: Additional Electives
     - requirement: Education
     - requirement: Required Solo Performances
     - requirement: Required Recital Attendance
     - requirement: Senior Half Recital
     - requirement: Art, Theater, or Lyric Theater
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -35,17 +40,25 @@ requirements:
       where: {attribute: {$eq: music_upper_musicology}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Electives:
+  Additional Upper-Level Elective:
     result:
       from: {student: courses}
       where:
         $and:
-          - {subject: {$eq: MUSIC}}
-          - {level: {$eq: 300}}
-          - {number: {$nin: [294, 298, 394, 398]}}
-      limit:
-        - {at most: 3, where: {level: {$eq: 200}}}
-      assert: {count(courses): {$gte: 4, at_most: true}}
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+          - attribute: {$neq: music_upper_musicology}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+          - attributes: {$neq: music_upper_musicology}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Education:
     result:
@@ -87,7 +100,6 @@ requirements:
   Senior Half Recital:
     message: Senior Half Recital
     department_audited: true
-
 
 emphases:
   455-instrumental:

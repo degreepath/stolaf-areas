@@ -8,6 +8,8 @@ result:
     - requirement: Core
     - requirement: Composition Lessons
     - requirement: Conducting
+    - requirement: Musicology
+    - requirement: Additional Upper-Level Elective
     - requirement: Electives
     - requirement: Musical Acoustics
     - requirement: Performance Studies
@@ -17,6 +19,10 @@ result:
     - requirement: Required Portfolio
     - requirement: Continuance Examination
     - requirement: Senior Recital
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
 
 requirements:
   Core:
@@ -53,13 +59,30 @@ requirements:
         - course: MUSIC 252
         - course: MUSIC 253
 
+  Musicology:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Upper-Level Elective:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+          - attribute: {$neq: music_upper_musicology}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
   Electives:
     result:
       from: {student: courses}
       where:
         $and:
-          - {subject: {$eq: MUSIC}}
-          - {level: {$in: [200, 300]}}
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+          - attributes: {$neq: music_upper_musicology}
           - course:
               $nin:
                 # exclude the Conducting courses
@@ -84,14 +107,7 @@ requirements:
                 - MUSIC 262
                 - MUSIC 314
                 - MUSIC 324
-      all:
-        - assert: {count(courses): {$gte: 8}}
-
-        - where: {level: {$eq: 300}}
-          assert: {count(courses): {$gte: 2}}
-
-        - where: {attribute: {$eq: music_upper_musicology}}
-          assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 3}}
 
   Musical Acoustics:
     result:
@@ -120,20 +136,12 @@ requirements:
     message:
       Two solo performances on a St. Olaf Student Recital.
     department_audited: true
-    # result:
-    #   from: {student: music performances}
-    #   where: {solo: {$eq: true}}
-    #   assert: {count(performances): {$gte: 2, at_most: true}}
 
   Required Recital Attendance:
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
     department_audited: true
-    # result:
-    #   from: {student: music performances}
-    #   where: {attended: {$eq: true}}
-    #   assert: {count(performances): {$gte: 60, at_most: true}}
 
   Required Portfolio:
     message: >

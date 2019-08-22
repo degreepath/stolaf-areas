@@ -8,6 +8,7 @@ result:
     - requirement: Core
     - requirement: Musicology
     - requirement: Electives
+    - requirement: Additional Upper-Level Electives
     - requirement: Performance Studies
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
@@ -36,17 +37,32 @@ requirements:
       where: {attribute: {$eq: music_upper_musicology}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
+  Additional Upper-Level Elective:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+          - attribute: {$neq: music_upper_musicology}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
   Electives:
     result:
       from: {student: courses}
       where:
         $and:
-          - {subject: {$eq: MUSIC}}
-          - {level: {$in: [200, 300]}}
-          - {number: {$nin: [294, 298, 394, 398]}}
-      limit:
-        - {at most: 3, where: {level: {$eq: 200}}}
-      assert: {count(courses): {$gte: 4, at_most: true}}
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+          - attributes: {$neq: music_upper_musicology}
+          - course:
+              $nin:
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 161
+                - MUSIC 162
+      assert: {count(courses): {$gte: 3, at_most: true}}
 
   Performance Studies:
     message: 6 semesters; 4 in the same instrument/voice

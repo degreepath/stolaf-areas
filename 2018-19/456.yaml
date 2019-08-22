@@ -7,7 +7,8 @@ result:
   all:
     - requirement: Core
     - requirement: Musicology
-    - requirement: Electives
+    - requirement: Additional Upper-Level Elective
+    - requirement: Additional Electives
     - requirement: Performance Studies
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
@@ -34,14 +35,25 @@ requirements:
       where: {attribute: {$eq: music_upper_musicology}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Electives:
+  Additional Upper-Level Elective:
     result:
       from: {student: courses}
       where:
         $and:
-          - {subject: {$in: [MUSIC, MUSPF]}}
-          - {level: {$in: [200, 300]}}
-          - {number: {$nin: [294, 298, 394, 398]}}
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+          - attribute: {$neq: music_upper_musicology}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$in: [MUSIC, MUSPF]}
+          - level: {$in: [200, 300]}
+          - attributes: {$neq: music_upper_musicology}
+          - number: {$nin: [294, 298, 394, 398]}
           - course:
               $nin:
                 # exclude the Core courses
@@ -51,9 +63,7 @@ requirements:
                 - MUSIC 214
                 - MUSIC 237
                 - MUSIC 251
-      limit:
-        - {at most: 2, where: {level: {$eq: 200}}}
-      assert: {count(courses): {$gte: 4, at_most: true}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   Performance Studies:
     message:
@@ -66,8 +76,6 @@ requirements:
         $and:
           - subject: {$eq: MUSPF}
           - credits: {$eq: 1.0}
-      # limit:
-      #   - {at-most: 4, where: {level: {$eq: 100}}}
       all:
         - assert: {sum(credits): {$gte: 6}}
         - where: {level: {$eq: 100}}
@@ -111,7 +119,6 @@ requirements:
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
-
 
 emphases:
   voice:
