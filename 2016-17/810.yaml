@@ -16,5 +16,5 @@ requirements:
   Electives:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: asian_elective}}
+      where: {attribute: {$in: [asian_elective, asian_conc_elective]}}
       assert: {count(courses): {$gte: 6}}

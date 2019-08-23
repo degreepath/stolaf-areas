@@ -19,7 +19,7 @@ requirements:
   Electives:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: asian_elective}}
+      where: {attribute: {$in: [asian_elective, asian_conc_elective]}}
       limit:
         # "Only one language course may count towards the concentration"
         - at-most: 1
