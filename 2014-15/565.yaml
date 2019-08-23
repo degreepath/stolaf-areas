@@ -23,10 +23,9 @@ requirements:
       limit:
         - {at-most: 1, where: {number: {$in: [296, 298, 396, 398]}}}
         - {at-most: 1, where: {is_stolaf: {$eq: false}}}
-      assert:
-        $and:
-          - count(courses): {$gte: 7}
-          - count(subjects): {$gte: 3}
+      all:
+        - assert: {count(courses): {$gte: 7}}
+        - assert: {count(subjects): {$gte: 3}}
 
   Senior Project:
     message: >
