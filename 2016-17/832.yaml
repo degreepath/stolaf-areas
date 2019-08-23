@@ -11,19 +11,21 @@ result:
 
 requirements:
   Required:
-    all:
-      - course: FAMST 232
-      - course: FAMST 242
-      - course: FAMST 391
+    result:
+      all:
+        - course: FAMST 232
+        - course: FAMST 242
+        - course: FAMST 391
 
   Electives:
-    from: {student: courses}
-    where: {attribute: {$eq: famst_elective}}
-    all:
-      - assert: {count(courses): {$gte: 2}}
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: famst_elective}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
 
-      - where: {subject: {$nin: [SWRK, FAMST]}}
-        assert: {count(courses): {$gte: 1}}
+        - where: {subject: {$nin: [SWRK, FAMST]}}
+          assert: {count(courses): {$gte: 1}}
 
   Experiential:
     message: >
