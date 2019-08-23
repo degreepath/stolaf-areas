@@ -6,7 +6,8 @@ degree: B.A.
 result:
   all:
     - requirement: Language
-    - requirement: Electives
+    - requirement: Electives If Not a Russian Language Major
+    - requirement: Electives If Also a Russian Language Major
     - requirement: Senior Project
 
 requirements:
@@ -18,39 +19,30 @@ requirements:
         - course: RUSSN 231
         - course: RUSSN 232
 
-  Electives:
+  Electives If Not a Russian Language Major:
+    if:
+      from: {student: areas}
+      where: {code: {$eq: '580'}}
+      assert: {count(areas): {$eq: 0}}
+
     result:
-      either:
-        - requirement: If Not a Russian Language Major
-        - requirement: If Also a Russian Language Major
+      from: {student: courses}
+      where: {attribute: {$eq: russian_area_elective}}
+      assert: {count(courses): {$gte: 5}}
 
-    requirements:
-      If Not a Russian Language Major:
-        result:
-          both:
-            - from: {student: areas}
-              where:
-                type: {$eq: major}
-                name: {$eq: 'Russian Language'}
-              assert: {count(areas): {$eq: 0}}
-            - from: {student: courses}
-              where: {attribute: {$eq: russian_area_elective}}
-              assert: {count(courses): {$gte: 5}}
+  Electives If Also a Russian Language Major:
+    if:
+      from: {student: areas}
+      where: {code: {$eq: '580'}}
+      assert: {count(areas): {$eq: 1}}
 
-      If Also a Russian Language Major:
-        result:
-          both:
-            - from: {student: areas}
-              where:
-                type: {$eq: major}
-                name: {$eq: 'Russian Language'}
-              assert: {count(areas): {$eq: 1}}
-            - from: {student: courses}
-              where:
-                $and:
-                  - attribute: {$eq: russian_area_elective}
-                  - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
-              assert: {count(courses): {$gte: 5}}
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - attribute: {$eq: russian_area_elective}
+          - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
+      assert: {count(courses): {$gte: 5}}
 
   Senior Project:
     department-audited: true
