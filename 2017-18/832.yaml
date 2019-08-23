@@ -24,7 +24,10 @@ requirements:
       all:
         - assert: {count(courses): {$gte: 2}}
 
-        - where: {subject: {$nin: [SWRK, FAMST]}}
+        - where:
+            $and:
+              - subject: {$neq: SWRK}
+              - subject: {$neq: FAMST}
           assert: {count(courses): {$gte: 1}}
 
   Experiential:
