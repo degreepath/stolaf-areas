@@ -44,7 +44,6 @@ requirements:
         $and:
           - subject: {$eq: MUSIC}
           - level: {$eq: 300}
-          - attribute: {$neq: music_upper_musicology}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
@@ -54,7 +53,6 @@ requirements:
         $and:
           - subject: {$eq: MUSIC}
           - level: {$in: [200, 300]}
-          - attributes: {$neq: music_upper_musicology}
           - course:
               $nin:
                 # exclude the Core courses

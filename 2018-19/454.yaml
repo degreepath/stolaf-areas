@@ -92,7 +92,6 @@ emphases:
             $and:
               - subject: {$eq: MUSIC}
               - level: {$eq: 300}
-              - attribute: {$neq: music_upper_musicology}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Electives:
@@ -102,7 +101,6 @@ emphases:
             $and:
               - subject: {$eq: MUSIC}
               - level: {$in: [200, 300]}
-              - attributes: {$neq: music_upper_musicology}
               - course:
                   $nin:
                     # exclude the outer core courses
@@ -130,7 +128,7 @@ emphases:
           6 semesters (0.50 credit following admission to the major)
         result:
           from: {student: courses}
-          where: {attributes: {$eq: voice_studies}}
+          where: {attributes: {$eq: music_voice_studies}}
           all:
             - assert: {count(terms): {$gte: 6}}
 
@@ -141,7 +139,7 @@ emphases:
           MUSIC 261)
         result:
           from: {student: courses}
-          where: {attributes: {$eq: keyboard_studies}}
+          where: {attributes: {$eq: music_keyboard_studies}}
           all:
             - assert: {count(terms): {$gte: 5}}
 
@@ -194,7 +192,6 @@ emphases:
             $and:
               - subject: {$eq: MUSIC}
               - level: {$eq: 300}
-              - attribute: {$neq: music_upper_musicology}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Electives:
@@ -204,7 +201,6 @@ emphases:
             $and:
               - subject: {$eq: MUSIC}
               - level: {$in: [200, 300]}
-              - attributes: {$neq: music_upper_musicology}
               - course:
                   $nin:
                     # exclude the outer core courses
@@ -229,7 +225,7 @@ emphases:
           at Level I, subsequent at Level II)
         result:
           from: {student: courses}
-          where: {attributes: {$eq: organ_studies}}
+          where: {attributes: {$eq: music_organ_studies}}
           all:
             - assert: {count(terms): {$gte: 6}}
 
