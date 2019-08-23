@@ -34,7 +34,6 @@ requirements:
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 2}}
 
-        - assert:
-            $and:
-              - count(subjects): {$gte: 3}
-              - count(courses): {$gte: 6}
+        - assert: {count(subjects): {$gte: 3}}
+
+        - assert: {count(courses): {$gte: 6}}
