@@ -26,26 +26,12 @@ requirements:
 
   Field Experience:
     result:
-      at_most: true
-      any:
-        - course: EDUC 170
-        - course: EDUC 347
-        - course: EDUC 378
-        - course: EDUC 379
+      from: {student: courses}
+      where: {attributes: {$eq: educ_studies_field_experience}}
+      assert: {count(courses): {$gte: 1}}
 
   Electives:
-    count: 2
-    of:
-      - course: ENGL 205
-      - course: ENGL 242
-      - course: ESTH 238
-      - course: FAMST 242
-      - course: MEDIA 260
-      - course: MUSIC 237
-      - course: PSYCH 125
-      - course: PSYCH 236
-      - course: PSYCH 241
-      - course: PSYCH 350
-      - course: SOAN 242
-      - course: SOAN 264
-      - course: WMGST 121
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: educ_studies_elective}}
+      assert: {count(courses): {$gte: 2}}
