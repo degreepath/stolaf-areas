@@ -34,24 +34,23 @@ requirements:
                 name: {$eq: 'Russian Language'}
               assert: {count(areas): {$eq: 0}}
             - from: {student: courses}
-              where:
-                $and:
-                  - attribute: {$eq: russian_area_elective}
+              where: {attribute: {$eq: russian_area_elective}}
               assert: {count(courses): {$gte: 5}}
 
       If Also a Russian Language Major:
-        both:
-          - from: {student: areas}
-            where:
-              type: {$eq: major}
-              name: {$eq: 'Russian Language'}
-            assert: {count(areas): {$eq: 1}}
-          - from: {student: courses}
-            where:
-              $and:
-                - attribute: {$eq: russian_area_elective}
-                - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
-            assert: {count(courses): {$gte: 5}}
+        result:
+          both:
+            - from: {student: areas}
+              where:
+                type: {$eq: major}
+                name: {$eq: 'Russian Language'}
+              assert: {count(areas): {$eq: 1}}
+            - from: {student: courses}
+              where:
+                $and:
+                  - attribute: {$eq: russian_area_elective}
+                  - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
+              assert: {count(courses): {$gte: 5}}
 
   Senior Project:
     department-audited: true
