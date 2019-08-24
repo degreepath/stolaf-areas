@@ -187,7 +187,7 @@ requirements:
 
   Artistic and Literary Studies:
     message:
-      All ALS-A courses must be in the same subject code.
+      All ALS-A credits must be in the same subject code.
     result:
       from: {student: courses}
       claim: false
@@ -202,8 +202,8 @@ requirements:
         # where `credits_from_most_common_subject` finds the most common
         # subject in a set of items, then returns the .credits prop from the
         # courses with that subject
-        # - where: {gereqs: {$eq: ALS-A}}
-        #   assert: {sum(credits_from_most_common_subject): {$gte: 1}}
+        - where: {gereqs: {$eq: ALS-A}}
+          assert: {sum(credits_from_most_common_subject): {$gte: 1}}
 
         - where: {gereqs: {$eq: ALS-L}}
           assert: {count(courses): {$gte: 1}}
