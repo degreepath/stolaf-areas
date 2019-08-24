@@ -20,7 +20,7 @@ requirements:
   Classics:
     result:
       from: {student: courses}
-      where: {attributes: {$eq: classics_course}}
+      where: {attributes: {$eq: greek_major_classics_course}}
       assert: {count(courses): {$gte: 1}}
 
   Ancient Greek History:
