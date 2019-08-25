@@ -74,10 +74,11 @@ requirements:
         $and:
           - subject: {$eq: MUSPF}
           - credits: {$eq: 1.0}
+          - level: {$in: [100, 200]}
       all:
-        - assert: {sum(credits): {$gte: 6}}
+        - assert: {count(terms): {$gte: 6}}
         - where: {level: {$eq: 100}}
-          assert: {sum(credits): {$lte: 4}}
+          assert: {count(terms): {$lte: 4}}
 
   Required Performances:
     result:
@@ -265,7 +266,7 @@ emphases:
         result:
           from: {student: courses}
           where: {course: {$eq: MUSPF 106}}
-          assert: {sum(credits): {$gte: 1}}
+          assert: {count(terms): {$gte: 1}}
 
       Electives:
         result:
