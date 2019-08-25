@@ -23,7 +23,10 @@ requirements:
   Basics:
     result:
       all:
-        - course: MATH 120
+        - at_most: true
+          either:
+            - course: MATH 119
+            - course: MATH 120
         - at_most: true
           either:
             - course: MATH 126
