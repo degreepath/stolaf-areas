@@ -9,7 +9,7 @@ result:
     - requirement: Transitions
     - requirement: Perspectives
     - requirement: Sequence
-    - requirement: Level III
+    - requirement: Electives
 
   audit:
     all:
@@ -76,13 +76,24 @@ requirements:
           where: {attribute: {$eq: math_perspective_m}}
           assert: {count(courses): {$eq: 1, at_most: true}}
 
-  Level III:
+  Electives:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: math_level_3}}
+      where: {attribute: {$eq: math_electives}}
       limit:
-        - {at_most: 1, where: {subject: {$neq: MATH}}}
-      assert: {count(courses): {$gte: 2, at_most: true}}
+        - at-most: 1
+          where: {course: {$in: [STAT 212, STAT 214, STAT 272, MSCS 264]}}
+      all:
+        - assert: {count(courses): {$gte: 7, at_most: true}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+        - where:
+            $and:
+              - level: {$eq: 300}
+              - subject: {$eq: MATH}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Sequence:
     result:
@@ -119,17 +130,17 @@ requirements:
 attributes:
   multicountable:
     - - {attributes: {$eq: math_perspective_a}}
-      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_electives}}
       - {attributes: {$eq: math_transitions}}
 
     - - {attributes: {$eq: math_perspective_c}}
-      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_electives}}
       - {attributes: {$eq: math_transitions}}
 
     - - {attributes: {$eq: math_perspective_d}}
-      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_electives}}
       - {attributes: {$eq: math_transitions}}
 
     - - {attributes: {$eq: math_perspective_m}}
-      - {attributes: {$eq: math_level_3}}
+      - {attributes: {$eq: math_electives}}
       - {attributes: {$eq: math_transitions}}
