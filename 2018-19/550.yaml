@@ -10,7 +10,7 @@ result:
     - requirement: Comparative Politics
     - requirement: International Relations
     - requirement: Political Theory
-    - requirement: Level III
+    - requirement: Level III Electives
 
   audit:
     all:
@@ -30,29 +30,50 @@ requirements:
   American Politics and Public Policy:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: psci_topic_american}}
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_american}}
+          - {level: {$in: [100, 200]}}
       assert: {count(courses): {$gte: 1}}
 
   Comparative Politics:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: psci_topic_comparative}}
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_comparative}}
+          - {level: {$in: [100, 200]}}
       assert: {count(courses): {$gte: 1}}
 
   International Relations:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: psci_topic_international}}
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_international}}
+          - {level: {$in: [100, 200]}}
       assert: {count(courses): {$gte: 1}}
 
   Political Theory:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: psci_topic_theory}}
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_theory}}
+          - {level: {$in: [100, 200]}}
       assert: {count(courses): {$gte: 1}}
 
-  Level III:
+  Level III Electives:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: psci_level_3}}
+      where:
+        $and:
+          - attribute:
+              $in:
+                - psci_topic_american
+                - psci_topic_comparative
+                - psci_topic_international
+                - psci_topic_theory
+                - psci_level_3
+          - {level: {$eq: 300}}
       assert: {count(courses): {$gte: 2}}
