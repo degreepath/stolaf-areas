@@ -15,7 +15,8 @@ result:
     all:
       - where: {year: {$gte: $matriculation-year}}
         assert: {count(courses): {$gte: 6}}
-      - where: {subject: {$in: [STAT, CSCI, MSCS]}}
+
+      - where: {subject: {$neq: MATH}}
         assert: {count(courses): {$lte: 2}}
 
 requirements:
