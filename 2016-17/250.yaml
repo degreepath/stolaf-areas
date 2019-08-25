@@ -9,10 +9,7 @@ result:
     - requirement: Literary Studies
     - requirement: Cross-Cultural Studies
     - requirement: Literary History
-    - at_most: true
-      either:
-        - requirement: Cross-Disciplinary Studies
-        - requirement: Genre Studies
+    - requirement: Cross-Disciplinary and Genre Studies
     - requirement: Electives
     - requirement: 1800s
 
@@ -25,25 +22,22 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: engl_topic_crosscultural}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Literary History:
     result:
       from: {student: courses}
       where: {attribute: {$eq: engl_topic_literary_history}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Cross-Disciplinary Studies:
+  Cross-Disciplinary and Genre Studies:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: engl_topic_crossdisciplinary}}
-      assert: {count(courses): {$gte: 1}}
-
-  Genre Studies:
-    result:
-      from: {student: courses}
-      where: {attribute: {$eq: engl_topic_genre}}
-      assert: {count(courses): {$gte: 1}}
+      where:
+        $or:
+          - attribute: {$eq: engl_topic_crossdisciplinary}
+          - attribute: {$eq: engl_topic_genre}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
@@ -63,7 +57,7 @@ requirements:
           where: {attributes: {$eq: engl_focus_creative_writing}}
 
       all:
-        - assert: {count(courses): {$gte: 6}}
+        - assert: {count(courses): {$gte: 6, at_most: true}}
 
         - where: {attributes: {$eq: engl_level3}}
           assert: {count(courses): {$gte: 2}}
