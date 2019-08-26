@@ -31,12 +31,14 @@ requirements:
   Required Course Credit:
     result:
       from: {student: courses}
+      load_potentials: false
       claim: false
       assert: {sum(credits): {$gte: 35}}
 
   Credits Taken At/Through St. Olaf College:
     result:
       from: {student: courses}
+      load_potentials: false
       claim: false
       where:
         $and:
@@ -56,6 +58,7 @@ requirements:
   Interim Credits:
     result:
       from: {student: courses}
+      load_potentials: false
       claim: false
       where: {semester: {$eq: 2}}
       assert: {sum(credits): {$gte: 3}}
@@ -63,12 +66,14 @@ requirements:
   Cumulative Grade Point Average:
     result:
       from: {student: courses}
+      load_potentials: false
       claim: false
       assert: {average(grades): {$gte: 2.0}}
 
   Level II/III Course Credit:
     result:
       from: {student: courses}
+      load_potentials: false
       claim: false
       where: {level: {$gte: 200}}
       assert: {sum(credits): {$gte: 18}}
@@ -76,6 +81,7 @@ requirements:
   Graded Course Credit:
     result:
       from: {student: courses}
+      load_potentials: false
       claim: false
       where: {grade_option: {$eq: grade}}
       assert: {sum(credits): {$gte: 24}}
