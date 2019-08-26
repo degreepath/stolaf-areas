@@ -86,7 +86,10 @@ requirements:
     result:
       from: {student: areas}
       claim: false
-      where: {type: {$eq: Major}}
+      where:
+        $and:
+          - type: {$eq: Major}
+          - degree: {$eq: B.M.}
       assert: {count(areas): {$gte: 1}}
 
   Allowed S/U Course Credit:
