@@ -67,10 +67,17 @@ requirements:
 
   Cumulative Grade Point Average:
     result:
-      from: {student: courses}
-      load_potentials: false
-      claim: false
-      assert: {average(grades): {$gte: 2.0}}
+      from: {student: areas}
+      where:
+        $and:
+          - type: {$eq: Degree}
+          - code: {$eq: 'B.A.'}
+          - gpa: {$gte: '2.00'}
+      assert: {count(areas): {$gte: 1}}
+      # from: {student: courses}
+      # load_potentials: false
+      # claim: false
+      # assert: {average(grades): {$gte: 2.0}}
 
   Level II/III Course Credit:
     result:
