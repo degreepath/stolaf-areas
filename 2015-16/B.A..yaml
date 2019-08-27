@@ -45,7 +45,7 @@ requirements:
       where:
         $or:
           - is_stolaf: {$eq: true}
-          - in_gpa: {$eq: true}
+          - is_in_gpa: {$eq: true}
       assert: {sum(credits): {$gte: 17}}
 
   Transfer Credit:
