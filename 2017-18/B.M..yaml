@@ -48,7 +48,7 @@ requirements:
 
   Transfer Credit:
     message:
-      After matriculation, you may transfer 4 credits from other institutions
+      After matriculation, you may transfer 4 St. Olaf credits from other institutions
       to St. Olaf college.
     result:
       from: {student: courses}
