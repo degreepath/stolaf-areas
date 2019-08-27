@@ -6,7 +6,7 @@ result:
   all:
     - requirement: Required Course Credit
     - requirement: Credits Taken At/Through St. Olaf College
-    # - requirement: Transfer Credit
+    - requirement: Transfer Credit
     - requirement: Interim Credits
     - requirement: Cumulative Grade Point Average
     - requirement: Level II/III Course Credit
@@ -46,14 +46,15 @@ requirements:
           - subject: {$neq: REG}
       assert: {sum(credits): {$gte: 17}}
 
-  # Transfer Credit:
-  #   message:
-  #     After matriculation, you may transfer 4 credits from other institutions
-  #     to St. Olaf college.
-  #   result:
-  #     from: {student: transfer_credit}
-  #     claim: false
-  #     assert: {value: {$lte: 4}}
+  Transfer Credit:
+    message:
+      After matriculation, you may transfer 4 credits from other institutions
+      to St. Olaf college.
+    result:
+      from: {student: courses}
+      where: {course: {$eq: REG 0004}}
+      claim: false
+      assert: {sum(credits): {$lte: 4}}
 
   Interim Credits:
     result:
