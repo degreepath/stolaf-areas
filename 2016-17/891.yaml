@@ -1,0 +1,37 @@
+---
+name: Statistics and Data Science
+type: concentration
+degree: B.A.
+
+result:
+  all:
+    - requirement: Prerequisite
+    - requirement: Core
+    - requirement: Level III
+    - requirement: Electives
+
+requirements:
+  Prerequisite:
+    result:
+      any:
+        - course: STAT 110
+        - course: STAT 212
+        - course: ECON 263
+
+  Core:
+    result:
+      all:
+        - course: STAT 272
+        - course: MSCS 264
+
+  Level III:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: stat_level3}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: stat_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
