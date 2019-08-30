@@ -5,13 +5,13 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Speaking and Writing
-    - requirement: The Francophone World
+    - requirement: Level II (250)
+    - requirement: Level II (270)
     - requirement: Level III
     - requirement: Electives
 
 requirements:
-  Speaking and Writing:
+  Level II (250):
     result:
       count: 2
       at_most: true
@@ -20,7 +20,7 @@ requirements:
         - course: FREN 251
         - course: FREN 253
 
-  The Francophone World:
+  Level II (270):
     result:
       count: 2
       at_most: true
