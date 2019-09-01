@@ -106,10 +106,13 @@ emphases:
           assert: {count(courses): {$gte: 2}}
 
       Non-Econ International Topics:
-        department-audited: true
         message:
           An elective course outside of Economics Department that relates to
           international topics.
+        result:
+          from: {student: courses}
+          where: {attributes: {$eq: econ_emph_intl_topics}}
+          assert: {count(courses): {$gte: 1}}
 
   725:
     name: Management
