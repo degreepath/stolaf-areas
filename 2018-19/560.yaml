@@ -16,7 +16,9 @@ result:
     where:
       $and:
         - {is_stolaf: {$eq: false}}
-        - {course: {$neq: PSYCH 125}}
+        - $and:
+            - {course: {$neq: PSYCH 125}}
+            - {course_type: {$neq: AP}}
 
 requirements:
   Foundation:
@@ -24,9 +26,9 @@ requirements:
       both:
         - at_most: true
           any:
-          - course: PSYCH 125
-          - ap: AP Psychology
-          - ap: IB Psychology
+            - course: PSYCH 125
+            - ap: AP Psychology
+            - ap: IB Psychology
         - course: PSYCH 230
 
   Content Core:
