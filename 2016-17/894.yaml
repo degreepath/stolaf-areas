@@ -13,4 +13,14 @@ requirements:
     message: >
       Four additional courses, three of which must be at level II or III, and
       they must be drawn from at least three departments
-    department_audited: true
+
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: wmgst_concentration_interdisciplinary}}
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        - where: {level: {$in: [200, 300]}}
+          assert: {count(courses): {$gte: 3}}
+
+        - assert: {count(subjects): {$gte: 3}}
