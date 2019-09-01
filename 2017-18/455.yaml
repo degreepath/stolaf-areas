@@ -83,7 +83,10 @@ requirements:
 
   Art, Theater, or Lyric Theater:
     message: Required elective in Art, Theater, or Lyric Theater
-    department_audited: true
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_ed_bm_other_finearts}}
+      assert: {sum(credits): {$gte: 1}}
 
   Required Solo Performances:
     message: Two solo performances on a St. Olaf Student Recital.
