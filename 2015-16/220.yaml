@@ -48,11 +48,14 @@ requirements:
       course: DANCE 399
 
   Area of Speciality:
-    department-audited: true
     message:
       Each student designs an individualized area of specialty derived
       from their own interests and investigation. Select at least two
       credits from within or outside the department.
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: dance_personalized_area_speciality}}
+      assert: {sum(credits): {$gte: 2}}
 
   Dance Companies:
     department-audited: true
