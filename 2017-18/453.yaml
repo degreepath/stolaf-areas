@@ -110,6 +110,9 @@ requirements:
     department_audited: true
 
   Secondary Field of Study:
-    message: >
+    message:
       6 Electives in secondary field of study
-    department_audited: true
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_bm_elective_studies_secondary}}
+      assert: {count(courses): {$gte: 6}}

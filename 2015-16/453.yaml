@@ -62,9 +62,12 @@ requirements:
         - course: MUSIC 345
 
   Electives:
-    department_audited: true
-    message: >
+    message:
       Select three courses in music electives (or fractional equivalent)
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_bm_elective_studies_elective}}
+      assert: {count(courses): {$gte: 3}}
 
   Performance Studies:
     message: 6 semesters; 4 in the same instrument/voice
@@ -101,6 +104,9 @@ requirements:
       Documented attendance at 60 concerts.
 
   Additional Courses from Other Departments:
-    department_audited: true
     message:
       5-6 courses in the area of Elective Studies.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_bm_elective_studies_outside}}
+      assert: {count(courses): {$in: [5, 6]}}
