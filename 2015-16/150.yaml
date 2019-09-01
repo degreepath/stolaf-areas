@@ -7,7 +7,6 @@ result:
   count: all
   of:
     - requirement: Language
-    - requirement: Interdisciplinary Approaches to Asia
     - requirement: Seminar
     - requirement: Electives
 
@@ -20,10 +19,6 @@ requirements:
           - {attributes: {$eq: asian_language_chinese}}
           - {attributes: {$eq: asian_language_japanese}}
       assert: {count(courses): {$gte: 1, at_most: true}}
-
-  Interdisciplinary Approaches to Asia:
-    result:
-      course: ASIAN 275
 
   Seminar:
     result:
