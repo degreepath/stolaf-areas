@@ -106,6 +106,9 @@ requirements:
           assert: {count(courses): {$gte: 4, at_most: true}}
 
   Independent Research:
-    department_audited: true
     message:
       Any Independent Research course.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: classics_ir}}
+      assert: {count(courses): {$gte: 1}}
