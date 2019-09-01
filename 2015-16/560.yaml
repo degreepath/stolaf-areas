@@ -22,7 +22,11 @@ requirements:
   Foundation:
     result:
       both:
-        - {course: PSYCH 125, ap: PSYCH, ib: PSYCH}
+        - at_most: true
+          any:
+          - course: PSYCH 125
+          - ap: AP Psychology
+          - ap: IB Psychology
         - course: PSYCH 230
 
   Content Core:
