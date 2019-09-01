@@ -25,9 +25,16 @@ requirements:
 
   Foundation:
     result:
+      at_most: true
       any:
         - course: MATH 119
         - course: MATH 120
+        - course: MATH 126
+        - course: MATH 128
+        - course: MATH 220
+        - ap: AP Calculus I
+        - ap: AP Calculus I and II
+        - ap: IB Mathematics
 
   Economic Analysis:
     result:
