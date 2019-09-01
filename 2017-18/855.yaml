@@ -34,4 +34,7 @@ requirements:
   Seminar:
     message:
       One approved level III seminar or approved advanced study experience.
-    department-audited: true
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: lngst_l3_seminars}}
+      assert: {count(courses): {$gte: 1}}
