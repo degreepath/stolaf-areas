@@ -31,20 +31,10 @@ requirements:
     result:
       from: {student: courses}
       where: {attributes: {$eq: asian_elective}}
-
       limit:
-        # and "No level I or level II language courses may count." is taken
-        # care of by not listing them as electives
-
         # "No more than two at level I"
         - at_most: 2
           where: {level: {$eq: 100}}
-        # "No more than four elective courses about any one country"
-        - at_most: 4
-          where: {attributes: {$eq: asian_region_china}}
-        - at_most: 4
-          where: {attributes: {$eq: asian_region_japan}}
-
       all:
         - assert: {count(courses): {$gte: 6, at_most: true}}
 
@@ -54,6 +44,12 @@ requirements:
               - is_stolaf: {$eq: true}
               - level: {$eq: [200, 300]}
           assert: {count(courses): {$gte: 2}}
+
+        - where: {attributes: {$eq: asian_region_china}}
+          assert: {count(courses): {$lte: 4}}
+
+        - where: {attributes: {$eq: asian_region_japan}}
+          assert: {count(courses): {$lte: 4}}
 
   Double-Majors:
     if:
