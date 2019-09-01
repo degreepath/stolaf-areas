@@ -22,7 +22,7 @@ requirements:
   Foundation:
     result:
       both:
-        - course: PSYCH 125
+        - {course: PSYCH 125, ap: PSYCH, ib: PSYCH}
         - course: PSYCH 230
 
   Content Core:
