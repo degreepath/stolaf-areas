@@ -22,11 +22,17 @@ requirements:
   Basics:
     result:
       all:
-        - course: MATH 120
-        - at_most: true
-          either:
-            - course: MATH 126
-            - course: MATH 128
+        - either:
+          - ap: AP Calculus I and II
+          - all:
+            - either:
+              - course: MATH 120
+              - ap: AP Calculus I
+            - at_most: true
+              any:
+                - course: MATH 126
+                - course: MATH 128
+                - ap: IB Mathematics
         - course: MATH 220
 
   Transitions:
