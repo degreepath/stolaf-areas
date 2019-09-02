@@ -6,8 +6,8 @@ degree: B.A.
 result:
   all:
     - requirement: English Language and Linguistics
-    - requirement: Electives
     - requirement: Seminar
+    - requirement: Electives
 
 requirements:
   English Language and Linguistics:
