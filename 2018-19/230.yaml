@@ -39,16 +39,16 @@ requirements:
   Economic Analysis:
     result:
       from: {student: courses}
-      where: {attribute: {$in: [econ_lvl2, econ_lvl3]}}
+      where: {attribute: {$eq: econ_analysis}}
 
       all:
-        - where: {attribute: {$eq: econ_lvl2}}
+        - assert: {count(courses): {$gte: 4}}
+
+        - where: {level: {$eq: 200}}
           assert: {count(courses): {$gte: 1}}
 
-        - where: {attribute: {$eq: econ_lvl3}}
+        - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 2}}
-
-        - assert: {count(courses): {$gte: 4}}
 
 emphases:
   710:
