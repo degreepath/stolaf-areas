@@ -57,11 +57,24 @@ requirements:
           No more than one course in this option can come from the Political
           Science Department. Area studies courses should have at least 50
           percent of the course content dedicated to target country or region.
-        department_audited: true
-        # result:
-        #   from: {student: courses}
-        #   where: {attributes: {$eq: intl_region}}
-        #   assert: {count(most_common_attribute_from_course:intl_*): {$gte: 2}}
+
+        requirements:
+          Course 1:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: intl_region_1}}
+              assert: {count(courses): {$gte: 1}}
+
+          Course 2:
+            result:
+              from: {student: courses}
+              where: {attributes: {$eq: intl_region_2}}
+              assert: {count(courses): {$gte: 1}}
+
+        result:
+          all:
+            - requirement: Course 1
+            - requirement: Course 2
 
   International Political Science:
     result:
