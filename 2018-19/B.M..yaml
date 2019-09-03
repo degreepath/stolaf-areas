@@ -31,6 +31,10 @@ requirements:
   Required Course Credit:
     result:
       from: {student: courses}
+      where:
+        $or:
+          - subject: {$neq: REG}
+          - course: {$eq: REG 0001}
       load_potentials: false
       claim: false
       assert: {sum(credits): {$gte: 35}}
