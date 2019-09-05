@@ -82,21 +82,12 @@ requirements:
 
   Level III:
     result:
-      count: 1
-      at_most: true
-      of:
-        - course: BIO 315
-        - course: BIO 341
-        - course: BIO 348
-        - course: BIO 363
-        - course: BIO 364
-        - course: BIO 371
-        - course: BIO 372
-        - course: BIO 382
-        - course: BIO 383
-        - course: BIO 385
-        - course: BIO 386
-        - course: BIO 391
+      from: {student: courses}
+      where:
+        $and:
+          - {attribute: {$eq: bio_l3}}
+          - {credit: {$eq: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
