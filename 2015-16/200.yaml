@@ -42,7 +42,7 @@ requirements:
           both:
             - course: MATH 220
             - from: {student: courses}
-              where: {attributes: csci_proof_writing}
+              where: {attributes: {$eq: csci_proof_writing}}
               assert: {count(courses): {$gte: 1}}
 
   Core:
