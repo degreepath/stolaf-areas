@@ -86,7 +86,7 @@ requirements:
       where:
         $and:
           - {attribute: {$eq: bio_l3}}
-          - {credit: {$eq: 1}}
+          - {credits: {$eq: 1}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
