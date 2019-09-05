@@ -16,6 +16,7 @@ requirements:
       any:
         - course: STAT 110
         - course: STAT 212
+        - {course: STAT 214, hidden: true}
         - course: ECON 263
 
   Core:
