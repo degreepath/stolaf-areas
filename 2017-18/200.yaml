@@ -39,10 +39,11 @@ requirements:
 
       Mathematics:
         result:
-          any:
-            - course: MATH 232
-            - course: MATH 244
-            - course: MATH 252
+          both:
+            - course: MATH 220
+            - from: {student: courses}
+              where: {attributes: csci_proof_writing}
+              assert: {count(courses): {$gte: 1}}
 
   Core:
     result:
