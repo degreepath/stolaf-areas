@@ -6,10 +6,10 @@ degree: B.A.
 result:
   all:
     - requirement: Foundations
+    - requirement: Areas
+    - requirement: Electives
     - requirement: Juried Shows
     - requirement: Senior Studies in Studio Art
-    - requirement: Electives
-    - requirement: Areas
     - requirement: Art History
 
 requirements:
