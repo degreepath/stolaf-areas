@@ -155,6 +155,7 @@ requirements:
             - FOL-N
             - FOL-R
             - FOL-S
+            - FOL-Y
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Oral Communication:
