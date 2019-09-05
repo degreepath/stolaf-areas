@@ -1,0 +1,39 @@
+---
+name: American Studies
+type: major
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: American Culture
+    - requirement: Electives
+
+requirements:
+  American Culture:
+    result:
+      course: AMST 100
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$in: [amst_topics, amst_seminar, amst_id]}}
+      all:
+        - where: {attribute: {$eq: amst_topics}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attribute: {$eq: amst_seminar}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attribute: {$eq: amst_id}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {gereqs: {$eq: MCD}}
+          assert: {count(courses): {$gte: 2}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+        - assert: {count(subjects): {$gte: 3}}
+
+        - assert: {count(courses): {$gte: 6}}
