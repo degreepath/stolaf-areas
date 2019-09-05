@@ -1,0 +1,31 @@
+---
+name: Africa and the African Diaspora
+type: concentration
+degree: B.A.
+
+result:
+  all:
+    - requirement: Interdisciplinary Seminar
+    - requirement: Electives
+
+  audit:
+    assert: {count(courses): {$lte: 1}}
+    where: {number: {$in: [298, 396, 398]}}
+
+requirements:
+  Interdisciplinary Seminar:
+    result:
+      any:
+        - course: AFAD 231
+
+  Electives:
+    message: >
+      Elective courses must be relevant to the focus of the concentration. For
+      some electives, students may be required to negotiate specific
+      assignments with the instructor and the director of the concentration.
+      Other courses not identified in this list may also be acceptable,
+      depending on the relevance of their content to the concentration.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: afad_elective}}
+      assert: {count(courses): {$gte: 4}}

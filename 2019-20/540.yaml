@@ -1,0 +1,36 @@
+---
+name: Physics
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Elective
+    - requirement: Upper-Level Elective
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: PHYS 130
+        - course: PHYS 131
+        - course: PHYS 232
+        - course: PHYS 244
+        - course: PHYS 245
+        - course: PHYS 374
+        - course: PHYS 375
+        - course: PHYS 385
+        - course: PHYS 386
+
+  Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: phys_elective}}
+      assert: {count(courses): {$gte: 1}}
+
+  Upper-Level Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: phys_upper_elective}}
+      assert: {count(courses): {$gte: 1}}

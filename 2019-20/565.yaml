@@ -1,0 +1,35 @@
+---
+name: Race and Ethnic Studies
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Senior Project
+
+requirements:
+  Core:
+    result:
+      either:
+        - course: RACE 121
+        - course: RACE 122
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: race_elective}}
+      limit:
+        - {at-most: 1, where: {number: {$in: [296, 298, 396, 398]}}}
+        - {at-most: 1, where: {is_stolaf: {$eq: false}}}
+      all:
+        - assert: {count(courses): {$gte: 7}}
+        - assert: {count(subjects): {$gte: 3}}
+
+  Senior Project:
+    message: >
+      Race and Ethnic Studies majors are required to complete a senior project
+      and to give an oral presentation of their findings before the program
+      faculty in early May of their senior year.
+    department-audited: true

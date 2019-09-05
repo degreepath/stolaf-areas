@@ -1,0 +1,27 @@
+---
+name: Asian Studies
+type: concentration
+degree: B.A.
+
+result:
+  all:
+    - requirement: Electives
+  audit:
+    all:
+      # "At least two of the six courses must be taken at level II or level III on campus"
+      - where:
+          $and:
+            - is_stolaf: {$eq: true}
+            - level: {$in: [200, 300]}
+        assert: {count(courses): {$gte: 2}}
+
+requirements:
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$in: [asian_elective, asian_conc_elective]}}
+      limit:
+        # "Only one language course may count towards the concentration"
+        - at-most: 1
+          where: {attributes: {$eq: asian_language}}
+      assert: {count(courses): {$gte: 6}}

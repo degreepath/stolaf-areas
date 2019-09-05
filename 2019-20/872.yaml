@@ -1,0 +1,9 @@
+---
+name: Middle Eastern Studies
+type: concentration
+degree: B.A.
+
+result:
+  from: {student: courses}
+  where: {attribute: {$eq: mest_elective}}
+  assert: {count(courses): {$gte: 5}}

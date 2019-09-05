@@ -1,0 +1,114 @@
+---
+name: Ancient Studies
+type: major
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Language
+    - requirement: Ancient History
+    - requirement: Classics
+    - requirement: Electives
+    - requirement: Independent Research
+
+requirements:
+  Language:
+    result:
+      at_most: true
+      any:
+        - course: GREEK 253
+        - course: GREEK 370
+        - course: GREEK 372
+        - course: GREEK 373
+        - course: GREEK 374
+        - course: GREEK 375
+        - course: LATIN 252
+        - course: LATIN 370
+        - course: LATIN 371
+        - course: LATIN 372
+        - course: LATIN 373
+        - course: LATIN 374
+        - course: LATIN 375
+        - course: LATIN 377
+
+  Ancient History:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: ancient_history}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Classics:
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: CLASS}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    message:
+      1 course in Greek may be used as an elective if the student satisfies
+      the required language portion of the major with Latin courses. 1 course
+      in Latin may be used as an elective if the student satisfies the
+      required language portion of the major with Greek courses.
+
+    result:
+      at_most: true
+      either:
+        - both:
+            - requirement: Took Greek
+            - count: 1
+              at_most: true
+              of:
+                - {course: GREEK 253, can_match_used: true}
+                - {course: GREEK 370, can_match_used: true}
+                - {course: GREEK 372, can_match_used: true}
+                - {course: GREEK 373, can_match_used: true}
+                - {course: GREEK 374, can_match_used: true}
+                - {course: GREEK 375, can_match_used: true}
+
+        - both:
+            - requirement: Took Latin
+            - count: 1
+              at_most: true
+              of:
+                - {course: LATIN 252, can_match_used: true}
+                - {course: LATIN 370, can_match_used: true}
+                - {course: LATIN 371, can_match_used: true}
+                - {course: LATIN 372, can_match_used: true}
+                - {course: LATIN 373, can_match_used: true}
+                - {course: LATIN 374, can_match_used: true}
+                - {course: LATIN 375, can_match_used: true}
+                - {course: LATIN 377, can_match_used: true}
+
+    requirements:
+      Took Greek:
+        result:
+          from: {student: courses}
+          where:
+            attribute:
+              $in:
+                - ancient_elective
+                - ancient_elective_if_greek_lang
+          limit:
+            - {at_most: 1, where: {subject: {$eq: LATIN}}}
+          assert: {count(courses): {$gte: 4, at_most: true}}
+
+      Took Latin:
+        result:
+          from: {student: courses}
+          where:
+            attribute:
+              $in:
+                - ancient_elective
+                - ancient_elective_if_latin_lang
+          limit:
+            - {at_most: 1, where: {subject: {$eq: GREEK}}}
+          assert: {count(courses): {$gte: 4, at_most: true}}
+
+  Independent Research:
+    message:
+      Any Independent Research course.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: classics_ir}}
+      assert: {count(courses): {$gte: 1}}

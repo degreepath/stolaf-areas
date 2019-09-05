@@ -1,0 +1,151 @@
+---
+name: Mathematics
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Basics
+    - requirement: Transitions
+    - requirement: Perspectives
+    - requirement: Sequence
+    - requirement: Electives
+
+  audit:
+    all:
+      - where: {year: {$gte: $matriculation-year}}
+        assert: {count(courses): {$gte: 6}}
+
+      - where: {subject: {$neq: MATH}}
+        assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Basics:
+    result:
+      all:
+        - at_most: true
+          either:
+            - all:
+              - at_most: true
+                either:
+                  - course: MATH 120
+                  - ap: AP Calculus I
+              - at_most: true
+                any:
+                  - course: MATH 126
+                  - course: MATH 128
+                  - ap: IB Mathematics
+            - ap: AP Calculus I and II
+        - course: MATH 220
+
+  Transitions:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: math_transitions}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  Perspectives:
+    message: One course from each of three of the four perspectives.
+
+    result:
+      at_most: true
+      count: 3
+      of:
+        - requirement: Axiomatic/Algebraic (A)
+        - requirement: Continuous/Analytic (C)
+        - requirement: Discrete/Combinatorial (D)
+        - requirement: Modeling/Computation (M)
+
+    requirements:
+      Axiomatic/Algebraic (A):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_a}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+      Continuous/Analytic (C):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_c}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+      Discrete/Combinatorial (D):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_d}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+      Modeling/Computation (M):
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: math_perspective_m}}
+          assert: {count(courses): {$eq: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: math_electives}}
+      limit:
+        - at-most: 1
+          where: {course: {$in: [STAT 212, STAT 214, STAT 272, MSCS 264]}}
+      all:
+        - assert: {count(courses): {$gte: 7, at_most: true}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+        - where:
+            $and:
+              - level: {$eq: 300}
+              - subject: {$eq: MATH}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Sequence:
+    result:
+      at_most: true
+      any:
+        - both:
+            - {course: MATH 220, including claimed: true}
+            - {course: MATH 356, including claimed: true}
+        - both:
+            - {course: MATH 220, including claimed: true}
+            - {course: MSCS 341, including claimed: true}
+        - both:
+            - {course: MATH 224, including claimed: true}
+            - {course: MATH 348, including claimed: true}
+        - both:
+            - {course: MATH 226, including claimed: true}
+            - {course: MATH 340, including claimed: true}
+        - both:
+            - {course: MATH 230, including claimed: true}
+            - {course: MATH 330, including claimed: true}
+        - both:
+            - {course: MATH 232, including claimed: true}
+            - {course: MATH 364, including claimed: true}
+        - both:
+            - {course: MATH 244, including claimed: true}
+            - {course: MATH 344, including claimed: true}
+        - both:
+            - {course: MATH 252, including claimed: true}
+            - {course: MATH 352, including claimed: true}
+        - both:
+            - {course: MATH 262, including claimed: true}
+            - {course: STAT 322, including claimed: true}
+
+attributes:
+  multicountable:
+    - - {attributes: {$eq: math_perspective_a}}
+      - {attributes: {$eq: math_electives}}
+      - {attributes: {$eq: math_transitions}}
+
+    - - {attributes: {$eq: math_perspective_c}}
+      - {attributes: {$eq: math_electives}}
+      - {attributes: {$eq: math_transitions}}
+
+    - - {attributes: {$eq: math_perspective_d}}
+      - {attributes: {$eq: math_electives}}
+      - {attributes: {$eq: math_transitions}}
+
+    - - {attributes: {$eq: math_perspective_m}}
+      - {attributes: {$eq: math_electives}}
+      - {attributes: {$eq: math_transitions}}

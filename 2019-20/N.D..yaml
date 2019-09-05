@@ -1,0 +1,17 @@
+---
+name: N.D.
+type: degree
+
+result:
+  all:
+    - requirement: Declared Major
+
+requirements:
+  Declared Major:
+    message:
+      You must declare a major by the spring of your sophomore year.
+    result:
+      from: {student: areas}
+      claim: false
+      where: {type: {$eq: Major}}
+      assert: {count(areas): {$gte: 1}}

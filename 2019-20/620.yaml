@@ -1,0 +1,68 @@
+---
+name: Spanish
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+
+  audit:
+    where: {is_stolaf: {$eq: false}}
+    assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: SPAN 250
+        - course: SPAN 275
+        - course: SPAN 276
+        - either:
+            - course: SPAN 313
+            - course: SPAN 314
+
+  Electives:
+    message: >
+      You must take one (1) additional level III course from St. Olaf College,
+      and three (3) electives above the the 250 level.
+
+      Of these four (4) courses, at least one must focus on Spain, and one on
+      Latin America.
+
+      Courses from abroad or other U.S. institutions count as 270-level
+      electives.
+
+    result:
+      from: {student: courses}
+      where: {attribute: {$in: spanish_elective}}
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        - where: {attribute: {$eq: spanish_focus_spain}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attribute: {$eq: spanish_focus_latinamerica}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where:
+            $and:
+              - level: {$eq: 300}
+              - is_stolaf: {$eq: true}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {number: {$gte: 250}}
+          assert: {count(courses): {$gte: 3}}
+
+attributes:
+  multicountable:
+    - - {course: {$eq: SPAN 313}}
+      - {attributes: {$eq: spanish_elective}}
+    - - {course: {$eq: SPAN 313}}
+      - {attributes: {$eq: spanish_focus_spain}}
+
+    - - {course: {$eq: SPAN 314}}
+      - {attributes: {$eq: spanish_elective}}
+    - - {course: {$eq: SPAN 314}}
+      - {attributes: {$eq: spanish_focus_latinamerica}}

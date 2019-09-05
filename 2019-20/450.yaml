@@ -1,0 +1,196 @@
+---
+name: Music
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Musicology
+    - requirement: Electives
+    - requirement: Additional Upper-Level Elective
+    - requirement: Performance Studies
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - {course: MUSIC 114}
+        - {course: MUSIC 141}
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
+        - at_most: true
+          either:
+            - course: MUSIC 212
+            - course: MUSIC 214
+
+  Musicology:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Upper-Level Elective:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+      assert: {count(courses): {$gte: 3, at_most: true}}
+
+  Performance Studies:
+    message: 6 semesters; 4 in the same instrument/voice
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSPF}}
+      all:
+        - assert: {count(terms_from_most_common_course): {$gte: 4}}
+        - assert: {count(terms): {$gte: 6}}
+
+  Official Ensemble Participation:
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSEN}}
+      assert: {count(terms): {$gte: 4, at_most: true}}
+
+  Required Performances:
+    department_audited: true
+    message: Two solo performances on a St. Olaf Student Recital.
+
+  Required Recital Attendance:
+    department_audited: true
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+
+emphases:
+  700:
+    name: Composition
+
+    result:
+      all:
+        - requirement: Courses
+        - requirement: Lessons
+        - requirement: Performances
+        - requirement: Portfolio
+
+    requirements:
+      Courses:
+        result:
+          all:
+            - course: MUSIC 225
+            - course: MUSIC 324
+
+      Lessons:
+        result:
+          from: {student: courses}
+          where: {course: {$eq: MUSPF 326}}
+          assert: {count(terms): {$gte: 4}}
+
+      Performances:
+        message:
+          2 composition performances, at least 1 in junior or senior year
+        department_audited: true
+
+      Portfolio:
+        message:
+          With approval of the composition faculty, the student submits a
+          portfolio of at least 3 compositions previously submitted for Level
+          III composition courses to the Music Office by May 1 of the senior
+          year
+        department_audited: true
+
+  701:
+    name: Theory
+
+    result:
+      all:
+        - requirement: Courses
+        - requirement: Portfolio
+
+    requirements:
+      Courses:
+        result:
+          all:
+            - course: MUSIC 312
+            - course: MUSIC 313
+            - course: MUSIC 314
+
+      Portfolio:
+        message:
+          With approval of the theory faculty, the student submits a
+          portfolio of at least 3 papers previously submitted for Level III
+          theory courses to the Music Office by May 1 of the senior year.
+          One of these must be revised with faculty supervision to
+          demonstrate the student's best work in music analysis
+        department_audited: true
+
+  704:
+    name: Musicology
+
+    result:
+      all:
+        - requirement: Courses
+        - requirement: More Courses
+        - requirement: Portfolio
+
+    requirements:
+      Courses:
+        result:
+          at_most: true
+          count: 2
+          of:
+            - course: MUSIC 340
+            - course: MUSIC 341
+            - course: MUSIC 342
+            - course: MUSIC 343
+            - course: MUSIC 344
+            - course: MUSIC 345
+            - course: MUSIC 346
+            - course: MUSIC 347
+            - course: MUSIC 348
+            - course: MUSIC 349
+
+      More Courses:
+        result:
+          at_most: true
+          any:
+            - course: MUSIC 312
+            - course: MUSIC 313
+            - course: MUSIC 314
+            - course: MUSIC 340
+            - course: MUSIC 341
+            - course: MUSIC 342
+            - course: MUSIC 343
+            - course: MUSIC 344
+            - course: MUSIC 345
+            - course: MUSIC 346
+            - course: MUSIC 347
+            - course: MUSIC 348
+            - course: MUSIC 349
+
+      Portfolio:
+        message:
+          With approval of the musicology faculty, the student submits a
+          portfolio of at least 3 papers previously submitted for Level III
+          musicology courses to the Music Office by May 1 of the senior year.
+          One of these must be revised with faculty supervision to demonstrate
+          the student's best work in musiciology
+        department_audited: true

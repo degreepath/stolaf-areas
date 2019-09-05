@@ -1,0 +1,74 @@
+---
+name: Management Studies
+type: concentration
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core Courses
+    - requirement: Management Elective
+    - requirement: Distributed Elective
+    - requirement: Experiential Learning
+    - requirement: Capstone
+
+  audit:
+    where: {grade: {$lt: C}}
+    assert: {count(courses): {$eq: 0}}
+
+requirements:
+  Core Courses:
+    result:
+      all:
+        - course: ECON 121
+        - course: MGMT 225
+        - course: MGMT 251
+
+  Management Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: mgmt_elective}}
+      assert: {count(courses): {$gte: 1}}
+
+  Distributed Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: mgmt_dist_elective}}
+      assert: {count(courses): {$gte: 1}}
+
+  Experiential Learning:
+    message: >
+      This requirement is satisfied by completing two approved experiences in
+      which the student applies management or financial principles to real
+      world problems.
+
+    result:
+      both:
+        - requirement: Internship / Work Experience
+        - requirement: Leadership Experience
+
+    requirements:
+      Internship / Work Experience:
+        department_audited: true
+        message: >
+          One of the activities must be an academic internship or an approved
+          work experience.
+
+      Leadership Experience:
+        department_audited: true
+        message: >
+          The other activity can be a volunteer, leadership, entrepreneurial,
+          or related work experience. The Piper Center for Vocation and Career
+          and other organizations help students with this requirement.
+
+  Capstone:
+    department_audited: true
+    message: >
+      The capstone project introduces students to the career planning process,
+      helping them to identify career options and assess opportunities. This
+      project includes career exploration activities, a description of future
+      goals, and an academic and experiential action plan, as well as
+      projects, papers, and other work that demonstrate specific skill
+      development. The students will enter their materials using Moodle and
+      developing a LinkedIn site. By interconnecting important facets of their
+      education and experiential learning, students can demonstrate the
+      relationships between their varied learning experiences.

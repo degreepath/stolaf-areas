@@ -1,0 +1,49 @@
+---
+name: Environmental Studies
+type: concentration
+degree: B.A.
+
+result:
+  all:
+    - course: ENVST 137
+    - course: ENVST 237
+    - requirement: Natural Science
+    - requirement: Social Science
+    - requirement: Arts and Humanities
+    - requirement: Elective
+
+  audit:
+    assert: {count(courses): {$lte: 1}}
+    where: {course: {$in: [REL 278, PHIL 257]}}
+
+requirements:
+  Natural Science:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_natural}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+    limit:
+      - at-most: 1
+        where:
+          course:
+            $in:
+              - BIO 226
+              - BIO 261
+
+  Social Science:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_social}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Arts and Humanities:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_arts}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: {$in: [envst_natural, envst_social, envst_arts]}}
+      assert: {count(courses): {$gte: 1, at_most: true}}

@@ -1,0 +1,52 @@
+---
+name: Russian Area Studies
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Electives If Not a Russian Language Major
+    - requirement: Electives If Also a Russian Language Major
+    - requirement: Senior Project
+
+requirements:
+  Language:
+    result:
+      all:
+        - course: RUSSN 111
+        - course: RUSSN 112
+        - course: RUSSN 231
+        - course: RUSSN 232
+
+  Electives If Not a Russian Language Major:
+    if:
+      from: {student: areas}
+      where: {code: {$eq: '580'}}
+      assert: {count(areas): {$eq: 0}}
+
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: russian_area_elective}}
+      assert: {count(courses): {$gte: 5}}
+
+  Electives If Also a Russian Language Major:
+    if:
+      from: {student: areas}
+      where: {code: {$eq: '580'}}
+      assert: {count(areas): {$eq: 1}}
+
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - attribute: {$eq: russian_area_elective}
+          - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
+      assert: {count(courses): {$gte: 5}}
+
+  Senior Project:
+    department-audited: true
+    message: >
+      This may be taken for course credit as RUSSN 398 (Independent Research).
+      Guidelines are available from the department chair. The project is due
+      on April 15.

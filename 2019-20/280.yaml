@@ -1,0 +1,49 @@
+---
+name: French
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Level II (250)
+    - requirement: Level II (270)
+    - requirement: Level III
+    - requirement: Electives
+
+requirements:
+  Level II (250):
+    result:
+      count: 2
+      at_most: true
+      of:
+        - course: FREN 250
+        - course: FREN 251
+        - course: FREN 253
+
+  Level II (270):
+    result:
+      count: 2
+      at_most: true
+      of:
+        - course: FREN 271
+        - course: FREN 272
+        - course: FREN 273
+        - course: FREN 275
+
+  Level III:
+    result:
+      count: 2
+      at_most: true
+      of:
+        - course: FREN 372
+        - course: FREN 373
+        - course: FREN 397
+        - course: FREN 399
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: french_elective}}
+      limit:
+        - {at-most: 1, where: {subject: {$neq: FREN}}}
+      assert: {count(courses): {$gte: 2, at_most: true}}

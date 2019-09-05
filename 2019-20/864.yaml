@@ -1,0 +1,55 @@
+---
+name: Mathematical Biology
+type: concentration
+degree: B.A.
+
+result:
+  all:
+    - requirement: Mathematical Biology Core
+    - requirement: Exploring Biomathematics
+    - requirement: MSCS Electives
+    - requirement: BIO Electives
+    - requirement: Integrative Project
+    - requirement: Senior Math Biology Symposium
+
+requirements:
+  Mathematical Biology Core:
+    result:
+      course: MATH 236
+
+  Exploring Biomathematics:
+    result:
+      course: MABIO 130
+
+  MSCS Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: mabio_mscs_elective}}
+      limit:
+        - at-most: 1
+          where:
+            course:
+              $in: [CSCI 125, CSCI 251]
+        - at-most: 1
+          where:
+            course:
+              $in: [STAT 212, STAT 272]
+      assert: {count(courses): {$gte: 2}}
+
+  BIO Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: mabio_bio_elective}}
+      assert: {count(courses): {$gte: 2}}
+
+  Integrative Project:
+    message: >
+      Students are required to work on an independent project that integrates
+      mathematics, computer science, and/or statistics with biology.
+    department-audited: true
+
+  Senior Math Biology Symposium:
+    message: >
+      Seniors present their independent project in the form of a poster in a
+      Mathematical Biology Symposium held at St. Olaf in the spring.
+    department-audited: true

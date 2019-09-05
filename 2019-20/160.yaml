@@ -1,0 +1,111 @@
+---
+name: Biology
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Level III
+    - requirement: Electives
+    - requirement: Chemistry
+
+  audit:
+    all:
+      - where:
+          $and:
+            - grade: {$gte: 2.0}
+            - level: {$in: [200, 300]}
+        assert: {count(courses): {$gte: 4}}
+
+      - where: {grade: {$gte: 2.0}}
+        assert: {count(courses): {$gte: 6}}
+
+      - where:
+          $and:
+            - {level: {$eq: 100}}
+            - {subject: {$eq: BIO}}
+        assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Foundation:
+    result:
+      course: BIO 150
+
+  Core:
+    result:
+      count: all
+      of:
+        - requirement: Genetics
+        - requirement: Cell Biology
+        - requirement: Comparative Organismal Biology
+        - requirement: Ecology
+
+    requirements:
+      Genetics:
+        result:
+          count: 1
+          at_most: true
+          of:
+            - course: BIO 233
+
+      Cell Biology:
+        result:
+          count: 1
+          at_most: true
+          of:
+            - course: BIO 227
+            - course: CH/BI 227
+
+      Comparative Organismal Biology:
+        result:
+          count: 1
+          at_most: true
+          of:
+            - course: BIO 224
+            - course: BIO 242
+            - course: BIO 247
+            - course: BIO 248
+            - course: BIO 251
+            - course: BIO 252
+            - course: BIO 266
+            - course: BIO 275
+
+      Ecology:
+        result:
+          count: 1
+          at_most: true
+          of:
+            - course: BIO 226
+            - course: BIO 261
+
+  Level III:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - {attribute: {$eq: bio_l3}}
+          - {credit: {$eq: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: bio_elective}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  Chemistry:
+    result:
+      at_most: true
+      any:
+        - all:
+            - course: CHEM 121
+            - course: CHEM 123
+            - course: CHEM 126
+        - all:
+            - course: CHEM 125
+            - course: CHEM 126
+        - all:
+            - course: CH/BI 125
+            - course: CH/BI 126

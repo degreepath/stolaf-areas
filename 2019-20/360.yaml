@@ -1,0 +1,29 @@
+---
+name: Individual Major
+type: major
+degree: B.A.
+
+result:
+  all:
+    - course: IS 391
+    - course: IS 392
+    - requirement: Integrative Studies
+
+requirements:
+  Integrative Studies:
+    department_audited: true
+    message: >
+      The CIS is the academic home for students pursuing self-designed,
+      integrative majors. Students propose a sequence of courses, seminars,
+      independent studies, or experiential learning as the means of pursuing
+      an individual major. Proposals must include:
+
+      Each proposal must have the support of a faculty academic advisor. The
+      coherence, depth, and feasibility of each proposal are evaluated in a
+      Final Review Consultation (FRC) convened by the CIS, after which the
+      proposal is forwarded to a faculty committee that gives final approval
+      or returns the proposal for further revision. At the end of the senior
+      year, the student’s work in the major is presented to a CIS faculty
+      certification committee for review. Proposals for individual majors may
+      be submitted any time during the sophomore year and the first part of
+      the junior year.

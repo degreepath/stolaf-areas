@@ -1,0 +1,77 @@
+---
+name: Asian Studies
+type: major
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Language
+    - requirement: Seminar
+    - requirement: Electives
+    - requirement: Double-Majors
+
+requirements:
+  Language:
+    result:
+      from: {student: courses}
+      where:
+        $or:
+          - {attributes: {$eq: asian_language_chinese}}
+          - {attributes: {$eq: asian_language_japanese}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Seminar:
+    result:
+      either:
+        - course: ASIAN 397
+        - course: ASIAN 399
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: asian_elective}}
+      limit:
+        # "No more than two at level I"
+        - at_most: 2
+          where: {level: {$eq: 100}}
+      all:
+        - assert: {count(courses): {$gte: 6, at_most: true}}
+
+        # "At least two at level II or level III, taken on campus"
+        - where:
+            $and:
+              - is_stolaf: {$eq: true}
+              - level: {$eq: [200, 300]}
+          assert: {count(courses): {$gte: 2}}
+
+        - where: {attributes: {$eq: asian_region_china}}
+          assert: {count(courses): {$lte: 4}}
+
+        - where: {attributes: {$eq: asian_region_japan}}
+          assert: {count(courses): {$lte: 4}}
+
+  Double-Majors:
+    if:
+      from: {student: areas}
+      # chinese or japanese
+      where: {code: {$in: ['180', '385']}}
+      assert: {count(areas): {$gte: 1}}
+
+    department-audited: true
+
+    message: >
+      For students double-majoring in Asian Studies and Chinese or Japanese,
+      the following rules apply:
+
+      1. 231 and 232 can count for both the language and area studies majors.
+
+      2. one 300-level course can count for both the language and area studies
+         major.
+
+      3. two level three language courses can count for both the language and
+         area studies major.
+
+      4. two of the three Asian Conversations courses can count towards the
+         language majors with the third course counting for the area studies
+         major.

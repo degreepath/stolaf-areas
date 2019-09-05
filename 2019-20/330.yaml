@@ -1,0 +1,29 @@
+---
+name: Greek
+type: major
+degree: B.A.
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Classics
+    - requirement: Ancient Greek History
+
+requirements:
+  Language:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: greek_language}}
+      assert: {count(courses): {$gte: 7, at_most: true}}
+
+  Classics:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: greek_major_classics_course}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Ancient Greek History:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: greek_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}

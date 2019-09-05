@@ -1,0 +1,40 @@
+---
+name: Linguistic Studies
+type: concentration
+degree: B.A.
+
+result:
+  all:
+    - requirement: English Language and Linguistics
+    - requirement: Seminar
+    - requirement: Electives
+
+requirements:
+  English Language and Linguistics:
+    result:
+      course: LNGST 250
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: lngst_elective}}
+      limit:
+        - at-most: 1
+          where:
+            course:
+              $in:
+                - CSCI 121
+                - PHYS 130
+                - CSCI 125
+                - CSCI 251
+      all:
+        - assert: {count(courses): {$gte: 3}}
+        - assert: {count(subjects): {$gte: 2}}
+
+  Seminar:
+    message:
+      One approved level III seminar or approved advanced study experience.
+    result:
+      from: {student: courses}
+      where: {attributes: {$eq: lngst_l3_seminars}}
+      assert: {count(courses): {$gte: 1}}

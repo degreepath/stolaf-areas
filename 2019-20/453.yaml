@@ -1,0 +1,118 @@
+---
+name: Elective Studies
+type: major
+degree: B.M.
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
+result:
+  all:
+    - requirement: Application Process
+    - requirement: Core
+    - requirement: Musicology
+    - requirement: Electives
+    - requirement: Additional Upper-Level Electives
+    - requirement: Performance Studies
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+    - requirement: Secondary Field of Study
+
+requirements:
+  Application Process:
+    department_audited: true
+    message: >
+      Entrance examination as outlined in the catalog.
+      Continuance examination as outlined in the catalog.
+
+  Core:
+    result:
+      all:
+        - {course: MUSIC 114}
+        - {course: MUSIC 141}
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
+        - {course: MUSIC 212}
+        - {course: MUSIC 214}
+        - {course: MUSIC 237}
+        - {course: MUSIC 251}
+        - {course: MUSIC 261, grade: B-}
+        - {course: MUSIC 298}
+
+  Musicology:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Upper-Level Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+          - course:
+              $nin:
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 161
+                - MUSIC 162
+                - MUSIC 212
+                - MUSIC 214
+                - MUSIC 237
+                - MUSIC 251
+                - MUSIC 261
+                - MUSIC 298
+      assert: {count(courses): {$gte: 2}}
+
+  Performance Studies:
+    message: >
+      0.25 credit prior to admission into BM Elective Studies and 0.5 credit
+      after admission, with a minimum of 4 semesters of 0.5 credit lessons
+    result:
+      from: {student: courses}
+      where: {subject: {$eq: MUSPF}}
+      all:
+        - assert: {count(terms): {$gte: 6}}
+
+        - assert: {sum(credits): {$gte: 2.5}}
+
+        - where: {credits: {$eq: 0.5}}
+          assert: {count(terms): {$gte: 4}}
+
+  Official Ensemble Participation:
+    message: >
+      Every semester in an official ensemble
+    department_audited: true
+
+  Required Performances:
+    message: >
+      Two solo performances on a St. Olaf Student Recital.
+    department_audited: true
+
+  Required Recital Attendance:
+    message: >
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+    department_audited: true
+
+  Secondary Field of Study:
+    message:
+      6 Electives in secondary field of study
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: music_bm_elective_studies_secondary}}
+      assert: {count(courses): {$gte: 6}}
