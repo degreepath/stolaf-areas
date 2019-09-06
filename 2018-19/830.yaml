@@ -21,14 +21,10 @@ requirements:
     result:
       from: {student: courses}
       where: {attribute: {$eq: envst_natural}}
+      limit:
+        - at-most: 1
+          where: {course: {$in: [BIO 226, BIO 261]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
-    limit:
-      - at-most: 1
-        where:
-          course:
-            $in:
-              - BIO 226
-              - BIO 261
 
   Social Science:
     result:
