@@ -25,13 +25,11 @@ requirements:
             - both:
                 - course: AMCON 201
                 - course: AMCON 202
-              hidden: true
         - either:
             - course: HIST 199
             - both:
                 - course: GCON 217
                 - course: GCON 218
-              hidden: true
         - from: {student: courses}
           where: {attribute: {$eq: history_region_nonwesternworld}}
           assert: {count(courses): {$gte: 1}}
