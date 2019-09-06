@@ -23,6 +23,7 @@ requirements:
         - course: GREEK 373
         - course: GREEK 374
         - course: GREEK 375
+        - course: LATIN 235
         - course: LATIN 252
         - course: LATIN 370
         - course: LATIN 371
@@ -71,6 +72,7 @@ requirements:
             - count: 1
               at_most: true
               of:
+                - {course: LATIN 235, including claimed: true}
                 - {course: LATIN 252, including claimed: true}
                 - {course: LATIN 370, including claimed: true}
                 - {course: LATIN 371, including claimed: true}
