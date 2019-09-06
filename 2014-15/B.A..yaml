@@ -14,7 +14,7 @@ result:
     - requirement: Declared Major
     - requirement: Allowed S/U Course Credit
 
-    # - {separator: true, label: General Education}
+    # - {separator: true, message: General Education}
 
     - requirement: First-Year Writing
     - requirement: Writing in Context

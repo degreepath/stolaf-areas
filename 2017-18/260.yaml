@@ -27,7 +27,7 @@ emphases:
           limit:
             - at-most: 1
               where: {course: {$in: [BIO 226, BIO 261]}}
-              label: Either BIO 226 or BIO 261 may count, but not both
+              message: Either BIO 226 or BIO 261 may count, but not both
           assert: {count(courses): {$gte: 2}}
 
       Social Sciences:
@@ -79,7 +79,7 @@ emphases:
           limit:
             - at_most: 1
               where: {course: {$in: [PHIL 257, REL 278]}}
-              label: Either PHIL 257 or REL 278 may count, but not both
+              message: Either PHIL 257 or REL 278 may count, but not both
           assert: {count(courses): {$gte: 2}}
 
       Statistics, Modeling, and Mapping:
@@ -111,7 +111,7 @@ emphases:
           limit:
             - at_most: 1
               where: {subject: {$neq: ENVST}}
-              label: At least one course must be in the ENVST subject code
+              message: At least one course must be in the ENVST subject code
           assert: {count(courses): {$gte: 2}}
 
       Environmental Science - Level III:
@@ -140,7 +140,7 @@ emphases:
           limit:
             - at_most: 1
               where: {course: {$in: [BIO 226, BIO 261]}}
-              label: Either BIO 226 or BIO 261 may count, but not both
+              message: Either BIO 226 or BIO 261 may count, but not both
           assert: {count(courses): {$gte: 2}}
 
       Arts and Humanities:
@@ -150,7 +150,7 @@ emphases:
           limit:
             - at_most: 1
               where: {course: {$in: [PHIL 257, REL 278]}}
-              label: Either PHIL 257 or REL 278 may count, but not both
+              message: Either PHIL 257 or REL 278 may count, but not both
           assert: {count(courses): {$gte: 2}}
 
       Methodological Analysis:
