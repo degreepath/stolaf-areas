@@ -45,11 +45,4 @@ requirements:
         - {at-most: 1, where: {number: {$in: [294, 394]}}}
         - {at-most: 1, where: {number: {$in: [298, 398]}}}
         - {at-most: 1, where: {number: {$in: [396]}}}
-      all:
-        - where: {$and: [{number: {$gte: 230}}, {number: {$lte: 249}}]}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {$and: [{number: {$gte: 260}}, {number: {$lte: 269}}]}
-          assert: {count(courses): {$gte: 1}}
-
-        - assert: {count(courses): {$gte: 4}}
+      assert: {count(courses): {$gte: 4}}
