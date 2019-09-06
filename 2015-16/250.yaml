@@ -67,30 +67,10 @@ requirements:
       both:
         - from: {student: courses}
           where: {attribute: {$eq: engl_period_pre1800}}
+          allow_claimed: true
           assert: {count(courses): {$gte: 1, at_most: true}}
 
         - from: {student: courses}
           where: {attribute: {$eq: engl_period_post1800}}
+          allow_claimed: true
           assert: {count(courses): {$gte: 1, at_most: true}}
-
-attributes:
-  multicountable:
-    - - {attributes: {$eq: engl_elective}}
-      - {attributes: {$eq: engl_period_post1800}}
-      - {attributes: {$eq: engl_period_pre1800}}
-
-    - - {attributes: {$eq: engl_topic_crosscultural}}
-      - {attributes: {$eq: engl_period_post1800}}
-      - {attributes: {$eq: engl_period_pre1800}}
-
-    - - {attributes: {$eq: engl_topic_crossdisciplinary}}
-      - {attributes: {$eq: engl_period_post1800}}
-      - {attributes: {$eq: engl_period_pre1800}}
-
-    - - {attributes: {$eq: engl_topic_genre}}
-      - {attributes: {$eq: engl_period_post1800}}
-      - {attributes: {$eq: engl_period_pre1800}}
-
-    - - {attributes: {$eq: engl_topic_literary_history}}
-      - {attributes: {$eq: engl_period_post1800}}
-      - {attributes: {$eq: engl_period_pre1800}}
