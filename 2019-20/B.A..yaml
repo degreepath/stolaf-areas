@@ -219,9 +219,6 @@ requirements:
       all:
         - assert: {count(courses): {$gte: 2}}
 
-        - where: {gereqs: {$eq: ALS-A}}
-          assert: {sum(credits): {$gte: 1}}
-
         # where `credits_from_single_subject` finds the most common
         # subject in a set of items, then returns the .credits prop from the
         # courses with that subject
