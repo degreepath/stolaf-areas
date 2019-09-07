@@ -45,7 +45,6 @@ requirements:
       where:
         attributes:
           $in:
-            - engl_level3
             - engl_elective
             - engl_topic_genre
             - engl_topic_crosscultural
@@ -59,7 +58,7 @@ requirements:
       all:
         - assert: {count(courses): {$gte: 6, at_most: true}}
 
-        - where: {attributes: {$eq: engl_level3}}
+        - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 2}}
 
   1800s:
