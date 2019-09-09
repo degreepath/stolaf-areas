@@ -16,7 +16,14 @@ requirements:
 
     result:
       from: {student: courses}
-      where: {attributes: {$eq: wmgst_concentration_interdisciplinary}}
+      where:
+        attributes:
+          $in:
+            - wmgst_concentration_interdisciplinary
+            - wmgst_elective
+            - wmgst_theory
+            - wmgst_historical
+            - wmgst_diverse
       all:
         - assert: {count(courses): {$gte: 4}}
 
