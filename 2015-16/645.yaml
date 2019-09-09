@@ -9,20 +9,6 @@ result:
     - requirement: Advanced Topics
     - requirement: Additional Courses
 
-attributes:
-  multicountable:
-    - - {attributes: {$eq: wmgst_theory}}
-      - {attributes: {$eq: wmgst_elective}}
-
-    - - {attributes: {$eq: wmgst_diverse}}
-      - {attributes: {$eq: wmgst_elective}}
-
-    - - {attributes: {$eq: wmgst_historical}}
-      - {attributes: {$eq: wmgst_elective}}
-
-    - - {course: {$eq: WMGST 121}}
-      - {attributes: {$eq: wmgst_lived}}
-
 requirements:
   Introduction:
     result:
