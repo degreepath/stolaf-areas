@@ -75,6 +75,7 @@ requirements:
     result:
       at_most: true
       any:
+        - ap: AP Statistics
         - course: STAT 110
         - course: STAT 212
         - course: STAT 214
