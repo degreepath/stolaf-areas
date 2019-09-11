@@ -125,6 +125,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: FYW}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -132,6 +134,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: WRI}}
       assert: {count(courses): {$gte: 4, at_most: true}}
 
@@ -139,6 +143,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where:
         course:
           $in:
@@ -157,6 +163,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: ORC}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -164,6 +172,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [AQR, SED, IST]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -171,6 +181,8 @@ requirements:
     result:
       from: {student: courses, repeats: first}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: SPM}}
       assert: {count(courses): {$gte: 2, at_most: true}}
 
@@ -178,6 +190,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [HWC, ALS-L]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -185,6 +199,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [MCD, MCG]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -192,6 +208,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [BTS-B, BTS-T]}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -206,6 +224,8 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: HBS}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -213,5 +233,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: EIN}}
       assert: {count(courses): {$gte: 1, at_most: true}}
