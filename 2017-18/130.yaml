@@ -7,33 +7,40 @@ result:
   count: all
   of:
     - requirement: American Culture
+    - requirement: Level II Topics
+    - requirement: Level III Seminar
     - requirement: Electives
+
+  audit:
+    all:
+      - where: {gereqs: {$eq: MCD}}
+        assert: {count(courses): {$gte: 2}}
+
+      - where: {level: {$eq: 300}}
+        assert: {count(courses): {$gte: 2}}
 
 requirements:
   American Culture:
     result:
       course: AMST 100
 
+  Level II Topics:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: amst_topics}}
+      assert: {count(courses): {$gte: 1}}
+
+  Level III Seminar:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: amst_seminar}}
+      assert: {count(courses): {$gte: 1}}
+
   Electives:
     result:
       from: {student: courses}
       where: {attribute: {$in: [amst_topics, amst_seminar, amst_id]}}
       all:
-        - where: {attribute: {$eq: amst_topics}}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {attribute: {$eq: amst_seminar}}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {attribute: {$eq: amst_id}}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {gereqs: {$eq: MCD}}
-          assert: {count(courses): {$gte: 2}}
-
-        - where: {level: {$eq: 300}}
-          assert: {count(courses): {$gte: 2}}
-
         - assert: {count(subjects): {$gte: 3}}
 
         - assert: {count(courses): {$gte: 6}}
