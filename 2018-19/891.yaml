@@ -18,6 +18,7 @@ requirements:
         - course: STAT 212
         - {course: STAT 214, hidden: true}
         - course: ECON 263
+        - ap: AP Statistics
 
   Core:
     result:
