@@ -18,22 +18,14 @@ requirements:
         - course: ESTH 374
         - course: ESTH 375
         - course: ESTH 390
-        - any:
-            - course: PSYCH 125
-            - ap: AP Psychology
-            - ap: IB Psychology
+        - course: NURS 110
+        - course: PSYCH 125
 
   Electives:
     result:
       from: {student: courses}
-      where:
-        $or:
-          - attributes: {$eq: esth_elective}
-          - ap: {$eq: AP Statistics}
+      where: {attributes: {$eq: esth_elective}}
       limit:
         - at-most: 1
-          where:
-            $or:
-              - course: {$in: [STAT 110, STAT 212, STAT 214]}
-              - ap: {$eq: AP Statistics}
+          where: {course: {$in: [STAT 110, STAT 212, STAT 214]}}
       assert: {count(courses): {$gte: 2, at_most: true}}
