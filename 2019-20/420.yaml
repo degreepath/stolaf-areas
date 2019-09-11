@@ -27,7 +27,7 @@ requirements:
           either:
             - all:
                 - at_most: true
-                  either:
+                  any:
                     - course: MATH 120
                     - course: MATH 119
                     - ap: AP Calculus I
