@@ -68,6 +68,7 @@ requirements:
             - history_region_eu_ru
             - history_region_af_as_la
             - history_region_us
+            - history_extra
       assert: {count(courses): {$gte: 2, at_most: true}}
 
 emphases:
