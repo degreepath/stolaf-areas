@@ -11,6 +11,7 @@ result:
     - requirement: International Relations
     - requirement: Political Theory
     - requirement: Level III Electives
+    - requirement: Optional Electives
 
   audit:
     all:
@@ -77,3 +78,22 @@ requirements:
                 - psci_level_3
           - {level: {$eq: 300}}
       assert: {count(courses): {$gte: 2}}
+
+  Optional Electives:
+    message: |
+      Students may designate a selected statistics course OR one additional
+      semester of a world language beyond the level of proficiency required
+      for general education (French, German, or Spanish numbered above 232 or
+      Chinese, Greek, Latin, Japanese, Norwegian, or Russian numbered above
+      231 and taught in the target language) as one of their nine courses in
+      the political science major.
+
+      Additional study in statistics and/or a world language is especially
+      recommended for students considering graduate study.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: psci_optional_elective}}
+      limit:
+        - at-most: 1
+          where: {attribute: {$eq: psci_optional_elective}}
+      assert: {count(courses): {$gte: 0}}
