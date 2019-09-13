@@ -7,9 +7,9 @@ result:
   all:
     - requirement: Major Seminar
     - requirement: Level III
-    - requirement: Non-Western World
-    - requirement: European
-    - requirement: U.S.
+    - requirement: Africa, Asia, and Latin America
+    - requirement: Europe and Russia
+    - requirement: The United States
     - requirement: Pre-Modern Period
 
   audit:
@@ -35,26 +35,26 @@ attributes:
       - {attributes: {$eq: history_l2_seminar}}
       - {attributes: {$eq: history_level_3}}
       - {attributes: {$eq: history_region_europe}}
-      - {attributes: {$eq: history_region_nonwesternworld}}
+      - {attributes: {$eq: history_region_af_as_la}}
       - {attributes: {$eq: history_region_us}}
 
 requirements:
-  European:
+  Europe and Russia:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_europe}}
       assert: {count(courses): {$gte: 1}}
 
-  U.S.:
+  The United States:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_us}}
       assert: {count(courses): {$gte: 1}}
 
-  Non-Western World:
+  Africa, Asia, and Latin America:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_region_nonwesternworld}}
+      where: {attribute: {$eq: history_region_af_as_la}}
       assert: {count(courses): {$gte: 1}}
 
   Pre-Modern Period:
