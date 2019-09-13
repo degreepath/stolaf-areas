@@ -58,10 +58,12 @@ requirements:
       assert: {count(courses): {$gte: 1}}
 
   Pre-Modern Period:
+    message: |
+      Waived by department request, as per Steve Hahn.
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_era_premodern}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 0}}
 
   Major Seminar:
     result:
