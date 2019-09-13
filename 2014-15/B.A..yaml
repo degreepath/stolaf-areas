@@ -24,7 +24,8 @@ result:
     - requirement: Studies in Physical Movement
     - requirement: Historical Studies in Western Culture
     - requirement: Multicultural Studies
-    - requirement: Artistic and Literary Studies
+    - requirement: Artistic Studies
+    - requirement: Literary Studies
     - requirement: Biblical and Theological Studies
     - requirement: Studies in Natural Science
     - requirement: Studies in Human Behavior and Society
@@ -32,6 +33,10 @@ result:
 
 requirements:
   Required Course Credit:
+    message: |
+      Students must successfully complete the equivalent of 35 St. Olaf
+      credits through a combination of full-credit and fractional-credit
+      courses.
     result:
       from: {student: courses}
       where:
@@ -43,6 +48,10 @@ requirements:
       assert: {sum(credits): {$gte: 35}}
 
   Credits Taken At/Through St. Olaf College:
+    message: |
+      Seventeen of the 35 St. Olaf credits required for graduation must be
+      taken through St. Olaf College. This may include St. Olaf-sponsored
+      off-campus programs.
     result:
       from: {student: courses}
       load_potentials: false
@@ -54,7 +63,7 @@ requirements:
       assert: {sum(credits): {$gte: 17}}
 
   Transfer Credit:
-    message:
+    message: |
       After matriculation, you may transfer 4 St. Olaf credits from other
       institutions to St. Olaf college.
     result:
@@ -64,6 +73,9 @@ requirements:
       assert: {sum(credits): {$lte: 4}}
 
   Interim Credits:
+    message: |
+      At least three of the required 35 St. Olaf credits must be earned in
+      three separate January full-credit (1.0) Interims.
     result:
       from: {student: courses}
       load_potentials: false
@@ -72,6 +84,9 @@ requirements:
       assert: {sum(credits): {$gte: 3}}
 
   Cumulative Grade Point Average:
+    message: |
+      An average grade of C (2.00 on a 4.00 system) for all courses taken for
+      the usual letter grades.
     result:
       from: {student: areas}
       where:
@@ -86,6 +101,12 @@ requirements:
       # assert: {average(grades): {$gte: 2.0}}
 
   Level II/III Course Credit:
+    message: |
+      Satisfactory completion of 18 credits above level I, courses numbered
+      200 and higher.
+
+      A course can earn only its assigned level. It cannot be raised in level
+      as the result of extra studies, assignments, or performance.
     result:
       from: {student: courses}
       load_potentials: false
@@ -94,6 +115,9 @@ requirements:
       assert: {sum(credits): {$gte: 18}}
 
   Graded Course Credit:
+    message: |
+      A minimum of 24 credits of the 35 must be taken graded through courses
+      taken from a St. Olaf professor.
     result:
       from: {student: courses}
       load_potentials: false
@@ -102,7 +126,9 @@ requirements:
       assert: {sum(credits): {$gte: 24}}
 
   Declared Major:
-    message:
+    message: |
+      One completed major is required for graduation.
+
       You must declare a major by the spring of your sophomore year.
     result:
       from: {student: areas}
@@ -114,7 +140,7 @@ requirements:
       assert: {count(areas): {$gte: 1}}
 
   Allowed S/U Course Credit:
-    message:
+    message: |
       In completing the minimum of 35 full credits required for graduation,
       students may take up to six full-course equivalents (6.00 credits) on an
       S/U basis.
@@ -126,23 +152,47 @@ requirements:
       assert: {sum(credits): {$lte: 6.00}}
 
   First-Year Writing:
+    message: |
+      First-year students are required to complete First-Year Writing (FYW),
+      with two exceptions:
+
+      1. FYW is awarded to first-year students who receive a score of 5 on the
+      Advanced Placement (AP) English Literature or English Language Exam or a
+      score of 5 or higher on the International Baccalaureate (IB) exam.
+
+      2. Students who initially transfer 17 or 18 St. Olaf-equivalent credits to
+      St. Olaf are exempt from the FYW requirement.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: FYW}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Writing in Context:
+    message: |
+      4 courses in any departments/programs.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: WRI}}
       assert: {count(courses): {$gte: 4, at_most: true}}
 
   Foreign Language:
+    message: |
+      Bachelor of Arts students must satisfactorily complete the fourth
+      college semester course (numbered 232 or higher) taught in the French,
+      German, or Spanish languages; or the third college semester course
+      (numbered 231 or higher) taught in the Chinese, Greek, Latin, Japanese,
+      Norwegian, or Russian languages, or demonstrate equivalent proficiency.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where:
         gereqs:
           $in:
@@ -159,32 +209,71 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Oral Communication:
+    message: |
+      One course that incorporates specific instruction, practice, and
+      feedback to develop oral communication competence and confidence.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: ORC}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Abstract and Quantitative Reasoning:
+    message: |
+      One course that develops analytic thinking skills through systematic
+      focus on abstract and quantitative reasoning.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: AQR}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Studies in Physical Movement:
+    message: |
+      Two different courses, of any credit value, that expand students'
+      experiences in and understanding of movement and promote lifelong health
+      and wellness of the whole person. Students are encouraged to expand
+      their horizons and focus on different activities or modes of movement in
+      order to fulfill the requirements.
     result:
       from: {student: courses, repeats: first}
       claim: false
+      limit:
+        - at-most: 0
+          where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}
+        - at-most: 1
+          where:
+            $and:
+              - subject: {$eq: ESAC}
+              - number: {$gte: 171}
+              - number: {$lte: 194}
+              - credit: {$eq: 0.25}
+          message:
+            Only one 0.25 SPM course credit may be earned by students as a
+            result of participation in an approved intercollegiate sport. This
+            credit must be entered as ESAC 171-194 at the registration
+            preceding the sport/participation term. Credit cannot be claimed
+            after the term in which participation took place unless the
+            student completes a petition form; a late fee is assessed. It can
+            only be used once as one half of the two-course SPM requirement.
       where: {gereqs: {$eq: SPM}}
       assert: {count(courses): {$gte: 2, at_most: true}}
 
   Historical Studies in Western Culture:
-    message:
-      One course must be taught by a St. Olaf professor.
+    message: |
+      2 courses in any departments/programs (at least one must be taken from a
+      St. Olaf faculty instructor; exception: if a student has received credit
+      for one HWC course through pre-college credit, s/he may receive credit
+      for the other one via a St. Olaf-approved off-campus program)
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: HWC}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -193,11 +282,15 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Multicultural Studies:
+    message: |
+      2 courses, one MCG, one MCD (must be from two different
+      departments/programs)
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [MCD, MCG]}}
-
       all:
         - assert: {count(courses): {$gte: 2}}
         - assert: {count(subjects): {$gte: 2}}
@@ -208,30 +301,45 @@ requirements:
         - where: {gereqs: {$eq: MCG}}
           assert: {count(courses): {$gte: 1}}
 
-  Artistic and Literary Studies:
-    message:
-      All ALS-A credits must be in the same subject code.
+  Artistic Studies:
+    message: |
+      1.0 credit (fractional courses totaling 1.0 credit may satisfy this
+      requirement if all courses are in the same artistic form)
     result:
       from: {student: courses}
       claim: false
-      where: {gereqs: {$in: [ALS-A, ALS-L]}}
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$eq: ALS-A}}
+      # where `credits_from_single_subject` finds the most common
+      # subject in a set of items, then returns the .credits prop from the
+      # courses with that subject
+      assert: {sum(credits_from_single_subject): {$gte: 1}}
 
-      all:
-        - assert: {count(courses): {$gte: 2}}
-
-        # where `credits_from_single_subject` finds the most common
-        # subject in a set of items, then returns the .credits prop from the
-        # courses with that subject
-        - where: {gereqs: {$eq: ALS-A}}
-          assert: {sum(credits_from_single_subject): {$gte: 1}}
-
-        - where: {gereqs: {$eq: ALS-L}}
-          assert: {count(courses): {$gte: 1}}
+  Literary Studies:
+    message: |
+      One course intended to develop appreciation and understanding of
+      literary forms.
+    result:
+      from: {student: courses}
+      claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$eq: ALS-L}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Biblical and Theological Studies:
+    message: |
+      2 courses, one BTS-B, one BTS-T.
+
+      Students who initially transfer 17 or 18 St. Olaf-equivalent credits
+      to St. Olaf are required to complete only the Christian theology
+      (BTS-T) course.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [BTS-B, BTS-T]}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -243,11 +351,21 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Studies in Natural Science:
-    message:
-      One course must be taught by a St. Olaf professor.
+    message: |
+      2 courses; one SED, one IST.
+
+      At least one of these two courses must be taken from a St. Olaf faculty
+      instructor.
+
+      Exception: if a student has received credit for an IST or SED course
+      through pre-college credit, s/he may receive credit for the other one
+      via a St. Olaf-approved off-campus program.
+
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [SED, IST]}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -259,14 +377,24 @@ requirements:
         - where: {gereqs: {$eq: IST}}
           assert: {count(courses): {$gte: 1}}
 
+        - where: {is_stolaf: {$eq: true}}
+          assert: {count(courses): {$gte: 1}}
+
   Studies in Human Behavior and Society:
-    message:
-      One course must be taught by a St. Olaf professor.
+    message: |
+      2 courses, which must be from two different departments/programs.
+
+      At least one must be taken from a St. Olaf faculty instructor.
+
+      Exception: if a student has received credit for one HBS course through
+      pre-college credit, s/he may receive credit for the other one via a St.
+      Olaf-approved off-campus program.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: HBS}}
-
       all:
         - assert: {count(courses): {$gte: 2}}
         - assert: {count(subjects): {$gte: 2}}
@@ -275,8 +403,13 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Ethical Issues and Normative Perspectives:
+    message: |
+      Prerequisite for all EIN courses: completion of the BTS-T requirement or
+      permission of the instructor.
     result:
       from: {student: courses}
       claim: false
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: EIN}}
       assert: {count(courses): {$gte: 1}}
