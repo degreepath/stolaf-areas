@@ -5,90 +5,74 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Level II Seminar
-    - requirement: Level III Seminars
+    - requirement: Major Seminar
+    - requirement: Level III
     - requirement: Africa, Asia, and Latin America
     - requirement: Europe and Russia
     - requirement: The United States
-    - requirement: Additional Courses
+    - requirement: Pre-Modern Period
 
   audit:
     all:
-      - where: {level: {$eq: 100}}
-        assert: {count(courses): {$lte: 3}}
+      - assert: {count(courses): {$gte: 9}}
+
+      - assert: {count(courses): {$lte: 3}}
+        where:
+          $and:
+            - {subject: {$eq: HIST}}
+            - {level: {$eq: 100}}
+
+      - assert: {count(courses): {$lte: 2}}
+        where:
+          $and:
+            - {subject: {$eq: HIST}}
+            - {level: {$eq: 100}}
+            - {type: {$eq: Seminar}}
 
 attributes:
   multicountable:
-    - - {attributes: {$eq: history_l2_seminar}}
-      - {attributes: {$eq: history_l3_seminar}}
+    - - {attributes: {$eq: history_era_premodern}}
+      - {attributes: {$eq: history_l2_seminar}}
+      - {attributes: {$eq: history_level_3}}
+      - {attributes: {$eq: history_region_europe}}
       - {attributes: {$eq: history_region_af_as_la}}
-      - {attributes: {$eq: history_region_eu_ru}}
       - {attributes: {$eq: history_region_us}}
-      - {attributes: {$eq: hist_public_elective}}
 
 requirements:
   Europe and Russia:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_region_eu_ru}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      where: {attribute: {$eq: history_region_europe}}
+      assert: {count(courses): {$gte: 1}}
 
   The United States:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_us}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      assert: {count(courses): {$gte: 1}}
 
   Africa, Asia, and Latin America:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_region_af_as_la}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      assert: {count(courses): {$gte: 1}}
 
-  Level II Seminar:
+  Pre-Modern Period:
+    message: |
+      Waived by department request, as per Steve Hahn.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: history_era_premodern}}
+      assert: {count(courses): {$gte: 0}}
+
+  Major Seminar:
     result:
       from: {student: courses}
       where: {attribute: {$eq: history_l2_seminar}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      assert: {count(courses): {$gte: 1}}
 
-  Level III Seminars:
+  Level III:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_l3_seminar}}
-      assert: {count(courses): {$gte: 3, at_most: true}}
-
-  Additional Courses:
-    result:
-      from: {student: courses}
-      where:
-        attribute:
-          $in:
-            - history_l2_seminar
-            - history_l3_seminar
-            - history_region_eu_ru
-            - history_region_af_as_la
-            - history_region_us
-      assert: {count(courses): {$gte: 2, at_most: true}}
-
-emphases:
-  737:
-    name: Public History
-
-    result:
-      all:
-        - requirement: Core
-        - requirement: Electives
-
-    requirements:
-      Core:
-        result:
-          all:
-            - course: HIST 280
-            - course: HIST 294
-            - course: HIST 296
-
-      Electives:
-        result:
-          from: {student: courses}
-          where: {attributes: {$eq: hist_public_elective}}
-          assert: {count(courses): {$gte: 3}}
+      where: {attribute: {$eq: history_level_3}}
+      assert: {count(courses): {$gte: 3}}
