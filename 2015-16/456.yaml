@@ -82,18 +82,18 @@ requirements:
     requirements:
       Solos:
         department_audited: true
-        message: >
+        message: |
           2 solo performances on official student recitals
 
       Junior Recital:
         department_audited: true
-        message: >
+        message: |
           30 minute Junior recital (or, by petition only: 3 additional solo
           performances on official student recitals)
 
       Senior Recital:
         department_audited: true
-        message: >
+        message: |
           60-minute Senior recital
 
   Keyboard Proficiency:

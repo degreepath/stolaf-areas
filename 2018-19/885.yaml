@@ -23,7 +23,7 @@ requirements:
         - course: NORW 372
 
   Electives:
-    message: >
+    message: |
       Up to three courses from study abroad programs such as DIS, HECUA: The
       New Norway, and university direct-enroll programs may be counted toward
       the Nordic studies concentration
@@ -36,11 +36,11 @@ requirements:
 
         - where: {subject: {$neq: NORW}}
           assert: {count(courses): {$gte: 2}}
-          message: >
+          message: |
             Two or three courses from other departments
 
         - where: {attribute: {$neq: nordic_focus_norway}}
           assert: {count(courses): {$gte: 2}}
-          message: >
+          message: |
             At least two of the five courses must have a focus on at least one
             Nordic country other than Norway.

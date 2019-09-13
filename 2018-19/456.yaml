@@ -92,7 +92,7 @@ requirements:
     requirements:
       Solos:
         department_audited: true
-        message: >
+        message: |
           2 solo performances on a St. Olaf Student Recital (may include
           Entrance and Continuance)
 

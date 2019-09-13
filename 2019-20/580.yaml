@@ -17,7 +17,7 @@ result:
 
 requirements:
   Study Abroad:
-    message: >
+    message: |
       Two additional courses taught in Russian, taken in Russia during senior
       year.
     result:

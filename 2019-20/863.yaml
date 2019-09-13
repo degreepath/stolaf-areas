@@ -36,7 +36,7 @@ requirements:
       assert: {count(courses): {$gte: 1}}
 
   Experiential Learning:
-    message: >
+    message: |
       This requirement is satisfied by completing two approved experiences in
       which the student applies management or financial principles to real
       world problems.
@@ -49,20 +49,20 @@ requirements:
     requirements:
       Internship / Work Experience:
         department_audited: true
-        message: >
+        message: |
           One of the activities must be an academic internship or an approved
           work experience.
 
       Leadership Experience:
         department_audited: true
-        message: >
+        message: |
           The other activity can be a volunteer, leadership, entrepreneurial,
           or related work experience. The Piper Center for Vocation and Career
           and other organizations help students with this requirement.
 
   Capstone:
     department_audited: true
-    message: >
+    message: |
       The capstone project introduces students to the career planning process,
       helping them to identify career options and assess opportunities. This
       project includes career exploration activities, a description of future

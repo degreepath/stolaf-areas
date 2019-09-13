@@ -84,7 +84,7 @@ requirements:
 
   Required Performances:
     department_audited: true
-    message: >
+    message: |
       2 solo performances on principal instrument in official student
       recitals; one must be in junior or senior year
 

@@ -142,7 +142,7 @@ requirements:
     department_audited: true
 
   Required Portfolio:
-    message: >
+    message: |
       With approval of the composition faculty, the student submits a
       portfolio of at least 3 compositions previously submitted for Level III
       composition courses to the music office by May 1 of the senior year.

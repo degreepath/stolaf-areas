@@ -34,7 +34,7 @@ requirements:
         - {course: PSCI 220, hidden: true}
 
   Electives:
-    message: >
+    message: |
       Students are permitted to take one of the four elective courses, but not
       a core course, S/U.
     result:

@@ -24,7 +24,7 @@ requirements:
             - course: SPAN 314
 
   Electives:
-    message: >
+    message: |
       You must take one (1) additional level III course from St. Olaf College,
       and three (3) electives above the the 250 level.
 

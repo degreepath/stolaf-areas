@@ -22,7 +22,7 @@ requirements:
       assert: {count(courses): {$gte: 3}}
 
   Academic Internship:
-    message: >
+    message: |
       Students pursuing the media studies concentration enroll in and complete
       a **credit-bearing**, academic internship in a media-related field, e.g.,
       film, television, video, radio, Internet, newspaper, magazine, book
@@ -36,7 +36,7 @@ requirements:
         - course: MEDIA 394
 
   Digital Portfolio:
-    message: >
+    message: |
       Requirements and plans for individual portfolios are discussed at a
       mandatory meeting for all junior and senior media studies concentrators,
       in the fall semester. Graduating concentrators submit their portfolios

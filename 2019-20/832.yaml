@@ -31,7 +31,7 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Experiential:
-    message: >
+    message: |
       This requirement is usually an academic, credit-bearing experience
       completed during the senior year (including the previous summer.)
 

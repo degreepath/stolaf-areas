@@ -23,7 +23,7 @@ result:
 requirements:
   Application Process:
     department_audited: true
-    message: >
+    message: |
       Entrance examination as outlined in the catalog.
       Continuance examination as outlined in the catalog.
 
@@ -79,7 +79,7 @@ requirements:
       assert: {count(courses): {$gte: 2}}
 
   Performance Studies:
-    message: >
+    message: |
       0.25 credit prior to admission into BM Elective Studies and 0.5 credit
       after admission, with a minimum of 4 semesters of 0.5 credit lessons
     result:
@@ -94,17 +94,17 @@ requirements:
           assert: {count(terms): {$gte: 4}}
 
   Official Ensemble Participation:
-    message: >
+    message: |
       Every semester in an official ensemble
     department_audited: true
 
   Required Performances:
-    message: >
+    message: |
       Two solo performances on a St. Olaf Student Recital.
     department_audited: true
 
   Required Recital Attendance:
-    message: >
+    message: |
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
     department_audited: true

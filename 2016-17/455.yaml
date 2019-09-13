@@ -101,7 +101,7 @@ requirements:
 
   Principle Performance Studies:
     department_audited: true
-    message: >
+    message: |
       Every semester prior to and including the semester of application for
       entrance into the BM Music Education program, .25 each; every semester
       thereafter, prior to the professional semester, .50 each
@@ -116,7 +116,7 @@ requirements:
 
   Secondary Performance Studies:
     department_audited: true
-    message: >
+    message: |
       Vocal: 2 semesters
 
       Vocal exception: piano primaries - 4 semesters of voice
@@ -133,18 +133,18 @@ requirements:
 
   Required Solo Performances:
     department_audited: true
-    message: >
+    message: |
       2 solo performances on licensure instrument in official student
       recitals; one must be in junior or senior year
 
   Required Senior Recital:
     department_audited: true
-    message: >
+    message: |
       30-minute senior recital on principal instrument/voice
 
   Performance:
     department_audited: true
-    message: >
+    message: |
       2 small ensemble performances on licensure instrument
 
   Concert Attendance:

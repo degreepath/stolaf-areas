@@ -12,7 +12,7 @@ result:
 requirements:
   Integrative Studies:
     department_audited: true
-    message: >
+    message: |
       The CIS is the academic home for students pursuing self-designed,
       integrative majors. Students propose a sequence of courses, seminars,
       independent studies, or experiential learning as the means of pursuing

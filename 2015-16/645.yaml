@@ -19,7 +19,7 @@ requirements:
       course: WMGST 399
 
   Additional Courses:
-    message: >
+    message: |
       Seven additional courses, with the following criteria:
 
       1. One must be at level III

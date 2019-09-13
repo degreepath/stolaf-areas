@@ -43,13 +43,13 @@ requirements:
       assert: {count(courses): {$gte: 2}}
 
   Integrative Project:
-    message: >
+    message: |
       Students are required to work on an independent project that integrates
       mathematics, computer science, and/or statistics with biology.
     department-audited: true
 
   Senior Math Biology Symposium:
-    message: >
+    message: |
       Seniors present their independent project in the form of a poster in a
       Mathematical Biology Symposium held at St. Olaf in the spring.
     department-audited: true

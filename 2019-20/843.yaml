@@ -29,7 +29,7 @@ requirements:
 
     requirements:
       World Language:
-        message: >
+        message: |
           One course numbered 232 or higher in Chinese, Greek, Japanese,
           Latin, Norwegian, or Russian; or one course numbered 250 or higher
           in French, German, or Spanish.
@@ -49,7 +49,7 @@ requirements:
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       World Region:
-        message: >
+        message: |
           Two courses focused upon any single contemporary world region or
           country (e.g., Africa, Asia, China, Germany, Japan, Latin America,
           the Middle East, or Russia). Can be from any department and may

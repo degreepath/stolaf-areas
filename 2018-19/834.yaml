@@ -24,7 +24,7 @@ requirements:
       course: FILM 101
 
   History, Theory, or Cultural Meaning of Film:
-    message: >
+    message: |
       Two elective courses that focus on the history, theory, or cultural
       expression of film within the United States or in a global context.
       These courses examine the production, critical evaluation, cultural
@@ -38,7 +38,7 @@ requirements:
       assert: {count(courses): {$gte: 2}}
 
   Practical Film Studies:
-    message: >
+    message: |
       One elective course that focuses on practical aspects of film creation
       or criticism. These courses emphasize modern film as professional
       practice, asking students to master at least one of the main creative or
@@ -50,7 +50,7 @@ requirements:
       assert: {count(courses): {$gte: 1}}
 
   Integrative Film Studies:
-    message: >
+    message: |
       One more elective drawn from the above categories, or an integrative
       film topics course approved by the program (see list below), or a
       contract course worked out in consultation with the program director and

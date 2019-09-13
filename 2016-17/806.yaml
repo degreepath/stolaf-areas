@@ -19,7 +19,7 @@ requirements:
         - course: AFAD 231
 
   Electives:
-    message: >
+    message: |
       Elective courses must be relevant to the focus of the concentration. For
       some electives, students may be required to negotiate specific
       assignments with the instructor and the director of the concentration.

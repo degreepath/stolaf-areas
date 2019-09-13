@@ -19,7 +19,7 @@ requirements:
         - course: NEURO 239
 
   Lab Electives:
-    message: >
+    message: |
       # Level II Foundation Lab Elective
 
       Another appropriate biology or psychology course (e.g., Topics
@@ -61,7 +61,7 @@ requirements:
       assert: {count(courses): {$gte: 1}}
 
   Interdisciplinary Reflection:
-    message: >
+    message: |
       A short, 1-2 page reflective piece relating this course to your
       neuroscience studies must be submitted to the program director in order
       to receive credit for this course toward your concentration.

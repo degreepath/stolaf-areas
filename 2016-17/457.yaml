@@ -78,7 +78,7 @@ requirements:
 
   Required Performances:
     department_audited: true
-    message: >
+    message: |
       2 solo performances on official student recitals; one must be junior or
       senior year.
 

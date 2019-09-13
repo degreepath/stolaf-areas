@@ -27,7 +27,7 @@ requirements:
         - course: CHIN 360
 
   Language and Culture:
-    message: >
+    message: |
       The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216,
       ASIAN 220) will count for no more than two courses.
 
@@ -59,7 +59,7 @@ requirements:
 
     department-audited: true
 
-    message: >
+    message: |
       For students double-majoring in Asian Studies and Chinese or Japanese,
       the following rules apply:
 

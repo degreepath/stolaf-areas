@@ -49,7 +49,7 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Interdisciplinary Seminar:
-    message: >
+    message: |
       LAMST 333 is taught in *alternate* years, and is ideally taken in the
       junior or senior year. Students planning to study abroad during the
       semester in which the course is taught should in their junior year
@@ -60,7 +60,7 @@ requirements:
       course: LAMST 333
 
   Electives:
-    message: >
+    message: |
       Choose four electives from among approved courses dealing with Latin
       America, Spain, or U.S. Latinos from disciplines including, but not
       limited to: anthropology, art, economics, education, English, history,

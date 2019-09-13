@@ -60,7 +60,7 @@ requirements:
 
     department-audited: true
 
-    message: >
+    message: |
       For students double-majoring in Asian Studies and Chinese or Japanese,
       the following rules apply:
 
