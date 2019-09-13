@@ -252,7 +252,7 @@ requirements:
               - subject: {$eq: ESAC}
               - number: {$gte: 171}
               - number: {$lte: 194}
-              - credit: {$eq: 0.25}
+              - credits: {$eq: 0.25}
           message:
             Only one 0.25 SPM course credit may be earned by students as a
             result of participation in an approved intercollegiate sport. This
