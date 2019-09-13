@@ -5,20 +5,15 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Language
+    - course: RUSSN 111
+    - course: RUSSN 112
+    - course: RUSSN 231
+    - course: RUSSN 232
     - requirement: Electives If Not a Russian Language Major
     - requirement: Electives If Also a Russian Language Major
     - requirement: Senior Project
 
 requirements:
-  Language:
-    result:
-      all:
-        - course: RUSSN 111
-        - course: RUSSN 112
-        - course: RUSSN 231
-        - course: RUSSN 232
-
   Electives If Not a Russian Language Major:
     if:
       from: {student: areas}
