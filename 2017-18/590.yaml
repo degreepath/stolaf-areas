@@ -22,7 +22,11 @@ requirements:
 
     result:
       from: {student: courses}
-      where: {attribute: {$eq: russian_area_elective}}
+      where:
+        attribute:
+          $in:
+            - russian_area_elective
+            - russian_area_elective_if_not_rusn_lang
       assert: {count(courses): {$gte: 5}}
 
   Electives If Also a Russian Language Major:
@@ -33,10 +37,7 @@ requirements:
 
     result:
       from: {student: courses}
-      where:
-        $and:
-          - attribute: {$eq: russian_area_elective}
-          - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
+      where: {attribute: {$eq: russian_area_elective}}
       assert: {count(courses): {$gte: 5}}
 
   Senior Project:
