@@ -30,98 +30,38 @@ requirements:
     requirements:
       2D Media:
         result:
-          at_most: true
-          any:
-            - requirement: Drawing
-            - requirement: Painting
-            - requirement: Printmaking
-            - requirement: Graphic Design
-
-        requirements:
-          Drawing:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_drawing}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Painting:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_painting}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Printmaking:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_printmaking}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Graphic Design:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_design}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
+          from: {student: courses}
+          where:
+            attributes:
+              $in:
+                - art_area_drawing
+                - art_area_painting
+                - art_area_printmaking
+                - art_area_design
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       3D Media:
         result:
-          at_most: true
-          any:
-            - requirement: Ceramics
-            - requirement: Sculpture
-
-        requirements:
-          Ceramics:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_ceramics}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Sculpture:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_sculpture}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
+          from: {student: courses}
+          where:
+            attributes:
+              $in:
+                - art_area_ceramics
+                - art_area_sculpture
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       New Media:
         result:
-          at_most: true
-          any:
-            - requirement: Photography
-            - requirement: Interactive Image
-            - requirement: Digital Video
-            - requirement: Performance
-            - requirement: Graphic Design
-
-        requirements:
-          Photography:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_photography}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Interactive Image:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_interactive_image}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Digital Video:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_digital_video}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Performance:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_performance}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
-
-          Graphic Design:
-            result:
-              from: {student: courses}
-              where: {attributes: {$eq: art_area_design}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
+          from: {student: courses}
+          where:
+            attributes:
+              $in:
+                - art_area_photography
+                - art_area_interactive_image
+                - art_area_digital_video
+                - art_area_performance
+                - art_area_design
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Juried Shows:
     department_audited: true
