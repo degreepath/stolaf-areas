@@ -34,7 +34,7 @@ attributes:
     - - {attributes: {$eq: history_era_premodern}}
       - {attributes: {$eq: history_l2_seminar}}
       - {attributes: {$eq: history_level_3}}
-      - {attributes: {$eq: history_region_europe}}
+      - {attributes: {$eq: history_region_eu_ru}}
       - {attributes: {$eq: history_region_af_as_la}}
       - {attributes: {$eq: history_region_us}}
 
@@ -42,19 +42,28 @@ requirements:
   Europe and Russia:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_region_europe}}
+      where:
+        $or:
+          - attribute: {$eq: history_region_eu_ru}
+          - ap: {$eq: AP European History}
       assert: {count(courses): {$gte: 1}}
 
   The United States:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_region_us}}
+      where:
+        $or:
+          - attribute: {$eq: history_region_us}
+          - ap: {$eq: AP U.S. History}
       assert: {count(courses): {$gte: 1}}
 
   Africa, Asia, and Latin America:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_region_af_as_la}}
+      where:
+        $or:
+          - attribute: {$eq: history_region_af_as_la}
+          - ap: {$eq: AP World History}
       assert: {count(courses): {$gte: 1}}
 
   Pre-Modern Period:
