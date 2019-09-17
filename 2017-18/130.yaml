@@ -4,46 +4,88 @@ type: major
 degree: B.A.
 
 result:
-  count: all
-  of:
-    - requirement: American Culture
-    - requirement: Level II Topics
-    - requirement: Level III Seminar
-    - requirement: Electives
-
-  audit:
-    all:
-      - where: {gereqs: {$eq: MCD}}
-        assert: {count(courses): {$gte: 2}}
-
-      - where: {level: {$eq: 300}}
-        assert: {count(courses): {$gte: 2}}
+  all:
+    - requirement: American Studies (with American Conversations)
+    - requirement: American Studies
 
 requirements:
-  American Culture:
-    result:
-      any:
-        - course: AMST 100
-        - course: AMCON 102
-        - course: AMCON 111
+  American Studies:
+    if:
+      from: {student: courses}
+      where: {course: {$eq: AMCON 202}}
+      assert: {count(courses): {$eq: 0}}
 
-  Level II Topics:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: amst_topics}}
-      assert: {count(courses): {$gte: 1}}
+      where:
+        attribute:
+          $in: [amst_topics, amst_seminar, amst_id]
 
-  Level III Seminar:
-    result:
-      from: {student: courses}
-      where: {attribute: {$eq: amst_seminar}}
-      assert: {count(courses): {$gte: 1}}
-
-  Electives:
-    result:
-      from: {student: courses}
-      where: {attribute: {$in: [amst_topics, amst_seminar, amst_id]}}
       all:
+        - assert: {count(courses): {$gte: 9}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
         - assert: {count(subjects): {$gte: 3}}
 
-        - assert: {count(courses): {$gte: 6}}
+        - where: {course: {$eq: AMST 100}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where:
+            $and:
+              - subject: {$eq: AMST}
+              - level: {$eq: 200}
+          assert: {count(courses): {$gte: 1}}
+
+        - where:
+            $and:
+              - subject: {$eq: AMST}
+              - level: {$eq: 300}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {gereqs: {$eq: MCD}}
+          assert: {count(courses): {$gte: 2}}
+
+  American Studies (with American Conversations):
+    if:
+      from: {student: courses}
+      where: {course: {$eq: AMCON 202}}
+      assert: {count(courses): {$gte: 1}}
+
+    result:
+      from: {student: courses}
+      where:
+        $or:
+          - course:
+              $in: [AMCON 102, AMCON 111, AMCON 201, AMCON 202]
+          - attribute:
+              $in: [amst_topics, amst_seminar, amst_id]
+
+      all:
+        - assert: {count(courses): {$gte: 9}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+        - assert: {count(subjects): {$gte: 3}}
+
+        - where: {course: {$in: [AMST 100, AMCON 102, AMCON 111]}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where:
+            $or:
+              - $and:
+                  - subject: {$eq: AMST}
+                  - level: {$eq: 200}
+              - course: {$in: [AMCON 201, AMCON 202]}
+          assert: {count(courses): {$gte: 1}}
+
+        - where:
+            $and:
+              - subject: {$eq: AMST}
+              - level: {$eq: 300}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {gereqs: {$eq: MCD}}
+          assert: {count(courses): {$gte: 2}}
