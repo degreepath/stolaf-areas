@@ -25,7 +25,6 @@ requirements:
 
   Foundation:
     result:
-      at_most: true
       any:
         - course: MATH 119
         - course: MATH 120
