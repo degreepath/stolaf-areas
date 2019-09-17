@@ -22,7 +22,10 @@ result:
 requirements:
   American Culture:
     result:
-      course: AMST 100
+      any:
+        - course: AMST 100
+        - course: AMCON 102
+        - course: AMCON 111
 
   Level II Topics:
     result:
