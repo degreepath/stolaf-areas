@@ -22,9 +22,9 @@ requirements:
 
   Seminar:
     result:
-      either:
-        - course: ASIAN 397
-        - course: ASIAN 399
+      from: {student: courses}
+      where: {attributes: {$eq: asian_senior_seminar}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
