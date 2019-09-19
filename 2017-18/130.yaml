@@ -12,7 +12,7 @@ requirements:
   American Studies:
     if:
       from: {student: courses}
-      where: {course: {$eq: AMCON 202}}
+      where: {course: {$in: [AMCON 202, AMCON 211]}}
       assert: {count(courses): {$eq: 0}}
 
     result:
@@ -50,7 +50,7 @@ requirements:
   American Studies (with American Conversations):
     if:
       from: {student: courses}
-      where: {course: {$eq: AMCON 202}}
+      where: {course: {$in: [AMCON 202, AMCON 211]}}
       assert: {count(courses): {$gte: 1}}
 
     result:
@@ -58,7 +58,13 @@ requirements:
       where:
         $or:
           - course:
-              $in: [AMCON 102, AMCON 111, AMCON 201, AMCON 202]
+              $in:
+                - AMCON 102
+                - AMCON 111
+                - AMCON 201
+                - AMCON 210
+                - AMCON 202
+                - AMCON 211
           - attribute:
               $in: [amst_topics, amst_seminar, amst_id]
 
@@ -78,7 +84,12 @@ requirements:
               - $and:
                   - subject: {$eq: AMST}
                   - level: {$eq: 200}
-              - course: {$in: [AMCON 201, AMCON 202]}
+              - course:
+                  $in:
+                    - AMCON 201
+                    - AMCON 210
+                    - AMCON 202
+                    - AMCON 211
           assert: {count(courses): {$gte: 1}}
 
         - where:
