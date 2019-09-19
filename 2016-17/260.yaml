@@ -7,6 +7,16 @@ result:
   all:
     - course: ENVST 137
     - course: ENVST 399
+    - requirement: Experiential Component
+
+requirements:
+  Experiential Component:
+    message: |
+      All students majoring in environmental studies must participate in an
+      experience that applies basic knowledge in a setting beyond the
+      classroom. Guidelines and procedures are posted on the department
+      website.
+    department_audited: true
 
 emphases:
   708:
