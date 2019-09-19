@@ -161,9 +161,9 @@ emphases:
 
       Economic Analysis:
         result:
-          from: {student: courses}
-          where: {attribute: {$eq: envst_econ_analysis}}
-          assert: {count(courses): {$gte: 1}}
+          both:
+            - course: ECON 121
+            - course: ECON 242
 
       Environmental Political Policy and Institutions:
         result:
