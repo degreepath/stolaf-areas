@@ -20,11 +20,14 @@ requirements:
   Prescribed Courses:
     result:
       all:
-        - either:
+        - any:
             - course: HIST 191
             - both:
                 - course: AMCON 201
                 - course: AMCON 202
+            - both:
+                - course: AMCON 210
+                - course: AMCON 211
         - either:
             - course: HIST 199
             - both:
