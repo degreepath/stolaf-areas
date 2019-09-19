@@ -9,34 +9,8 @@ result:
     - requirement: Intro
     - requirement: Methods
     - requirement: Studio Art
-    - requirement: Distribution
+    - requirement: Electives
     - requirement: Lasting Legacy
-
-attributes:
-  multicountable:
-    - - {attributes: {$eq: art_locale_american}}
-      - {attributes: {$eq: art_period_post1700}}
-      - {attributes: {$eq: art_period_pre1700}}
-
-    - - {attributes: {$eq: art_locale_african}}
-      - {attributes: {$eq: art_period_post1700}}
-      - {attributes: {$eq: art_period_pre1700}}
-
-    - - {attributes: {$eq: art_locale_european}}
-      - {attributes: {$eq: art_period_post1700}}
-      - {attributes: {$eq: art_period_pre1700}}
-
-    - - {attributes: {$eq: art_locale_asian}}
-      - {attributes: {$eq: art_period_post1700}}
-      - {attributes: {$eq: art_period_pre1700}}
-
-    - - {attributes: {$eq: art_locale_near_eastern}}
-      - {attributes: {$eq: art_period_post1700}}
-      - {attributes: {$eq: art_period_pre1700}}
-
-    - - {attributes: {$eq: art_locale_indigenous_american}}
-      - {attributes: {$eq: art_period_post1700}}
-      - {attributes: {$eq: art_period_pre1700}}
 
 requirements:
   Intro:
@@ -53,7 +27,7 @@ requirements:
       where: {attribute: {$eq: art_studio_art}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Distribution:
+  Electives:
     message:
       At least two courses must focus on Asian, African, Indigenous American,
       or Near Eastern/Islamic art; at least two courses must focus on American
@@ -61,20 +35,12 @@ requirements:
       must cover art created after 1700 CE.
 
     result:
+      from: {student: courses}
+      where: {attribute: {$eq: art_history_elective}}
       all:
-        - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
-        - requirement: European and American Art
-        - requirement: Art created before 1700 CE
-        - requirement: Art created after 1700 CE
+        - assert: {count(courses): {$gte: 6}}
 
-      audit:
-        assert: {count(courses): {$gte: 6}}
-
-    requirements:
-      Asian, African, Indigenous American, or Near Eastern/Islamic Art:
-        result:
-          from: {student: courses}
-          where:
+        - where:
             attribute:
               $in:
                 - art_locale_asian
@@ -83,32 +49,17 @@ requirements:
                 - art_locale_near_eastern
           assert: {count(courses): {$gte: 2}}
 
-      European and American Art:
-        result:
-          from: {student: courses}
-          where:
+        - where:
             attribute:
               $in:
                 - art_locale_european
                 - art_locale_american
           assert: {count(courses): {$gte: 2}}
 
-      Art created before 1700 CE:
-        result:
-          from: {student: courses}
-          where:
-            attribute:
-              $in:
-                - art_period_pre1700
+        - where: {attribute: {$eq: art_period_pre1700}}
           assert: {count(courses): {$gte: 1}}
 
-      Art created after 1700 CE:
-        result:
-          from: {student: courses}
-          where:
-            attribute:
-              $in:
-                - art_period_post1700
+        - where: {attribute: {$eq: art_period_post1700}}
           assert: {count(courses): {$gte: 1}}
 
   Lasting Legacy:
