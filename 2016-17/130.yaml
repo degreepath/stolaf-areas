@@ -4,7 +4,8 @@ type: major
 degree: B.A.
 
 result:
-  requirement: American Studies
+  all:
+    - requirement: American Studies
 
 requirements:
   American Studies:
