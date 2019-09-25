@@ -147,17 +147,17 @@ requirements:
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where:
-        course:
+        attribute:
           $in:
-            - CHIN 112
-            - FREN 112
-            - GERM 112
-            - GREEK 112
-            - JAPAN 112
-            - LATIN 112
-            - NORW 112
-            - RUSSL 112
-            - SPAN 112
+            - bm_fol_chin
+            - bm_fol_fren
+            - bm_fol_germ
+            - bm_fol_greek
+            - bm_fol_japan
+            - bm_fol_latin
+            - bm_fol_norw
+            - bm_fol_russl
+            - bm_fol_span
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Oral Communication:
