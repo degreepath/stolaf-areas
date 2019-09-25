@@ -61,14 +61,17 @@ requirements:
   Level III Capstone:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: psych_level_3}}
+      where:
+        $or:
+          - attribute: {$eq: psych_level_3}
+          - $and:
+              - subject: {$eq: PSYCH}
+              - level: {$eq: 300}
       limit:
-        - at most: 1
-          where:
-            course:
-              $in:
-                - PSYCH 396
-                - PSYCH 398
+        - at-most: 0
+          where: {course: {$eq: PSYCH 394}}
+        - at-most: 1
+          where: {course: {$in: [PSYCH 396, PSYCH 398]}}
       assert: {count(courses): {$gte: 2, at_most: true}}
 
   General Education:
@@ -84,5 +87,10 @@ requirements:
   Electives:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: psych_elective}}
+      where:
+        $or:
+          - attribute: {$eq: psych_elective}
+          - $and:
+              - subject: {$eq: PSYCH}
+              - credit: {$eq: 1.0}
       assert: {count(courses): {$gte: 2, at_most: true}}
