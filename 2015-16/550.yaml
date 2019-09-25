@@ -17,6 +17,9 @@ result:
     all:
       - assert: {count(courses): {$gte: 9}}
 
+      - where: {is_stolaf: {$eq: false}}
+        assert: {count(courses): {$lte: 2}}
+
       - where:
           $and:
             - {subject: {$eq: PSCI}}
