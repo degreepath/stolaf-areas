@@ -120,7 +120,7 @@ requirements:
       with a minimum of 60 overall.
 
 emphases:
-  voice:
+  711:
     name: Voice
 
     result:
@@ -160,7 +160,7 @@ emphases:
           (or proficiency exam) plus two semesters of a second foreign
           language (or profiency exam)
 
-  strings:
+  712:
     name: Strings
 
     result:
@@ -182,7 +182,7 @@ emphases:
               - {number: {$nin: [294, 298, 394, 398]}}
           assert: {sum(credits): {$gte: 2.25}}
 
-  piano:
+  713:
     name: Piano
 
     result:
@@ -199,7 +199,7 @@ emphases:
               - {number: {$nin: [294, 298, 394, 398]}}
           assert: {sum(credits): {$gte: 2.75}}
 
-  winds/brass/percussion:
+  714:
     name: Winds, Brass, Percussion
 
     result:
@@ -221,7 +221,7 @@ emphases:
               - {number: {$nin: [294, 298, 394, 398]}}
           assert: {sum(credits): {$gte: 1.75}}
 
-  organ:
+  716:
     name: Organ
 
     result:

@@ -103,7 +103,7 @@ requirements:
     department_audited: true
 
 emphases:
-  455-instrumental:
+  732:
     name: Instrumental
 
     result:
@@ -169,7 +169,7 @@ emphases:
         department_audited: true
         message: 2 chamber music performances
 
-  455-vocal:
+  731:
     name: Vocal
 
     result:

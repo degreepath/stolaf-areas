@@ -112,7 +112,7 @@ requirements:
       Documented attendance at 60 concerts.
 
 emphases:
-  voice:
+  711:
     name: Voice
 
     result:
@@ -127,7 +127,7 @@ emphases:
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 1.75}}
 
-  strings:
+  712:
     name: Strings
 
     result:
@@ -142,7 +142,7 @@ emphases:
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 2}}
 
-  piano:
+  713:
     name: Piano
 
     result:
@@ -154,7 +154,7 @@ emphases:
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 2}}
 
-  winds/brass/percussion:
+  714:
     name: Winds, Brass, Percussion
 
     result:

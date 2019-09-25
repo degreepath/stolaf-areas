@@ -52,7 +52,7 @@ requirements:
     department_audited: true
 
 emphases:
-  454-choral:
+  706:
     name: Choral
 
     result:
@@ -148,7 +148,7 @@ emphases:
         result:
           course: MUSPF 330
 
-  454-organ:
+  707:
     name: Organ
 
     result:

@@ -147,7 +147,7 @@ requirements:
     message: Documented attendance at 60 concerts.
 
 emphases:
-  455-instrumental:
+  732:
     name: Instrumental
 
     result:
@@ -166,7 +166,7 @@ emphases:
         - course: MUSIC 287
         - course: MUSIC 364
 
-  455-vocal:
+  731:
     name: Vocal
 
     result:
