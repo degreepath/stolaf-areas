@@ -154,11 +154,33 @@ emphases:
 
     requirements:
       Foreign Language:
-        department_audited: true
         message:
-          Students are required to do two semesters of either French or German
-          (or proficiency exam) plus two semesters of a second foreign
-          language (or profiency exam)
+          Vocal performance majors must satisfactorily complete the
+          second-level course of two languages. One of these must be French or
+          German.
+        result:
+          from: {student: courses}
+          where:
+            attribute:
+              $in:
+                - bm_fol_chin
+                - bm_fol_fren
+                - bm_fol_germ
+                - bm_fol_greek
+                - bm_fol_japan
+                - bm_fol_latin
+                - bm_fol_norw
+                - bm_fol_russn
+                - bm_fol_span
+          all:
+            - assert: {count(courses): {$gte: 2}}
+
+            - assert: {count(subjects): {$gte: 2}}
+
+            - where:
+                attributes:
+                  $in: [bm_fol_fren, bm_fol_germ]
+              assert: {count(courses): {$gte: 1}}
 
   712:
     name: Strings

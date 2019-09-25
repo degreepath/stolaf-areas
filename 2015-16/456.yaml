@@ -127,6 +127,29 @@ emphases:
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 1.75}}
 
+        - from: {student: courses}
+          where:
+            attribute:
+              $in:
+                - bm_fol_chin
+                - bm_fol_fren
+                - bm_fol_germ
+                - bm_fol_greek
+                - bm_fol_japan
+                - bm_fol_latin
+                - bm_fol_norw
+                - bm_fol_russn
+                - bm_fol_span
+          all:
+            - assert: {count(courses): {$gte: 2}}
+
+            - assert: {count(subjects): {$gte: 2}}
+
+            - where:
+                attributes:
+                  $in: [bm_fol_fren, bm_fol_germ]
+              assert: {count(courses): {$gte: 1}}
+
   712:
     name: Strings
 
