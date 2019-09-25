@@ -156,7 +156,7 @@ requirements:
             - bm_fol_japan
             - bm_fol_latin
             - bm_fol_norw
-            - bm_fol_russl
+            - bm_fol_russn
             - bm_fol_span
       assert: {count(courses): {$gte: 1, at_most: true}}
 
