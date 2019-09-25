@@ -147,17 +147,31 @@ requirements:
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where:
-        attribute:
-          $in:
-            - bm_fol_chin
-            - bm_fol_fren
-            - bm_fol_germ
-            - bm_fol_greek
-            - bm_fol_japan
-            - bm_fol_latin
-            - bm_fol_norw
-            - bm_fol_russn
-            - bm_fol_span
+        $or:
+          - attribute:
+              $in:
+                - bm_fol_chin
+                - bm_fol_fren
+                - bm_fol_germ
+                - bm_fol_greek
+                - bm_fol_japan
+                - bm_fol_latin
+                - bm_fol_norw
+                - bm_fol_russn
+                - bm_fol_span
+          - gereqs:
+              $in:
+                - FOL-C
+                - FOL-F
+                - FOL-G
+                - FOL-K
+                - FOL-J
+                - FOL-L
+                - FOL-N
+                - FOL-O
+                - FOL-R
+                - FOL-S
+                - FOL-Y
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Oral Communication:
