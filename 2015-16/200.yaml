@@ -26,6 +26,7 @@ requirements:
           any:
             - course: CSCI 121
             - course: CSCI 125
+            - course: PHYS 130
 
       Hardware:
         result:
