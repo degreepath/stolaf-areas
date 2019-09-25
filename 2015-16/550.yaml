@@ -35,18 +35,23 @@ requirements:
     result:
       from: {student: courses}
       where:
-        $and:
-          - {attribute: {$eq: psci_topic_american}}
-          - {level: {$in: [100, 200]}}
+        $or:
+          - $and:
+              - {attribute: {$eq: psci_topic_american}}
+              - {level: {$in: [100, 200]}}
+          - {ap: {$eq: AP U.S. Government}}
       assert: {count(courses): {$gte: 1}}
 
   Comparative Politics:
     result:
       from: {student: courses}
       where:
-        $and:
-          - {attribute: {$eq: psci_topic_comparative}}
-          - {level: {$in: [100, 200]}}
+        $or:
+          - $and:
+              - {attribute: {$eq: psci_topic_comparative}}
+              - {level: {$in: [100, 200]}}
+          - {ap: {$eq: IB Global Politics}}
+          - {ap: {$eq: AP Comparative Government}}
       assert: {count(courses): {$gte: 1}}
 
   International Relations:
