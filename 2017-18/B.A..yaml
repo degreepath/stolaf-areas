@@ -207,6 +207,7 @@ requirements:
             - FOL-O
             - FOL-R
             - FOL-S
+            - FOL-T
             - FOL-Y
       assert: {count(courses): {$gte: 1, at_most: true}}
 
