@@ -15,7 +15,7 @@ result:
 
   audit:
     all:
-      - assert: {count(courses): {$gte: 9}}
+      - assert: {sum(credits): {$gte: 9}}
 
       - where: {is_stolaf: {$eq: false}}
         assert: {count(courses): {$lte: 2}}
