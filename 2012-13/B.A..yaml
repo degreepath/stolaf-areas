@@ -45,6 +45,7 @@ requirements:
           - course: {$eq: REG 0001}
       load_potentials: false
       claim: false
+      allow_claimed: true
       assert: {sum(credits): {$gte: 35}}
 
   Credits Taken At/Through St. Olaf College:
@@ -56,6 +57,7 @@ requirements:
       from: {student: courses}
       load_potentials: false
       claim: false
+      allow_claimed: true
       where:
         $or:
           - is_stolaf: {$eq: true}
@@ -71,6 +73,7 @@ requirements:
       from: {student: courses}
       where: {course: {$eq: REG 0004}}
       claim: false
+      allow_claimed: true
       assert: {sum(credits): {$lte: 4}}
 
   Interim Credits:
@@ -81,6 +84,7 @@ requirements:
       from: {student: courses}
       load_potentials: false
       claim: false
+      allow_claimed: true
       where: {semester: {$eq: 2}}
       assert: {sum(credits): {$gte: 3}}
 
@@ -99,6 +103,7 @@ requirements:
       # from: {student: courses}
       # load_potentials: false
       # claim: false
+      # allow_claimed: true
       # assert: {average(grades): {$gte: 2.0}}
 
   Level II/III Course Credit:
@@ -112,6 +117,7 @@ requirements:
       from: {student: courses}
       load_potentials: false
       claim: false
+      allow_claimed: true
       where: {level: {$gte: 200}}
       assert: {sum(credits): {$gte: 18}}
 
@@ -123,6 +129,7 @@ requirements:
       from: {student: courses}
       load_potentials: false
       claim: false
+      allow_claimed: true
       where: {grade_option: {$eq: grade}}
       assert: {sum(credits): {$gte: 24}}
 
@@ -134,6 +141,7 @@ requirements:
     result:
       from: {student: areas}
       claim: false
+      allow_claimed: true
       where:
         $and:
           - type: {$eq: Major}
@@ -149,6 +157,7 @@ requirements:
       from: {student: courses}
       load_potentials: false
       claim: false
+      allow_claimed: true
       where: {s/u: {$eq: true}}
       assert: {sum(credits): {$lte: 6.00}}
 
@@ -166,6 +175,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: FYW}}
@@ -177,6 +187,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: WRI}}
@@ -192,6 +203,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where:
@@ -218,6 +230,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: ORC}}
@@ -230,6 +243,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: AQR}}
@@ -245,6 +259,7 @@ requirements:
     result:
       from: {student: courses, repeats: first}
       claim: false
+      allow_claimed: true
       limit:
         - at-most: 0
           where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}
@@ -275,6 +290,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: HWC}}
@@ -291,6 +307,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [MCD, MCG]}}
@@ -311,6 +328,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: ALS-A}}
@@ -326,6 +344,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: ALS-L}}
@@ -341,6 +360,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [BTS-B, BTS-T]}}
@@ -367,6 +387,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$in: [SED, IST]}}
@@ -395,6 +416,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: HBS}}
@@ -412,6 +434,7 @@ requirements:
     result:
       from: {student: courses}
       claim: false
+      allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
       where: {gereqs: {$eq: EIN}}
