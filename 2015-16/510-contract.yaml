@@ -20,7 +20,7 @@ requirements:
         - {at most: 0, where: {s/u: {$eq: true}}}
       assert: {count(courses): {$gte: 2}}
 
-  Electives:
+  Complementary Courses:
     message:
       Three level II or III courses in another department chosen to complement
       the work in philosophy.
