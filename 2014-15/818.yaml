@@ -21,9 +21,9 @@ requirements:
             - all: [course: CH/BI 125, course: CH/BI 126, course: CH/BI 227]
         - course: BMOLS 201
         - course: BIO 233
-        - both: [course: CHEM 247, course: CHEM 253]
-        - both: [course: CHEM 248, course: CHEM 254]
-        - both: [course: CHEM 379, course: CHEM 373]
+        - both: [course: CHEM 247, course: CHEM 253.L]
+        - both: [course: CHEM 248, course: CHEM 254.L]
+        - both: [course: CHEM 379, course: CHEM 373.L]
 
   Experiential Learning:
     department-audited: true
