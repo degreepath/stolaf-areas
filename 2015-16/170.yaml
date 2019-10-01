@@ -19,13 +19,6 @@ result:
             - {subject: {$eq: CHEM}}
             - {grade: {$gte: C}}
             - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
-        assert: {count(courses): {$gte: 6}}
-
-      - where:
-          $and:
-            - {subject: {$eq: CHEM}}
-            - {grade: {$gte: C}}
-            - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
             - {number: {$gte: 240}}
         assert: {count(courses): {$gte: 4}}
 
