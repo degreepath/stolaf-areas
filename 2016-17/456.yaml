@@ -1,6 +1,7 @@
 ---
 name: Performance
 type: major
+code: '456'
 degree: B.M.
 
 result:

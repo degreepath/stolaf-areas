@@ -1,6 +1,7 @@
 ---
 name: B.A.
 type: degree
+code: 'B.A.'
 
 result:
   all:
