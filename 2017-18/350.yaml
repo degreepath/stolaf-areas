@@ -12,6 +12,7 @@ result:
     - requirement: Europe and Russia
     - requirement: The United States
     - requirement: Pre-Modern Period
+    - requirement: Additional Courses
 
   audit:
     all:
@@ -85,3 +86,17 @@ requirements:
       from: {student: courses}
       where: {attribute: {$eq: history_l3_seminar}}
       assert: {count(courses): {$gte: 3}}
+
+  Additional Courses:
+    result:
+      from: {student: courses}
+      where:
+        attribute:
+          $in:
+            - history_l2_seminar
+            - history_l3_seminar
+            - history_region_eu_ru
+            - history_region_af_as_la
+            - history_region_us
+            - history_extra
+      assert: {count(courses): {$gte: 2, at_most: true}}
