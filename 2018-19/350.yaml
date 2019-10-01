@@ -32,9 +32,8 @@ result:
 
 attributes:
   multicountable:
-    - - {attributes: {$eq: history_era_premodern}}
-      - {attributes: {$eq: history_l2_seminar}}
-      - {attributes: {$eq: history_level_3}}
+    - - {attributes: {$eq: history_l2_seminar}}
+      - {attributes: {$eq: history_l3_seminar}}
       - {attributes: {$eq: history_region_eu_ru}}
       - {attributes: {$eq: history_region_af_as_la}}
       - {attributes: {$eq: history_region_us}}
@@ -84,5 +83,5 @@ requirements:
   Level III:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: history_level_3}}
+      where: {attribute: {$eq: history_l3_seminar}}
       assert: {count(courses): {$gte: 3}}
