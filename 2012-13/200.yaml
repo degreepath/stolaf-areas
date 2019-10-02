@@ -60,7 +60,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: csci_electives}}
       assert: {count(courses): {$gte: 2}}
 

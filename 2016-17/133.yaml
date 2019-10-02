@@ -36,13 +36,13 @@ requirements:
 
   Ancient History:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: ancient_history}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Classics:
     result:
-      from: {student: courses}
+      from: courses
       where: {subject: {$eq: CLASS}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -86,7 +86,7 @@ requirements:
     requirements:
       Took Greek:
         result:
-          from: {student: courses}
+          from: courses
           where:
             attribute:
               $in:
@@ -98,7 +98,7 @@ requirements:
 
       Took Latin:
         result:
-          from: {student: courses}
+          from: courses
           where:
             attribute:
               $in:
@@ -112,6 +112,6 @@ requirements:
     message:
       Any Independent Research course.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: classics_ir}}
       assert: {count(courses): {$gte: 1}}

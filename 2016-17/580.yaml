@@ -22,6 +22,6 @@ requirements:
       Two additional courses taught in Russian, taken in Russia during senior
       year.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: russl_in_russia}}
       assert: {count(courses): {$gte: 2}}

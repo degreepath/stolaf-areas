@@ -31,7 +31,7 @@ requirements:
     requirements:
       2D Media:
         result:
-          from: {student: courses}
+          from: courses
           where:
             attributes:
               $in:
@@ -43,7 +43,7 @@ requirements:
 
       3D Media:
         result:
-          from: {student: courses}
+          from: courses
           where:
             attributes:
               $in:
@@ -53,7 +53,7 @@ requirements:
 
       New Media:
         result:
-          from: {student: courses}
+          from: courses
           where:
             attributes:
               $in:
@@ -78,7 +78,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: art_elective}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -88,7 +88,7 @@ requirements:
       ART 252 or 253 as one of your art history courses.
 
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - {ap: {$eq: AP Art History}}

@@ -44,12 +44,12 @@ requirements:
 
   Electives:
     if:
-      from: {student: areas}
+      from: areas
       where: {code: {$in: ['745', '715']}}
       assert: {count(areas): {$eq: 0}}
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: music_elective}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -59,7 +59,7 @@ requirements:
       for a minimum of 6 semesters of 1.0 credit lessons (4 at Level I,
       subsequent at Level II)
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSPF}
@@ -129,11 +129,11 @@ emphases:
         - course: MUSIC 282
         - course: MUSIC 364
 
-        - from: {student: courses}
+        - from: courses
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 1.75}}
 
-        - from: {student: courses}
+        - from: courses
           where:
             attribute:
               $in:
@@ -163,11 +163,11 @@ emphases:
       all:
         - course: MUSIC 368
 
-        - from: {student: courses}
+        - from: courses
           where: {course: {$eq: MUSIC 275}}
           assert: {count(terms): {$gte: 2}}
 
-        - from: {student: courses}
+        - from: courses
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 2}}
 
@@ -179,7 +179,7 @@ emphases:
         - course: MUSIC 283
         - course: MUSIC 361
 
-        - from: {student: courses}
+        - from: courses
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 2}}
 
@@ -190,11 +190,11 @@ emphases:
       all:
         - course: MUSIC 298
 
-        - from: {student: courses}
+        - from: courses
           where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$gte: 0.5}}
 
-        - from: {student: courses}
+        - from: courses
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 1.5}}
 
@@ -205,7 +205,7 @@ emphases:
       all:
         - course: MUSIC 298
 
-        - from: {student: courses}
+        - from: courses
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 2}}
 
@@ -222,7 +222,7 @@ emphases:
     requirements:
       Chamber Music:
         result:
-          from: {student: courses}
+          from: courses
           where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$gte: 0.5}}
 
@@ -234,12 +234,12 @@ emphases:
 
       Collaborative Keyboard:
         result:
-          from: {student: courses}
+          from: courses
           where: {course: {$eq: MUSPF 106}}
           assert: {count(terms): {$gte: 1}}
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: music_coll_keyboard_elective}}
           assert: {sum(credits): {$gte: 1}}

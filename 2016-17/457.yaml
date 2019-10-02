@@ -46,11 +46,11 @@ requirements:
         - course: MUSIC 314
         - course: MUSIC 324
 
-        - from: {student: courses}
+        - from: courses
           where: {course: {$in: [MUSIC 325, MUSIC 324]}}
           assert: {count(courses): {$gte: 1}}
 
-        - from: {student: courses}
+        - from: courses
           where: {course: {$eq: MUSPF 326}}
           assert: {count(terms): {$gte: 2}}
 
@@ -71,7 +71,7 @@ requirements:
   Performance Studies:
     message: 6 semesters; 4 in the same instrument/voice
     result:
-      from: {student: courses}
+      from: courses
       where: {subject: {$eq: MUSPF}}
       all:
         - assert: {count(terms_from_most_common_course): {$gte: 4}}

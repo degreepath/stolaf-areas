@@ -82,13 +82,13 @@ emphases:
 
       Musicology:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: music_upper_musicology}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Additional Upper-Level Elective:
         result:
-          from: {student: courses}
+          from: courses
           where:
             $and:
               - subject: {$eq: MUSIC}
@@ -97,7 +97,7 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where:
             $and:
               - subject: {$eq: MUSIC}
@@ -128,7 +128,7 @@ emphases:
         message:
           6 semesters (0.50 credit following admission to the major)
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: music_voice_studies}}
           assert: {count(terms): {$gte: 6}}
 
@@ -138,7 +138,7 @@ emphases:
           piano lessons, organ lessons, or piano classes: MUSIC 161, MUSIC 162,
           MUSIC 261)
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: music_keyboard_studies}}
           assert: {count(terms): {$gte: 5}}
 
@@ -180,13 +180,13 @@ emphases:
 
       Musicology:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: music_upper_musicology}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Additional Upper-Level Elective:
         result:
-          from: {student: courses}
+          from: courses
           where:
             $and:
               - subject: {$eq: MUSIC}
@@ -195,7 +195,7 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where:
             $and:
               - subject: {$eq: MUSIC}
@@ -223,7 +223,7 @@ emphases:
           register for a minimum of 6 semesters of 1.0 credit organ lessons (4
           at Level I, subsequent at Level II)
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: music_organ_studies}}
           all:
             - assert: {count(terms): {$gte: 6}}

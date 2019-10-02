@@ -31,7 +31,7 @@ requirements:
           - Gender in global, comparative, or diverse contexts
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: wmgst_elective}}
       all:
         - assert: {count(courses): {$gte: 7}}

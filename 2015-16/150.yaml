@@ -14,7 +14,7 @@ result:
 requirements:
   Language:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - {attributes: {$eq: asian_language_chinese}}
@@ -23,13 +23,13 @@ requirements:
 
   Seminar:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: asian_senior_seminar}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: asian_elective}}
       limit:
         # "No more than two at level I"

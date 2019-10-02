@@ -28,19 +28,19 @@ requirements:
 
   Medieval History:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: medieval_history}}
       assert: {count(courses): {$gte: 1}}
 
   Medieval Literature:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: medieval_literature}}
       assert: {count(courses): {$gte: 1}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: medieval_elective}}
       assert: {count(courses): {$gte: 4}}
 
@@ -48,6 +48,6 @@ requirements:
     message:
       Any Independent Research course.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: medieval_ir}}
       assert: {count(courses): {$gte: 1}}

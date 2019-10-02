@@ -42,10 +42,10 @@ requirements:
     result:
       all:
         - course: SPAN 250
-        - from: {student: courses}
+        - from: courses
           where: {attribute: {$eq: lamst_spanish_culture}}
           assert: {count(courses): {$gte: 1}}
-        - from: {student: courses}
+        - from: courses
           where: {attribute: {$eq: lamst_latinamerican_culture}}
           assert: {count(courses): {$gte: 1}}
 
@@ -68,7 +68,7 @@ requirements:
       political science, religion, and sociology with no more than two courses
       in any one discipline (including the discipline of the core course)
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: lamst_elective}}
       limit:
         - at-most: 1

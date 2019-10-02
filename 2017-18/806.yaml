@@ -27,6 +27,6 @@ requirements:
       Other courses not identified in this list may also be acceptable,
       depending on the relevance of their content to the concentration.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: afad_elective}}
       assert: {count(courses): {$gte: 4}}

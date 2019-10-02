@@ -5,6 +5,6 @@ code: '872'
 degree: B.A.
 
 result:
-  from: {student: courses}
+  from: courses
   where: {attribute: {$eq: mest_elective}}
   assert: {count(courses): {$gte: 5}}

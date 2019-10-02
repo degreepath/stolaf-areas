@@ -39,7 +39,7 @@ requirements:
 
   Economic Analysis:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: econ_analysis}}
 
       all:
@@ -79,7 +79,7 @@ emphases:
                 - course: MGMT 250
                 - course: MGMT 251
 
-            - from: {student: courses}
+            - from: courses
               where: {attributes: {$eq: econ_emph_finance_elective}}
               assert: {count(courses): {$gte: 1}}
 
@@ -102,7 +102,7 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: econ_emph_intl_elective}}
           assert: {count(courses): {$gte: 2}}
 
@@ -111,7 +111,7 @@ emphases:
           An elective course outside of Economics Department that relates to
           international topics.
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: econ_emph_intl_topics}}
           assert: {count(courses): {$gte: 1}}
 
@@ -137,7 +137,7 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: econ_emph_mgmt_elective}}
           assert: {count(courses): {$gte: 1}}
 
@@ -159,7 +159,7 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: econ_emph_pubpol_elective}}
           assert: {count(courses): {$gte: 3}}
 

@@ -43,7 +43,7 @@ requirements:
         result:
           both:
             - course: MATH 220
-            - from: {student: courses}
+            - from: courses
               where: {attributes: {$eq: csci_proof_writing}}
               assert: {count(courses): {$gte: 1}}
 
@@ -60,13 +60,13 @@ requirements:
     requirements:
       Systems:
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: csci_systems}}
           assert: {count(courses): {$gte: 1}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: csci_electives}}
       assert: {count(courses): {$gte: 2}}
 

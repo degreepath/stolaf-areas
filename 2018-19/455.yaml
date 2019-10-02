@@ -37,13 +37,13 @@ requirements:
 
   Musicology:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: music_upper_musicology}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Additional Upper-Level Elective:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSIC}
@@ -52,7 +52,7 @@ requirements:
 
   Additional Electives:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSIC}
@@ -85,7 +85,7 @@ requirements:
   Art, Theater, or Lyric Theater:
     message: Required elective in Art, Theater, or Lyric Theater
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: music_ed_bm_other_finearts}}
       assert: {sum(credits): {$gte: 1}}
 
@@ -135,7 +135,7 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where:
             $and:
               - {subject: {$eq: MUSIC}}
@@ -154,7 +154,7 @@ emphases:
           instrument will be 0.25 cr; following entrance (typically spring
           of sophomore year), lessons will be 0.50 cr.
         result:
-          from: {student: courses}
+          from: courses
           where: {subject: {$eq: MUSPF}}
           assert: {count(terms): {$gte: 6}}
 
@@ -198,7 +198,7 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where:
             $and:
               - {subject: {$eq: MUSIC}}
@@ -217,7 +217,7 @@ emphases:
           instrument will be 0.25 cr; following entrance (typically spring
           of sophomore year), lessons will be 0.50 cr.
         result:
-          from: {student: courses}
+          from: courses
           where: {subject: {$eq: MUSPF}}
           assert: {count(terms): {$gte: 6}}
 

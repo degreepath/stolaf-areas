@@ -34,7 +34,7 @@ requirements:
             - both:
                 - course: GCON 217
                 - course: GCON 218
-        - from: {student: courses}
+        - from: courses
           where: {attribute: {$eq: history_region_nonwesternworld}}
           assert: {count(courses): {$gte: 1}}
         - course: ECON 121
@@ -61,7 +61,7 @@ requirements:
           critical global or environmental issues extensively, please chat with
           the program chair to discuss approving that course as well.
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: ss_critical_studies}}
           assert: {count(courses): {$gte: 1}}
 
@@ -72,6 +72,6 @@ requirements:
           multiculutral topics extensively, please chat with the program chair
           to discuss approving that course as well.
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: ss_multicultural_studies}}
           assert: {count(courses): {$gte: 1}}

@@ -17,12 +17,12 @@ result:
 requirements:
   Electives If Not a Russian Language Major:
     if:
-      from: {student: areas}
+      from: areas
       where: {code: {$eq: '580'}}
       assert: {count(areas): {$eq: 0}}
 
     result:
-      from: {student: courses}
+      from: courses
       where:
         attribute:
           $in:
@@ -32,12 +32,12 @@ requirements:
 
   Electives If Also a Russian Language Major:
     if:
-      from: {student: areas}
+      from: areas
       where: {code: {$eq: '580'}}
       assert: {count(areas): {$eq: 1}}
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: russian_area_elective}}
       assert: {count(courses): {$gte: 5}}
 

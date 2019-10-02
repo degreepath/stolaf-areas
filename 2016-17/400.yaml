@@ -13,7 +13,7 @@ result:
 requirements:
   Language:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - {ap: {$eq: AP Latin}}
@@ -22,12 +22,12 @@ requirements:
 
   Classics:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: latin_major_classics_course}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Ancient Roman History:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: latin_elective}}
       assert: {count(courses): {$eq: 1, at_most: true}}

@@ -39,7 +39,7 @@ requirements:
       credits through a combination of full-credit and fractional-credit
       courses.
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - subject: {$neq: REG}
@@ -55,7 +55,7 @@ requirements:
       taken through St. Olaf College. This may include St. Olaf-sponsored
       off-campus programs.
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -71,7 +71,7 @@ requirements:
       credits from other institutions. This number may be reduced for transfer
       students.
     result:
-      from: {student: courses}
+      from: courses
       where: {course: {$eq: REG 0004}}
       claim: false
       allow_claimed: true
@@ -82,7 +82,7 @@ requirements:
       At least three of the required 35 St. Olaf credits must be earned in
       three separate January full-credit (1.0) Interims.
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -94,14 +94,14 @@ requirements:
       An average grade of C (2.00 on a 4.00 system) for all courses taken for
       the usual letter grades.
     result:
-      from: {student: areas}
+      from: areas
       where:
         $and:
           - type: {$eq: Degree}
           - code: {$eq: 'B.A.'}
           - gpa: {$gte: '2.00'}
       assert: {count(areas): {$gte: 1}}
-      # from: {student: courses}
+      # from: courses
       # load_potentials: false
       # claim: false
       # allow_claimed: true
@@ -115,7 +115,7 @@ requirements:
       A course can earn only its assigned level. It cannot be raised in level
       as the result of extra studies, assignments, or performance.
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -127,7 +127,7 @@ requirements:
       A minimum of 24 credits of the 35 must be taken graded through courses
       taken from a St. Olaf professor.
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -140,7 +140,7 @@ requirements:
 
       You must declare a major by the spring of your sophomore year.
     result:
-      from: {student: areas}
+      from: areas
       claim: false
       allow_claimed: true
       where:
@@ -155,7 +155,7 @@ requirements:
       students may take up to six full-course equivalents (6.00 credits) on an
       S/U basis.
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -174,7 +174,7 @@ requirements:
       2. Students who initially transfer 17 or 18 St. Olaf-equivalent credits to
       St. Olaf are exempt from the FYW requirement.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -186,7 +186,7 @@ requirements:
     message: |
       4 courses in any departments/programs.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -202,7 +202,7 @@ requirements:
       (numbered 231 or higher) taught in the Chinese, Greek, Latin, Japanese,
       Norwegian, or Russian languages, or demonstrate equivalent proficiency.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -229,7 +229,7 @@ requirements:
       One course that incorporates specific instruction, practice, and
       feedback to develop oral communication competence and confidence.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -242,7 +242,7 @@ requirements:
       One course that develops analytic thinking skills through systematic
       focus on abstract and quantitative reasoning.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -258,7 +258,7 @@ requirements:
       their horizons and focus on different activities or modes of movement in
       order to fulfill the requirements.
     result:
-      from: {student: courses, repeats: first}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -289,7 +289,7 @@ requirements:
       for one HWC course through pre-college credit, s/he may receive credit
       for the other one via a St. Olaf-approved off-campus program)
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -306,7 +306,7 @@ requirements:
       2 courses, one MCG, one MCD (must be from two different
       departments/programs)
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -327,7 +327,7 @@ requirements:
       1.0 credit (fractional courses totaling 1.0 credit may satisfy this
       requirement if all courses are in the same artistic form)
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -343,7 +343,7 @@ requirements:
       One course intended to develop appreciation and understanding of
       literary forms.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -359,7 +359,7 @@ requirements:
       to St. Olaf are required to complete only the Christian theology
       (BTS-T) course.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -386,7 +386,7 @@ requirements:
       via a St. Olaf-approved off-campus program.
 
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -415,7 +415,7 @@ requirements:
       pre-college credit, s/he may receive credit for the other one via a St.
       Olaf-approved off-campus program.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -433,7 +433,7 @@ requirements:
       Prerequisite for all EIN courses: completion of the BTS-T requirement or
       permission of the instructor.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:

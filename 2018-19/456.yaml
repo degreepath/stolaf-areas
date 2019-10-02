@@ -32,13 +32,13 @@ requirements:
 
   Musicology:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: music_upper_musicology}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Additional Upper-Level Elective:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSIC}
@@ -47,7 +47,7 @@ requirements:
 
   Additional Electives:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$in: [MUSIC, MUSPF]}
@@ -70,7 +70,7 @@ requirements:
       for a minimum of 6 semesters of 1.0 credit lessons (4 at Level I,
       subsequent at Level II)
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSPF}
@@ -143,7 +143,7 @@ emphases:
             - course: MUSIC 268
             - course: MUSIC 269
 
-        - from: {student: courses}
+        - from: courses
           where:
             $and:
               - {subject: {$in: [MUSIC, MUSPF]}}
@@ -160,7 +160,7 @@ emphases:
           second-level course of two languages. One of these must be French or
           German.
         result:
-          from: {student: courses}
+          from: courses
           where:
             attribute:
               $in:
@@ -193,11 +193,11 @@ emphases:
         - {course: MUSIC 261, grade: B-}
         - {course: MUSIC 295}
 
-        - from: {student: courses}
+        - from: courses
           where: {course: {$eq: {MUSIC 275}}}
           assert: {sum(credits): {$gte: 0.5}}
 
-        - from: {student: courses}
+        - from: courses
           where:
             $and:
               - {subject: {$in: [MUSIC, MUSPF]}}
@@ -214,7 +214,7 @@ emphases:
         - {course: MUSIC 283}
         - {course: MUSIC 293}
 
-        - from: {student: courses}
+        - from: courses
           where:
             $and:
               - {subject: {$in: [MUSIC, MUSPF]}}
@@ -232,11 +232,11 @@ emphases:
         - {course: MUSIC 261, grade: B-}
         - {course: MUSIC 298}
 
-        - from: {student: courses}
+        - from: courses
           where: {course: {$eq: {MUSIC 275}}}
           assert: {sum(credits): {$gte: 0.5}}
 
-        - from: {student: courses}
+        - from: courses
           where:
             $and:
               - {subject: {$in: [MUSIC, MUSPF]}}
@@ -253,7 +253,7 @@ emphases:
         - course: MUSIC 293
         - course: MUSIC 298
 
-        - from: {student: courses}
+        - from: courses
           where:
             $and:
               - {subject: {$in: [MUSIC, MUSPF]}}
@@ -275,7 +275,7 @@ emphases:
     requirements:
       Chamber Music:
         result:
-          from: {student: courses}
+          from: courses
           where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$gte: 0.5}}
 
@@ -287,13 +287,13 @@ emphases:
 
       Collaborative Keyboard:
         result:
-          from: {student: courses}
+          from: courses
           where: {course: {$eq: MUSPF 106}}
           assert: {count(terms): {$gte: 1}}
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: music_coll_keyboard_elective}}
           assert: {sum(credits): {$gte: 1}}
 

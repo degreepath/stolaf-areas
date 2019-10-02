@@ -33,7 +33,7 @@ requirements:
       Latin America.
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$in: spanish_elective}}
       all:
         - assert: {count(courses): {$gte: 4}}

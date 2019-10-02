@@ -38,7 +38,7 @@ requirements:
       The Nursing department recommends taking the Biomedical Ethics (PHIL 250)
       course for this requirement
     result:
-      from: {student: courses}
+      from: courses
       where: {gereqs: {$eq: EIN}}
       assert: {count(courses): {$gte: 1}}
 

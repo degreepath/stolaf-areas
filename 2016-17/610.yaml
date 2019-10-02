@@ -39,7 +39,7 @@ requirements:
       Students are permitted to take one of the four elective courses, but not
       a core course, S/U.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: soan_elective}}
       limit:
         - {at-most: 1, where: {s/u: {$eq: true}}}

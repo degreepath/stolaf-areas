@@ -34,13 +34,13 @@ requirements:
 
   Musicology:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: music_upper_musicology}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Additional Upper-Level Elective:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSIC}
@@ -49,7 +49,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSIC}
@@ -66,7 +66,7 @@ requirements:
   Performance Studies:
     message: 6 semesters; 4 in the same instrument/voice
     result:
-      from: {student: courses}
+      from: courses
       where: {subject: {$eq: MUSPF}}
       all:
         - assert: {count(terms_from_most_common_course): {$gte: 4}}
@@ -74,7 +74,7 @@ requirements:
 
   Official Ensemble Participation:
     result:
-      from: {student: courses}
+      from: courses
       where: {subject: {$eq: MUSEN}}
       assert: {count(terms): {$gte: 4, at_most: true}}
 
@@ -108,7 +108,7 @@ emphases:
 
       Lessons:
         result:
-          from: {student: courses}
+          from: courses
           where: {course: {$eq: MUSPF 326}}
           assert: {count(terms): {$gte: 4}}
 

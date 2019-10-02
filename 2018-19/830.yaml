@@ -20,7 +20,7 @@ result:
 requirements:
   Natural Science:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: envst_natural}}
       limit:
         - at-most: 1
@@ -29,18 +29,18 @@ requirements:
 
   Social Science:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: envst_social}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Arts and Humanities:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: envst_arts}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Elective:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$in: [envst_natural, envst_social, envst_arts]}}
       assert: {count(courses): {$gte: 1, at_most: true}}

@@ -61,7 +61,7 @@ requirements:
 
   Level III Capstone:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: psych_level_3}
@@ -87,7 +87,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: psych_elective}
