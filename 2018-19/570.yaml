@@ -16,13 +16,13 @@ requirements:
   General Education:
     result:
       both:
-        - from: {student: courses}
+        - from: courses
           where: {gereqs: {$eq: BTS-B}}
           claim: false
           allow_claimed: true
           assert: {count(courses): {$gte: 1}}
 
-        - from: {student: courses}
+        - from: courses
           where: {gereqs: {$eq: BTS-T}}
           claim: false
           allow_claimed: true
@@ -34,7 +34,7 @@ requirements:
 
   Religious Dimensions:
     result:
-      from: {student: courses}
+      from: courses
       where:
         attributes:
           $in:

@@ -34,7 +34,7 @@ emphases:
         requirements:
           Natural Sciences:
             result:
-              from: {student: courses}
+              from: courses
               where: {attribute: {$eq: envst_natural}}
               limit:
                 - at-most: 1
@@ -44,7 +44,7 @@ emphases:
 
           Social Sciences:
             result:
-              from: {student: courses}
+              from: courses
               where: {attribute: {$eq: envst_social}}
               limit:
                 - at-most: 1
@@ -54,7 +54,7 @@ emphases:
 
       Arts and Humanities - Level II:
         result:
-          from: {student: courses}
+          from: courses
           where:
             attribute:
               $in:
@@ -64,7 +64,7 @@ emphases:
 
       Arts and Humanities - Level III:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_humanities_level_3}}
           assert: {count(courses): {$gte: 1}}
 
@@ -94,7 +94,7 @@ emphases:
         requirements:
           Social Sciences:
             result:
-              from: {student: courses}
+              from: courses
               where: {attribute: {$eq: envst_social}}
               limit:
                 - at_most: 1
@@ -104,7 +104,7 @@ emphases:
 
           Arts and Humanities:
             result:
-              from: {student: courses}
+              from: courses
               where: {attribute: {$eq: envst_humanities}}
               limit:
                 - at_most: 1
@@ -117,25 +117,25 @@ emphases:
 
       Statistics, Modeling, and Mapping:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_stats}}
           assert: {count(courses): {$gte: 1}}
 
       Intermediate Chemistry:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_intermediate_chem}}
           assert: {count(courses): {$gte: 1}}
 
       Intermediate Ecology:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_intermediate_ecology}}
           assert: {count(courses): {$gte: 1}}
 
       Environmental Science - Level II:
         result:
-          from: {student: courses}
+          from: courses
           where:
             attribute:
               $in:
@@ -149,7 +149,7 @@ emphases:
 
       Environmental Science - Level III:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_envsci_level_3}}
           assert: {count(courses): {$gte: 1}}
 
@@ -178,7 +178,7 @@ emphases:
         requirements:
           Natural Sciences:
             result:
-              from: {student: courses}
+              from: courses
               where: {attribute: {$eq: envst_natural}}
               limit:
                 - at_most: 1
@@ -188,7 +188,7 @@ emphases:
 
           Arts and Humanities:
             result:
-              from: {student: courses}
+              from: courses
               where: {attribute: {$eq: envst_humanities}}
               limit:
                 - at_most: 1
@@ -198,7 +198,7 @@ emphases:
 
       Methodological Analysis:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_methods}}
           assert: {count(courses): {$gte: 1}}
 
@@ -210,12 +210,12 @@ emphases:
 
       Environmental Political Policy and Institutions:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_policy}}
           assert: {count(courses): {$gte: 1}}
 
       Social Science Electives:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: envst_social_elective}}
           assert: {count(courses): {$gte: 2}}

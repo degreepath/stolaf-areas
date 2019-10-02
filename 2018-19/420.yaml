@@ -42,7 +42,7 @@ requirements:
 
   Transitions:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: math_transitions}}
       assert: {count(courses): {$gte: 2, at_most: true}}
 
@@ -61,31 +61,31 @@ requirements:
     requirements:
       Axiomatic/Algebraic (A):
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: math_perspective_a}}
           assert: {count(courses): {$eq: 1, at_most: true}}
 
       Continuous/Analytic (C):
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: math_perspective_c}}
           assert: {count(courses): {$eq: 1, at_most: true}}
 
       Discrete/Combinatorial (D):
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: math_perspective_d}}
           assert: {count(courses): {$eq: 1, at_most: true}}
 
       Modeling/Computation (M):
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: math_perspective_m}}
           assert: {count(courses): {$eq: 1, at_most: true}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: math_electives}}
       limit:
         - at-most: 1

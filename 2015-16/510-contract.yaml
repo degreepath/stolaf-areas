@@ -15,7 +15,7 @@ result:
 requirements:
   Level III Seminars:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: phil_l3_seminar}}
       limit:
         - {at most: 0, where: {s/u: {$eq: true}}}
@@ -26,6 +26,6 @@ requirements:
       Three level II or III courses in another department chosen to complement
       the work in philosophy.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: phil_contract_courses}}
       assert: {count(courses): {$gte: 3}}

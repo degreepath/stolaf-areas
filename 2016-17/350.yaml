@@ -42,7 +42,7 @@ attributes:
 requirements:
   Europe and Russia:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: history_region_eu_ru}
@@ -51,7 +51,7 @@ requirements:
 
   The United States:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: history_region_us}
@@ -60,7 +60,7 @@ requirements:
 
   Africa, Asia, and Latin America:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: history_region_af_as_la}
@@ -71,25 +71,25 @@ requirements:
     message: |
       Waived by department request, as per Steve Hahn.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: history_era_premodern}}
       assert: {count(courses): {$gte: 0}}
 
   Major Seminar:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: history_l2_seminar}}
       assert: {count(courses): {$gte: 1}}
 
   Level III:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: history_l3_seminar}}
       assert: {count(courses): {$gte: 3}}
 
   Additional Courses:
     result:
-      from: {student: courses}
+      from: courses
       where:
         attribute:
           $in:

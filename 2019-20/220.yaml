@@ -30,7 +30,7 @@ requirements:
 
     result:
       both:
-        - from: {student: courses}
+        - from: courses
           where: {attributes: {$eq: dance_movement}}
           assert: {sum(credits): {$gte: 1.5}}
 
@@ -44,25 +44,25 @@ requirements:
     requirements:
       Ballet:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: dance_genre_ballet}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       International and Social:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: dance_genre_international}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Modern:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: dance_genre_modern}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Other Topics:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: dance_genre_other}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -80,7 +80,7 @@ requirements:
       from their own interests and investigation. Select at least two
       credits from within or outside the department.
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: dance_personalized_area_speciality}}
       assert: {sum(credits): {$gte: 2}}
 
@@ -90,7 +90,7 @@ requirements:
       (Companydance™ or Veselica™ International Dance Ensemble) for a
       minimum of three semesters.
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: dance_company}}
       assert: {count(terms): {$gte: 3}}
 

@@ -88,7 +88,7 @@ requirements:
 
       Elective:
         result:
-          from: {student: courses}
+          from: courses
           where: {attribute: {$eq: chem_elective}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 

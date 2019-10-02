@@ -48,7 +48,7 @@ requirements:
 
   Composition Lessons:
     result:
-      from: {student: courses}
+      from: courses
       where: {course: {$eq: MUSPF 326}}
       assert: {count(courses): {$gte: 4}}
 
@@ -60,7 +60,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - {subject: {$eq: MUSIC}}
@@ -107,7 +107,7 @@ requirements:
       6 semesters; 4 in the same instrument/voice
 
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: MUSPF}

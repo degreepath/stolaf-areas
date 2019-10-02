@@ -17,7 +17,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: lngst_elective}}
       limit:
         - at-most: 1
@@ -36,6 +36,6 @@ requirements:
     message:
       One approved level III seminar or approved advanced study experience.
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: lngst_l3_seminars}}
       assert: {count(courses): {$gte: 1}}

@@ -31,7 +31,7 @@ result:
 requirements:
   Required Course Credit:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - subject: {$neq: REG}
@@ -43,7 +43,7 @@ requirements:
 
   Credits Taken At/Through St. Olaf College:
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -59,7 +59,7 @@ requirements:
       credits from other institutions. This number may be reduced for transfer
       students.
     result:
-      from: {student: courses}
+      from: courses
       where: {course: {$eq: REG 0004}}
       claim: false
       allow_claimed: true
@@ -67,7 +67,7 @@ requirements:
 
   Interim Credits:
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -76,21 +76,21 @@ requirements:
 
   Cumulative Grade Point Average:
     result:
-      from: {student: areas}
+      from: areas
       where:
         $and:
           - type: {$eq: Degree}
           - code: {$eq: 'B.M.'}
           - gpa: {$gte: '2.00'}
       assert: {count(areas): {$gte: 1}}
-      # from: {student: courses}
+      # from: courses
       # load_potentials: false
       # claim: false
       # assert: {average(grades): {$gte: 2.0}}
 
   Level II/III Course Credit:
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -99,7 +99,7 @@ requirements:
 
   Graded Course Credit:
     result:
-      from: {student: courses}
+      from: courses
       load_potentials: false
       claim: false
       allow_claimed: true
@@ -110,7 +110,7 @@ requirements:
     message:
       You must declare a major by the spring of your sophomore year.
     result:
-      from: {student: areas}
+      from: areas
       claim: false
       allow_claimed: true
       where:
@@ -125,7 +125,7 @@ requirements:
       students may take up to six full-course equivalents (6.00 credits) on an
       S/U basis.
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       where: {s/u: {$eq: true}}
@@ -133,7 +133,7 @@ requirements:
 
   First-Year Writing:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -143,7 +143,7 @@ requirements:
 
   Writing in Context:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -153,7 +153,7 @@ requirements:
 
   Foreign Language:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -189,7 +189,7 @@ requirements:
 
   Oral Communication:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -199,7 +199,7 @@ requirements:
 
   Reasoning:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -209,7 +209,7 @@ requirements:
 
   Studies in Physical Movement:
     result:
-      from: {student: courses, repeats: first}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -219,7 +219,7 @@ requirements:
 
   Historical Studies in Western Culture or Literary Studies:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -229,7 +229,7 @@ requirements:
 
   Multicultural Studies:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -239,7 +239,7 @@ requirements:
 
   Biblical and Theological Studies:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -256,7 +256,7 @@ requirements:
 
   Studies in Human Behavior and Society:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:
@@ -266,7 +266,7 @@ requirements:
 
   Ethical Issues and Normative Perspectives:
     result:
-      from: {student: courses}
+      from: courses
       claim: false
       allow_claimed: true
       limit:

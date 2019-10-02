@@ -14,7 +14,7 @@ result:
 requirements:
   Level 250:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: GERM}
@@ -24,7 +24,7 @@ requirements:
 
   Level 270:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: GERM}
@@ -35,7 +35,7 @@ requirements:
   Level III:
     message: This course will preferably be taken in the student's senior year.
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - subject: {$eq: GERM}
@@ -49,7 +49,7 @@ requirements:
       of one course in English with a significant German focus taught by a St.
       Olaf instructor)
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: german_elective}}
       limit:
         # > a maximum of one course in English with a significant German

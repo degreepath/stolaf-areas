@@ -38,7 +38,7 @@ requirements:
           The course must be taught in the target language.
 
         result:
-          from: {student: courses}
+          from: courses
           where:
             $or:
               - $and:
@@ -62,13 +62,13 @@ requirements:
         requirements:
           Course 1:
             result:
-              from: {student: courses}
+              from: courses
               where: {attributes: {$eq: intl_region_1}}
               assert: {count(courses): {$gte: 1}}
 
           Course 2:
             result:
-              from: {student: courses}
+              from: courses
               where: {attributes: {$eq: intl_region_2}}
               assert: {count(courses): {$gte: 1}}
 

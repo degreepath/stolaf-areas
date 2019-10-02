@@ -83,7 +83,7 @@ requirements:
 
   Level III:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - {attribute: {$eq: bio_l3}}
@@ -92,7 +92,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: bio_elective}}
       assert: {count(courses): {$gte: 2, at_most: true}}
 

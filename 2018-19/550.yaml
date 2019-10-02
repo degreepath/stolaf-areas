@@ -34,7 +34,7 @@ requirements:
 
   American Politics and Public Policy:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - {attribute: {$eq: psci_topic_american}}
@@ -43,7 +43,7 @@ requirements:
 
   Comparative Politics:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - {attribute: {$eq: psci_topic_comparative}}
@@ -52,7 +52,7 @@ requirements:
 
   International Relations:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - {attribute: {$eq: psci_topic_international}}
@@ -61,7 +61,7 @@ requirements:
 
   Political Theory:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - {attribute: {$eq: psci_topic_theory}}
@@ -70,7 +70,7 @@ requirements:
 
   Level III Electives:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $and:
           - attribute:
@@ -95,7 +95,7 @@ requirements:
       Additional study in statistics and/or a world language is especially
       recommended for students considering graduate study.
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: psci_optional_elective}}
       limit:
         - at-most: 1

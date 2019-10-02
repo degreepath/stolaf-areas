@@ -30,7 +30,7 @@ attributes:
 requirements:
   Europe and Russia:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: history_region_eu_ru}
@@ -39,7 +39,7 @@ requirements:
 
   The United States:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: history_region_us}
@@ -48,7 +48,7 @@ requirements:
 
   Africa, Asia, and Latin America:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: history_region_af_as_la}
@@ -57,19 +57,19 @@ requirements:
 
   Level II Seminar:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: history_l2_seminar}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level III Seminars:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: history_l3_seminar}}
       assert: {count(courses): {$gte: 3, at_most: true}}
 
   Additional Courses:
     result:
-      from: {student: courses}
+      from: courses
       where:
         attribute:
           $in:
@@ -100,6 +100,6 @@ emphases:
 
       Electives:
         result:
-          from: {student: courses}
+          from: courses
           where: {attributes: {$eq: hist_public_elective}}
           assert: {count(courses): {$gte: 3}}

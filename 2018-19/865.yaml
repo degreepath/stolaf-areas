@@ -18,7 +18,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: media_elective}}
       assert: {count(courses): {$gte: 3}}
 

@@ -11,12 +11,12 @@ result:
 requirements:
   American Studies:
     if:
-      from: {student: courses}
+      from: courses
       where: {course: {$in: [AMCON 202, AMCON 211]}}
       assert: {count(courses): {$gte: 1}}
 
     then:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - course:
@@ -66,7 +66,7 @@ requirements:
 
     else:
 
-      from: {student: courses}
+      from: courses
       where:
         attribute:
           $in: [amst_topics, amst_seminar, amst_id]

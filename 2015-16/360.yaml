@@ -22,7 +22,7 @@ requirements:
       A list of 11-12 courses and other learning experiences, with an
       explanation of how each contributes to the major.
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: im_learning_experiences}}
       assert: {count(courses): {$gte: 11}}
 
@@ -30,7 +30,7 @@ requirements:
     message: |
       Initial plans for 2-3 potential senior integrative projects.
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: im_projects}}
       assert: {count(courses): {$gte: 2}}
 

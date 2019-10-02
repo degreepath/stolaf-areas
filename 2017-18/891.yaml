@@ -29,12 +29,12 @@ requirements:
 
   Level III:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: stat_level3}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: stat_elective}}
       assert: {count(courses): {$gte: 1, at_most: true}}

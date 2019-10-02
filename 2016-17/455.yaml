@@ -89,11 +89,11 @@ requirements:
   Other Courses:
     result:
       both:
-        - from: {student: courses}
+        - from: courses
           where: {attributes: {$eq: dance_technique}}
           assert: {count(courses): {$gte: 1}}
 
-        - from: {student: courses}
+        - from: courses
           where:
             $or:
               - subject: {$in: [ART, DANCE, THEAT]}

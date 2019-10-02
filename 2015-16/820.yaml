@@ -12,12 +12,12 @@ result:
 requirements:
   Langauge:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: chinese_language}}
       assert: {count(courses): {$gte: 4}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: china_elective}}
       assert: {count(courses): {$gte: 2}}

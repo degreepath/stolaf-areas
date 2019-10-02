@@ -34,7 +34,7 @@ requirements:
       list below).
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: film_meaning}}
       assert: {count(courses): {$gte: 2}}
 
@@ -46,7 +46,7 @@ requirements:
       technical skill sets used in film-making (see list below).
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: film_practical}}
       assert: {count(courses): {$gte: 1}}
 
@@ -62,6 +62,6 @@ requirements:
       their work in this course synthesizes previous interests.
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: film_integrative}}
       assert: {count(courses): {$gte: 1}}

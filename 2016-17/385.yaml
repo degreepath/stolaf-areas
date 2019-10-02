@@ -34,7 +34,7 @@ requirements:
       Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: japan_elective}}
       limit:
         - at_most: 2

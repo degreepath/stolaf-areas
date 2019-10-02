@@ -16,13 +16,13 @@ result:
 requirements:
   Language:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: german_langauge}}
       assert: {count(courses): {$gte: 2}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: german_elective}}
       all:
         - assert: {count(courses): {$eq: 3}}

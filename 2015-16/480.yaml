@@ -23,12 +23,12 @@ result:
 requirements:
   History & Culture:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: norw_history_culture}}
       assert: {count(courses): {$gte: 1}}
 
   Upper-Level Elective:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: norw_upper_elective}}
       assert: {count(courses): {$gte: 1}}

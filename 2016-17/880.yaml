@@ -42,7 +42,7 @@ requirements:
       neuroscience topic with permission of the program director.
 
     result:
-      from: {student: courses}
+      from: courses
 
       where: {attribute: {$in: [neuro_foundation_lab, neuro_adv_lab]}}
 
@@ -57,7 +57,7 @@ requirements:
 
   Interdisciplinary Elective:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: neuro_interdisciplinary_elective}}
       assert: {count(courses): {$gte: 1}}
 
@@ -70,6 +70,6 @@ requirements:
 
   Capstone Seminar:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: neuro_capstone}}
       assert: {count(courses): {$gte: 1}}

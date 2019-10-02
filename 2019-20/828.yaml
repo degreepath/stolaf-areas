@@ -27,12 +27,12 @@ requirements:
 
   Field Experience:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: educ_studies_field_experience}}
       assert: {count(courses): {$gte: 1}}
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: educ_studies_elective}}
       assert: {count(courses): {$gte: 2}}

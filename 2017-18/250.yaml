@@ -21,19 +21,19 @@ requirements:
 
   Cross-Cultural Studies:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: engl_topic_crosscultural}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Literary History:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: engl_topic_literary_history}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Cross-Disciplinary and Genre Studies:
     result:
-      from: {student: courses}
+      from: courses
       where:
         $or:
           - attribute: {$eq: engl_topic_crossdisciplinary}
@@ -42,7 +42,7 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where:
         attributes:
           $in:
@@ -65,12 +65,12 @@ requirements:
   1800s:
     result:
       both:
-        - from: {student: courses}
+        - from: courses
           where: {attribute: {$eq: engl_period_pre1800}}
           allow_claimed: true
           assert: {count(courses): {$gte: 1, at_most: true}}
 
-        - from: {student: courses}
+        - from: courses
           where: {attribute: {$eq: engl_period_post1800}}
           allow_claimed: true
           assert: {count(courses): {$gte: 1, at_most: true}}

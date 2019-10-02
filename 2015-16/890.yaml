@@ -28,6 +28,6 @@ requirements:
 
   Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: stat_elective}}
       assert: {count(courses): {$gte: 2, at_most: true}}

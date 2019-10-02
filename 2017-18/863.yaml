@@ -26,13 +26,13 @@ requirements:
 
   Management Elective:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: mgmt_elective}}
       assert: {count(courses): {$gte: 1}}
 
   Distributed Elective:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: mgmt_dist_elective}}
       assert: {count(courses): {$gte: 1}}
 

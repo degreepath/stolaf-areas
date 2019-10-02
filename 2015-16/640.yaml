@@ -43,7 +43,7 @@ requirements:
       class is then a choice of either 233 or 253.
 
     result:
-      from: {student: courses, repeats: all}
+      from: courses
       where: {course: {$in: [THEAT 233, THEAT 253]}}
       all:
         - where: {course: {$eq: THEAT 233}}

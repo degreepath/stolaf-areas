@@ -19,7 +19,7 @@ requirements:
 
   MSCS Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: mabio_mscs_elective}}
       limit:
         - at-most: 1
@@ -34,7 +34,7 @@ requirements:
 
   BIO Electives:
     result:
-      from: {student: courses}
+      from: courses
       where: {attribute: {$eq: mabio_bio_elective}}
       assert: {count(courses): {$gte: 2}}
 

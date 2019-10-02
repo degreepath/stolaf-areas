@@ -36,7 +36,7 @@ requirements:
       These will be selected in consultation with dance faculty.
 
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: dance_movement}}
       assert: {sum(credits): {$gte: 1.5}}
 
@@ -54,7 +54,7 @@ requirements:
       from their own interests and investigation. Select at least two
       credits from within or outside the department.
     result:
-      from: {student: courses}
+      from: courses
       where: {attributes: {$eq: dance_personalized_area_speciality}}
       assert: {sum(credits): {$gte: 2}}
 
