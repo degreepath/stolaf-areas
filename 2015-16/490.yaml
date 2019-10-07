@@ -12,6 +12,7 @@ result:
 
 requirements:
   Prerequisites:
+    in_gpa: false
     message:
       These courses must be completed before beginning any level III nursing
       courses.
