@@ -19,7 +19,7 @@ requirements:
       all:
         - course: BIO 143
         - course: BIO 243
-        - course: NURS 210
+        - course: ID 210
         - any:
             - {course: ESTH 110, hidden: true}
             - {course: ID 110, hidden: true}
