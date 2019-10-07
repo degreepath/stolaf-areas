@@ -73,7 +73,7 @@ requirements:
     result:
       from: courses
       where: {attribute: {$eq: history_era_premodern}}
-      assert: {count(courses): {$gte: 0}}
+      assert: {count(courses): {$gte: 0, at_most: true}}
 
   Major Seminar:
     result:
@@ -98,5 +98,6 @@ requirements:
             - history_region_eu_ru
             - history_region_af_as_la
             - history_region_us
+            - history_era_premodern
             - history_extra
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      assert: {count(courses): {$gte: 2}}
