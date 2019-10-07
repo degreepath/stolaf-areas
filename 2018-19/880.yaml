@@ -20,27 +20,6 @@ requirements:
         - course: NEURO 239
 
   Lab Electives:
-    message: |
-      # Level II Foundation Lab Elective
-
-      Another appropriate biology or psychology course (e.g., Topics
-      courses) may be eligible with prior permission of the program
-      director.
-
-      ---
-
-      # Level III Advanced Science Lab Elective
-
-      Another appropriate advanced science course with advanced laboratory
-      experience (e.g., Topics courses) may be eligible with prior
-      permission of the program director.
-
-      Directed Undergraduate Research (BIO 396, PSYCH 396, or NEURO 396)
-      on a neuroscience topic with permission of the program director.
-
-      Independent Research (BIO 398, PSYCH 398, or NEURO 398) on a
-      neuroscience topic with permission of the program director.
-
     result:
       from: courses
 
