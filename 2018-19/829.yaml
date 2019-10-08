@@ -1,7 +1,7 @@
 ---
-name: Educational Studies Licensure
+name: Educational Studies Non-Licensure
 type: concentration
-code: '828'
+code: '829'
 degree: B.A.
 
 result:
@@ -23,14 +23,14 @@ requirements:
   Core:
     result:
       all:
+        - course: EDUC 260
         - course: EDUC 290
-        - course: EDUC 330
         - course: EDUC 372
 
   Field Experience:
     result:
       from: courses
-      where: {attributes: {$eq: educ_studies_license_field_experience}}
+      where: {attributes: {$eq: educ_studies_nonlicense_field_experience}}
       assert: {count(courses): {$gte: 1}}
 
   Electives:
