@@ -1,5 +1,5 @@
 ---
-name: Educational Studies
+name: Educational Studies Non-Licensure
 type: concentration
 code: '828'
 degree: B.A.
@@ -12,8 +12,10 @@ result:
   audit:
     all:
       - assert: {average(grades): {$gte: 2.7}}
+
       - assert: {count(courses): {$lte: 2}}
         where: {is_stolaf: {$eq: false}}
+
       - assert: {count(courses): {$lte: 2}}
         where: {s/u: {$eq: true}}
 
@@ -28,10 +30,19 @@ requirements:
   Field Experience:
     result:
       from: courses
-      where: {attributes: {$eq: educ_studies_field_experience}}
+      where: {attributes: {$eq: educ_studies_nonlicense_field_experience}}
       assert: {count(courses): {$gte: 1}}
 
   Electives:
+    message:
+      The following courses are approved electives. If you wish to propose an
+      alternative elective course, please contact the chair of the Education
+      department and provide a written 1-2 paragraph explanation of how the
+      substituted course is relevant to educators or learners and addresses
+      human development, differences in how various groups of people
+      experience the world, or social/cultural systems within which education
+      occurs.
+
     result:
       from: courses
       where: {attributes: {$eq: educ_studies_elective}}
