@@ -1,0 +1,19 @@
+---
+name: Educational Studies
+type: concentration
+code: '828'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Choose a Track
+
+requirements:
+  Choose a Track:
+    department_audited: true
+    message: >
+      Please visit the *SIS > Forms & Links > Add or Drop a Major,
+      Concentration, or Emphasis* page in order to select between the
+      three tracks: Licensure, Non-Licensure, and TEFL.
+
+      You may declare a combination of the three tracks.
