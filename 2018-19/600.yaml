@@ -15,6 +15,7 @@ result:
 
 requirements:
   Prerequisites:
+    in_gpa: false
     result:
       all:
         - course: SOAN 121
