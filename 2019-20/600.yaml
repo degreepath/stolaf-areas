@@ -18,8 +18,14 @@ requirements:
     in_gpa: false
     result:
       all:
-        - course: SOAN 121
-        - course: PSYCH 125
+        - any:
+            - course: SOAN 121
+            - course: SOAN 264
+            - ap: IB Sociology/Anthropology
+        - any:
+            - course: PSYCH 125
+            - ap: AP Psychology
+            - ap: IB Psychology
         - course: PSYCH 241
         - either:
             - course: BIO 123
