@@ -4,17 +4,14 @@ type: major
 code: '600'
 degree: B.A.
 
-limit:
-  - at-most: 0
-    where:
-      $and:
-        - grade: {$lt: C}
-        - grade: {$nin: [IP, I]}
-
 result:
   all:
     - requirement: Prerequisites
     - requirement: Foundation
+
+  audit:
+    where: {grade: {$lt: C}}
+    assert: {count(courses): {$eq: 0}}
 
 requirements:
   Prerequisites:
