@@ -28,10 +28,10 @@ requirements:
     result:
       from: courses
       where: {attribute: {$eq: phys_elective}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {sum(credits): {$gte: 1}}
 
   Upper-Level Elective:
     result:
       from: courses
       where: {attribute: {$eq: phys_upper_elective}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {sum(credits): {$gte: 1}}
