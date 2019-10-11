@@ -10,7 +10,10 @@ result:
     - requirement: Foundation
 
   audit:
-    where: {grade: {$lt: C}}
+    where:
+      $and:
+        - grade: {$lt: C}
+        - course_type: {$neq: AP}
     assert: {count(courses): {$eq: 0}}
 
 requirements:
