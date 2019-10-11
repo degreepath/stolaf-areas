@@ -6,7 +6,10 @@ degree: B.A.
 
 limit:
   - at-most: 0
-    where: {grade: {$lt: C}}
+    where:
+      $and:
+        - grade: {$lt: C}
+        - grade: {$nin: [IP, I]}
 
 result:
   all:
