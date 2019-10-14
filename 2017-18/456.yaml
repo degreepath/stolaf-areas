@@ -121,7 +121,7 @@ requirements:
       with a minimum of 60 overall.
 
 emphases:
-  711:
+  711x:
     name: Voice
 
     result:
@@ -183,7 +183,7 @@ emphases:
                   $in: [bm_fol_fren, bm_fol_germ]
               assert: {count(courses): {$gte: 1}}
 
-  712:
+  712x:
     name: Strings
 
     result:
@@ -205,7 +205,7 @@ emphases:
               - {number: {$nin: [294, 298, 394, 398]}}
           assert: {sum(credits): {$gte: 2.25}}
 
-  713:
+  713x:
     name: Piano
 
     result:
@@ -222,7 +222,7 @@ emphases:
               - {number: {$nin: [294, 298, 394, 398]}}
           assert: {sum(credits): {$gte: 2.75}}
 
-  714:
+  714x:
     name: Winds, Brass, Percussion
 
     result:
@@ -244,7 +244,7 @@ emphases:
               - {number: {$nin: [294, 298, 394, 398]}}
           assert: {sum(credits): {$gte: 1.75}}
 
-  716:
+  716x:
     name: Organ
 
     result:
@@ -261,7 +261,7 @@ emphases:
               - {number: {$nin: [294, 298, 394, 398]}}
           assert: {sum(credits): {$gte: 2.25}}
 
-  702:
+  702x:
     name: Collaborative Keyboard Performance
 
     result:

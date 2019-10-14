@@ -113,7 +113,7 @@ requirements:
       Documented attendance at 60 concerts.
 
 emphases:
-  711:
+  711x:
     name: Voice
 
     result:
@@ -151,7 +151,7 @@ emphases:
                   $in: [bm_fol_fren, bm_fol_germ]
               assert: {count(courses): {$gte: 1}}
 
-  712:
+  712x:
     name: Strings
 
     result:
@@ -166,7 +166,7 @@ emphases:
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 2}}
 
-  713:
+  713x:
     name: Piano
 
     result:
@@ -178,7 +178,7 @@ emphases:
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 2}}
 
-  714:
+  714x:
     name: Winds, Brass, Percussion
 
     result:
@@ -201,7 +201,7 @@ emphases:
       where: {subject: {$in: [MUSIC]}}
       assert: {sum(credits): {$gte: 3}}
 
-  702:
+  702x:
     name: Collaborative Keyboard Performance
 
     result:
