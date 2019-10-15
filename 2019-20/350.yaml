@@ -31,28 +31,19 @@ requirements:
   Europe and Russia:
     result:
       from: courses
-      where:
-        $or:
-          - attribute: {$eq: history_region_eu_ru}
-          - ap: {$eq: AP European History}
+      where: {attribute: {$eq: history_region_eu_ru}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   The United States:
     result:
       from: courses
-      where:
-        $or:
-          - attribute: {$eq: history_region_us}
-          - ap: {$eq: AP U.S. History}
+      where: {attribute: {$eq: history_region_us}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Africa, Asia, and Latin America:
     result:
       from: courses
-      where:
-        $or:
-          - attribute: {$eq: history_region_af_as_la}
-          - ap: {$eq: AP World History}
+      where: {attribute: {$eq: history_region_af_as_la}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level II Seminar:

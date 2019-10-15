@@ -92,8 +92,5 @@ requirements:
 
     result:
       from: courses
-      where:
-        $or:
-          - {ap: {$eq: AP Art History}}
-          - {attribute: {$eq: art_history}}
+      where: {attribute: {$eq: art_history}}
       assert: {count(courses): {$gte: 2, at_most: true}}

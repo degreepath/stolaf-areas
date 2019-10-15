@@ -28,10 +28,7 @@ requirements:
   Electives:
     result:
       from: courses
-      where:
-        $or:
-          - attributes: {$eq: esth_elective}
-          - ap: {$eq: AP Statistics}
+      where: {attributes: {$eq: esth_elective}}
       limit:
         - at-most: 1
           where:

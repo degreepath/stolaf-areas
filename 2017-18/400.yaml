@@ -14,10 +14,7 @@ requirements:
   Language:
     result:
       from: courses
-      where:
-        $or:
-          - {ap: {$eq: AP Latin}}
-          - {attributes: {$eq: latin_language}}
+      where: {attributes: {$eq: latin_language}}
       assert: {count(courses): {$gte: 7, at_most: true}}
 
   Classics:
