@@ -131,7 +131,10 @@ requirements:
       load_potentials: false
       claim: false
       allow_claimed: true
-      where: {grade_option: {$eq: grade}}
+      where: 
+        $or:
+          - grade_option: {$eq: grade}
+          - course: {$eq: REG 0002}
       assert: {sum(credits): {$gte: 24}}
 
   Declared Major:
