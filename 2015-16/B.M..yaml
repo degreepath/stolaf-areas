@@ -71,7 +71,10 @@ requirements:
       load_potentials: false
       claim: false
       allow_claimed: true
-      where: {semester: {$eq: 2}}
+      where:
+        $or:
+          - {semester: {$eq: 2}}
+          - {course: {$eq: REG 0003}}
       assert: {sum(credits): {$gte: 3}}
 
   Cumulative Grade Point Average:
@@ -103,7 +106,10 @@ requirements:
       load_potentials: false
       claim: false
       allow_claimed: true
-      where: {grade_option: {$eq: grade}}
+      where:
+        $or:
+          - {grade_option: {$eq: grade}}
+          - {course: {$eq: REG 0002}}
       assert: {sum(credits): {$gte: 24}}
 
   Declared Major:
