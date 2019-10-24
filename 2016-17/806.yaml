@@ -17,6 +17,7 @@ requirements:
   Interdisciplinary Seminar:
     result:
       any:
+        - course: AFAM 231
         - course: AFAD 231
 
   Electives:

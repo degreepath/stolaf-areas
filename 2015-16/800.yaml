@@ -18,6 +18,7 @@ requirements:
     result:
       any:
         - course: AFAM 231
+        - course: AFAD 231
 
   Electives:
     message: |
