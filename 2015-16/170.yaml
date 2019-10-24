@@ -94,9 +94,10 @@ requirements:
 
   Mathematics:
     result:
-      either:
+      any:
         - course: MATH 126
         - course: MATH 128
+        - ap: AP Calculus I and II
 
   Seminars:
     department_audited: true
