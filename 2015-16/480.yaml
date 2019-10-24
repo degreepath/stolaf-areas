@@ -25,10 +25,10 @@ requirements:
     result:
       from: courses
       where: {attribute: {$eq: norw_history_culture}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Upper-Level Elective:
     result:
       from: courses
       where: {attribute: {$eq: norw_upper_elective}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
