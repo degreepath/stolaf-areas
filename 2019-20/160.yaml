@@ -106,4 +106,7 @@ requirements:
             - course: CHEM 126
         - all:
             - course: CH/BI 125
+            - course: CHEM 126
+        - all:
+            - course: CH/BI 125
             - course: CH/BI 126
