@@ -43,7 +43,6 @@ requirements:
           all:
             - course: CH/BI 125
             - course: CH/BI 126
-            - course: CH/BI 227
 
     result:
       any:
