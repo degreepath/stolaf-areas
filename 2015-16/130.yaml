@@ -12,8 +12,23 @@ requirements:
   American Studies:
     if:
       from: courses
-      where: {course: {$in: [AMCON 202, AMCON 211]}}
-      assert: {count(courses): {$gte: 1}}
+      where:
+        # if any of the four are in-progress
+        $or:
+          - $and:
+              - course:
+                  $in: [
+                    AMCON 101, AMCON 110,
+                    AMCON 102, AMCON 111,
+                    AMCON 201, AMCON 210,
+                    AMCON 202, AMCON 211,
+                  ]
+              - is_in_progress: {$eq: true}
+          # or if the final course has been completed
+          - $and:
+              - course: {$in: [AMCON 202, AMCON 211]}
+              - is_in_progress: {$eq: false}
+      assert: {count(courses): {$gte: 1, treat_in_progress_as_pass: true}}
 
     then:
       from: courses
