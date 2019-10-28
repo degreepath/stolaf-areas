@@ -84,8 +84,13 @@ requirements:
   Electives:
     result:
       from: courses
-      where: {attribute: {$eq: bio_elective}}
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      where:
+        attribute: {$eq: bio_elective}
+      all:
+        - assert: {count(courses): {$gte: 2, at_most: true}}
+
+        - where: {level: {$in: [200, 300]}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Chemistry:
     result:
