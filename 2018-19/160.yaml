@@ -77,15 +77,18 @@ requirements:
       from: courses
       where:
         $and:
-          - {attribute: {$eq: bio_l3}}
-          - {credits: {$eq: 1}}
+          - attribute: {$eq: bio_elective}
+          - credits: {$eq: 1}
+          - level: {$eq: 300}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
       from: courses
       where:
-        attribute: {$eq: bio_elective}
+        $and:
+          - attribute: {$eq: bio_elective}
+          - credits: {$eq: 1}
       all:
         - assert: {count(courses): {$gte: 2, at_most: true}}
 
