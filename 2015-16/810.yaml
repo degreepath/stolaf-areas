@@ -18,4 +18,8 @@ requirements:
     result:
       from: courses
       where: {attribute: {$in: [asian_elective, asian_conc_elective]}}
+      limit:
+        # "No language courses may count towards the concentration"
+        - at-most: 0
+          where: {attributes: {$eq: asian_language}}
       assert: {count(courses): {$gte: 6}}
