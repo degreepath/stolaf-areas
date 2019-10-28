@@ -13,7 +13,9 @@ result:
 requirements:
   English Language and Linguistics:
     result:
-      course: EN/LI 250
+      any:
+        - course: EN/LI 250
+        - course: LNGST 250
 
   Electives:
     result:
@@ -32,10 +34,13 @@ requirements:
         - assert: {count(courses): {$gte: 3}}
         - assert: {count(subjects): {$gte: 2}}
 
-  Seminar:
+  Level III Elective:
     message:
-      One approved level III seminar or approved advanced study experience.
+      One approved level III course or approved advanced study experience.
     result:
       from: courses
-      where: {attributes: {$eq: lngst_l3_seminars}}
+      where:
+        $and:
+          - attributes: {$eq: lngst_elective}
+          - level: {$eq: 300}
       assert: {count(courses): {$gte: 1}}
