@@ -13,6 +13,7 @@ result:
     where:
       $and:
         - grade: {$lt: C}
+        - grade_code: {$neq: IP}
         - course_type: {$neq: AP}
     assert: {count(courses): {$eq: 0}}
 
