@@ -19,7 +19,7 @@ result:
             - {subject: {$eq: CHEM}}
             - $or:
                 - {grade: {$gte: C}}
-                - {grade: {$in: [P, IP, S]}}
+                - {grade_code: {$in: [P, IP, S]}}
             - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
             - {number: {$gte: 240}}
         assert: {count(courses): {$gte: 4}}
