@@ -7,7 +7,7 @@ degree: B.A.
 result:
   all:
     - requirement: English Language and Linguistics
-    - requirement: Seminar
+    - requirement: Level III Elective
     - requirement: Electives
 
 requirements:
