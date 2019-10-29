@@ -14,13 +14,9 @@ result:
 requirements:
   Complementary:
     result:
-      at_most: true
-      any:
-        - course: ECON 261
-        - course: ECON 382
-        - course: HIST 195
-        - course: SOAN 233
-        - course: SOAN 262
+      from: courses
+      where: {attributes: {$eq: intlr_complementary}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Around The World:
     result:
@@ -53,8 +49,11 @@ requirements:
         message: |
           Two courses focused upon any single contemporary world region or
           country (e.g., Africa, Asia, China, Germany, Japan, Latin America,
-          the Middle East, or Russia). Can be from any department and may
-          include courses completed in approved St. Olaf off-campus programs.
+          the Middle East, or Russia).
+
+          The courses can be from any department and may include courses
+          completed in approved St. Olaf off-campus programs.
+
           No more than one course in this option can come from the Political
           Science Department. Area studies courses should have at least 50
           percent of the course content dedicated to target country or region.
@@ -79,15 +78,6 @@ requirements:
 
   International Political Science:
     result:
-      at_most: true
-      count: 2
-      of:
-        - course: ES/PS 201
-        - course: PSCI 205
-        - course: PSCI 222
-        - course: PSCI 231
-        - course: PSCI 245
-        - course: PSCI 258
-        - course: PSCI 285
-        - course: PSCI 321
-        - course: PSCI 322
+      from: courses
+      where: {attributes: {$eq: intlr_polisci}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
