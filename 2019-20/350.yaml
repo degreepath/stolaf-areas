@@ -18,15 +18,6 @@ result:
       - where: {level: {$eq: 100}}
         assert: {count(courses): {$lte: 3}}
 
-attributes:
-  multicountable:
-    - - {attributes: {$eq: history_l2_seminar}}
-      - {attributes: {$eq: history_l3_seminar}}
-      - {attributes: {$eq: history_region_af_as_la}}
-      - {attributes: {$eq: history_region_eu_ru}}
-      - {attributes: {$eq: history_region_us}}
-      - {attributes: {$eq: hist_public_elective}}
-
 requirements:
   Europe and Russia:
     result:
@@ -85,12 +76,13 @@ emphases:
       Core:
         result:
           all:
-            - course: HIST 280
-            - course: HIST 294
-            - course: HIST 296
+            - {course: HIST 280, including claimed: true}
+            - {course: HIST 294, including claimed: true}
+            - {course: HIST 296, including claimed: true}
 
       Electives:
         result:
           from: courses
+          allow_claimed: true
           where: {attributes: {$eq: hist_public_elective}}
           assert: {count(courses): {$gte: 3}}

@@ -31,32 +31,24 @@ result:
             - {level: {$eq: 100}}
             - {type: {$eq: Seminar}}
 
-attributes:
-  multicountable:
-    - - {attributes: {$eq: history_l2_seminar}}
-      - {attributes: {$eq: history_l3_seminar}}
-      - {attributes: {$eq: history_region_eu_ru}}
-      - {attributes: {$eq: history_region_af_as_la}}
-      - {attributes: {$eq: history_region_us}}
-
 requirements:
   Europe and Russia:
     result:
       from: courses
       where: {attribute: {$eq: history_region_eu_ru}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   The United States:
     result:
       from: courses
       where: {attribute: {$eq: history_region_us}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Africa, Asia, and Latin America:
     result:
       from: courses
       where: {attribute: {$eq: history_region_af_as_la}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Pre-Modern Period:
     message: |
@@ -70,13 +62,13 @@ requirements:
     result:
       from: courses
       where: {attribute: {$eq: history_l2_seminar}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level III:
     result:
       from: courses
       where: {attribute: {$eq: history_l3_seminar}}
-      assert: {count(courses): {$gte: 3}}
+      assert: {count(courses): {$gte: 3, at_most: true}}
 
   Additional Courses:
     result:
@@ -91,4 +83,4 @@ requirements:
             - history_region_us
             - history_era_premodern
             - history_extra
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
