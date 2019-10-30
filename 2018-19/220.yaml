@@ -45,24 +45,28 @@ requirements:
       Ballet:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: dance_genre_ballet}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       International and Social:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: dance_genre_international}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Modern:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: dance_genre_modern}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Other Topics:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: dance_genre_other}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -99,17 +103,3 @@ requirements:
     message:
       Majors are required to contribute in managing a dance production
       for a minimum of one semester.
-
-attributes:
-  multicountable:
-    - - {attributes: {$eq: dance_movement}}
-      - {attributes: {$eq: dance_genre_ballet}}
-
-    - - {attributes: {$eq: dance_movement}}
-      - {attributes: {$eq: dance_genre_international}}
-
-    - - {attributes: {$eq: dance_movement}}
-      - {attributes: {$eq: dance_genre_modern}}
-
-    - - {attributes: {$eq: dance_movement}}
-      - {attributes: {$eq: dance_genre_other}}
