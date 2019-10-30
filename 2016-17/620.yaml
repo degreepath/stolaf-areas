@@ -40,24 +40,15 @@ requirements:
 
         - where: {attribute: {$eq: spanish_focus_spain}}
           assert: {count(courses): {$gte: 1}}
+          message: At least one must focus on Spain
 
         - where: {attribute: {$eq: spanish_focus_latinamerica}}
           assert: {count(courses): {$gte: 1}}
+          message: At least one must focus on Latin America
 
         - where:
             $and:
               - level: {$eq: 300}
-              - {is_stolaf: {$eq: true}}
+              - is_stolaf: {$eq: true}
           assert: {count(courses): {$gte: 1}}
-
-attributes:
-  multicountable:
-    - - {course: {$eq: SPAN 313}}
-      - {attributes: {$eq: spanish_elective}}
-    - - {course: {$eq: SPAN 313}}
-      - {attributes: {$eq: spanish_focus_spain}}
-
-    - - {course: {$eq: SPAN 314}}
-      - {attributes: {$eq: spanish_elective}}
-    - - {course: {$eq: SPAN 314}}
-      - {attributes: {$eq: spanish_focus_latinamerica}}
+          message: One additional 300-level course
