@@ -15,6 +15,8 @@ result:
 
   audit:
     all:
+      - assert: {count(courses): {$gte: 9}}
+
       - where: {level: {$eq: 100}}
         assert: {count(courses): {$lte: 3}}
 
