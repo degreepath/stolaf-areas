@@ -11,7 +11,6 @@ result:
     - requirement: What is Religion?
     - requirement: Religious Dimensions
     - requirement: Intensive Studies
-    - requirement: Intensive Studies Seminar
     - requirement: Optional Electives
 
   audit:
@@ -63,18 +62,15 @@ requirements:
     result:
       from: courses
       allow_claimed: true
-      where: {attributes: {$eq: rel_intensive}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
-
-  Intensive Studies Seminar:
-    result:
-      from: courses
-      allow_claimed: true
       where:
         $or:
           - attributes: {$eq: rel_intensive}
           - attributes: {$eq: rel_intensive_seminar}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      all:
+        - assert: {count(courses): {$gte: 2, at_most: true}}
+
+        - where: {attributes: {$eq: rel_intensive_seminar}}
+          assert: {count(courses): {$gte: 1}}
 
   Optional Electives:
     result:
