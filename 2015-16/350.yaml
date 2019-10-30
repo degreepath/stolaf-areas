@@ -61,12 +61,14 @@ requirements:
   Major Seminar:
     result:
       from: courses
+      allow_claimed: true
       where: {attribute: {$eq: history_l2_seminar}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level III:
     result:
       from: courses
+      allow_claimed: true
       where: {attribute: {$eq: history_l3_seminar}}
       assert: {count(courses): {$gte: 3, at_most: true}}
 
@@ -83,4 +85,4 @@ requirements:
             - history_region_us
             - history_era_premodern
             - history_extra
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      assert: {count(courses): {$gte: 2}}
