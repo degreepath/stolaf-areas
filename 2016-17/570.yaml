@@ -11,6 +11,11 @@ result:
     - requirement: What is Religion?
     - requirement: Religious Dimensions
     - requirement: Intensive Studies
+    - requirement: Intensive Studies Seminar
+    - requirement: Optional Electives
+
+  audit:
+    assert: {count(courses): {$gte: 8}}
 
 requirements:
   General Education:
@@ -33,6 +38,9 @@ requirements:
       course: REL 285
 
   Religious Dimensions:
+    message: |
+      Courses that focus on three different dimensions of religion (and deal
+      with at least two different religious traditions)
     result:
       from: courses
       where:
@@ -53,22 +61,23 @@ requirements:
 
   Intensive Studies:
     result:
-      both:
-        - at_most: true
-          any:
-            - course: REL 302
-            - course: REL 303
-            - course: REL 304
-            - course: REL 320
-            - course: REL 341
-            - course: REL 344
+      from: courses
+      allow_claimed: true
+      where: {attributes: {$eq: rel_intensive}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
-        - at_most: true
-          any:
-            - course: REL 390
-            - course: REL 391
-            - course: REL 392
-            - course: REL 393
-            - course: REL 395
-            - course: REL 397
-            - course: REL 399
+  Intensive Studies Seminar:
+    result:
+      from: courses
+      allow_claimed: true
+      where:
+        $or:
+          - attributes: {$eq: rel_intensive}
+          - attributes: {$eq: rel_intensive_seminar}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Optional Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: rel_elective}}
+      assert: {count(courses): {$gte: 0}}
