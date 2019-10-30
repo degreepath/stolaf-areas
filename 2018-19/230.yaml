@@ -141,7 +141,7 @@ emphases:
           where: {attributes: {$eq: econ_emph_mgmt_elective}}
           assert: {count(courses): {$gte: 1}}
 
-attributes:
-  multicountable:
-    - - {course: {$eq: ECON 385}}
-      - {attributes: {$eq: econ_lvl3}}
+multicountable:
+  ECON 385:
+    - [Core]
+    - [Economic Analysis]

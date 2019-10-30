@@ -672,42 +672,6 @@ The left side of each line (each "key") in the `courses` dictionary is mapped to
 Custom attributes are attached to each course under the "attributes" key, so they can be matched with `where: {attributes: math_perspective_a}`.
 
 
-## Multicountable
-
-```yaml
-attributes:
-  multicountable:
-    - [{attribute: math_a}, {attribute: math_b}]
-    - [{course: ECON 237}, {attribute: econ_q}, {attribute: econ_blah}]
-```
-
-`multicountable` controls how courses can be counted multiple times.
-
-It can accept specifiers as `attribute` or `course`.
-
-A course may be matched by each entry in the array exactly once; once it has been matched by an entry, it cannot be matched by that method again.
-
-For example, `[{course: ECON 385}, {attribute: econ_level_3}]` means that a single course may be matched twice: once as `ECON 385`, and once as "a course with `econ_level_3`".
-
-Given `[{attribute: engl_elective}, {attribute: engl_period_post1800}, {attribute: engl_period_pre1800}]` as another example: a single course may be used up to three times: once as "a course with `engl_elective`", once as "a course with `engl_period_post1800`", and once as "a course with `engl_period_pre1800`".
-
-As a final example, take `[{attribute: history_era_premodern}, {attribute: history_l2_seminar}, {attribute: history_level_3}, {attribute: history_region_europe}, {attribute: history_region_nonwesternworld}, {attribute: history_region_us}]`; this means that a course may be used up to _six times_, once for each of the named attributes.
-
-## Example: Mathematics Perspectives
-
-Sometimes, you need to use courses across two dimensions.
-
-For example, the Mathematics major requires that you have courses in the "Transitions" requirement; then, it also has some courses that are "perspectives", and a course can be used both for a single perspective, and also for another requirement.
-
-IE, MATH 220 is in the "A" perspective, and it's also in Transitions.
-
-Normally, if you list the same course explicitly in two requirements, it can only be used by the first requirement.
-
-However, if you need to bypass that restriction, you have two options:
-
-1. Add `[{course: DEPT NNN}, {attribute: name}]` (where NNN is the number of the course in question); the course can then be used both by name (ECON 356, for example) and by attribute (`econ_elective`, let's say.)
-2. Specify the course as `{course: MATH 220, can_match_used: true}` instead of just `MATH 220`. Use this **very sparingly**! The Mathematics major requires it, since it has sequences of courses that really only care about "did you complete a sequence", but thus far no other major has even needed it. It allows a course to match no matter how many times it's been used already.
-
 # Messages
 
 You can attach a `message:` to a requirement, section, or sub-section, in order to show a message to the student.
