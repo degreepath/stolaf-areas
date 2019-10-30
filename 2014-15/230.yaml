@@ -15,14 +15,14 @@ requirements:
   Core:
     result:
       all:
-        - course: ECON 261
-        - course: ECON 262
+        - {course: ECON 261, grade_option: grade}
+        - {course: ECON 262, grade_option: grade}
         - either:
-            - course: ECON 263
+            - {course: ECON 263, grade_option: grade}
             # or
             - both:
-                - course: STAT 272
-                - course: ECON 385
+                - {course: STAT 272, grade_option: grade}
+                - {course: ECON 385, grade_option: grade}
 
   Foundation:
     result:
