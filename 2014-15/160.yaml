@@ -89,7 +89,9 @@ requirements:
       where:
         $and:
           - attribute: {$eq: bio_elective}
-          - credits: {$eq: 1}
+          - $or:
+              - credits: {$eq: 1}
+              - course_type: {$eq: AP}
       all:
         - assert: {count(courses): {$gte: 2, at_most: true}}
 
