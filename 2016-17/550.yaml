@@ -84,6 +84,7 @@ requirements:
       assert: {count(courses): {$gte: 2}}
 
   Optional Electives:
+    in_gpa: false
     message: |
       Students may designate a selected statistics course OR one additional
       semester of a world language beyond the level of proficiency required
