@@ -34,8 +34,8 @@ requirements:
 
   Religious Dimensions:
     message: |
-      Courses that focus on three different dimensions of religion (and deal
-      with at least two different religious traditions)
+      Courses that focus on three different dimensions of religion, and deal
+      with at least two different religious traditions.
     result:
       from: courses
       where:
@@ -58,14 +58,11 @@ requirements:
     result:
       from: courses
       allow_claimed: true
-      where:
-        $or:
-          - attributes: {$eq: rel_intensive}
-          - attributes: {$eq: rel_intensive_seminar}
+      where: {attributes: {$eq: rel_intensive}}
       all:
         - assert: {count(courses): {$gte: 2, at_most: true}}
 
-        - where: {attributes: {$eq: rel_intensive_seminar}}
+        - where: {type: {$eq: Seminar}}
           assert: {count(courses): {$gte: 1}}
 
   Optional Electives:
