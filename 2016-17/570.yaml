@@ -22,14 +22,10 @@ requirements:
       both:
         - from: courses
           where: {gereqs: {$eq: BTS-B}}
-          claim: false
-          allow_claimed: true
           assert: {count(courses): {$gte: 1}}
 
         - from: courses
           where: {gereqs: {$eq: BTS-T}}
-          claim: false
-          allow_claimed: true
           assert: {count(courses): {$gte: 1}}
 
   What is Religion?:
