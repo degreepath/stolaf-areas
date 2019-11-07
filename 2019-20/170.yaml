@@ -22,7 +22,7 @@ result:
                 - {grade_code: {$in: [IP, S]}}
             - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
             - {number: {$gte: 240}}
-            - {credits: 1.0}
+            - {credits: {$eq: 1.0}}
         assert: {count(courses): {$gte: 4}}
 
 requirements:
