@@ -286,7 +286,7 @@ requirements:
             student completes a petition form; a late fee is assessed. It can
             only be used once as one half of the two-course SPM requirement.
       where: {gereqs: {$eq: SPM}}
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      assert: {count(distinct_courses): {$gte: 2, at_most: true}}
 
   Historical Studies in Western Culture:
     message: |

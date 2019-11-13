@@ -214,14 +214,36 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Studies in Physical Movement:
+    message: |
+      Two different courses, of any credit value, that expand students'
+      experiences in and understanding of movement and promote lifelong health
+      and wellness of the whole person. Students are encouraged to expand
+      their horizons and focus on different activities or modes of movement in
+      order to fulfill the requirements.
     result:
       from: courses
       claim: false
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+        - at-most: 0
+          where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}
+        - at-most: 1
+          where:
+            $and:
+              - subject: {$eq: ESAC}
+              - number: {$gte: 171}
+              - number: {$lte: 194}
+              - credits: {$eq: 0.25}
+          message:
+            Only one 0.25 SPM course credit may be earned by students as a
+            result of participation in an approved intercollegiate sport. This
+            credit must be entered as ESAC 171-194 at the registration
+            preceding the sport/participation term. Credit cannot be claimed
+            after the term in which participation took place unless the
+            student completes a petition form; a late fee is assessed. It can
+            only be used once as one half of the two-course SPM requirement.
       where: {gereqs: {$eq: SPM}}
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      assert: {count(distinct_courses): {$gte: 2, at_most: true}}
 
   Historical Studies in Western Culture or Literary Studies:
     result:
