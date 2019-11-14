@@ -300,7 +300,7 @@ requirements:
 
   Artistic Studies:
     message: |
-      1.0 credits of ALS-A are required from a single subject code.
+      1 credit of ALS-A is required from a single subject code.
     result:
       from: courses
       claim: false
