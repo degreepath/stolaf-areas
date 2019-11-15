@@ -101,4 +101,4 @@ requirements:
       limit:
         - at-most: 1
           where: {attribute: {$eq: psci_optional_elective}}
-      assert: {count(courses): {$gte: 0}}
+      assert: {count(courses): {$gte: 0, treat_in_progress_as_pass: true}}
