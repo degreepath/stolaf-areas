@@ -67,7 +67,10 @@ requirements:
     message: 6 semesters; 4 in the same instrument/voice
     result:
       from: courses
-      where: {subject: {$eq: MUSPF}}
+      where:
+        $and:
+          - {subject: {$eq: MUSPF}}
+          - {level: {$in: [100, 200]}}
       all:
         - assert: {count(terms_from_most_common_course): {$gte: 4}}
         - assert: {count(terms): {$gte: 6}}
