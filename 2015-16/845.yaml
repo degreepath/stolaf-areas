@@ -14,10 +14,10 @@ requirements:
     result:
       from: courses
       where: {attribute: {$eq: japan_language}}
-      assert: {count(courses): {$gte: 6}}
+      assert: {count(courses): {$gte: 4}}
 
   Electives:
     result:
       from: courses
       where: {attribute: {$eq: japan_elective}}
-      assert: {count(courses): {$gte: 6}}
+      assert: {count(courses): {$gte: 2}}
