@@ -1,0 +1,33 @@
+---
+name: Statistics
+type: concentration
+code: '890'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Prerequisite
+    - requirement: Foundation
+    - requirement: Electives
+
+requirements:
+  Prerequisite:
+    result:
+      any:
+        - course: STAT 110
+        - course: STAT 212
+        - course: STAT 214
+        - course: ECON 263
+        - ap: AP Statistics
+
+  Foundation:
+    result:
+      all:
+        - course: STAT 272
+        - course: STAT 316
+
+  Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: stat_elective}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
