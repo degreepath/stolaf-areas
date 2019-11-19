@@ -66,4 +66,6 @@ requirements:
 
   Capstone:
     result:
-      course: CSCI 390
+      from: courses
+      where: {attributes: {$eq: csci_capstone}}
+      assert: {count(courses): {$gte: 1}}
