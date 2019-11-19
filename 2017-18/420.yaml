@@ -7,11 +7,11 @@ degree: B.A.
 result:
   all:
     - requirement: Basics
+    - requirement: Electives
     - requirement: Transitions
     - requirement: Perspectives
     - requirement: Level III
     - requirement: Sequence
-    - requirement: Electives
 
   audit:
     all:
@@ -51,9 +51,45 @@ requirements:
             - ap: AP Calculus I and II
         - course: MATH 220
 
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute:
+              $in:
+                - math_electives
+                - math_l2_electives
+                - math_l3_electives
+
+          - $if:
+              from: areas
+              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Physics}}]}
+              assert: {count(areas): {$gte: 1}}
+            $then: {course: {$eq: PHYS 375}}
+
+          - $if:
+              from: areas
+              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Economics}}]}
+              assert: {count(areas): {$gte: 1}}
+            $then: {course: {$eq: ECON 385}}
+
+          - $if:
+              from: areas
+              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Chemistry}}]}
+              assert: {count(areas): {$gte: 1}}
+            $then: {course: {$eq: CHEM 371}}
+
+          - $and:
+              - subject: {$eq: MATH}
+              - level: {$eq: 200}
+      assert:
+        count(courses): {$gte: 7, at_most: true}
+
   Transitions:
     result:
       from: courses
+      allow_claimed: true
       where: {attribute: {$eq: math_transitions}}
       assert: {count(courses): {$gte: 2, at_most: true}}
 
@@ -71,24 +107,28 @@ requirements:
       A:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: math_perspective_a}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       C:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: math_perspective_c}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       D:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: math_perspective_d}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       M:
         result:
           from: courses
+          allow_claimed: true
           where: {attribute: {$eq: math_perspective_m}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -136,38 +176,3 @@ requirements:
         - both:
             - {course: MATH 262, allow_claimed: true}
             - {course: STAT 322, allow_claimed: true}
-
-  Electives:
-    result:
-      from: courses
-      where:
-        $or:
-          - attribute:
-              $in:
-                - math_electives
-                - math_l2_electives
-                - math_l3_electives
-
-          - $if:
-              from: areas
-              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Physics}}]}
-              assert: {count(areas): {$gte: 1}}
-            $then: {course: {$eq: PHYS 375}}
-
-          - $if:
-              from: areas
-              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Economics}}]}
-              assert: {count(areas): {$gte: 1}}
-            $then: {course: {$eq: ECON 385}}
-
-          - $if:
-              from: areas
-              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Chemistry}}]}
-              assert: {count(areas): {$gte: 1}}
-            $then: {course: {$eq: CHEM 371}}
-
-          - $and:
-              - subject: {$eq: MATH}
-              - level: {$eq: 200}
-      assert:
-        count(courses): {$gte: 0}
