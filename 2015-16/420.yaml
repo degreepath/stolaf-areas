@@ -102,6 +102,8 @@ requirements:
         - requirement: C
         - requirement: D
         - requirement: M
+      audit:
+        assert: {count(courses): {$gte: 3}}
 
     requirements:
       A:
