@@ -46,8 +46,9 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Experiential:
-    department-audited: true
     message:
       All students majoring or concentrating in environmental studies must
       participate in an experience that applies basic knowledge in a setting
       beyond the classroom.
+    result:
+      course: ENVST 237
