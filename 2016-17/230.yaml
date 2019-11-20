@@ -60,7 +60,7 @@ emphases:
         - requirement: Finance
         - requirement: Electives
       audit:
-        where: {grade: {$lt: C}}
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
         assert: {count(courses): {$eq: 0}}
 
     requirements:
@@ -92,7 +92,7 @@ emphases:
         - requirement: Electives
         - requirement: Non-Econ International Topics
       audit:
-        where: {grade: {$lt: C}}
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
         assert: {count(courses): {$eq: 0}}
 
     requirements:
@@ -123,7 +123,7 @@ emphases:
         - requirement: Management
         - requirement: Electives
       audit:
-        where: {grade: {$lt: C}}
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
         assert: {count(courses): {$eq: 0}}
 
     requirements:
@@ -149,7 +149,7 @@ emphases:
         - requirement: Public Policy
         - requirement: Electives
       audit:
-        where: {grade: {$lt: C}}
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
         assert: {count(courses): {$eq: 0}}
 
     requirements:
