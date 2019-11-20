@@ -264,7 +264,10 @@ requirements:
 
   Historical Studies in Western Culture:
     message: |
-      2 HWC courses are required, from 2 different subject codes.
+      2 HWC courses are required.
+
+      At least one of these two courses must be taken from a St. Olaf
+      instructor.
     result:
       from: courses
       claim: false
