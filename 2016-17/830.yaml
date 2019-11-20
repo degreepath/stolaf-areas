@@ -43,7 +43,7 @@ requirements:
     result:
       from: courses
       where: {attribute: {$in: [envst_natural, envst_social, envst_arts]}}
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Experiential:
     department-audited: true
