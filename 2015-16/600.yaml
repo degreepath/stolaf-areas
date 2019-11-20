@@ -41,8 +41,14 @@ requirements:
         - course: SWRK 221
         - course: SWRK 246
         - course: SWRK 254
-        - course: SWRK 258
-        - course: SWRK 261
+        - at_most: true
+          either:
+            - course: SWRK 258
+            - {course: SWRK 295, institution: GLOBSOCW, hidden: true}
+        - at_most: true
+          either:
+            - course: SWRK 261
+            - {course: SWRK 316, institution: GLOBSOCW, hidden: true}
         - course: SWRK 274
         - course: SWRK 373
         - course: SWRK 380
