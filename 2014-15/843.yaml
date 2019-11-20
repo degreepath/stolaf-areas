@@ -1,0 +1,83 @@
+---
+name: International Relations
+type: concentration
+code: '843'
+degree: B.A.
+
+result:
+  all:
+    - course: PSCI 121
+    - requirement: Complementary
+    - requirement: Around The World
+    - requirement: International Political Science
+
+requirements:
+  Complementary:
+    result:
+      from: courses
+      where: {attributes: {$eq: intlr_complementary}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Around The World:
+    result:
+      either:
+        - requirement: World Language
+        - requirement: World Region
+
+    requirements:
+      World Language:
+        message: |
+          One course numbered 232 or higher in Chinese, Greek, Japanese,
+          Latin, Norwegian, or Russian; or one course numbered 250 or higher
+          in French, German, or Spanish.
+
+          The course must be taught in the target language.
+
+        result:
+          from: courses
+          where:
+            $or:
+              - $and:
+                  - subject: {$in: [GERM, FREN, SPAN]}
+                  - number: {$gte: 250}
+              - $and:
+                  - subject: {$in: [CHIN, GREEK, JAPAN, LATIN, NORW, RUSSN]}
+                  - number: {$gte: 232}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      World Region:
+        message: |
+          Two courses focused upon any single contemporary world region or
+          country (e.g., Africa, Asia, China, Germany, Japan, Latin America,
+          the Middle East, or Russia).
+
+          The courses can be from any department and may include courses
+          completed in approved St. Olaf off-campus programs.
+
+          No more than one course in this option can come from the Political
+          Science Department. Area studies courses should have at least 50
+          percent of the course content dedicated to target country or region.
+
+        requirements:
+          Course 1:
+            result:
+              from: courses
+              where: {attributes: {$eq: intl_region_1}}
+              assert: {count(courses): {$gte: 1}}
+
+          Course 2:
+            result:
+              from: courses
+              where: {attributes: {$eq: intl_region_2}}
+              assert: {count(courses): {$gte: 1}}
+
+        result:
+          all:
+            - requirement: Course 1
+            - requirement: Course 2
+
+  International Political Science:
+    result:
+      from: courses
+      where: {attributes: {$eq: intlr_polisci}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
