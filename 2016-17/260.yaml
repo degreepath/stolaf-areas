@@ -50,7 +50,7 @@ emphases:
                 - at-most: 1
                   where: {course: {$in: [BIO 226, BIO 261]}}
                   message: Either BIO 226 or BIO 261 may count, but not both
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
 
           Social Sciences:
             result:
@@ -60,7 +60,7 @@ emphases:
                 - at-most: 1
                   where: {course: {$in: [ENVST 281, ENVST 381]}}
                   message: Either ENVST 281 or ENVST 381 may count, but not both
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
 
       Arts and Humanities - Level II:
         result:
@@ -110,7 +110,7 @@ emphases:
                 - at_most: 1
                   where: {course: {$in: [ENVST 281, ENVST 381]}}
                   message: Either ENVST 281 or ENVST 381 may count, but not both
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
 
           Arts and Humanities:
             result:
@@ -123,7 +123,7 @@ emphases:
                 - at_most: 1
                   where: {course: {$in: [PHIL 257, REL 278]}}
                   message: Either PHIL 257 or REL 278 may count, but not both
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
 
       Statistics, Modeling, and Mapping:
         result:
@@ -194,7 +194,7 @@ emphases:
                 - at_most: 1
                   where: {course: {$in: [BIO 226, BIO 261]}}
                   message: Either BIO 226 or BIO 261 may count, but not both
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
 
           Arts and Humanities:
             result:
@@ -204,7 +204,7 @@ emphases:
                 - at_most: 1
                   where: {course: {$in: [PHIL 257, REL 278]}}
                   message: Either PHIL 257 or REL 278 may count, but not both
-              assert: {count(courses): {$gte: 1}}
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
 
       Methodological Analysis:
         result:
