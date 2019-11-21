@@ -23,10 +23,12 @@ requirements:
   Core:
     result:
       all:
-        - {course: MUSIC 114}
-        - {course: MUSIC 141}
-        - {course: MUSIC 161, grade: B-}
-        - {course: MUSIC 162, grade: B-}
+        - course: MUSIC 114
+        - course: MUSIC 141
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161, grade: B-}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162, grade: B-}
         - at_most: true
           either:
             - course: MUSIC 212
@@ -54,6 +56,13 @@ requirements:
         $and:
           - subject: {$eq: MUSIC}
           - level: {$in: [200, 300]}
+          - course:
+              $nin:
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 161
+                - MUSIC 162
       assert: {count(courses): {$gte: 3, at_most: true}}
 
   Performance Studies:
@@ -75,14 +84,27 @@ requirements:
       assert: {count(terms): {$gte: 4, at_most: true}}
 
   Required Performances:
-    department_audited: true
-    message: Two solo performances on a St. Olaf Student Recital.
+    message: Two solo performances on a St. Olaf Student Recital
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+            - Voice BM-E
+            - Instrumental BM-E
+            - Voice BM-P
+            - Instrumental BM-P
+      assert: {count(performances): {$gte: 2}}
 
   Required Recital Attendance:
-    department_audited: true
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
 
 emphases:
   700:
@@ -111,7 +133,14 @@ emphases:
       Performances:
         message:
           2 composition performances, at least 1 in junior or senior year
-        department_audited: true
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Junior Composition Recital
+                - Senior Composition Recital
+          assert: {count(performances): {$gte: 2}}
 
       Portfolio:
         message:
