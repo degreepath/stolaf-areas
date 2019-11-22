@@ -33,13 +33,16 @@ requirements:
       all:
         - {course: MUSIC 114}
         - {course: MUSIC 141}
-        - {course: MUSIC 161, grade: B-}
-        - {course: MUSIC 162, grade: B-}
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
         - {course: MUSIC 212}
         - {course: MUSIC 214}
         - {course: MUSIC 237}
         - {course: MUSIC 251}
-        - {course: MUSIC 261, grade: B-}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
         - {course: MUSIC 298}
 
   Musicology:
