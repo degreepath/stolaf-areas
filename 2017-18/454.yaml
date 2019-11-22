@@ -73,7 +73,8 @@ emphases:
       Core:
         result:
           all:
-            - {course: MUSIC 262, grade: B-}
+            - proficiency: Keyboard Level IV
+              course: {course: MUSIC 262}
             - {course: MUSIC 263}
             - {course: MUSIC 264}
             - {course: MUSIC 287}
