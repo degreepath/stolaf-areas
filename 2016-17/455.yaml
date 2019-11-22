@@ -129,8 +129,12 @@ requirements:
       percussion, string or woodwind study
 
   Keyboard Proficiency:
-    department_audited: true
-    message: Level IV
+    result:
+      all:
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
+        - proficiency: Keyboard Level IV
+          course: {course: MUSIC 262}
 
   Required Solo Performances:
     department_audited: true
