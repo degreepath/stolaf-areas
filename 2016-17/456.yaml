@@ -113,9 +113,11 @@ requirements:
       Every semester once admitted to BM performance
 
   Required Recital Attendance:
-    department_audited: true
     message:
       Documented attendance at 60 concerts.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
 
 emphases:
   711x:

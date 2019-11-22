@@ -100,9 +100,11 @@ requirements:
       Every semester once admitted
 
   Concert Attendance:
-    department_audited: true
     message:
       Documented attendance at 60 concerts.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
 
   Additional Courses from Other Departments:
     message:

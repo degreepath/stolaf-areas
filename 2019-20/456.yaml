@@ -115,10 +115,12 @@ requirements:
       Every semester in an official ensemble
 
   Required Recital Attendance:
-    department_audited: true
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
 
 emphases:
   711x:

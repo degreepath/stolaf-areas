@@ -103,6 +103,8 @@ requirements:
       Every semester once admitted to BM Theory-Composition major
 
   Concert Attendance:
-    department_audited: true
     message:
       Documented attendance at 60 concerts.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}

@@ -105,10 +105,12 @@ requirements:
     department_audited: true
 
   Required Recital Attendance:
-    message: |
+    message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
-    department_audited: true
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
 
   Secondary Field of Study:
     message:
