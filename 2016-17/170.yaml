@@ -25,6 +25,14 @@ result:
             - {credits: {$eq: 1.0}}
         assert: {count(courses): {$gte: 4}}
 
+      - where:
+          $and:
+            - {subject: {$eq: CHEM}}
+            - $or:
+                - {grade: {$gte: C}}
+                - {grade_code: {$in: [IP, S]}}
+        assert: {count(courses): {$gte: 6}}
+
 requirements:
   Introductory Sequence:
     requirements:
