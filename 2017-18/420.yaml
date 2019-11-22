@@ -84,6 +84,8 @@ requirements:
           - $and:
               - subject: {$eq: MATH}
               - level: {$eq: 200}
+              - type: {$eq: course}
+              - course: {$neq: MATH 220}
       assert:
         count(courses): {$gte: 7, at_most: true}
 
