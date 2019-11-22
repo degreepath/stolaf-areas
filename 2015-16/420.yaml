@@ -59,6 +59,7 @@ requirements:
           - attribute:
               $in:
                 - math_electives
+                - math_transitions
                 - math_l2_electives
                 - math_l3_electives
 
