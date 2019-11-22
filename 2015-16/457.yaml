@@ -24,15 +24,12 @@ requirements:
       all:
         - course: MUSIC 112
         - course: MUSIC 114
-        - course: MUSIC 161
-        - course: MUSIC 162
         - course: MUSIC 212
         - course: MUSIC 214
         - course: MUSIC 237
         - {course: MUSIC 241, waived: true}
         - {course: MUSIC 242, waived: true}
         - course: MUSIC 251
-        - course: MUSIC 261
         - course: MUSIC 262
         - course: MUSIC 166
         - course: MUSIC 167
@@ -93,9 +90,16 @@ requirements:
       students must be enrolled in MUSIC 324, MUSIC 325, or MUSPF 326.
 
   Keyboard Proficiency:
-    department_audited: true
-    message:
-      Level IV Keyboard Proficiency Exam
+    result:
+      all:
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
+        - proficiency: Keyboard Level IV
+          course: {course: MUSIC 262}
 
   Official Ensemble Participation:
     department_audited: true
