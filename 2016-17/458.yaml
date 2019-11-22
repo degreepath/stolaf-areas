@@ -29,8 +29,10 @@ requirements:
       all:
         - {course: MUSIC 114}
         - {course: MUSIC 141}
-        - {course: MUSIC 161, grade: B-}
-        - {course: MUSIC 162, grade: B-}
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
         - {course: MUSIC 166}
         - {course: MUSIC 167}
         - {course: MUSIC 168}
@@ -41,8 +43,10 @@ requirements:
         - {course: MUSIC 225}
         - {course: MUSIC 237}
         - {course: MUSIC 251}
-        - {course: MUSIC 261, grade: B-}
-        - {course: MUSIC 262, grade: B-}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
+        - proficiency: Keyboard Level IV
+          course: {course: MUSIC 262}
         - {course: MUSIC 314}
         - {course: MUSIC 324}
 
