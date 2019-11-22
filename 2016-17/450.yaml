@@ -30,8 +30,8 @@ requirements:
           course: {course: MUSIC 162}
         - course: MUSIC 212
         - course: MUSIC 214
-        - course: MUSIC 241
-        - course: MUSIC 242
+        - {course: MUSIC 241, waived: true}
+        - {course: MUSIC 242, waived: true}
 
   History of Music:
     result:
