@@ -39,6 +39,9 @@ requirements:
         - requirement: Cell Biology
         - requirement: Comparative Organismal Biology
         - requirement: Ecology
+      audit:
+        where: {institution: {$eq: ENVIRON}}
+        assert: {count(courses): {$lte: 1}}
 
     requirements:
       Genetics:
@@ -50,6 +53,7 @@ requirements:
           at_most: true
           any:
             - course: BIO 227
+            - {course: BIO 227, institution: ENVIRON}
             - course: CH/BI 227
 
       Comparative Organismal Biology:
@@ -70,6 +74,7 @@ requirements:
           at_most: true
           any:
             - course: BIO 226
+            - {course: BIO 226, institution: ENVIRON}
             - course: BIO 261
 
   Level III:
