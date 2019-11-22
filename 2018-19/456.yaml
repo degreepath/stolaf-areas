@@ -128,10 +128,8 @@ emphases:
 
     result:
       all:
-        - {course: MUSIC 161, grade: B-}
-        - {course: MUSIC 162, grade: B-}
-        - {course: MUSIC 261, grade: B-}
-        - {course: MUSIC 262, grade: B-}
+        - requirement: Keyboard Proficiency
+
         - {course: MUSIC 263}
         - {course: MUSIC 264}
         - {course: MUSIC 281}
@@ -156,6 +154,18 @@ emphases:
         - requirement: Foreign Language
 
     requirements:
+      Keyboard Proficiency:
+        result:
+          all:
+            - proficiency: Keyboard Level I
+              course: {course: MUSIC 161}
+            - proficiency: Keyboard Level II
+              course: {course: MUSIC 162}
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261}
+            - proficiency: Keyboard Level IV
+              course: {course: MUSIC 262}
+
       Foreign Language:
         message:
           Vocal performance majors must satisfactorily complete the
@@ -190,9 +200,12 @@ emphases:
 
     result:
       all:
-        - {course: MUSIC 161, grade: B-}
-        - {course: MUSIC 162, grade: B-}
-        - {course: MUSIC 261, grade: B-}
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
         - {course: MUSIC 295}
 
         - from: courses
@@ -229,9 +242,12 @@ emphases:
 
     result:
       all:
-        - {course: MUSIC 161, grade: B-}
-        - {course: MUSIC 162, grade: B-}
-        - {course: MUSIC 261, grade: B-}
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
         - {course: MUSIC 298}
 
         - from: courses

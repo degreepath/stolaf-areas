@@ -98,9 +98,16 @@ requirements:
           60-minute Senior recital
 
   Keyboard Proficiency:
-    department_audited: true
-    message:
-      Level IV Keyboard Proficiency Exam
+    result:
+      all:
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
+        - proficiency: Keyboard Level IV
+          course: {course: MUSIC 262}
 
   Official Ensemble Participation:
     department_audited: true
