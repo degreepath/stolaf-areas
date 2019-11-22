@@ -6,7 +6,10 @@ degree: B.A.
 
 result:
   all:
-    - course: ENVST 137
+    - at_most: true
+      either:
+        - course: ENVST 137
+        - ap: AP Environmental Science
     - requirement: Natural Science
     - requirement: Social Science
     - requirement: Arts and Humanities
