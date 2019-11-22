@@ -10,35 +10,24 @@ result:
     - course: RUSSN 112
     - course: RUSSN 231
     - course: RUSSN 232
-    - requirement: Electives If Not a Russian Language Major
-    - requirement: Electives If Also a Russian Language Major
+    - requirement: Electives
     - requirement: Senior Project
 
 requirements:
-  Electives If Not a Russian Language Major:
-    if:
-      from: areas
-      where: {code: {$eq: '580'}}
-      assert: {count(areas): {$eq: 0}}
-
+  Electives:
     result:
       from: courses
       where:
-        attribute:
-          $in:
-            - russian_area_elective
-            - russian_area_elective_if_not_rusn_lang
-      assert: {count(courses): {$gte: 5}}
+        $or:
+          - attribute: {$eq: russian_area_elective}
 
-  Electives If Also a Russian Language Major:
-    if:
-      from: areas
-      where: {code: {$eq: '580'}}
-      assert: {count(areas): {$eq: 1}}
+          - $if:
+              from: areas
+              where: {code: {$eq: '580'}}
+              assert: {count(areas): {$eq: 0}}
+            $then:
+              attribute: {$eq: russian_area_elective_if_not_rusn_lang}
 
-    result:
-      from: courses
-      where: {attribute: {$eq: russian_area_elective}}
       assert: {count(courses): {$gte: 5}}
 
   Senior Project:
