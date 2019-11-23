@@ -10,7 +10,6 @@ limit:
 
 result:
   all:
-    - requirement: Application Process
     - requirement: Core
     - requirement: Musicology
     - requirement: Electives
@@ -22,12 +21,6 @@ result:
     - requirement: Secondary Field of Study
 
 requirements:
-  Application Process:
-    department_audited: true
-    message: |
-      Entrance examination as outlined in the catalog.
-      Continuance examination as outlined in the catalog.
-
   Core:
     result:
       all:
