@@ -133,20 +133,46 @@ requirements:
       proficiency: Guitar
 
   Required Solo Performances:
-    department_audited: true
     message: |
       2 solo performances on licensure instrument in official student
       recitals; one must be in junior or senior year
+    result:
+      from: music performances
+      # TODO: map to principle instrument
+      # Skip checking for junior or senior year
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+      assert: {count(performances): {$gte: 2}}
 
   Required Senior Recital:
-    department_audited: true
     message: |
       30-minute senior recital on principal instrument/voice
+    result:
+      from: music performances
+      where:
+        # TODO: map to principle instrument
+        name:
+          $in:
+            - Instrumental Senior Recital
+            - Vocal Senior Recital
+            - Composition Senior Recital
+      assert: {count(performances): {$gte: 1}}
 
   Performance:
-    department_audited: true
     message: |
       2 small ensemble performances on licensure instrument
+    result:
+      from: music performances
+      where:
+        # TODO: map to principle instrument
+        name:
+          $in:
+            - Instrumental Chamber Recital
+            - Vocal Chamber Recital
+      assert: {count(performances): {$gte: 2}}
 
   Concert Attendance:
     message: Documented attendance at 60 concerts.

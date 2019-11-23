@@ -105,7 +105,14 @@ requirements:
   Required Performances:
     message: |
       Two solo performances on a St. Olaf Student Recital.
-    department_audited: true
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+      assert: {count(performances): {$gte: 2}}
 
   Required Recital Attendance:
     message: |

@@ -82,20 +82,44 @@ requirements:
 
     requirements:
       Solos:
-        department_audited: true
         message: |
           2 solo performances on official student recitals
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Student Recital
+                - Vocal Student Recital
+                - Voice BM-P
+                - Instrumental BM-P
+          assert: {count(performances): {$gte: 2}}
 
       Junior Recital:
-        department_audited: true
-        message: |
-          30 minute Junior recital (or, by petition only: 3 additional solo
-          performances on official student recitals)
+        message:
+          30-minute Junior recital
+
+          Or, by petition only, 3 additional solo performances on official
+          student recitals
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Junior Recital
+                - Vocal Junior Recital
+          assert: {count(performances): {$gte: 1}}
 
       Senior Recital:
-        department_audited: true
-        message: |
-          60-minute Senior recital
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Senior Recital
+                - Vocal Senior Recital
+                - Composition Senior Recital
+          assert: {count(performances): {$gte: 1}}
 
   Keyboard Proficiency:
     result:
