@@ -207,16 +207,13 @@ emphases:
           where: {subject: {$in: [MUSIC]}}
           assert: {sum(credits): {$gte: 1.5}}
 
-  716x:
-    name: Organ
+  other:
+    name: Other Instruments
 
     result:
-      all:
-        - course: MUSIC 298
-
-        - from: courses
-          where: {subject: {$in: [MUSIC]}}
-          assert: {sum(credits): {$gte: 2}}
+      from: courses
+      where: {subject: {$in: [MUSIC]}}
+      assert: {sum(credits): {$gte: 3}}
 
   702x:
     name: Collaborative Keyboard Performance

@@ -84,10 +84,18 @@ requirements:
           assert: {count(terms): {$gte: 4}}
 
   Required Performances:
-    department_audited: true
     message: |
       2 solo performances on principal instrument in official student
       recitals; one must be in junior or senior year
+    result:
+      from: music performances
+      # TODO: map to principle instrument
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+      assert: {count(performances): {$gte: 2}}
 
   Keyboard Proficiency:
     result:
