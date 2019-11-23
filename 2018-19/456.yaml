@@ -87,27 +87,69 @@ requirements:
         - requirement: Solos
         - requirement: Entrance Examination
         - requirement: Continuance Examination
-        - requirement: Junior half recital
-        - requirement: Senior half recital
+        - requirement: Junior Recital
+        - requirement: Senior Recital
 
     requirements:
       Solos:
-        department_audited: true
         message: |
           2 solo performances on a St. Olaf Student Recital (may include
           Entrance and Continuance)
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Student Recital
+                - Vocal Student Recital
+                - Voice BM-P
+                - Instrumental BM-P
+          assert: {count(performances): {$gte: 2}}
 
       Entrance Examination:
-        department_audited: true
+        result:
+          from: music performances
+          where:
+            $and:
+              - name:
+                  $in:
+                    - Voice BM-C
+                    - Instrumental BM-C
+              - status: {$eq: entrance}  # E, internally
+          assert: {count(performances): {$gte: 1}}
 
       Continuance Examination:
-        department_audited: true
+        result:
+          from: music performances
+          where:
+            $and:
+              - name:
+                  $in:
+                    - Voice BM-C
+                    - Instrumental BM-C
+              - status: {$eq: continuance}  # C, internally
+          assert: {count(performances): {$gte: 1}}
 
-      Junior half recital:
-        department_audited: true
+      Junior Recital:
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Junior Recital
+                - Vocal Junior Recital
+          assert: {count(performances): {$gte: 1}}
 
-      Senior half recital:
-        department_audited: true
+      Senior Recital:
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Senior Recital
+                - Vocal Senior Recital
+                - Composition Senior Recital
+          assert: {count(performances): {$gte: 1}}
 
   Official Ensemble Participation:
     department_audited: true
@@ -320,4 +362,10 @@ emphases:
           2 collaborative performances on student recitals,
           with at least one of those performances
           during junior or senior year.
-        department_audited: true
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Collab Keyboard Performance
+          assert: {count(performances): {$gte: 2}}

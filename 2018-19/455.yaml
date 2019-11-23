@@ -13,7 +13,7 @@ result:
     - requirement: Education
     - requirement: Required Solo Performances
     - requirement: Required Recital Attendance
-    - requirement: Senior Half Recital
+    - requirement: Senior Recital
     - requirement: Art, Theater, or Lyric Theater
 
 limit:
@@ -92,7 +92,14 @@ requirements:
 
   Required Solo Performances:
     message: Two solo performances on a St. Olaf Student Recital.
-    department_audited: true
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+      assert: {count(performances): {$gte: 2}}
 
   Required Recital Attendance:
     message:
@@ -102,9 +109,16 @@ requirements:
       from: music recitals
       assert: {count(recitals): {$gte: 60}}
 
-  Senior Half Recital:
-    message: Senior Half Recital
-    department_audited: true
+  Senior Recital:
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Senior Recital
+            - Vocal Senior Recital
+            - Composition Senior Recital
+      assert: {count(performances): {$gte: 1}}
 
 emphases:
   732:
@@ -166,14 +180,51 @@ emphases:
       Official Instrumental Ensemble Participation:
         department_audited: true
         message: Every semester in an official instrumental ensemble
+        # note: figure out how to do this
+        # result:
+        #   from: courses
+        #   allow_claimed: true
+        #   where:
+        #     name:
+        #       $in:
+        #         - Jazz I
+        #         - Jazz II
+        #         - Jazz III
+        #         - Norseman Band
+        #         - St. Olaf Band
+        #         - St. Olaf Orchestra
+        #         - St. Olaf Philharmonia
+        #   assert: {count(terms): {$gte: 4}}
 
       Official Choral Ensemble Participation:
-        department_audited: true
         message: 1 semester in an official choral ensemble
+        result:
+          from: courses
+          allow_claimed: true
+          where:
+            $and:
+              - subject: {$eq: MUSEN}
+              - name:
+                  $in:
+                    - Collegiate Chorale
+                    - Manitou Singers
+                    - St. Olaf Cantorei
+                    - St. Olaf Chamber Singers
+                    - St. Olaf Chapel Choir
+                    - St. Olaf Choir
+                    - Viking Chorus
+          assert: {count(terms): {$gte: 1}}
 
       Required Chamber Music Performances:
-        department_audited: true
         message: 2 chamber music performances
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Chamber Recital
+                - Vocal Chamber Recital
+          assert: {count(performances): {$gte: 2}}
 
   731:
     name: Vocal
@@ -230,9 +281,31 @@ emphases:
           assert: {count(terms): {$gte: 6}}
 
       Official Choral Ensemble Participation:
-        department_audited: true
-        message: Every semester in an official choral ensemble
+        message: 1 semester in an official choral ensemble
+        result:
+          from: courses
+          allow_claimed: true
+          where:
+            $and:
+              - subject: {$eq: MUSEN}
+              - name:
+                  $in:
+                    - Collegiate Chorale
+                    - Manitou Singers
+                    - St. Olaf Cantorei
+                    - St. Olaf Chamber Singers
+                    - St. Olaf Chapel Choir
+                    - St. Olaf Choir
+                    - Viking Chorus
+          assert: {count(terms): {$gte: 1}}
 
       Required Vocal Chamber Music Performances:
-        department_audited: true
         message: 2 chamber music performances
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Chamber Recital
+                - Vocal Chamber Recital
+          assert: {count(performances): {$gte: 2}}
