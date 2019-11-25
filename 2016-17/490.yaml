@@ -25,7 +25,9 @@ requirements:
             - {course: ESTH 110, hidden: true}
             - {course: ID 110, hidden: true}
             - course: NURS 110
-        - course: PSYCH 125
+        - any:
+            - course: PSYCH 125
+            - ap: AP Psychology
         - course: PSYCH 241
         - either:
             - course: BIO 121
