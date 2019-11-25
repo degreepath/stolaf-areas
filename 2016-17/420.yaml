@@ -5,6 +5,8 @@ code: '420'
 degree: B.A.
 
 result:
+  check_independent: true
+
   all:
     - requirement: Basics
     - requirement: Electives
@@ -21,6 +23,16 @@ result:
       - where: {subject: {$neq: MATH}}
         assert: {count(courses): {$lte: 2}}
 
+      # - assert: {count(courses): {$lte: 1}}
+      #   where:
+      #     course:
+      #       $in:
+      #         - STAT 212
+      #         - STAT 214
+      #         - STAT 272
+      #         - MSCS 264
+
+
 limit:
   - at-most: 1
     where:
@@ -30,6 +42,7 @@ limit:
           - STAT 214
           - STAT 272
           - MSCS 264
+
 
 requirements:
   Basics:
@@ -85,11 +98,11 @@ requirements:
               - subject: {$eq: MATH}
               - level: {$eq: 200}
               - type: {$eq: course}
-              - course: {$neq: MATH 220}
       assert:
         count(courses): {$gte: 7, at_most: true}
 
   Transitions:
+    independent: true
     result:
       from: courses
       allow_claimed: true
@@ -97,6 +110,7 @@ requirements:
       assert: {count(courses): {$gte: 2, at_most: true}}
 
   Perspectives:
+    independent: true
     result:
       at_most: true
       count: 3
@@ -138,6 +152,7 @@ requirements:
           assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level III:
+    independent: true
     result:
       from: courses
       allow_claimed: true
@@ -151,6 +166,7 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Sequence:
+    independent: true
     result:
       at_most: true
       any:
