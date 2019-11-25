@@ -251,7 +251,7 @@ emphases:
         - {course: MUSIC 295}
 
         - from: courses
-          where: {course: {$eq: {MUSIC 275}}}
+          where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$gte: 0.5}}
 
         - from: courses
@@ -293,7 +293,7 @@ emphases:
         - {course: MUSIC 298}
 
         - from: courses
-          where: {course: {$eq: {MUSIC 275}}}
+          where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$gte: 0.5}}
 
         - from: courses
