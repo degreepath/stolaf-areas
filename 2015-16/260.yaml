@@ -30,7 +30,7 @@ emphases:
       all:
         - requirement: Natural Sciences
         - requirement: Social Sciences
-        - requirement: Arts and Humanities - Level II
+        - requirement: Electives
         - requirement: Arts and Humanities - Level III
 
     requirements:
@@ -58,13 +58,12 @@ emphases:
               $in:
                 - envst_humanities
                 - envst_humanities_level_3
-          assert: {count(courses): {$gte: 5}}
 
-      Arts and Humanities - Level III:
-        result:
-          from: courses
-          where: {attribute: {$eq: envst_humanities_level_3}}
-          assert: {count(courses): {$gte: 1}}
+          all:
+            - assert: {count(courses): {$gte: 6}}
+
+            - where: {attribute: {$eq: envst_humanities_level_3}}
+              assert: {count(courses): {$gte: 1}}
 
   733:
     name: Natural Science
@@ -76,8 +75,7 @@ emphases:
         - requirement: Statistics, Modeling, and Mapping
         - requirement: Intermediate Chemistry
         - requirement: Intermediate Ecology
-        - requirement: Environmental Science - Level II
-        - requirement: Environmental Science - Level III
+        - requirement: Electives
 
     requirements:
       Social Sciences:
@@ -114,7 +112,7 @@ emphases:
           where: {attribute: {$eq: envst_intermediate_ecology}}
           assert: {count(courses): {$gte: 1}}
 
-      Environmental Science - Level II:
+      Electives:
         result:
           from: courses
           where:
@@ -126,13 +124,12 @@ emphases:
             - at_most: 1
               where: {subject: {$neq: ENVST}}
               message: At least one course must be in the ENVST subject code
-          assert: {count(courses): {$gte: 2}}
 
-      Environmental Science - Level III:
-        result:
-          from: courses
-          where: {attribute: {$eq: envst_envsci_level_3}}
-          assert: {count(courses): {$gte: 1}}
+          all:
+            - assert: {count(courses): {$gte: 3}}
+
+            - where: {attribute: {$eq: envst_envsci_level_3}}
+              assert: {count(courses): {$gte: 1}}
 
   738:
     name: Social Science
@@ -144,7 +141,7 @@ emphases:
         - requirement: Methodological Analysis
         - requirement: Economic Analysis
         - requirement: Environmental Political Policy and Institutions
-        - requirement: Social Science Electives
+        - requirement: Electives
 
     requirements:
       Natural Sciences:
@@ -185,7 +182,7 @@ emphases:
           where: {attribute: {$eq: envst_policy}}
           assert: {count(courses): {$gte: 1}}
 
-      Social Science Electives:
+      Electives:
         result:
           from: courses
           where: {attribute: {$eq: envst_social_elective}}
