@@ -31,7 +31,6 @@ emphases:
         - requirement: Natural Sciences
         - requirement: Social Sciences
         - requirement: Electives
-        - requirement: Arts and Humanities - Level III
 
     requirements:
       Natural Sciences:
@@ -50,7 +49,7 @@ emphases:
           where: {attribute: {$eq: envst_social}}
           assert: {count(courses): {$gte: 2}}
 
-      Arts and Humanities - Level II:
+      Electives:
         result:
           from: courses
           where:
