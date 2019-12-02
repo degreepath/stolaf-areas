@@ -46,10 +46,7 @@ requirements:
       Each student designs an individualized area of specialty derived
       from their own interests and investigation. Select at least two
       credits from within or outside the department.
-    result:
-      from: courses
-      where: {attributes: {$eq: dance_personalized_area_speciality}}
-      assert: {sum(credits): {$gte: 2}}
+    department-audited: true
 
   Dance Companies:
     department-audited: true
