@@ -156,7 +156,10 @@ requirements:
       load_potentials: false
       claim: false
       allow_claimed: true
-      where: {s/u: {$eq: true}}
+      where:
+        $or:
+          - {s/u: {$eq: true}}
+          - {course: {$eq: REG 0005}}
       assert: {sum(credits): {$lte: 6.00}}
 
   First-Year Writing:
