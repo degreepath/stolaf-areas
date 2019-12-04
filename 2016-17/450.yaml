@@ -7,12 +7,13 @@ degree: B.A.
 result:
   all:
     - requirement: Core
-    - requirement: History of Music
+    - requirement: Musicology
     - requirement: Electives
+    - requirement: Additional Upper-Level Elective
     - requirement: Performance Studies
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
-    - requirement: Required Concert Attendance
+    - requirement: Required Recital Attendance
 
 limit:
   - at-most: 0
@@ -22,36 +23,47 @@ requirements:
   Core:
     result:
       all:
-        - course: MUSIC 112
         - course: MUSIC 114
+        - course: MUSIC 141
         - proficiency: Keyboard Level I
-          course: {course: MUSIC 161}
+          course: {course: MUSIC 161, grade: B-}
         - proficiency: Keyboard Level II
-          course: {course: MUSIC 162}
-        - course: MUSIC 212
-        - course: MUSIC 214
-        - {course: MUSIC 241, waived: true}
-        - {course: MUSIC 242, waived: true}
+          course: {course: MUSIC 162, grade: B-}
+        - at_most: true
+          either:
+            - course: MUSIC 212
+            - course: MUSIC 214
 
-  History of Music:
-    result:
-      any:
-        - course: MUSIC 341
-        - course: MUSIC 342
-        - course: MUSIC 343
-        - course: MUSIC 344
-        - course: MUSIC 345
-
-  Electives:
-    if:
-      from: areas
-      where: {code: {$in: ['745', '715']}}
-      assert: {count(areas): {$eq: 0}}
-
+  Musicology:
     result:
       from: courses
-      where: {attributes: {$eq: music_elective}}
+      where: {attribute: {$eq: music_upper_musicology}}
       assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Upper-Level Elective:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+          - course:
+              $nin:
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 161
+                - MUSIC 162
+      assert: {count(courses): {$gte: 3, at_most: true}}
 
   Performance Studies:
     message: 6 semesters; 4 in the same instrument/voice
@@ -72,10 +84,7 @@ requirements:
       assert: {count(terms): {$gte: 4, at_most: true}}
 
   Required Performances:
-    message: |
-      2 solo performances on official student recitals.
-
-      One must be in junior or senior year.
+    message: Two solo performances on a St. Olaf Student Recital
     result:
       from: music performances
       where:
@@ -89,64 +98,132 @@ requirements:
             - Instrumental BM-P
       assert: {count(performances): {$gte: 2}}
 
-  Required Concert Attendance:
-    message: Documented attendance at 60 concerts.
+  Required Recital Attendance:
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
     result:
       from: music recitals
       assert: {count(recitals): {$gte: 60}}
 
 emphases:
-  745:
-    name: Theory-Composition
+  700:
+    name: Composition
 
     result:
       all:
         - requirement: Courses
-        - requirement: Electives
+        - requirement: Lessons
+        - requirement: Performances
+        - requirement: Portfolio
 
     requirements:
       Courses:
         result:
           all:
-            - course: MUSIC 221
-            - course: MUSIC 223
             - course: MUSIC 225
+            - course: MUSIC 324
 
-      Electives:
+      Lessons:
         result:
           from: courses
-          where: {attributes: {$eq: music_em_tc_elective}}
-          assert: {count(courses): {$gte: 2, at_most: true}}
+          where: {course: {$eq: MUSPF 326}}
+          assert: {count(terms): {$gte: 4}}
 
-  715:
-    name: History-Literature
+      Performances:
+        message:
+          2 composition performances, at least 1 in junior or senior year
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Junior Composition Recital
+                - Senior Composition Recital
+          assert: {count(performances): {$gte: 2}}
+
+      Portfolio:
+        message:
+          With approval of the composition faculty, the student submits a
+          portfolio of at least 3 compositions previously submitted for Level
+          III composition courses to the Music Office by May 1 of the senior
+          year
+        department_audited: true
+
+  701:
+    name: Theory
 
     result:
       all:
         - requirement: Courses
-        - requirement: Electives
-        - requirement: Senior Writing Portfolio
+        - requirement: Portfolio
 
     requirements:
       Courses:
         result:
-          count: 3
+          all:
+            - course: MUSIC 312
+            - course: MUSIC 313
+            - course: MUSIC 314
+
+      Portfolio:
+        message:
+          With approval of the theory faculty, the student submits a
+          portfolio of at least 3 papers previously submitted for Level III
+          theory courses to the Music Office by May 1 of the senior year.
+          One of these must be revised with faculty supervision to
+          demonstrate the student's best work in music analysis
+        department_audited: true
+
+  704:
+    name: Musicology
+
+    result:
+      all:
+        - requirement: Courses
+        - requirement: More Courses
+        - requirement: Portfolio
+
+    requirements:
+      Courses:
+        result:
+          at_most: true
+          count: 2
           of:
-            - course: MUSIC 237
+            - course: MUSIC 340
             - course: MUSIC 341
             - course: MUSIC 342
             - course: MUSIC 343
             - course: MUSIC 344
             - course: MUSIC 345
+            - course: MUSIC 346
+            - course: MUSIC 347
+            - course: MUSIC 348
+            - course: MUSIC 349
 
-      Electives:
+      More Courses:
         result:
+          at_most: true
           any:
-            - course: MUSIC 222
+            - course: MUSIC 312
             - course: MUSIC 313
             - course: MUSIC 314
+            - course: MUSIC 340
+            - course: MUSIC 341
+            - course: MUSIC 342
+            - course: MUSIC 343
+            - course: MUSIC 344
+            - course: MUSIC 345
+            - course: MUSIC 346
+            - course: MUSIC 347
+            - course: MUSIC 348
+            - course: MUSIC 349
 
-      Senior Writing Portfolio:
-        department_audited: true
+      Portfolio:
         message:
-          3 Level III music papers, one revised with faculty supervision.
+          With approval of the musicology faculty, the student submits a
+          portfolio of at least 3 papers previously submitted for Level III
+          musicology courses to the Music Office by May 1 of the senior year.
+          One of these must be revised with faculty supervision to demonstrate
+          the student's best work in musiciology
+        department_audited: true
