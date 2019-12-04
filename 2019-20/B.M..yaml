@@ -97,7 +97,10 @@ requirements:
       load_potentials: false
       claim: false
       allow_claimed: true
-      where: {level: {$gte: 200}}
+      where:
+        $or:
+          - {level: {$gte: 200}}
+          - {course: {$eq: REG 0006}}
       assert: {sum(credits): {$gte: 18}}
 
   Graded Course Credit:
@@ -134,7 +137,10 @@ requirements:
       from: courses
       claim: false
       allow_claimed: true
-      where: {s/u: {$eq: true}}
+      where:
+        $or:
+          - {s/u: {$eq: true}}
+          - {course: {$eq: REG 0005}}
       assert: {sum(credits): {$lte: 6.00}}
 
   First-Year Writing:
