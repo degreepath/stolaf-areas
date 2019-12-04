@@ -28,6 +28,9 @@ result:
             - {subject: {$eq: BIO}}
         assert: {count(courses): {$lte: 2}}
 
+      - where: {course: {$eq: BIO 298}}
+        assert: {count(courses): {$lte: 1}}
+
 requirements:
   Foundation:
     result:
