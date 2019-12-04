@@ -22,7 +22,7 @@ requirements:
           where: {attributes: {$eq: german_in_translation}}
 
       all:
-        - assert: {count(courses): {$gte: 9}}
+        - assert: {count(courses): {$gte: 8}}
 
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
