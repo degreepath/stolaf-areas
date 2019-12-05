@@ -25,7 +25,7 @@ requirements:
   Studio Art:
     result:
       from: courses
-      where: {attribute: {$eq: art_studio_art}}
+      where: {attribute: {$eq: arth_studio_art}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
@@ -37,30 +37,30 @@ requirements:
 
     result:
       from: courses
-      where: {attribute: {$eq: art_history_elective}}
+      where: {attribute: {$eq: arth_elective}}
       all:
         - assert: {count(courses): {$gte: 6}}
 
         - where:
             attribute:
               $in:
-                - art_locale_asian
-                - art_locale_african
-                - art_locale_indigenous_american
-                - art_locale_near_eastern
+                - arth_locale_asian
+                - arth_locale_african
+                - arth_locale_indigenous_american
+                - arth_locale_near_eastern
           assert: {count(courses): {$gte: 2}}
 
         - where:
             attribute:
               $in:
-                - art_locale_european
-                - art_locale_american
+                - arth_locale_european
+                - arth_locale_american
           assert: {count(courses): {$gte: 2}}
 
-        - where: {attribute: {$eq: art_period_pre1700}}
+        - where: {attribute: {$eq: arth_period_pre1700}}
           assert: {count(courses): {$gte: 1}}
 
-        - where: {attribute: {$eq: art_period_post1700}}
+        - where: {attribute: {$eq: arth_period_post1700}}
           assert: {count(courses): {$gte: 1}}
 
   Lasting Legacy:

@@ -35,10 +35,10 @@ requirements:
           where:
             attributes:
               $in:
-                - art_area_drawing
-                - art_area_painting
-                - art_area_printmaking
-                - art_area_design
+                - arts_area_drawing
+                - arts_area_painting
+                - arts_area_printmaking
+                - arts_area_design
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       3D Media:
@@ -47,8 +47,8 @@ requirements:
           where:
             attributes:
               $in:
-                - art_area_ceramics
-                - art_area_sculpture
+                - arts_area_ceramics
+                - arts_area_sculpture
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       New Media:
@@ -57,11 +57,11 @@ requirements:
           where:
             attributes:
               $in:
-                - art_area_photography
-                - art_area_interactive_image
-                - art_area_digital_video
-                - art_area_performance
-                - art_area_design
+                - arts_area_photography
+                - arts_area_interactive_image
+                - arts_area_digital_video
+                - arts_area_performance
+                - arts_area_design
           assert: {count(courses): {$gte: 1, at_most: true}}
 
   Juried Shows:
@@ -79,7 +79,7 @@ requirements:
   Electives:
     result:
       from: courses
-      where: {attribute: {$eq: art_elective}}
+      where: {attribute: {$eq: arts_elective}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Art History:
@@ -89,5 +89,5 @@ requirements:
 
     result:
       from: courses
-      where: {attribute: {$eq: art_history}}
+      where: {attribute: {$eq: arts_history}}
       assert: {count(courses): {$gte: 2, at_most: true}}
