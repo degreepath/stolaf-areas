@@ -30,6 +30,8 @@ result:
 
 requirements:
   Required Course Credit:
+    message: |
+      35 St. Olaf credits are required.
     result:
       from: courses
       where:
@@ -42,6 +44,9 @@ requirements:
       assert: {sum(credits): {$gte: 35}}
 
   Credits Taken At/Through St. Olaf College:
+    message: |
+      17 of the 35 credits required for graduation must be earned through St.
+      Olaf College.
     result:
       from: courses
       load_potentials: false
@@ -56,8 +61,7 @@ requirements:
   Transfer Credit:
     message: |
       After matriculation, you may transfer in the equivalent of 4 St. Olaf
-      credits from other institutions. This number may be reduced for transfer
-      students.
+      credits.
     result:
       from: courses
       where: {course: {$eq: REG 0004}}
@@ -66,6 +70,8 @@ requirements:
       assert: {sum(credits): {$lte: 4}}
 
   Interim Credits:
+    message: |
+      3 credits must be earned in three separate Interims.
     result:
       from: courses
       load_potentials: false
@@ -78,6 +84,8 @@ requirements:
       assert: {sum(credits): {$gte: 3}}
 
   Cumulative Grade Point Average:
+    message: |
+      A 2.0 GPA is required.
     result:
       from: areas
       where:
@@ -92,6 +100,11 @@ requirements:
       # assert: {average(grades): {$gte: 2.0}}
 
   Level II/III Course Credit:
+    message: |
+      18 credits must be earned above level I (numbered 200 and higher).
+
+      A course can earn only its assigned level. It cannot be raised in level
+      as the result of extra studies, assignments, or performance.
     result:
       from: courses
       load_potentials: false
@@ -104,6 +117,9 @@ requirements:
       assert: {sum(credits): {$gte: 18}}
 
   Graded Course Credit:
+    message: |
+      24 graded credits must be earned through courses taught by a St. Olaf
+      professor.
     result:
       from: courses
       load_potentials: false
@@ -116,7 +132,9 @@ requirements:
       assert: {sum(credits): {$gte: 24}}
 
   Declared Major:
-    message:
+    message: |
+      1 major is required.
+
       You must declare a major by the spring of your sophomore year.
     result:
       from: areas
@@ -129,10 +147,8 @@ requirements:
       assert: {count(areas): {$gte: 1}}
 
   Allowed S/U Course Credit:
-    message:
-      In completing the minimum of 35 full credits required for graduation,
-      students may take up to six full-course equivalents (6.00 credits) on an
-      S/U basis.
+    message: |
+      6 credits may be earned on an S/U basis.
     result:
       from: courses
       claim: false
@@ -144,6 +160,8 @@ requirements:
       assert: {sum(credits): {$lte: 6.00}}
 
   First-Year Writing:
+    message: |
+      1 FYW course is required.
     result:
       from: courses
       claim: false
@@ -154,6 +172,8 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Writing in Context:
+    message: |
+      4 WRI courses are required.
     result:
       from: courses
       claim: false
@@ -164,6 +184,8 @@ requirements:
       assert: {count(courses): {$gte: 4, at_most: true}}
 
   Foreign Language:
+    message: |
+      1 foreign language course is required.
     result:
       from: courses
       claim: false
@@ -200,6 +222,8 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Oral Communication:
+    message: |
+      1 ORC course is required.
     result:
       from: courses
       claim: false
@@ -210,6 +234,8 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Reasoning:
+    message: |
+      1 AQR, SED, or IST course is required.
     result:
       from: courses
       claim: false
@@ -221,11 +247,7 @@ requirements:
 
   Studies in Physical Movement:
     message: |
-      Two different courses, of any credit value, that expand students'
-      experiences in and understanding of movement and promote lifelong health
-      and wellness of the whole person. Students are encouraged to expand
-      their horizons and focus on different activities or modes of movement in
-      order to fulfill the requirements.
+      2 distinct SPM courses are required.
     result:
       from: courses
       claim: false
@@ -252,6 +274,8 @@ requirements:
       assert: {count(distinct_courses): {$gte: 2, at_most: true}}
 
   Historical Studies in Western Culture or Literary Studies:
+    message: |
+      1 HWC or ALS-L course is required.
     result:
       from: courses
       claim: false
@@ -262,6 +286,8 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Multicultural Studies:
+    message: |
+      1 MCD or MCG course is required.
     result:
       from: courses
       claim: false
@@ -272,6 +298,8 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Biblical and Theological Studies:
+    message: |
+      2 courses are required, 1 BTS-B and 1 BTS-T.
     result:
       from: courses
       claim: false
@@ -289,6 +317,8 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Studies in Human Behavior and Society:
+    message: |
+      1 HBS course is required.
     result:
       from: courses
       claim: false
@@ -299,6 +329,8 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Ethical Issues and Normative Perspectives:
+    message: |
+      1 EIN course is required.
     result:
       from: courses
       claim: false
