@@ -9,6 +9,8 @@ result:
     - requirement: Core
     - requirement: Composition Lessons
     - requirement: Conducting
+    - requirement: Musicology
+    - requirement: Additional Upper-Level Elective
     - requirement: Electives
     - requirement: Musical Acoustics
     - requirement: Performance Studies
@@ -62,13 +64,28 @@ requirements:
         - course: MUSIC 252
         - course: MUSIC 253
 
+  Musicology:
+    result:
+      from: courses
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Upper-Level Elective:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
   Electives:
     result:
       from: courses
       where:
         $and:
-          - {subject: {$eq: MUSIC}}
-          - {level: {$in: [200, 300]}}
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
           - course:
               $nin:
                 # exclude the Conducting courses
@@ -93,14 +110,7 @@ requirements:
                 - MUSIC 262
                 - MUSIC 314
                 - MUSIC 324
-      all:
-        - assert: {count(courses): {$gte: 8}}
-
-        - where: {level: {$eq: 300}}
-          assert: {count(courses): {$gte: 2}}
-
-        - where: {attribute: {$eq: music_upper_musicology}}
-          assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 3}}
 
   Musical Acoustics:
     result:

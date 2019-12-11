@@ -7,10 +7,11 @@ degree: B.M.
 result:
   all:
     - requirement: Core
-    - requirement: History of Music
+    - requirement: Entrance Examination
+    - requirement: Continuance Examination
     - requirement: Official Ensemble Participation
-    - requirement: Required Performances
-    - requirement: Concert Attendance
+    - requirement: Required Solo Performances
+    - requirement: Required Recital Attendance
 
 limit:
   - at-most: 0
@@ -20,67 +21,63 @@ requirements:
   Core:
     result:
       all:
-        - course: MUSIC 112
         - course: MUSIC 114
+        - course: MUSIC 141
         - course: MUSIC 212
         - course: MUSIC 214
+        - course: MUSIC 235
+        - course: MUSIC 236
         - course: MUSIC 237
-        - {course: MUSIC 241, waived: true}
-        - {course: MUSIC 242, waived: true}
         - course: MUSIC 251
+        - course: MUSIC 252
 
-  History of Music:
+  Entrance Examination:
     result:
-      any:
-        - course: MUSIC 341
-        - course: MUSIC 342
-        - course: MUSIC 343
-        - course: MUSIC 344
-        - course: MUSIC 345
+      from: music performances
+      where:
+        $and:
+          - name:
+              $in:
+                - Voice BM-C
+                - Instrumental BM-C
+          - status: {$eq: entrance}  # E, internally
+      assert: {count(performances): {$gte: 1}}
+
+  Continuance Examination:
+    result:
+      from: music performances
+      where:
+        $and:
+          - name:
+              $in:
+                - Voice BM-C
+                - Instrumental BM-C
+          - status: {$eq: continuance}  # C, internally
+      assert: {count(performances): {$gte: 1}}
 
   Official Ensemble Participation:
-    department_audited: true
-    message: 'Official Ensemble Participation: 4 semesters'
-
-  Required Performances:
     result:
-      all:
-        - requirement: Solos
-        - requirement: Junior Recital
+      from: courses
+      where: {subject: {$eq: MUSEN}}
+      assert: {count(terms): {$gte: 4, at_most: true}}
 
-    requirements:
-      Solos:
-        message:
-          2 solo performances on official student recitals
-        result:
-          from: music performances
-          where:
-            name:
-              $in:
-                - Instrumental Student Recital
-                - Vocal Student Recital
-                - Voice BM-E
-                - Instrumental BM-E
-                - Voice BM-P
-                - Instrumental BM-P
-          assert: {count(performances): {$gte: 2}}
+  Required Solo Performances:
+    message:
+      Two solo performances on a St. Olaf Student Recital.
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+            - Voice BM-E
+            - Instrumental BM-E
+            - Voice BM-P
+            - Instrumental BM-P
+      assert: {count(performances): {$gte: 2}}
 
-      Junior Recital:
-        message:
-          30-minute Junior recital
-
-          Or, by petition only, 3 additional solo performances on official
-          student recitals
-        result:
-          from: music performances
-          where:
-            name:
-              $in:
-                - Instrumental Junior Recital
-                - Vocal Junior Recital
-          assert: {count(performances): {$gte: 1}}
-
-  Concert Attendance:
+  Required Recital Attendance:
     message:
       You must attend 10 recitals per semester on campus,
       with a minimum of 60 overall.
@@ -94,41 +91,76 @@ emphases:
 
     result:
       all:
-        - requirement: Additional Courses
+        - requirement: Core
+        - requirement: Musicology
         - requirement: Electives
+        - requirement: Additional Upper-Level Elective
         - requirement: Voice Performance Studies
         - requirement: Keyboard Performance Studies
+        - requirement: Junior or Senior Half Voice Recital
         - requirement: Capstone Performance Project
 
     requirements:
-      Additional Courses:
+      Core:
         result:
           all:
-            - course: MUSIC 252
-            - course: MUSIC 253
-            - course: MUSIC 254
-            - course: MUSIC 330
-            - course: MUSIC 263
-            - course: MUSIC 264
-            - course: MUSIC 364
-            - course: MUSIC 365
-            - course: MUSIC 235
-            - course: MUSIC 391
-            - course: MUSIC 392
-            - course: MUSIC 220
-            - course: MUSIC 287
-            - course: EDUC 355
+            - proficiency: Keyboard Level IV
+              course: {course: MUSIC 262}
+            - {course: MUSIC 263}
+            - {course: MUSIC 264}
+            - {course: MUSIC 287}
+            - {course: MUSIC 291}
+            - {course: MUSIC 292}
+            - {course: MUSIC 354}
+            - {course: EDUC 355}
+
+      Musicology:
+        result:
+          from: courses
+          where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Additional Upper-Level Elective:
+        result:
+          from: courses
+          where:
+            $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Electives:
         result:
           from: courses
-          where: {attributes: {$eq: music_choral_elective}}
-          assert: {count(courses): {$gte: 2, at_most: true}}
+          where:
+            $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+              - course:
+                  $nin:
+                    # exclude the outer core courses
+                    - MUSIC 114
+                    - MUSIC 141
+                    - MUSIC 212
+                    - MUSIC 214
+                    - MUSIC 235
+                    - MUSIC 236
+                    - MUSIC 237
+                    - MUSIC 251
+                    - MUSIC 252
+                    # exclude the Core courses
+                    - MUSIC 262
+                    - MUSIC 263
+                    - MUSIC 264
+                    - MUSIC 287
+                    - MUSIC 291
+                    - MUSIC 292
+                    - MUSIC 354
+          assert: {count(courses): {$gte: 2}}
 
       Voice Performance Studies:
         message:
-          Voice lessons (0.50) every semester once admitted to the program
-          (minimum 6)
+          6 semesters (0.50 credit following admission to the major)
         result:
           from: courses
           where: {attributes: {$eq: music_voice_studies}}
@@ -136,13 +168,23 @@ emphases:
 
       Keyboard Performance Studies:
         message: |
-          Keyboard study (0.25) every semester once admitted to the program
-          (minimum 6). The first 4 semesters may be piano classes (MUSIC 161,
-          MUSIC 162, MUSIC 261, MUSIC 262).
+          5 semesters in addition to MUSIC 262 (any combination of 0.25-credit
+          piano lessons, organ lessons, or piano classes: MUSIC 161, MUSIC 162,
+          MUSIC 261)
         result:
           from: courses
           where: {attributes: {$eq: music_keyboard_studies}}
-          assert: {count(terms): {$gte: 6}}
+          assert: {count(terms): {$gte: 5}}
+
+      Junior or Senior Half Voice Recital:
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Vocal Junior Recital
+                - Vocal Senior Recital
+          assert: {count(performances): {$gte: 1}}
 
       Capstone Performance Project:
         result:
@@ -153,42 +195,68 @@ emphases:
 
     result:
       all:
-        - requirement: Additional Courses
+        - requirement: Core
+        - requirement: Conducting
+        - requirement: Musicology
         - requirement: Electives
-        - requirement: Voice Performance Studies
+        - requirement: Additional Upper-Level Elective
         - requirement: Organ Performance Studies
+        - requirement: Voice Performance Studies
+        - requirement: Junior Recital
         - requirement: Senior Recital
 
     requirements:
-      Additional Courses:
+      Core:
         result:
           all:
-            - course: MUSIC 252
-            - either:
-                - course: MUSIC 253
-                - course: MUSIC 254
-            - course: MUSIC 364
-            - course: MUSIC 365
-            - course: MUSIC 235
-            - course: MUSIC 391
-            - course: MUSIC 392
-            - course: MUSIC 220
-            - course: MUSIC 287
+            - {course: MUSIC 270, grade: B-}
+            - {course: MUSIC 290}
+
+      Conducting:
+        result:
+          at_most: true
+          either:
+            - {course: MUSIC 253}
+            - {course: MUSIC 354}
+
+      Musicology:
+        result:
+          from: courses
+          where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Additional Upper-Level Elective:
+        result:
+          from: courses
+          where:
+            $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Electives:
         result:
           from: courses
-          where: {attributes: {$eq: music_organ_elective}}
-          assert: {count(courses): {$gte: 2, at_most: true}}
-
-      Voice Performance Studies:
-        message:
-          Voice lessons (0.50) every semester once admitted to the program
-          (minimum 6)
-        result:
-          from: courses
-          where: {attributes: {$eq: music_voice_studies}}
-          assert: {count(terms): {$gte: 4}}
+          where:
+            $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+              - course:
+                  $nin:
+                    # exclude the outer core courses
+                    - MUSIC 114
+                    - MUSIC 141
+                    - MUSIC 212
+                    - MUSIC 214
+                    - MUSIC 235
+                    - MUSIC 236
+                    - MUSIC 237
+                    - MUSIC 251
+                    - MUSIC 252
+                    # exclude the Core courses
+                    - MUSIC 270
+                    - MUSIC 290
+          assert: {count(courses): {$gte: 2}}
 
       Organ Performance Studies:
         message:
@@ -198,7 +266,28 @@ emphases:
         result:
           from: courses
           where: {attributes: {$eq: music_organ_studies}}
-          assert: {count(terms): {$gte: 6}}
+          all:
+            - assert: {count(terms): {$gte: 6}}
+
+            - where: {level: {$eq: 100}}
+              assert: {count(terms): {$gte: 4}}
+
+            - where: {level: {$eq: 200}}
+              assert: {count(terms): {$gte: 2}}
+
+      Voice Performance Studies:
+        result:
+          course: MUSPF 152
+
+      Junior Recital:
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Junior Recital
+                - Vocal Junior Recital
+          assert: {count(performances): {$gte: 1}}
 
       Senior Recital:
         result:

@@ -11,67 +11,74 @@ limit:
 result:
   all:
     - requirement: Core
-    - requirement: History of Music
-    - requirement: Performance Studies
-    - requirement: Required Performances
-    - requirement: Keyboard Proficiency
-    - requirement: Official Ensemble Participation
-    - requirement: Concert Attendance
-    - requirement: Additional Music Courses
+    - requirement: Musicology
     - requirement: Electives
-    - requirement: Additional Courses from Other Departments
+    - requirement: Additional Upper-Level Electives
+    - requirement: Performance Studies
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+    - requirement: Secondary Field of Study
 
 requirements:
   Core:
     result:
       all:
-        - course: MUSIC 112
-        - course: MUSIC 114
-        - course: MUSIC 161
-        - course: MUSIC 162
-        - course: MUSIC 212
-        - course: MUSIC 214
-        - course: MUSIC 237
-        - {course: MUSIC 241, waived: true}
-        - {course: MUSIC 242, waived: true}
-        - course: MUSIC 251
-        - course: MUSIC 261
-        - course: MUSIC 262
-        - course: MUSIC 298
+        - {course: MUSIC 114}
+        - {course: MUSIC 141}
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
+        - {course: MUSIC 212}
+        - {course: MUSIC 214}
+        - {course: MUSIC 237}
+        - {course: MUSIC 251}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
+        - {course: MUSIC 298}
 
-  History of Music:
-    result:
-      any:
-        - course: MUSIC 341
-        - course: MUSIC 342
-        - course: MUSIC 343
-        - course: MUSIC 344
-        - course: MUSIC 345
-
-  Additional Music Courses:
-    result:
-      count: 2
-      of:
-        - course: MUSIC 222
-        - course: MUSIC 223
-        - course: MUSIC 313
-        - course: MUSIC 314
-        - course: MUSIC 341
-        - course: MUSIC 342
-        - course: MUSIC 343
-        - course: MUSIC 344
-        - course: MUSIC 345
-
-  Electives:
-    message:
-      Select three courses in music electives (or fractional equivalent)
+  Musicology:
     result:
       from: courses
-      where: {attribute: {$eq: music_bm_elective_studies_elective}}
-      assert: {count(courses): {$gte: 3}}
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Upper-Level Electives:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+          - course:
+              $nin:
+                # exclude the Core courses
+                - MUSIC 114
+                - MUSIC 141
+                - MUSIC 161
+                - MUSIC 162
+                - MUSIC 212
+                - MUSIC 214
+                - MUSIC 237
+                - MUSIC 251
+                - MUSIC 261
+                - MUSIC 298
+      assert: {count(courses): {$gte: 2}}
 
   Performance Studies:
-    message: 6 semesters; 4 in the same instrument/voice
+    message: |
+      0.25 credit prior to admission into BM Elective Studies and 0.5 credit
+      after admission, with a minimum of 4 semesters of 0.5 credit lessons
     result:
       from: courses
       where: {subject: {$eq: MUSPF}}
@@ -83,13 +90,16 @@ requirements:
         - where: {credits: {$eq: 0.5}}
           assert: {count(terms): {$gte: 4}}
 
+  Official Ensemble Participation:
+    message: |
+      Every semester in an official ensemble
+    department_audited: true
+
   Required Performances:
     message: |
-      2 solo performances on principal instrument in official student
-      recitals; one must be in junior or senior year
+      Two solo performances on a St. Olaf Student Recital.
     result:
       from: music performances
-      # TODO: map to principle instrument
       where:
         name:
           $in:
@@ -97,34 +107,18 @@ requirements:
             - Vocal Student Recital
       assert: {count(performances): {$gte: 2}}
 
-  Keyboard Proficiency:
-    result:
-      all:
-        - proficiency: Keyboard Level I
-          course: {course: MUSIC 161}
-        - proficiency: Keyboard Level II
-          course: {course: MUSIC 162}
-        - proficiency: Keyboard Level III
-          course: {course: MUSIC 261}
-        - proficiency: Keyboard Level IV
-          course: {course: MUSIC 262}
-
-  Official Ensemble Participation:
-    department_audited: true
-    message:
-      Every semester once admitted
-
-  Concert Attendance:
-    message:
-      Documented attendance at 60 concerts.
+  Required Recital Attendance:
+    message: |
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
     result:
       from: music recitals
       assert: {count(recitals): {$gte: 60}}
 
-  Additional Courses from Other Departments:
+  Secondary Field of Study:
     message:
-      5-6 courses in the area of Elective Studies.
+      6 Electives in secondary field of study
     result:
       from: courses
-      where: {attribute: {$eq: music_bm_elective_studies_outside}}
-      assert: {count(courses): {$in: [5, 6]}}
+      where: {attribute: {$eq: music_bm_elective_studies_secondary}}
+      assert: {count(courses): {$gte: 6}}
