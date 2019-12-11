@@ -183,15 +183,17 @@ emphases:
           from: courses
           allow_claimed: true
           where:
-            name:
-              $in:
-                - Jazz I
-                - Jazz II
-                - Jazz III
-                - Norseman Band
-                - St. Olaf Band
-                - St. Olaf Orchestra
-                - St. Olaf Philharmonia
+            $and:
+              - subject: {$eq: MUSEN}
+              - name:
+                  $in:
+                    - Jazz I
+                    - Jazz II
+                    - Jazz III
+                    - Norseman Band
+                    - St. Olaf Band
+                    - St. Olaf Orchestra
+                    - St. Olaf Philharmonia
           assert: {count(terms): {$gte: 4, at_most: true}}
 
       Official Choral Ensemble Participation:
