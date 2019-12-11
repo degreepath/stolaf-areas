@@ -44,12 +44,16 @@ requirements:
 
     result:
       from: courses
-      where: {course: {$in: [THEAT 233, THEAT 253]}}
+      where:
+        # allows for 233 / 233.L and 253 / 253.L
+        $or:
+          - $and: [{subject: {$eq: THEAT}}, {number: {$eq: 233}}]
+          - $and: [{subject: {$eq: THEAT}}, {number: {$eq: 253}}]
       all:
-        - where: {course: {$eq: THEAT 233}}
+        - where: {$and: [{subject: {$eq: THEAT}}, {number: {$eq: 233}}]}
           assert: {count(courses): {$gte: 1}}
 
-        - where: {course: {$eq: THEAT 253}}
+        - where: {$and: [{subject: {$eq: THEAT}}, {number: {$eq: 253}}]}
           assert: {count(courses): {$gte: 2}}
 
         - assert: {count(courses): {$gte: 4}}
