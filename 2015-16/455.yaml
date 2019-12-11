@@ -7,18 +7,14 @@ degree: B.M.
 result:
   all:
     - requirement: Core
-    - requirement: History of Music
-    - requirement: Electives
+    - requirement: Musicology
+    - requirement: Additional Upper-Level Elective
+    - requirement: Additional Electives
     - requirement: Education
-    - requirement: Other Courses
-    - requirement: Principle Performance Studies
-    - requirement: Secondary Performance Studies
-    - requirement: Keyboard Proficiency
-    - requirement: Guitar Proficiency
     - requirement: Required Solo Performances
-    - requirement: Required Senior Recital
-    - requirement: Performance
-    - requirement: Concert Attendance
+    - requirement: Required Recital Attendance
+    - requirement: Senior Recital
+    - requirement: Art, Theater, or Lyric Theater
 
 limit:
   - at-most: 0
@@ -28,118 +24,76 @@ requirements:
   Core:
     result:
       all:
-        - course: MUSIC 112
-        - course: MUSIC 114
-        - course: MUSIC 212
-        - course: MUSIC 214
-        - {course: MUSIC 241, waived: true}
-        - {course: MUSIC 242, waived: true}
-        - course: MUSIC 237
-        - course: MUSIC 251
-        - course: MUSIC 365
+        - {course: MUSIC 114}
+        - {course: MUSIC 141}
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
+        - {course: MUSIC 165}
+        - {course: MUSIC 212}
+        - {course: MUSIC 214}
+        - {course: MUSIC 237}
+        - {course: MUSIC 251}
 
-  History of Music:
+  Musicology:
     result:
-      any:
-        - course: MUSIC 341
-        - course: MUSIC 342
-        - course: MUSIC 343
-        - course: MUSIC 344
-        - course: MUSIC 345
+      from: courses
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Electives:
+  Additional Upper-Level Elective:
     result:
-      any:
-        - course: MUSIC 222
-        - course: MUSIC 223
-        - course: MUSIC 313
-        - course: MUSIC 314
-        - course: MUSIC 341
-        - course: MUSIC 342
-        - course: MUSIC 343
-        - course: MUSIC 344
-        - course: MUSIC 345
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Electives:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Education:
     result:
       all:
+        - course: EDUC 355
+        - course: EDUC 356
         - course: EDUC 231
         - course: EDUC 290
         - course: EDUC 291
         - course: EDUC 330
-        - course: EDUC 355
-        - course: EDUC 356
-        - course: EDUC 359
         - course: EDUC 372
         - course: EDUC 374
         - course: EDUC 375
+        - at_most: true
+          any:
+            - course: EDUC 170
+            - course: EDUC 347
+            - course: EDUC 378
+            - course: EDUC 379
         - course: EDUC 381
         - course: EDUC 382
         - course: EDUC 385
         - course: EDUC 389
 
-  Other Courses:
+  Art, Theater, or Lyric Theater:
+    message: Required elective in Art, Theater, or Lyric Theater
     result:
-      both:
-        - from: courses
-          where: {attributes: {$eq: dance_technique}}
-          assert: {count(courses): {$gte: 1}}
-
-        - from: courses
-          where:
-            $or:
-              - subject: {$in: [ART, DANCE, THEAT]}
-              - course: {$in: [MUSIC 267, MUSIC 269]}
-          assert: {sum(credits): {$gte: 1}}
-
-  Principle Performance Studies:
-    department_audited: true
-    message: |
-      Every semester prior to and including the semester of application for
-      entrance into the BM Music Education program, .25 each; every semester
-      thereafter, prior to the professional semester, .50 each
-
-      Vocal: licensure area must be voice; primary instrument may be piano
-
-      Instrumental: licensure area must be a standard orchestra or band
-      instrument; primary instrument may be piano
-
-      Instrumental: principal may be any brass, percussion, string, or
-      woodwind instrument, or piano
-
-  Secondary Performance Studies:
-    department_audited: true
-    message: |
-      Vocal: 2 semesters
-
-      Vocal exception: piano primaries - 4 semesters of voice
-
-      Instrumental: 2 semesters. MUSIC 164 may count as the first semester of
-      secondary voice study.
-
-      Instrumental exception: piano primaries - 4 semesters of brass,
-      percussion, string or woodwind study
-
-  Keyboard Proficiency:
-    result:
-      all:
-        - proficiency: Keyboard Level III
-          course: {course: MUSIC 261}
-        - proficiency: Keyboard Level IV
-          course: {course: MUSIC 262}
-
-  Guitar Proficiency:
-    result:
-      proficiency: Guitar
+      from: courses
+      where: {attribute: {$eq: music_ed_bm_other_finearts}}
+      assert: {sum(credits): {$gte: 1}}
 
   Required Solo Performances:
-    message: |
-      2 solo performances on licensure instrument in official student
-      recitals; one must be in junior or senior year
+    message: Two solo performances on a St. Olaf Student Recital.
     result:
       from: music performances
-      # TODO: map to principle instrument
-      # Skip checking for junior or senior year
       where:
         name:
           $in:
@@ -147,13 +101,18 @@ requirements:
             - Vocal Student Recital
       assert: {count(performances): {$gte: 2}}
 
-  Required Senior Recital:
-    message: |
-      30-minute senior recital on principal instrument/voice
+  Required Recital Attendance:
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
+
+  Senior Recital:
     result:
       from: music performances
       where:
-        # TODO: map to principle instrument
         name:
           $in:
             - Instrumental Senior Recital
@@ -161,57 +120,190 @@ requirements:
             - Composition Senior Recital
       assert: {count(performances): {$gte: 1}}
 
-  Performance:
-    message: |
-      2 small ensemble performances on licensure instrument
-    result:
-      from: music performances
-      where:
-        # TODO: map to principle instrument
-        name:
-          $in:
-            - Instrumental Chamber Recital
-            - Vocal Chamber Recital
-      assert: {count(performances): {$gte: 2}}
-
-  Concert Attendance:
-    message: Documented attendance at 60 concerts.
-    result:
-      from: music recitals
-      assert: {count(recitals): {$gte: 60}}
-
 emphases:
   732:
     name: Instrumental
 
     result:
       all:
-        - course: MUSIC 252
-        - either:
+        - requirement: Core
+        - requirement: Electives
+        - requirement: Education
+        - requirement: Performance Studies
+        - requirement: Official Choral Ensemble Participation
+        - requirement: Official Instrumental Ensemble Participation
+        - requirement: Required Chamber Music Performances
+
+    requirements:
+      Core:
+        result:
+          all:
+            - course: MUSIC 166
+            - course: MUSIC 167
+            - course: MUSIC 168
+            - course: MUSIC 169
+            - course: MUSIC 221
             - course: MUSIC 253
-            - course: MUSIC 354
-        - either:
-            - course: MUSIC 220
-            - all:
-                - course: MUSIC 166
-                - course: MUSIC 167
-                - course: MUSIC 168
-                - course: MUSIC 169
-        - course: MUSIC 287
-        - course: MUSIC 364
+            - course: MUSIC 290
+            - at_most: true
+              any:
+                - course: MUSIC 252
+                - course: MUSIC 354
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261}
+
+      Electives:
+        result:
+          from: courses
+          where:
+            $and:
+              - {subject: {$eq: MUSIC}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Education:
+        result:
+          all:
+            - course: EDUC 359
+
+      Performance Studies:
+        message:
+          Prior to entrance into B.M. Music Ed program, lessons on licensure
+          instrument will be 0.25 cr; following entrance (typically spring
+          of sophomore year), lessons will be 0.50 cr.
+        result:
+          from: courses
+          where: {subject: {$eq: MUSPF}}
+          assert: {count(terms): {$gte: 6}}
+
+      Official Instrumental Ensemble Participation:
+        message: Every semester in an official instrumental ensemble
+        result:
+          from: courses
+          allow_claimed: true
+          where:
+            name:
+              $in:
+                - Jazz I
+                - Jazz II
+                - Jazz III
+                - Norseman Band
+                - St. Olaf Band
+                - St. Olaf Orchestra
+                - St. Olaf Philharmonia
+          assert: {count(terms): {$gte: 4, at_most: true}}
+
+      Official Choral Ensemble Participation:
+        message: 1 semester in an official choral ensemble
+        result:
+          from: courses
+          allow_claimed: true
+          where:
+            $and:
+              - subject: {$eq: MUSEN}
+              - name:
+                  $in:
+                    - Collegiate Chorale
+                    - Manitou Singers
+                    - St. Olaf Cantorei
+                    - St. Olaf Chamber Singers
+                    - St. Olaf Chapel Choir
+                    - St. Olaf Choir
+                    - Viking Chorus
+          assert: {count(terms): {$gte: 1}}
+
+      Required Chamber Music Performances:
+        message: 2 chamber music performances
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Chamber Recital
+                - Vocal Chamber Recital
+          assert: {count(performances): {$gte: 2}}
 
   731:
     name: Vocal
 
     result:
       all:
-        - course: MUSIC 253
-        - either:
+        - requirement: Core
+        - requirement: Electives
+        - requirement: Education
+        - requirement: Performance Studies
+        - requirement: Official Choral Ensemble Participation
+        - requirement: Required Vocal Chamber Music Performances
+
+    requirements:
+      Core:
+        result:
+          all:
             - course: MUSIC 252
-            - course: MUSIC 354
-        - course: MUSIC 221
-        - course: MUSIC 166
-        - course: MUSIC 167
-        - course: MUSIC 168
-        - course: MUSIC 169
-        - course: MUSIC 164
+            - at_most: true
+              any:
+                - course: MUSIC 253
+                - course: MUSIC 354
+            - course: MUSIC 287
+            - course: MUSIC 291
+            - course: MUSIC 292
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261}
+            - proficiency: Keyboard Level IV
+              course: {course: MUSIC 262}
+
+      Electives:
+        result:
+          from: courses
+          where:
+            $and:
+              - {subject: {$eq: MUSIC}}
+              - {level: {$in: [200, 300]}}
+              - {number: {$nin: [294, 298, 394, 398]}}
+          assert: {sum(credits): {$gte: 1.75, at_most: true}}
+
+      Education:
+        result:
+          all:
+            - course: EDUC 358
+
+      Performance Studies:
+        message:
+          Prior to entrance into B.M. Music Ed program, lessons on licensure
+          instrument will be 0.25 cr; following entrance (typically spring
+          of sophomore year), lessons will be 0.50 cr.
+        result:
+          from: courses
+          where: {subject: {$eq: MUSPF}}
+          assert: {count(terms): {$gte: 6}}
+
+      Official Choral Ensemble Participation:
+        message: 1 semester in an official choral ensemble
+        result:
+          from: courses
+          allow_claimed: true
+          where:
+            $and:
+              - subject: {$eq: MUSEN}
+              - name:
+                  $in:
+                    - Collegiate Chorale
+                    - Manitou Singers
+                    - St. Olaf Cantorei
+                    - St. Olaf Chamber Singers
+                    - St. Olaf Chapel Choir
+                    - St. Olaf Choir
+                    - Viking Chorus
+          assert: {count(terms): {$gte: 1}}
+
+      Required Vocal Chamber Music Performances:
+        message: 2 chamber music performances
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Chamber Recital
+                - Vocal Chamber Recital
+          assert: {count(performances): {$gte: 2}}
