@@ -17,7 +17,8 @@ requirements:
       all:
         - {course: ECON 261, grade_option: grade}
         - {course: ECON 262, grade_option: grade}
-        - either:
+        - at_most: true
+          either:
             - {course: ECON 263, grade_option: grade}
             # or
             - both:
@@ -43,7 +44,7 @@ requirements:
       where: {attribute: {$eq: econ_analysis}}
 
       all:
-        - assert: {count(courses): {$gte: 4}}
+        - assert: {count(courses): {$gte: 4, at_most: true}}
 
         - where: {level: {$eq: 200}}
           assert: {count(courses): {$gte: 1}}
@@ -74,6 +75,7 @@ emphases:
 
       Electives:
         result:
+          at_most: true
           either:
             - both:
                 - course: MGMT 250
@@ -104,7 +106,7 @@ emphases:
         result:
           from: courses
           where: {attributes: {$eq: econ_emph_intl_elective}}
-          assert: {count(courses): {$gte: 2}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
 
       Non-Econ International Topics:
         message:
@@ -113,7 +115,7 @@ emphases:
         result:
           from: courses
           where: {attributes: {$eq: econ_emph_intl_topics}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   725:
     name: Management
@@ -139,7 +141,7 @@ emphases:
         result:
           from: courses
           where: {attributes: {$eq: econ_emph_mgmt_elective}}
-          assert: {count(courses): {$gte: 1}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
 multicountable:
   ECON 385:
