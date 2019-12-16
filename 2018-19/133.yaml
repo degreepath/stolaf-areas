@@ -5,8 +5,7 @@ code: '133'
 degree: B.A.
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Language
     - requirement: Ancient History
     - requirement: Classics
@@ -17,22 +16,22 @@ requirements:
   Language:
     result:
       at_most: true
-      any:
-        - course: GREEK 253
-        - course: GREEK 370
-        - course: GREEK 372
-        - course: GREEK 373
-        - course: GREEK 374
-        - course: GREEK 375
-        - course: LATIN 235
-        - course: LATIN 252
-        - course: LATIN 370
-        - course: LATIN 371
-        - course: LATIN 372
-        - course: LATIN 373
-        - course: LATIN 374
-        - course: LATIN 375
-        - course: LATIN 377
+      either:
+        - requirement: Greek Language
+        - requirement: Latin Language
+
+    requirements:
+      Greek Language:
+        result: &greek-lang
+          from: courses
+          where: {attribute: {$eq: ancient_greek_lang}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Latin Language:
+        result: &latin-lang
+          from: courses
+          where: {attribute: {$eq: ancient_latin_lang}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Ancient History:
     result:
@@ -47,71 +46,50 @@ requirements:
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
-    message:
-      1 course in Greek may be used as an elective if the student satisfies
-      the required language portion of the major with Latin courses. 1 course
-      in Latin may be used as an elective if the student satisfies the
-      required language portion of the major with Greek courses.
+    message: >
+      At most one GREEK or LATIN course may be used as an elective
+
+      - One GREEK course may be used as an elective if the student satisfies
+        the required language portion of the major with Latin courses.
+
+      - One LATIN course may be used as an elective if the student satisfies
+        the required language portion of the major with Greek courses.
 
     result:
-      at_most: true
-      either:
-        - both:
-            - requirement: Took Greek
-            - count: 1
-              at_most: true
-              of:
-                - {course: GREEK 253, including claimed: true}
-                - {course: GREEK 370, including claimed: true}
-                - {course: GREEK 372, including claimed: true}
-                - {course: GREEK 373, including claimed: true}
-                - {course: GREEK 374, including claimed: true}
-                - {course: GREEK 375, including claimed: true}
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: ancient_elective}
 
-        - both:
-            - requirement: Took Latin
-            - count: 1
-              at_most: true
-              of:
-                - {course: LATIN 235, including claimed: true}
-                - {course: LATIN 252, including claimed: true}
-                - {course: LATIN 370, including claimed: true}
-                - {course: LATIN 371, including claimed: true}
-                - {course: LATIN 372, including claimed: true}
-                - {course: LATIN 373, including claimed: true}
-                - {course: LATIN 374, including claimed: true}
-                - {course: LATIN 375, including claimed: true}
-                - {course: LATIN 377, including claimed: true}
+          - $if: *greek-lang
+            $then:
+              attribute: {$eq: ancient_elective_if_greek_lang}
+            $else:
+              $if: *latin-lang
+              $then:
+                attribute: {$eq: ancient_elective_if_latin_lang}
 
-    requirements:
-      Took Greek:
-        result:
-          from: courses
-          where:
-            attribute:
-              $in:
-                - ancient_elective
-                - ancient_elective_if_greek_lang
-          limit:
-            - {at_most: 1, where: {subject: {$eq: LATIN}}}
-          assert: {count(courses): {$gte: 4, at_most: true}}
+      all:
+        - assert: {count(courses): {$gte: 4, at_most: true}}
 
-      Took Latin:
-        result:
-          from: courses
-          where:
-            attribute:
-              $in:
-                - ancient_elective
-                - ancient_elective_if_latin_lang
-          limit:
-            - {at_most: 1, where: {subject: {$eq: GREEK}}}
-          assert: {count(courses): {$gte: 4, at_most: true}}
+        - if:
+            where: {subject: {$eq: GREEK}}
+            assert: {count(courses): {$gte: 1}}
+          then:
+            where: {subject: {$eq: GREEK}}
+            assert: {count(courses): {$lte: 1}}
+
+        - if:
+            where: {subject: {$eq: LATIN}}
+            assert: {count(courses): {$gte: 1}}
+          then:
+            where: {subject: {$eq: LATIN}}
+            assert: {count(courses): {$lte: 1}}
 
   Independent Research:
     message:
       Any Independent Research course.
     result:
       from: courses
-      where: {attribute: {$eq: classics_ir}}
+      where: {attribute: {$eq: ancient_ir}}
       assert: {count(courses): {$gte: 1}}
