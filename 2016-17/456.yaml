@@ -7,10 +7,8 @@ degree: B.M.
 result:
   all:
     - requirement: Core
-    - requirement: Musicology
     - requirement: Performance Studies
-    - requirement: Additional Upper-Level Elective
-    - requirement: Additional Electives
+    - requirement: Electives
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
     - requirement: Required Recital Attendance
@@ -30,22 +28,7 @@ requirements:
         - course: MUSIC 237
         - course: MUSIC 251
 
-  Musicology:
-    result:
-      from: courses
-      where: {attribute: {$eq: music_upper_musicology}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
-
-  Additional Upper-Level Elective:
-    result:
-      from: courses
-      where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$eq: 300}
-      assert: {count(courses): {$gte: 1, at_most: true}}
-
-  Additional Electives:
+  Electives:
     result:
       from: courses
       where:
@@ -58,17 +41,30 @@ requirements:
           where:
             number: {$in: [294, 298, 394, 398]}
 
-      assert:
-        sum(credits):
-          at_most: true
-          $gte: 2
+      all:
+        - assert:
+            sum(credits):
+              at_most: true
+              $gte: 4
 
-          $ifs:
-            has-area-code(711): + 0.50
-            has-area-code(712): + 2.25
-            has-area-code(713): + 2.75
-            has-area-code(714): + 1.75
-            has-area-code(716): + 2.25
+              $ifs:
+                has-area-code(711): +  .50
+                has-area-code(712): + 2.25
+                has-area-code(713): + 2.75
+                has-area-code(714): + 1.75
+                has-area-code(716): + 2.25
+
+                # has-area-code(711) + has-proficiency(Keyboard Level IV): + 1.00
+                # has-area-code(712) + has-proficiency(Keyboard Level III): + 0.75
+                # has-area-code(714) + has-proficiency(Keyboard Level III): + 0.75
+
+        - where: {$and: [{subject: {$eq: MUSIC}}, {level: {$eq: 300}}]}
+          assert: {count(courses): {$gte: 2}}
+          message: Two 300-level MUSIC course
+
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {count(courses): {$gte: 1}}
+          message: One 300-level Musicology course
 
   Performance Studies:
     message:
@@ -83,7 +79,7 @@ requirements:
           - credits: {$eq: 1.0}
           - level: {$in: [100, 200]}
       all:
-        - assert: {count(terms): {$gte: 6}}
+        - assert: {count(terms): {$gte: 6, at_most: true}}
         - where: {level: {$eq: 100}}
           assert: {count(terms): {$lte: 4}}
 
@@ -98,7 +94,7 @@ requirements:
 
     requirements:
       Solos:
-        message: |
+        message:
           2 solo performances on a St. Olaf Student Recital (may include
           Entrance and Continuance)
         result:
@@ -150,8 +146,8 @@ requirements:
 
   Required Recital Attendance:
     message:
-      You must attend 10 recitals per semester on campus,
-      with a minimum of 60 overall.
+      You must attend 10 recitals per semester on campus, with a minimum of 60
+      overall
     result:
       from: music recitals
       assert: {count(recitals): {$gte: 60}}
@@ -228,7 +224,7 @@ emphases:
                 - bm_fol_russn
                 - bm_fol_span
           all:
-            - assert: {count(courses): {$gte: 2}}
+            - assert: {count(courses): {$gte: 2, at_most: true}}
 
             - assert: {count(subjects): {$gte: 2}}
 
@@ -242,34 +238,53 @@ emphases:
 
     result:
       all:
-        - proficiency: Keyboard Level I
-          course: {course: MUSIC 161}
-        - proficiency: Keyboard Level II
-          course: {course: MUSIC 162}
-        - proficiency: Keyboard Level III
-          course: {course: MUSIC 261}
-        - {course: MUSIC 295}
+        - requirement: Proficiencies
+        - requirement: Literature and Pedagogy
+        - requirement: Instrumental Chamber Music
 
-        - from: courses
+    requirements:
+      Proficiencies:
+        result:
+          all:
+            - proficiency: Keyboard Level I
+              course: {course: MUSIC 161}
+            - proficiency: Keyboard Level II
+              course: {course: MUSIC 162}
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261}
+
+      Literature and Pedagogy:
+        result:
+          course: MUSIC 295
+
+      Instrumental Chamber Music:
+        result:
+          from: courses
           where: {course: {$eq: MUSIC 275}}
-          assert: {sum(credits): {$gte: 0.5}}
+          assert: {sum(credits): {$gte: 0.5, at_most: true}}
 
   713:
     name: Piano
 
     result:
       all:
-        - requirement: Required Courses
+        - requirement: Advanced Keyboard Skills
+        - requirement: Piano Literature
+        - requirement: Keyboard Pedagogy
 
     requirements:
-      Required Courses:
+      Advanced Keyboard Skills:
         result:
-          all:
-            - course: MUSIC 270
-              grade: B-
+          course: MUSIC 270
+          grade: B-
 
-            - course: MUSIC 283
-            - course: MUSIC 293
+      Piano Literature:
+        result:
+          course: MUSIC 283
+
+      Keyboard Pedagogy:
+        result:
+          course: MUSIC 293
 
   714:
     name: Winds, Brass, Percussion
@@ -302,7 +317,7 @@ emphases:
         result:
           from: courses
           where: {course: {$eq: MUSIC 275}}
-          assert: {count(terms): {$gte: 2}}
+          assert: {count(terms): {$gte: 2, at_most: true}}
 
   716:
     name: Organ
@@ -335,18 +350,18 @@ emphases:
 
     result:
       all:
-        - requirement: Chamber Music
+        - requirement: Instrumental Chamber Music
         - requirement: Vocal Solo Literature
         - requirement: Collaborative Keyboard
         - requirement: Required Performances
         - requirement: Electives
 
     requirements:
-      Chamber Music:
+      Instrumental Chamber Music:
         result:
           from: courses
           where: {course: {$eq: MUSIC 275}}
-          assert: {sum(credits): {$gte: 0.5}}
+          assert: {sum(credits): {$gte: 0.5, at_most: true}}
 
       Vocal Solo Literature:
         result:
@@ -358,13 +373,13 @@ emphases:
         result:
           from: courses
           where: {course: {$eq: MUSPF 106}}
-          assert: {count(terms): {$gte: 1}}
+          assert: {count(terms): {$gte: 1, at_most: true}}
 
       Electives:
         result:
           from: courses
           where: {attributes: {$eq: music_coll_keyboard_elective}}
-          assert: {sum(credits): {$gte: 1}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
 
       Required Performances:
         message:
