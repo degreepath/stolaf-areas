@@ -7,9 +7,6 @@ degree: B.M.
 result:
   all:
     - requirement: Core
-    - requirement: Musicology
-    - requirement: Additional Upper-Level Elective
-    - requirement: Additional Electives
     - requirement: Education
     - requirement: Required Solo Performances
     - requirement: Required Recital Attendance
@@ -35,30 +32,6 @@ requirements:
         - {course: MUSIC 214}
         - {course: MUSIC 237}
         - {course: MUSIC 251}
-
-  Musicology:
-    result:
-      from: courses
-      where: {attribute: {$eq: music_upper_musicology}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
-
-  Additional Upper-Level Elective:
-    result:
-      from: courses
-      where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$eq: 300}
-      assert: {count(courses): {$gte: 1, at_most: true}}
-
-  Additional Electives:
-    result:
-      from: courses
-      where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$in: [200, 300]}
-      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Education:
     result:
@@ -155,24 +128,31 @@ emphases:
               course: {course: MUSIC 261}
 
       Electives:
+        message: >-
+          Three 200- or 300-level MUSIC electives, including…
+
+          - Two credits from Level III music electives, including at least one
+            upper-level musicology elective (MUSIC 34x)
+
+          - One additional credit from Level II or Level III music electives
+
         result:
           from: courses
           where:
             $and:
-              - {subject: {$eq: MUSIC}}
-              - {level: {$in: [200, 300]}}
-              - {number: {$nin: [294, 298, 394, 398]}}
-              - course:
-                  $nin:
-                    - MUSIC 221
-                    - MUSIC 253
-                    - MUSIC 290
-                    - MUSIC 212
-                    - MUSIC 214
-                    - MUSIC 237
-                    - MUSIC 251
-                    - MUSIC 261
-          assert: {count(courses): {$gte: 1, at_most: true}}
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          all:
+            - assert: {sum(credits): {$gte: 3, at_most: true}}
+
+            - where: {level: {$eq: 300}}
+              assert: {sum(credits): {$gte: 2}}
+              message: Two 300-level MUSIC credits
+
+            - where: {attribute: {$eq: music_upper_musicology}}
+              assert: {sum(credits): {$gte: 1}}
+              message: One 300-level Musicology credit
 
       Education:
         result:
@@ -268,26 +248,31 @@ emphases:
               course: {course: MUSIC 262}
 
       Electives:
+        message: >-
+          200- or 300-level MUSIC electives, including…
+
+          - Two credits from Level III music electives, including at least one
+            upper-level musicology elective (MUSIC 34x)
+
+          - 1.75 additional credits from Level II or Level III music electives
+
         result:
           from: courses
           where:
             $and:
-              - {subject: {$eq: MUSIC}}
-              - {level: {$in: [200, 300]}}
-              - {number: {$nin: [294, 298, 394, 398]}}
-              - course:
-                  $nin:
-                    - MUSIC 287
-                    - MUSIC 291
-                    - MUSIC 292
-                    - MUSIC 252
-                    - MUSIC 261
-                    - MUSIC 262
-                    - MUSIC 212
-                    - MUSIC 214
-                    - MUSIC 237
-                    - MUSIC 251
-          assert: {sum(credits): {$gte: 1.75, at_most: true}}
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          all:
+            - assert: {sum(credits): {$gte: 3.75, at_most: true}}
+
+            - where: {level: {$eq: 300}}
+              assert: {sum(credits): {$gte: 2}}
+              message: Two 300-level MUSIC credits
+
+            - where: {attribute: {$eq: music_upper_musicology}}
+              assert: {sum(credits): {$gte: 1}}
+              message: One 300-level Musicology credit
 
       Education:
         result:
