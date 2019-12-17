@@ -18,18 +18,17 @@ result:
       - where: {year: {$gte: $matriculation-year}}
         assert: {count(courses): {$gte: 6}}
 
-      - where: {subject: {$in: [STAT, CSCI, MSCS]}}
+      - where: {subject: {$neq: MATH}}
         assert: {count(courses): {$lte: 2}}
 
-limit:
-  - at-most: 1
-    where:
-      course:
-        $in:
-          - STAT 212
-          - STAT 214
-          - STAT 272
-          - MSCS 264
+      - assert: {count(courses): {$lte: 1}}
+        where:
+          course:
+            $in:
+              - STAT 212
+              - STAT 214
+              - STAT 272
+              - MSCS 264
 
 requirements:
   Basics:
@@ -63,6 +62,13 @@ requirements:
                 - math_l2_electives
                 - math_l3_electives
 
+          - attribute:
+              $in:
+                - math_perspective_a
+                - math_perspective_c
+                - math_perspective_d
+                - math_perspective_m
+
           - $if:
               from: areas
               where: {$and: [{type: {$eq: Major}}, {name: {$eq: Physics}}]}
@@ -85,14 +91,12 @@ requirements:
               - subject: {$eq: MATH}
               - level: {$eq: 200}
               - type: {$eq: course}
-              - course: {$neq: MATH 220}
       assert:
         count(courses): {$gte: 7, at_most: true}
 
   Transitions:
     result:
-      from: courses
-      allow_claimed: true
+      from: claimed
       where: {attribute: {$eq: math_transitions}}
       assert: {count(courses): {$gte: 2, at_most: true}}
 
@@ -106,41 +110,38 @@ requirements:
         - requirement: D
         - requirement: M
       audit:
-        assert: {count(courses): {$gte: 3}}
+        all:
+          - assert: {count(courses): {$gte: 3}}
+          - assert: {count(math_perspectives): {$gte: 3}}
 
     requirements:
       A:
         result:
-          from: courses
-          allow_claimed: true
+          from: claimed
           where: {attribute: {$eq: math_perspective_a}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       C:
         result:
-          from: courses
-          allow_claimed: true
+          from: claimed
           where: {attribute: {$eq: math_perspective_c}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       D:
         result:
-          from: courses
-          allow_claimed: true
+          from: claimed
           where: {attribute: {$eq: math_perspective_d}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       M:
         result:
-          from: courses
-          allow_claimed: true
+          from: claimed
           where: {attribute: {$eq: math_perspective_m}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level III:
     result:
-      from: courses
-      allow_claimed: true
+      from: claimed
       where: {attribute: {$eq: math_l3_electives}}
       all:
         - message: Two 300-level courses
@@ -155,29 +156,29 @@ requirements:
       at_most: true
       any:
         - both:
-            - {course: MATH 220, allow_claimed: true}
-            - at_most: true
-              either:
-                - {course: MATH 356, allow_claimed: true}
-                - {course: MSCS 341, allow_claimed: true}
+            - {course: MATH 220, from_claimed: true}
+            - {course: MATH 356, from_claimed: true}
         - both:
-            - {course: MATH 226, allow_claimed: true}
-            - {course: MATH 340, allow_claimed: true}
+            - {course: MATH 220, from_claimed: true}
+            - {course: MSCS 341, from_claimed: true}
         - both:
-            - {course: MATH 230, allow_claimed: true}
-            - {course: MATH 330, allow_claimed: true}
+            - {course: MATH 226, from_claimed: true}
+            - {course: MATH 340, from_claimed: true}
         - both:
-            - {course: MATH 232, allow_claimed: true}
-            - {course: MATH 364, allow_claimed: true}
+            - {course: MATH 230, from_claimed: true}
+            - {course: MATH 330, from_claimed: true}
         - both:
-            - {course: MATH 244, allow_claimed: true}
-            - at_most: true
-              either:
-                - {course: MATH 344, allow_claimed: true}
-                - {course: MATH 348, allow_claimed: true}
+            - {course: MATH 232, from_claimed: true}
+            - {course: MATH 364, from_claimed: true}
         - both:
-            - {course: MATH 252, allow_claimed: true}
-            - {course: MATH 352, allow_claimed: true}
+            - {course: MATH 244, from_claimed: true}
+            - {course: MATH 344, from_claimed: true}
         - both:
-            - {course: MATH 262, allow_claimed: true}
-            - {course: STAT 322, allow_claimed: true}
+            - {course: MATH 244, from_claimed: true}
+            - {course: MATH 348, from_claimed: true}
+        - both:
+            - {course: MATH 252, from_claimed: true}
+            - {course: MATH 352, from_claimed: true}
+        - both:
+            - {course: MATH 262, from_claimed: true}
+            - {course: STAT 322, from_claimed: true}
