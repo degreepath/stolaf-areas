@@ -80,9 +80,9 @@ emphases:
       Core:
         result:
           all:
-            - {course: HIST 280, including claimed: true}
-            - {course: HIST 294, including claimed: true}
-            - {course: HIST 296, including claimed: true}
+            - {course: HIST 280, allow_claimed: true}
+            - {course: HIST 294, allow_claimed: true}
+            - {course: HIST 296, allow_claimed: true}
 
       Electives:
         result:
