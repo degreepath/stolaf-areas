@@ -51,6 +51,7 @@ requirements:
         - course: MATH 220
 
   Electives:
+    disjoint: true
     result:
       from: courses
       where:
