@@ -43,7 +43,7 @@ requirements:
           - subject: {$neq: REG}
           - course: {$eq: REG 0001}
       load_potentials: false
-      claim: false
+      claim: record
       allow_claimed: true
       assert: {sum(credits): {$gte: 35}}
 
@@ -54,7 +54,7 @@ requirements:
     result:
       from: courses
       load_potentials: false
-      claim: false
+      claim: record
       allow_claimed: true
       where:
         $or:
@@ -69,7 +69,7 @@ requirements:
     result:
       from: courses
       where: {course: {$eq: REG 0004}}
-      claim: false
+      claim: record
       allow_claimed: true
       assert: {sum(credits): {$lte: 4}}
 
@@ -79,7 +79,7 @@ requirements:
     result:
       from: courses
       load_potentials: false
-      claim: false
+      claim: record
       allow_claimed: true
       where:
         $or:
@@ -100,7 +100,7 @@ requirements:
       assert: {count(areas): {$gte: 1}}
       # from: courses
       # load_potentials: false
-      # claim: false
+      # claim: record
       # allow_claimed: true
       # assert: {average(grades): {$gte: 2.0}}
 
@@ -113,7 +113,7 @@ requirements:
     result:
       from: courses
       load_potentials: false
-      claim: false
+      claim: record
       allow_claimed: true
       where:
         $or:
@@ -128,7 +128,7 @@ requirements:
     result:
       from: courses
       load_potentials: false
-      claim: false
+      claim: record
       allow_claimed: true
       where:
         $or:
@@ -143,7 +143,7 @@ requirements:
       You must declare a major by the spring of your sophomore year.
     result:
       from: areas
-      claim: false
+      claim: record
       allow_claimed: true
       where:
         $and:
@@ -157,7 +157,7 @@ requirements:
     result:
       from: courses
       load_potentials: false
-      claim: false
+      claim: record
       allow_claimed: true
       where:
         $or:
@@ -170,7 +170,7 @@ requirements:
       1 FYW course is required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -182,7 +182,7 @@ requirements:
       4 WRI courses are required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -194,7 +194,7 @@ requirements:
       1 FOL course is required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -220,7 +220,7 @@ requirements:
       1 ORC course is required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -232,7 +232,7 @@ requirements:
       1 AQR course is required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -244,7 +244,7 @@ requirements:
       2 distinct SPM courses are required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - at-most: 0
@@ -276,7 +276,7 @@ requirements:
       instructor.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -292,7 +292,7 @@ requirements:
       2 courses are required, 1 MCD and 1 MCG, from 2 different subject codes.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -312,7 +312,7 @@ requirements:
       1 credit of ALS-A is required from a single subject code.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -327,7 +327,7 @@ requirements:
       1 ALS-L course is required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -339,7 +339,7 @@ requirements:
       2 courses are required, 1 BTS-B and 1 BTS-T.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -361,7 +361,7 @@ requirements:
       instructor.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -386,7 +386,7 @@ requirements:
       At least one must be taken from a St. Olaf faculty instructor.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
@@ -403,7 +403,7 @@ requirements:
       1 EIN course is required.
     result:
       from: courses
-      claim: false
+      claim: record
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
