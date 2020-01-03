@@ -139,26 +139,6 @@ emphases:
             $and:
               - subject: {$eq: MUSIC}
               - level: {$in: [200, 300]}
-              - course:
-                  $nin:
-                    # exclude the outer core courses
-                    - MUSIC 114
-                    - MUSIC 141
-                    - MUSIC 212
-                    - MUSIC 214
-                    - MUSIC 235
-                    - MUSIC 236
-                    - MUSIC 237
-                    - MUSIC 251
-                    - MUSIC 252
-                    # exclude the Core courses
-                    - MUSIC 262
-                    - MUSIC 263
-                    - MUSIC 264
-                    - MUSIC 287
-                    - MUSIC 291
-                    - MUSIC 292
-                    - MUSIC 354
           assert: {count(courses): {$gte: 2}}
 
       Voice Performance Studies:
@@ -246,21 +226,6 @@ emphases:
             $and:
               - subject: {$eq: MUSIC}
               - level: {$in: [200, 300]}
-              - course:
-                  $nin:
-                    # exclude the outer core courses
-                    - MUSIC 114
-                    - MUSIC 141
-                    - MUSIC 212
-                    - MUSIC 214
-                    - MUSIC 235
-                    - MUSIC 236
-                    - MUSIC 237
-                    - MUSIC 251
-                    - MUSIC 252
-                    # exclude the Core courses
-                    - MUSIC 270
-                    - MUSIC 290
           assert: {count(courses): {$gte: 2}}
 
       Organ Performance Studies:
