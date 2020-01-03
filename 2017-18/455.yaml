@@ -87,7 +87,11 @@ requirements:
     message: Required elective in Art, Theater, or Lyric Theater
     result:
       from: courses
-      where: {attribute: {$eq: music_ed_bm_other_finearts}}
+      where:
+        $or:
+          - attribute: {$eq: music_ed_bm_other_finearts}
+          - subject: {$eq: ART}
+          - subject: {$eq: THEAT}
       assert: {sum(credits): {$gte: 1}}
 
   Required Solo Performances:
