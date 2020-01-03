@@ -99,6 +99,8 @@ requirements:
           $in:
             - Instrumental Student Recital
             - Vocal Student Recital
+            - Voice Student Recital
+            - Vocal BM-E
             - Voice BM-E
             - Instrumental BM-E
       assert: {count(performances): {$gte: 2}}
@@ -119,6 +121,7 @@ requirements:
           $in:
             - Instrumental Senior Recital
             - Vocal Senior Recital
+            - Voice Senior Recital
             - Composition Senior Recital
       assert: {count(performances): {$gte: 1}}
 
@@ -236,6 +239,7 @@ emphases:
               $in:
                 - Instrumental Chamber Recital
                 - Vocal Chamber Recital
+                - Voice Chamber Recital
           assert: {count(performances): {$gte: 2}}
 
   731:
@@ -332,4 +336,5 @@ emphases:
               $in:
                 - Instrumental Chamber Recital
                 - Vocal Chamber Recital
+                - Voice Chamber Recital
           assert: {count(performances): {$gte: 2}}

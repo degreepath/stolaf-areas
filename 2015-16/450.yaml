@@ -92,9 +92,12 @@ requirements:
           $in:
             - Instrumental Student Recital
             - Vocal Student Recital
+            - Voice Student Recital
             - Voice BM-E
+            - Vocal BM-E
             - Instrumental BM-E
             - Voice BM-P
+            - Vocal BM-P
             - Instrumental BM-P
       assert: {count(performances): {$gte: 2}}
 

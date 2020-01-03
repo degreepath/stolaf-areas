@@ -137,6 +137,8 @@ requirements:
               $in:
                 - Instrumental Student Recital
                 - Vocal Student Recital
+                - Voice Student Recital
+                - Vocal BM-P
                 - Voice BM-P
                 - Instrumental BM-P
           assert: {count(performances): {$gte: 2}}
@@ -159,6 +161,7 @@ requirements:
               $in:
                 - Instrumental Junior Recital
                 - Vocal Junior Recital
+                - Voice Junior Recital
           assert: {count(performances): {$gte: 1}}
 
       Senior Recital:
@@ -169,6 +172,7 @@ requirements:
               $in:
                 - Instrumental Senior Recital
                 - Vocal Senior Recital
+                - Voice Senior Recital
                 - Composition Senior Recital
           assert: {count(performances): {$gte: 1}}
 

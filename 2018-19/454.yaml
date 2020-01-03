@@ -71,8 +71,11 @@ requirements:
           $in:
             - Instrumental Student Recital
             - Vocal Student Recital
+            - Voice Student Recital
+            - Vocal BM-E
             - Voice BM-E
             - Instrumental BM-E
+            - Vocal BM-P
             - Voice BM-P
             - Instrumental BM-P
       assert: {count(performances): {$gte: 2}}
@@ -183,7 +186,9 @@ emphases:
             name:
               $in:
                 - Vocal Junior Recital
+                - Voice Junior Recital
                 - Vocal Senior Recital
+                - Voice Senior Recital
           assert: {count(performances): {$gte: 1}}
 
       Capstone Performance Project:
@@ -287,6 +292,7 @@ emphases:
               $in:
                 - Instrumental Junior Recital
                 - Vocal Junior Recital
+                - Voice Junior Recital
           assert: {count(performances): {$gte: 1}}
 
       Senior Recital:
@@ -296,6 +302,7 @@ emphases:
             name:
               $in:
                 - Instrumental Senior Recital
+                - Voice Senior Recital
                 - Vocal Senior Recital
                 - Composition Senior Recital
           assert: {count(performances): {$gte: 1}}
