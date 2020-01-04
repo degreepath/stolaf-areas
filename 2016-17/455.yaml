@@ -169,16 +169,6 @@ emphases:
               - {subject: {$eq: MUSIC}}
               - {level: {$in: [200, 300]}}
               - {number: {$nin: [294, 298, 394, 398]}}
-              - course:
-                  $nin:
-                    - MUSIC 221
-                    - MUSIC 253
-                    - MUSIC 290
-                    - MUSIC 212
-                    - MUSIC 214
-                    - MUSIC 237
-                    - MUSIC 251
-                    - MUSIC 261
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Education:
@@ -283,18 +273,6 @@ emphases:
               - {subject: {$eq: MUSIC}}
               - {level: {$in: [200, 300]}}
               - {number: {$nin: [294, 298, 394, 398]}}
-              - course:
-                  $nin:
-                    - MUSIC 287
-                    - MUSIC 291
-                    - MUSIC 292
-                    - MUSIC 252
-                    - MUSIC 261
-                    - MUSIC 262
-                    - MUSIC 212
-                    - MUSIC 214
-                    - MUSIC 237
-                    - MUSIC 251
           assert: {sum(credits): {$gte: 1.75, at_most: true}}
 
       Education:
