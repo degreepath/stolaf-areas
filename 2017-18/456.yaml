@@ -39,28 +39,29 @@ requirements:
     result:
       from: courses
       where:
-        $and:
-          - subject: {$in: [MUSIC, MUSPF]}
-          - level: {$in: [200, 300]}
-      # where:
-      #   $or:
-      #     - $and:
-      #         - subject: {$eq: MUSIC}
-      #         - level: {$in: [200, 300]}
-      #     - $and:
-      #         - subject: {$eq: MUSPF}
-      #         - level: {$eq: 100}
-      #         # - $if:
-      #         #     from: areas
-      #         #     where: {code: {$eq: '713'}}  # Piano emphasis
-      #         #     assert: {count(areas): {$eq: 0}}
-      #         #   $then:
-      #         - number: {$neq: 134}
+        $or:
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          - $and: &ppm-filter
+              - subject: {$eq: MUSPF}
+              - level: {$eq: 100}
+              - name: {$neq: $primary-performing-medium}
 
       limit:
         - at-most: 0
-          where:
-            number: {$in: [294, 298, 394, 398]}
+          where: {number: {$in: [294, 298, 394, 398]}}
+
+        # These need to be both in this limit clause and as assertions,
+        # because there's a bug in LimitSet where it will allow through
+        # a course that matches _any_ limitset, instead of only those
+        # that pass _all_ of them
+        - at-most: 1 credit
+          where: {course: {$eq: MUSIC 275}}
+
+        - at-most: 1 credit
+          where: {subject: {$eq: MUSPF}}
 
       all:
         - assert:
@@ -82,6 +83,9 @@ requirements:
           assert: {sum(credits): {$gte: 1, at_most: true}}
 
         - where: {subject: {$eq: MUSPF}}
+          assert: {sum(credits): {$lte: 1}}
+
+        - where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$lte: 1}}
 
   Performance Studies:
