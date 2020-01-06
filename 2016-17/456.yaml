@@ -44,7 +44,7 @@ requirements:
               - subject: {$eq: MUSIC}
               - level: {$in: [200, 300]}
 
-          - $and: &ppm-filter
+          - $and:
               - subject: {$eq: MUSPF}
               - level: {$eq: 100}
               - name: {$neq: $primary-performing-medium}
@@ -53,10 +53,6 @@ requirements:
         - at-most: 0
           where: {number: {$in: [294, 298, 394, 398]}}
 
-        # These need to be both in this limit clause and as assertions,
-        # because there's a bug in LimitSet where it will allow through
-        # a course that matches _any_ limitset, instead of only those
-        # that pass _all_ of them
         - at-most: 1 credit
           where: {course: {$eq: MUSIC 275}}
 
@@ -81,12 +77,6 @@ requirements:
               - subject: {$eq: MUSIC}
               - level: {$eq: 300}
           assert: {sum(credits): {$gte: 1, at_most: true}}
-
-        - where: {subject: {$eq: MUSPF}}
-          assert: {sum(credits): {$lte: 1}}
-
-        - where: {course: {$eq: MUSIC 275}}
-          assert: {sum(credits): {$lte: 1}}
 
   Performance Studies:
     if:
