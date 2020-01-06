@@ -5,53 +5,96 @@ code: '570'
 degree: B.A.
 
 result:
-  count: all
-  of:
+  all:
     - requirement: General Education
     - requirement: What is Religion?
-    - requirement: Religious Dimensions
+    - requirement: Electives
+    - requirement: Sacred Texts
+    - requirement: Religion in History and Culture
+    - requirement: Religious Thought
+    - requirement: Traditions
     - requirement: Intensive Studies
-    - requirement: Optional Electives
 
   audit:
     assert: {count(courses): {$gte: 8}}
 
 requirements:
-  General Education:
-    result:
-      both:
-        - from: courses
-          where: {gereqs: {$eq: BTS-B}}
-          assert: {count(courses): {$gte: 1}}
-
-        - from: courses
-          where: {gereqs: {$eq: BTS-T}}
-          assert: {count(courses): {$gte: 1}}
-
   What is Religion?:
     result:
       course: REL 285
 
-  Religious Dimensions:
-    message: |
-      Courses that focus on three different dimensions of religion, and deal
-      with at least two different religious traditions.
+  Electives:
     result:
       from: courses
       where:
+        $or:
+          - attribute:
+              $in:
+                - rel_elective
+                - rel_sacred_texts
+                - rel_history_culture
+                - rel_thought
+                - rel_intensive
+                - rel_tradition_christian
+                - rel_tradition_nonchristian
+          - gereqs:
+              $in:
+                - BTS-B
+                - BTS-T
+
+      assert: {count(courses): {$gte: 7, at_most: true}}
+
+  General Education:
+    result:
+      both:
+        - from: courses
+          allow_claimed: true
+          where: {gereqs: {$eq: BTS-B}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+        - from: courses
+          allow_claimed: true
+          where: {gereqs: {$eq: BTS-T}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Sacred Texts:
+    result:
+      from: courses
+      allow_claimed: true
+      where: {attributes: {$eq: rel_sacred_texts}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Religion in History and Culture:
+    result:
+      from: courses
+      allow_claimed: true
+      where: {attributes: {$eq: rel_history_culture}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Religious Thought:
+    result:
+      from: courses
+      allow_claimed: true
+      where: {attributes: {$eq: rel_thought}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Traditions:
+    result:
+      from: courses
+      allow_claimed: true
+      where:
         attributes:
           $in:
-            - rel_sacred_texts
-            - rel_history_culture
-            - rel_thought
+            - rel_tradition_christian
+            - rel_tradition_nonchristian
+
       all:
-        - where: {attributes: {$eq: rel_sacred_texts}}
+        - assert: {count(courses): {$gte: 2, at_most: true}}
+
+        - where: {attributes: {$eq: rel_tradition_christian}}
           assert: {count(courses): {$gte: 1}}
 
-        - where: {attributes: {$eq: rel_history_culture}}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {attributes: {$eq: rel_thought}}
+        - where: {attributes: {$eq: rel_tradition_nonchristian}}
           assert: {count(courses): {$gte: 1}}
 
   Intensive Studies:
@@ -64,9 +107,3 @@ requirements:
 
         - where: {type: {$eq: Seminar}}
           assert: {count(courses): {$gte: 1}}
-
-  Optional Electives:
-    result:
-      from: courses
-      where: {attribute: {$eq: rel_elective}}
-      assert: {count(courses): {$gte: 0}}
