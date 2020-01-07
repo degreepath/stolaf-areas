@@ -1,0 +1,341 @@
+---
+name: B.M.
+type: degree
+code: 'B.M.'
+
+result:
+  all:
+    - requirement: Required Course Credit
+    - requirement: Credits Taken At/Through St. Olaf College
+    - requirement: Transfer Credit
+    - requirement: Interim Credits
+    - requirement: Cumulative Grade Point Average
+    - requirement: Level II/III Course Credit
+    - requirement: Graded Course Credit
+    - requirement: Declared Major
+    - requirement: Allowed S/U Course Credit
+
+    - requirement: First-Year Writing
+    - requirement: Writing in Context
+    - requirement: Foreign Language
+    - requirement: Oral Communication
+    - requirement: Reasoning
+    - requirement: Studies in Physical Movement
+    - requirement: Historical Studies in Western Culture or Literary Studies
+    - requirement: Multicultural Studies
+    - requirement: Biblical and Theological Studies
+    - requirement: Studies in Human Behavior and Society
+    - requirement: Ethical Issues and Normative Perspectives
+
+
+requirements:
+  Required Course Credit:
+    message: |
+      35 St. Olaf credits are required.
+    result:
+      from: courses
+      where:
+        $or:
+          - subject: {$neq: REG}
+          - course: {$eq: REG 0001}
+      load_potentials: false
+      claim: record
+      allow_claimed: true
+      assert: {sum(credits): {$gte: 35}}
+
+  Credits Taken At/Through St. Olaf College:
+    message: |
+      17 of the 35 credits required for graduation must be earned through St.
+      Olaf College.
+    result:
+      from: courses
+      load_potentials: false
+      claim: record
+      allow_claimed: true
+      where:
+        $or:
+          - is_stolaf: {$eq: true}
+          - is_in_gpa: {$eq: true}
+      assert: {sum(credits): {$gte: 17}}
+
+  Transfer Credit:
+    message: |
+      After matriculation, you may transfer in the equivalent of 4 St. Olaf
+      credits.
+    result:
+      from: courses
+      where: {course: {$eq: REG 0004}}
+      claim: record
+      allow_claimed: true
+      assert: {sum(credits): {$lte: 4}}
+
+  Interim Credits:
+    message: |
+      3 credits must be earned in three separate Interims.
+    result:
+      from: courses
+      load_potentials: false
+      claim: record
+      allow_claimed: true
+      where:
+        $or:
+          - {semester: {$eq: 2}}
+          - {course: {$eq: REG 0003}}
+      assert: {sum(credits): {$gte: 3}}
+
+  Cumulative Grade Point Average:
+    message: |
+      A 2.0 GPA is required.
+    result:
+      from: areas
+      where:
+        $and:
+          - type: {$eq: Degree}
+          - code: {$eq: 'B.M.'}
+          - gpa: {$gte: '2.00'}
+      assert: {count(areas): {$gte: 1}}
+      # from: courses
+      # load_potentials: false
+      # claim: record
+      # assert: {average(grades): {$gte: 2.0}}
+
+  Level II/III Course Credit:
+    message: |
+      18 credits must be earned above level I (numbered 200 and higher).
+
+      A course can earn only its assigned level. It cannot be raised in level
+      as the result of extra studies, assignments, or performance.
+    result:
+      from: courses
+      load_potentials: false
+      claim: record
+      allow_claimed: true
+      where:
+        $or:
+          - {level: {$gte: 200}}
+          - {course: {$eq: REG 0006}}
+      assert: {sum(credits): {$gte: 18}}
+
+  Graded Course Credit:
+    message: |
+      24 graded credits must be earned through courses taught by a St. Olaf
+      professor.
+    result:
+      from: courses
+      load_potentials: false
+      claim: record
+      allow_claimed: true
+      where:
+        $or:
+          - {grade_option: {$eq: grade}}
+          - {course: {$eq: REG 0002}}
+      assert: {sum(credits): {$gte: 24}}
+
+  Declared Major:
+    message: |
+      1 major is required.
+
+      You must declare a major by the spring of your sophomore year.
+    result:
+      from: areas
+      claim: record
+      allow_claimed: true
+      where:
+        $and:
+          - type: {$eq: Major}
+          - degree: {$eq: B.M.}
+      assert: {count(areas): {$gte: 1}}
+
+  Allowed S/U Course Credit:
+    message: |
+      6 credits may be earned on an S/U basis.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      where:
+        $or:
+          - {s/u: {$eq: true}}
+          - {course: {$eq: REG 0005}}
+      assert: {sum(credits): {$lte: 6.00}}
+
+  First-Year Writing:
+    message: |
+      1 FYW course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$eq: FYW}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Writing in Context:
+    message: |
+      4 WRI courses are required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$eq: WRI}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
+
+  Foreign Language:
+    message: |
+      1 foreign language course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where:
+        $or:
+          - attribute:
+              $in:
+                - bm_fol_chin
+                - bm_fol_fren
+                - bm_fol_germ
+                - bm_fol_greek
+                - bm_fol_japan
+                - bm_fol_latin
+                - bm_fol_norw
+                - bm_fol_russn
+                - bm_fol_span
+          - gereqs:
+              $in:
+                - FOL-C
+                - FOL-F
+                - FOL-G
+                - FOL-K
+                - FOL-J
+                - FOL-L
+                - FOL-N
+                - FOL-O
+                - FOL-R
+                - FOL-S
+                - FOL-T
+                - FOL-Y
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Oral Communication:
+    message: |
+      1 ORC course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$eq: ORC}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Reasoning:
+    message: |
+      1 AQR, SED, or IST course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$in: [AQR, SED, IST]}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Studies in Physical Movement:
+    message: |
+      2 distinct SPM courses are required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - at-most: 0
+          where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}
+        - at-most: 1
+          where:
+            $and:
+              - subject: {$eq: ESAC}
+              - number: {$gte: 171}
+              - number: {$lte: 194}
+              - credits: {$eq: 0.25}
+          message:
+            Only one 0.25 SPM course credit may be earned by students as a
+            result of participation in an approved intercollegiate sport. This
+            credit must be entered as ESAC 171-194 at the registration
+            preceding the sport/participation term. Credit cannot be claimed
+            after the term in which participation took place unless the
+            student completes a petition form; a late fee is assessed. It can
+            only be used once as one half of the two-course SPM requirement.
+      where: {gereqs: {$eq: SPM}}
+      assert: {count(distinct_courses): {$gte: 2, at_most: true}}
+
+  Historical Studies in Western Culture or Literary Studies:
+    message: |
+      1 HWC or ALS-L course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$in: [HWC, ALS-L]}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Multicultural Studies:
+    message: |
+      1 MCD or MCG course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$in: [MCD, MCG]}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Biblical and Theological Studies:
+    message: |
+      2 courses are required, 1 BTS-B and 1 BTS-T.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$in: [BTS-B, BTS-T]}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
+
+        - where: {gereqs: {$eq: BTS-B}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {gereqs: {$eq: BTS-T}}
+          assert: {count(courses): {$gte: 1}}
+
+  Studies in Human Behavior and Society:
+    message: |
+      1 HBS course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$eq: HBS}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Ethical Issues and Normative Perspectives:
+    message: |
+      1 EIN course is required.
+    result:
+      from: courses
+      claim: record
+      allow_claimed: true
+      limit:
+        - {at-most: 0, where: {$and: [s/u: {$eq: true}, credits: {$neq: 0.25}]}}
+      where: {gereqs: {$eq: EIN}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
