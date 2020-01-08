@@ -35,8 +35,14 @@ requirements:
                 - rel_history_culture
                 - rel_thought
                 - rel_intensive
-                - rel_tradition_christian
-                - rel_tradition_nonchristian
+          - attribute:
+              $in:
+                - rel_tradition_buddhism
+                - rel_tradition_china
+                - rel_tradition_christianity
+                - rel_tradition_hinduism
+                - rel_tradition_islam
+                - rel_tradition_judaism
           - gereqs:
               $in:
                 - BTS-B
@@ -85,17 +91,18 @@ requirements:
       where:
         attributes:
           $in:
-            - rel_tradition_christian
-            - rel_tradition_nonchristian
+            - rel_tradition_buddhism
+            - rel_tradition_china
+            - rel_tradition_christianity
+            - rel_tradition_hinduism
+            - rel_tradition_islam
+            - rel_tradition_judaism
 
       all:
         - assert: {count(courses): {$gte: 2, at_most: true}}
 
-        - where: {attributes: {$eq: rel_tradition_christian}}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {attributes: {$eq: rel_tradition_nonchristian}}
-          assert: {count(courses): {$gte: 1}}
+        # - assert: {count(attributes like rel_tradition_%): {$gte: 2}}
+        - assert: {count(religion_traditions): {$gte: 2}}
 
   Intensive Studies:
     result:
