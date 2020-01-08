@@ -5,6 +5,11 @@ code: '872'
 degree: B.A.
 
 result:
-  from: courses
-  where: {attribute: {$eq: mest_elective}}
-  assert: {count(courses): {$gte: 5}}
+  requirement: Electives
+
+requirements:
+  Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: mest_elective}}
+      assert: {count(courses): {$gte: 5}}
