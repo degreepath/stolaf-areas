@@ -36,11 +36,8 @@ requirements:
       from: music performances
       where:
         $and:
-          - name:
-              $in:
-                - Voice BM-C
-                - Instrumental BM-C
-          - status: {$eq: entrance}  # E, internally
+          - name: {$eq: $current-area-code-music-exam}
+          - status: {$eq: entrance}
       assert: {count(performances): {$gte: 1}}
 
   Continuance Examination:
@@ -48,11 +45,8 @@ requirements:
       from: music performances
       where:
         $and:
-          - name:
-              $in:
-                - Voice BM-C
-                - Instrumental BM-C
-          - status: {$eq: continuance}  # C, internally
+          - name: {$eq: $current-area-code-music-exam}
+          - status: {$eq: continuance}
       assert: {count(performances): {$gte: 1}}
 
   Official Ensemble Participation:

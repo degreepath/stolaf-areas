@@ -135,17 +135,26 @@ requirements:
                 - Vocal BM-P
                 - Voice BM-P
                 - Instrumental BM-P
+                - $current-area-code-music-exam
           assert: {count(performances): {$gte: 2}}
 
       Entrance Examination:
-        department_audited: true
-        # result:
-        #   music exam: Entrance
+        result:
+          from: music performances
+          where:
+            $and:
+              - name: {$eq: $current-area-code-music-exam}
+              - status: {$eq: entrance}
+          assert: {count(performances): {$gte: 1}}
 
       Continuance Examination:
-        department_audited: true
-        # result:
-        #   music exam: Continuance
+        result:
+          from: music performances
+          where:
+            $and:
+              - name: {$eq: $current-area-code-music-exam}
+              - status: {$eq: continuance}
+          assert: {count(performances): {$gte: 1}}
 
       Junior Recital:
         result:

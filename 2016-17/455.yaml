@@ -107,6 +107,12 @@ requirements:
             - Vocal BM-E
             - Voice BM-E
             - Instrumental BM-E
+            - 'Exam: 450'
+            - 'Exam: 453'
+            - 'Exam: 454'
+            - 'Exam: 455'
+            - 'Exam: 456'
+            - 'Exam: 458'
       assert: {count(performances): {$gte: 2}}
 
   Required Recital Attendance:
