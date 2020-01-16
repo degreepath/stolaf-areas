@@ -78,9 +78,12 @@ requirements:
           assert: {count(terms): {$gte: 4}}
 
   Official Ensemble Participation:
-    message: |
-      Every semester in an official ensemble
-    department_audited: true
+    message: Every semester in an official ensemble
+    result:
+      from: courses
+      where: {subject: {$eq: MUSEN}}
+      assert:
+        count(terms): {$gte: $terms-since-declaring-major, at_most: true}
 
   Required Performances:
     message: |
