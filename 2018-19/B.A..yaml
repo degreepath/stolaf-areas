@@ -75,7 +75,7 @@ requirements:
 
   Interim Credits:
     message: |
-      3 credits must be earned in three separate Interims.
+      3 credits must be earned in three separate Interims. 1 credit must be taken in Interim of your first year.
     result:
       from: courses
       load_potentials: false
