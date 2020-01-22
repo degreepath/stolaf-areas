@@ -81,7 +81,11 @@ requirements:
         $or:
           - {semester: {$eq: 2}}
           - {course: {$eq: REG 0003}}
-      assert: {sum(credits): {$gte: 3}}
+      all:
+        - assert: {sum(credits): {$gte: 3}}
+
+        - where: {year: {$eq: $matriculation-year}}
+          assert: {sum(credits): {$gte: 1}}
 
   Cumulative Grade Point Average:
     message: |
