@@ -95,18 +95,11 @@ requirements:
     message: |
       A 2.0 GPA is required.
     result:
-      from: areas
-      where:
-        $and:
-          - type: {$eq: Degree}
-          - code: {$eq: 'B.A.'}
-          - gpa: {$gte: '2.00'}
-      assert: {count(areas): {$gte: 1}}
-      # from: courses
-      # load_potentials: false
-      # claim: record
-      # allow_claimed: true
-      # assert: {average(grades): {$gte: 2.0}}
+      from: courses
+      load_potentials: false
+      claim: record
+      allow_claimed: true
+      assert: {average(grades): {$gte: 2.0}}
 
   Level II/III Course Credit:
     message: |
