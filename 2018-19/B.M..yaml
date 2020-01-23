@@ -80,7 +80,9 @@ requirements:
       allow_claimed: true
       where:
         $or:
-          - {semester: {$eq: 2}}
+          - $and:
+              - {semester: {$eq: 2}}
+              - {grade_option: {$neq: no grade}}
           - {course: {$eq: REG 0003}}
       all:
         - assert: {sum(credits): {$gte: 3}}
