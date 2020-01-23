@@ -187,7 +187,7 @@ requirements:
 
   Foreign Language:
     message: |
-      1 foreign language course is required.
+      0-2 foreign language courses are required.
     result:
       from: courses
       claim: record
