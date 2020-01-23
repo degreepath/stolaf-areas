@@ -71,7 +71,8 @@ requirements:
 
   Interim Credits:
     message: |
-      3 credits must be earned in three separate Interims. 1 credit must be taken in Interim of your first year.
+      3 credits must be earned in three separate Interims. 1 credit must be
+      taken in Interim of your first year.
     result:
       from: courses
       load_potentials: false
@@ -82,10 +83,13 @@ requirements:
           - {semester: {$eq: 2}}
           - {course: {$eq: REG 0003}}
       all:
-        - assert: {sum(credits): {$gte: 3}}
+        - assert: {count(courses): {$gte: 3}}
 
-        - where: {year: {$eq: $matriculation-year}}
-          assert: {sum(credits): {$gte: 1}}
+        - where:
+            $or:
+              - year: {$eq: $matriculation-year}
+              - $and: [{course: {$eq: REG 0003}}, {semester: {$eq: 9}}]
+          assert: {count(courses): {$gte: 1}}
 
   Cumulative Grade Point Average:
     message: |
