@@ -158,6 +158,9 @@ requirements:
       any:
         - both:
             - {course: MATH 220, from_claimed: true}
+            - {course: MATH 320, from_claimed: true}
+        - both:
+            - {course: MATH 220, from_claimed: true}
             - {course: MATH 356, from_claimed: true}
         - both:
             - {course: MATH 220, from_claimed: true}
