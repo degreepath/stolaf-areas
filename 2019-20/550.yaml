@@ -4,6 +4,11 @@ type: major
 code: '550'
 degree: B.A.
 
+credit:
+  name=AP Comparative Government: '1.00'
+  name=AP U.S. Government: '1.00'
+  name=IB Global Politics: '1.00'
+
 result:
   all:
     - requirement: Research Methods
