@@ -26,6 +26,7 @@ result:
           $and:
             - {level: {$eq: 100}}
             - {subject: {$eq: BIO}}
+            - {type: {$nin: [Discussion, Ensemble, Flac, Lab]}}
         assert: {count(courses): {$lte: 2}}
 
       - where: {course: {$eq: BIO 298}}
