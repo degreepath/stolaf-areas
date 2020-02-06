@@ -64,4 +64,4 @@ requirements:
             $or:
               - course: {$eq: RACE 121}
               - course: {$eq: SOAN 264}
-      assert: {count(courses): {$gte: 4}}
+      assert: {count(courses): {$gte: 3}}
