@@ -33,6 +33,7 @@ requirements:
         - course: STAT 212
         - {course: ECON 263, hidden: true}
         - {course: PSCI 220, hidden: true}
+        - ap: AP Statistics
 
   Electives:
     message: |
