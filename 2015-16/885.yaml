@@ -37,7 +37,11 @@ requirements:
       all:
         - assert: {count(courses): {$gte: 4}}
 
-        - where: {subject: {$neq: NORW}}
+        - where:
+            $or:
+              - subject: {$neq: NORW}
+              - institution: {$neq: STOLAF}
+              - course: {$eq: NORW 296}
           assert: {count(courses): {$gte: 2}}
           message: |
             Two or three courses from other departments
