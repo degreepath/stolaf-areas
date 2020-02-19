@@ -67,10 +67,12 @@ requirements:
   Juried Shows:
     department_audited: true
     message:
-      Majors must participate in two juried shows. To fulfill the the
-      requirements of the studio art major, you must either enter the student
-      juried show in spring semester twice, or enter our student juried show
-      once and one other non-class related exhibition on or off campus.
+      Majors must participate in two juried shows.
+
+      To fulfill the the requirements of the studio art major, you must either
+      enter the student juried show in spring semester twice, or enter our
+      student juried show once and one other non-class related exhibition on
+      or off campus.
 
   Senior Studies in Studio Art:
     result:
