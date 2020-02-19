@@ -39,13 +39,13 @@ requirements:
   Arts and Humanities:
     result:
       from: courses
-      where: {attribute: {$eq: envst_arts}}
+      where: {attribute: {$eq: envst_humanities}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Elective:
     result:
       from: courses
-      where: {attribute: {$in: [envst_natural, envst_social, envst_arts]}}
+      where: {attribute: {$in: [envst_natural, envst_social, envst_humanities]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Experiential:
