@@ -9,20 +9,25 @@ result:
     - course: SPAN 250
     - course: SPAN 275
     - course: SPAN 276
-    - requirement: Electives
+    - requirement: Additional Requirements
 
   audit:
     where: {is_stolaf: {$eq: false}}
     assert: {count(courses): {$lte: 2}}
 
 requirements:
-  Electives:
+  Additional Requirements:
     message: |
-      You must take one (1) additional level III course from St. Olaf College,
-      and three (3) electives above the the 250 level.
+      Either SPAN 313 or SPAN 314 is required.
+
+      Additionally, you must take one (1) additional on-campus level III
+      course, and three (3) electives above the 250 level.
 
       Of these five (5) courses, at least one must focus on Spain, and one on
       Latin America.
+
+      Level III courses may be repeated as long as a different topic is
+      offered each time.
 
       Courses from abroad or from other U.S. institutions count as 270-level
       electives.
