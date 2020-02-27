@@ -33,13 +33,9 @@ requirements:
 
   Level III:
     result:
-      count: 2
-      at_most: true
-      of:
-        - course: FREN 372
-        - course: FREN 373
-        - course: FREN 397
-        - course: FREN 399
+      from: courses
+      where: {attribute: {$eq: french_level_300}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   Electives:
     result:
