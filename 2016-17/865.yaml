@@ -25,11 +25,11 @@ requirements:
   Academic Internship:
     message: |
       Students pursuing the media studies concentration enroll in and complete
-      a **credit-bearing**, academic internship in a media-related field, e.g.,
-      film, television, video, radio, Internet, newspaper, magazine, book
-      publishing, journalism, public relations, marketing, advertising, or
-      graphic design. The internship may be undertaken at any time during a
-      program of study.
+      a <strong>credit-bearing</strong>, academic internship in a
+      media-related field, e.g., film, television, video, radio, Internet,
+      newspaper, magazine, book publishing, journalism, public relations,
+      marketing, advertising, or graphic design. The internship may be
+      undertaken at any time during a program of study.
 
     result:
       any:

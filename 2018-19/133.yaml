@@ -49,11 +49,16 @@ requirements:
     message: >
       At most one GREEK or LATIN course may be used as an elective
 
-      - One GREEK course may be used as an elective if the student satisfies
-        the required language portion of the major with Latin courses.
-
-      - One LATIN course may be used as an elective if the student satisfies
-        the required language portion of the major with Greek courses.
+      <ul>
+        <li>
+          One GREEK course may be used as an elective if the student satisfies
+          the required language portion of the major with Latin courses.
+        </li>
+        <li>
+          One LATIN course may be used as an elective if the student satisfies
+          the required language portion of the major with Greek courses.
+        </li>
+      </ul>
 
     result:
       from: courses

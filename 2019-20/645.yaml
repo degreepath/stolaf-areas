@@ -20,15 +20,21 @@ requirements:
       course: WMGST 399
 
   Additional Courses:
-    message: >
+    message: |
       Seven additional courses, with the following criteria:
 
-      1. One must be at level III
-      2. One course must focus on women's lived experiences
-      3. One course from each of the following areas:
-          - Theory and methods applicable to studying gender
-          - Gender in historical contexts
-          - Gender in global, comparative, or diverse contexts
+      <ol>
+        <li>One must be at level III</li>
+        <li>One course must focus on women's lived experiences</li>
+        <li>
+          One course from each of the following areas:
+          <ul>
+            <li>Theory and methods applicable to studying gender</li>
+            <li>Gender in historical contexts</li>
+            <li>Gender in global, comparative, or diverse contexts</li>
+          </ul>
+        </li>
+      </ol>
 
     result:
       from: courses
