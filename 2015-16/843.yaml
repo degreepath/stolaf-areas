@@ -20,6 +20,7 @@ requirements:
 
   Around The World:
     result:
+      at_most: true
       either:
         - requirement: World Language
         - requirement: World Region
