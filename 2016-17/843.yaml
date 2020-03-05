@@ -66,32 +66,52 @@ requirements:
         result:
           at_most: true
           any:
-            - from: courses
+            - requirement: US
+            - requirement: Central & South America
+            - requirement: Europe
+            - requirement: Middle East & North Africa
+            - requirement: Sub-saharan Africa
+            - requirement: Asia
+
+        requirements:
+          US:
+            result:
+              from: courses
               where: {attributes: {$eq: intlr_region_us}}
               limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
               assert: {count(courses): {$gte: 2, at_most: true}}
 
-            - from: courses
+          Central & South America:
+            result:
+              from: courses
               where: {attributes: {$eq: intlr_region_central_south_america}}
               limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
               assert: {count(courses): {$gte: 2, at_most: true}}
 
-            - from: courses
+          Europe:
+            result:
+              from: courses
               where: {attributes: {$eq: intlr_region_europe}}
               limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
               assert: {count(courses): {$gte: 2, at_most: true}}
 
-            - from: courses
+          Middle East & North Africa:
+            result:
+              from: courses
               where: {attributes: {$eq: intlr_region_middle_east_north_africa}}
               limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
               assert: {count(courses): {$gte: 2, at_most: true}}
 
-            - from: courses
+          Sub-saharan Africa:
+            result:
+              from: courses
               where: {attributes: {$eq: intlr_region_sub_saharan_africa}}
               limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
               assert: {count(courses): {$gte: 2, at_most: true}}
 
-            - from: courses
+          Asia:
+            result:
+              from: courses
               where: {attributes: {$eq: intlr_region_asia}}
               limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
               assert: {count(courses): {$gte: 2, at_most: true}}
