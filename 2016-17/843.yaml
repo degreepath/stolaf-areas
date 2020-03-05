@@ -36,13 +36,17 @@ requirements:
         result:
           from: courses
           where:
-            $or:
-              - $and:
-                  - subject: {$in: [GERM, FREN, SPAN]}
-                  - number: {$gte: 250}
-              - $and:
-                  - subject: {$in: [CHIN, GREEK, JAPAN, LATIN, NORW, RUSSN]}
-                  - number: {$gte: 232}
+            attributes:
+              $in:
+                - fol_beyond_chin
+                - fol_beyond_fren
+                - fol_beyond_germ
+                - fol_beyond_greek
+                - fol_beyond_japan
+                - fol_beyond_latin
+                - fol_beyond_norw
+                - fol_beyond_russn
+                - fol_beyond_span
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       World Region:
