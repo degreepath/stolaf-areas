@@ -63,23 +63,38 @@ requirements:
           Science Department. Area studies courses should have at least 50
           percent of the course content dedicated to target country or region.
 
-        requirements:
-          Course 1:
-            result:
-              from: courses
-              where: {attributes: {$eq: intl_region_1}}
-              assert: {count(courses): {$gte: 1}}
-
-          Course 2:
-            result:
-              from: courses
-              where: {attributes: {$eq: intl_region_2}}
-              assert: {count(courses): {$gte: 1}}
-
         result:
-          all:
-            - requirement: Course 1
-            - requirement: Course 2
+          at_most: true
+          any:
+            - from: courses
+              where: {attributes: {$eq: intlr_region_us}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+            - from: courses
+              where: {attributes: {$eq: intlr_region_central_south_america}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+            - from: courses
+              where: {attributes: {$eq: intlr_region_europe}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+            - from: courses
+              where: {attributes: {$eq: intlr_region_middle_east_north_africa}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+            - from: courses
+              where: {attributes: {$eq: intlr_region_sub_saharan_africa}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+            - from: courses
+              where: {attributes: {$eq: intlr_region_asia}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
 
   International Political Science:
     result:
