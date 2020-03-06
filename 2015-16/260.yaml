@@ -121,7 +121,7 @@ emphases:
                 - envst_envsci_level_3
           limit:
             - at_most: 1
-              where: {subject: {$neq: ENVST}}
+              where: {subject: {$nin: [ENVST, BI/ES, ES/PS, AS/ES]}}
               message: At least one course must be in the ENVST subject code
 
           all:
