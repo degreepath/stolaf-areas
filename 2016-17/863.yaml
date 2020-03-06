@@ -13,7 +13,11 @@ result:
     - requirement: Capstone
 
   audit:
-    where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
+    where:
+      $and:
+        - {grade: {$lt: C}}
+        - {is_in_progress: {$eq: false}}
+        - {grade_option: {$eq: grade}}
     assert: {count(courses): {$eq: 0}}
 
 requirements:
