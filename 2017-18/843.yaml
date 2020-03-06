@@ -6,12 +6,18 @@ degree: B.A.
 
 result:
   all:
-    - course: PSCI 121
+    - requirement: International Relations
     - requirement: Complementary
     - requirement: Around The World
     - requirement: International Political Science
 
 requirements:
+  International Relations:
+    result:
+      from: courses
+      where: {attributes: {$eq: intlr_intro}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
   Complementary:
     result:
       from: courses
