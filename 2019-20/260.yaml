@@ -13,6 +13,16 @@ result:
     - course: ENVST 237
     - course: ENVST 399
 
+    - name: Required Emphasis
+      if:
+        from: areas
+        # arts, natural science, social science
+        where: {code: {$in: ['708', '733', '738']}}
+        assert: {count(areas): {$eq: 0}}
+      message: >
+        You must declare one of the Environmental Studies areas of emphasis.
+      department-audited: true
+
 emphases:
   708:
     name: Arts and Humanities
