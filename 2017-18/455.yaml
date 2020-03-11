@@ -239,8 +239,8 @@ emphases:
             name:
               $in:
                 - Instrumental Chamber Recital
-                - Vocal Chamber Recital
-                - Voice Chamber Recital
+                - Instrumental Chamber Ensemble
+                - Instrumental Lab Choir
           assert: {count(performances): {$gte: 2}}
 
   731:
@@ -316,7 +316,8 @@ emphases:
           where:
             name:
               $in:
-                - Instrumental Chamber Recital
-                - Vocal Chamber Recital
                 - Voice Chamber Recital
+                - Vocal Chamber Recital
+                - Vocal Chamber Ensemble
+                - Vocal Lab Choir
           assert: {count(performances): {$gte: 2}}
