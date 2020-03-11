@@ -138,10 +138,14 @@ emphases:
         result:
           from: music performances
           where:
-            name:
-              $in:
-                - Junior Composition Recital
-                - Senior Composition Recital
+            $or:
+              - name:
+                  $in:
+                    - Junior Composition Recital
+                    - Senior Composition Recital
+              - $and:
+                  - name: {$eq: Student Recital}
+                  - role: {$eq: Composer}
           assert: {count(performances): {$gte: 2}}
 
       Portfolio:
