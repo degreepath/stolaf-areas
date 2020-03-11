@@ -71,21 +71,10 @@ requirements:
       assert: {count(terms): {$gte: 4, at_most: true}}
 
   Required Performances:
-    message: |
-      2 solo performances on official student recitals.
-
-      One must be in junior or senior year.
+    message: Two solo performances on a St. Olaf Student Recital
     result:
       from: music performances
-      where:
-        name:
-          $in:
-            - Instrumental Student Recital
-            - Vocal Student Recital
-            - Voice BM-E
-            - Instrumental BM-E
-            - Voice BM-P
-            - Instrumental BM-P
+      where: {role: {$eq: Soloist}}
       assert: {count(performances): {$gte: 2}}
 
   Required Concert Attendance:

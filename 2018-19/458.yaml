@@ -116,22 +116,10 @@ requirements:
         count(terms): {$gte: $terms-since-declaring-major, at_most: true}
 
   Required Performances:
-    message:
-      Two solo performances on a St. Olaf Student Recital.
+    message: Two solo performances on a St. Olaf Student Recital
     result:
       from: music performances
-      where:
-        name:
-          $in:
-            - Instrumental Student Recital
-            - Vocal Student Recital
-            - Voice Student Recital
-            - 'Exam: 450'
-            - 'Exam: 453'
-            - 'Exam: 454'
-            - 'Exam: 455'
-            - 'Exam: 456'
-            - 'Exam: 458'
+      where: {role: {$eq: Soloist}}
       assert: {count(performances): {$gte: 2}}
 
   Required Recital Attendance:

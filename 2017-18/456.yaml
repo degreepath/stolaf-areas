@@ -111,21 +111,10 @@ requirements:
 
     requirements:
       Solos:
-        message: |
-          2 solo performances on a St. Olaf Student Recital (may include
-          Entrance and Continuance)
+        message: Two solo performances on a St. Olaf Student Recital
         result:
           from: music performances
-          where:
-            name:
-              $in:
-                - Instrumental Student Recital
-                - Vocal Student Recital
-                - Voice Student Recital
-                - Vocal BM-P
-                - Voice BM-P
-                - Instrumental BM-P
-                - $current-area-code-music-exam
+          where: {role: {$eq: Soloist}}
           assert: {count(performances): {$gte: 2}}
 
       Entrance Examination:
