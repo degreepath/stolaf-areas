@@ -1,0 +1,185 @@
+---
+name: Quantitative Economics
+type: major
+code: '230'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - name: Foundation
+      result:
+        all:
+          - course: MATH 220
+
+    - name: Core
+      message: >
+        The department does not accept transfer credit for core courses.
+      result:
+        all:
+          - {course: ECON 261, grade_option: grade}
+          - {course: ECON 262, grade_option: grade}
+
+          - at_most: true
+            any:
+              - {course: ECON 260, grade_option: grade}
+              - {course: ECON 263, grade_option: grade}
+              - both:
+                  - {course: STAT 272, grade_option: grade}
+                  - {course: ECON 384, grade_option: grade}
+              - both:
+                  - {course: STAT 272, grade_option: grade}
+                  - {course: ECON 385, grade_option: grade}
+
+    - name: Economic Analysis
+      result:
+        from: courses
+        where: {attribute: {$eq: econ_analysis}}
+        limit:
+          - at-most: 1 course
+            where: {course: {$in: [ECON 384, ECON 385]}}
+        all:
+          - assert: {count(courses): {$gte: 4, at_most: true}}
+
+          - where: {level: {$eq: 200}}
+            assert: {count(courses): {$gte: 1}}
+
+          - where: {level: {$eq: 300}}
+            assert: {count(courses): {$gte: 2}}
+
+    - name: Quantitative Research Experience
+      message: >
+        Students must complete two courses in economics designated as
+        Quantitative Research (QR) courses.
+
+        The QR designation indicates that the course includes a substantial
+        research component that involves advanced mathematical and/or
+        econometric modeling. These can be courses taken to satisfy
+        requirements for the major, to fulfill requirements for an area of
+        emphasis, or as general electives.
+
+      result:
+        from: courses
+        allow_claimed: true
+        where: {attributes: {$eq: econ_quant_experience}}
+        assert: {count(courses): {$gte: 2, at_most: true}}
+
+
+emphases:
+  710:
+    name: Finance
+
+    result:
+      both:
+        - requirement: Finance
+        - requirement: Electives
+      audit:
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Finance:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 281
+            - course: MGMT 380
+
+      Electives:
+        result:
+          at_most: true
+          either:
+            - both:
+                - course: MGMT 250
+                - course: MGMT 251
+
+            - from: courses
+              where: {attributes: {$eq: econ_emph_finance_elective}}
+              assert: {count(courses): {$gte: 1}}
+
+  720:
+    name: International Economic Analysis and Policy
+
+    result:
+      all:
+        - requirement: International Economics
+        - requirement: Electives
+        - requirement: Non-Econ International Topics
+      audit:
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      International Economics:
+        result:
+          course: ECON 382
+
+      Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_intl_elective}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+      Non-Econ International Topics:
+        message:
+          An elective course outside of Economics Department that relates to
+          international topics.
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_intl_topics}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  725:
+    name: Management
+
+    result:
+      both:
+        - requirement: Management
+        - requirement: Electives
+      audit:
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Management:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 251
+            - course: MGMT 383
+
+      Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_mgmt_elective}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  736:
+    name: Public Policy
+
+    result:
+      both:
+        - requirement: Public Policy
+        - requirement: Electives
+      audit:
+        where: {$and: [{grade: {$lt: C}}, {is_in_progress: {$eq: false}}]}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Public Policy:
+        result:
+          course: ECON 371
+
+      Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_pubpol_elective}}
+          assert: {count(courses): {$gte: 3, at_most: true}}
+
+
+multicountable:
+  ECON 385:
+    - [Core]
+    - [Economic Analysis]
