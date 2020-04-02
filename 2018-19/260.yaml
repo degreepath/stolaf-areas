@@ -151,16 +151,15 @@ emphases:
                 - envst_envsci
                 - envst_envsci_level_3
 
-          limit:
-            - at_most: 1
-              where: {subject: {$nin: [ENVST, BI/ES, ES/PS, AS/ES]}}
-              message: At least one course must be in the ENVST subject code
-
           all:
             - assert: {count(courses): {$gte: 3}}
 
             - where: {attribute: {$eq: envst_envsci_level_3}}
               assert: {count(courses): {$gte: 1}}
+
+            - where: {subject: {$in: [ENVST, BI/ES, ES/PS, AS/ES]}}
+              assert: {count(courses): {$gte: 1}}
+              message: At least one course must be in the ENVST subject code
 
   738:
     name: Social Science
