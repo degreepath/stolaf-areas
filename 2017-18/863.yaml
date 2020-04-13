@@ -15,7 +15,7 @@ result:
   audit:
     where:
       $and:
-        - {grade: {$lt: C}}
+        - {grade: {$lt: C, $during_covid: C-}}
         - {is_in_progress: {$eq: false}}
         - {grade_option: {$eq: grade}}
     assert: {count(courses): {$eq: 0}}
