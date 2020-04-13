@@ -18,7 +18,7 @@ result:
           $and:
             - {subject: {$eq: CHEM}}
             - $or:
-                - {grade: {$gte: C}}
+                - {grade: {$gte: C, $during_covid: C-}}
                 - {grade_code: {$eq: IP}}
             - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
             - {number: {$gte: 240}}
@@ -29,7 +29,7 @@ result:
           $and:
             - {subject: {$eq: CHEM}}
             - $or:
-                - {grade: {$gte: C}}
+                - {grade: {$gte: C, $during_covid: C-}}
                 - {grade_code: {$eq: IP}}
         assert: {count(courses): {$gte: 6}}
 
