@@ -11,6 +11,10 @@ result:
     - requirement: Level III
     - requirement: Electives
 
+limit:
+  - at-most: 1 course
+    where: {course: {$in: [ECON 384, ECON 385]}}
+
 requirements:
   Prerequisite:
     result:
