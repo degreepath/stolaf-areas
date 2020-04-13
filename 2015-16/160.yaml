@@ -17,7 +17,7 @@ result:
       - where:
           $and:
             - $or:
-                - grade: {$gte: C}
+                - grade: {$gte: C, $during_covid: C-}
                 - is_in_progress: {$eq: true}
             - level: {$in: [200, 300]}
         assert: {count(courses): {$gte: 4}}
