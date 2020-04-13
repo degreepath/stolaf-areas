@@ -13,7 +13,7 @@ limit:
   - at-most: 0
     where:
       $and:
-        - grade: {$lt: C}
+        - grade: {$lt: C, $during_covid: C-}
         - grade_code: {$neq: IP}
         - course_type: {$neq: AP}
 
