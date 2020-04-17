@@ -1,0 +1,41 @@
+---
+name: Film and Media Studies
+type: concentration
+code: '000'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Production Elective
+    - requirement: Electives
+  audit:
+    where: {is_stolaf: {$eq: false}}
+    assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Core:
+    result:
+      all:
+        # - {course: FILM 101, alternative: {course: MEDIA 160, year: '< 2021'}}
+        - course: FILM 101
+        - at_most: true
+          either:
+            - course: FILM 140
+            - course: MEDIA 160
+
+  Production Elective:
+    result:
+      from: courses
+      where: {attributes: {$eq: filmmedia_production_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Remaining Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: filmmedia_elective}}
+      all:
+        - assert: {count(courses): {$gte: 2, at_most: true}}
+
+        - where: {subject: {$in: [FILM, MEDIA, FMS]}}
+          assert: {count(courses): {$gte: 1}}
