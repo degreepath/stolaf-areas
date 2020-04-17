@@ -1,0 +1,63 @@
+---
+name: Engineering
+type: concentration
+code: '000'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Physics
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
+        - name: Calculus I
+          result:
+            at_most: true
+            either:
+              - course: MATH 119
+              - course: MATH 120
+
+        - course: MATH 126
+        - course: MATH 220
+        - course: MATH 226
+        - course: MATH 230
+
+        - name: Chemistry
+          result:
+            at_most: true
+            any:
+              - course: CHEM 125
+              - both:
+                  - course: CHEM 121
+                  - course: CHEM 123
+              - course: CHEM 122
+              - course: CH/BI 125
+
+  Physics:
+    result:
+      at_most: true
+      any:
+        - name: Track 1
+          result:
+            all:
+              - course: PHYS 124
+              - course: PHYS 125
+              - at_most: true
+                either:
+                  - course: CSCI 121
+                  - course: CSCI 125
+        - name: Track 2
+          result:
+            all:
+              - course: PHYS 130
+              - course: PHYS 131
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: engr_elective}}
+      assert: {count(courses): {$gte: 3, at_most: true}}
