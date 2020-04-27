@@ -20,6 +20,15 @@ result:
       - where: {level: {$eq: 100}}
         assert: {count(courses): {$lte: 3}}
 
+      # Students may count one St. Olaf course taken outside of the department 
+      # toward the major, by application or by successfully completing a course 
+      # on the department's pre-approved list.
+      - where: 
+          $and:
+            - subject: {$neq: HIST}
+            - is_stolaf: {$eq: true}
+        assert: {count(courses): {$lte: 1}}
+
 requirements:
   Europe and Russia:
     result:
