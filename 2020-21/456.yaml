@@ -1,0 +1,427 @@
+---
+name: Performance
+type: major
+code: '456'
+degree: B.M.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Musicology
+    - requirement: Performance Studies
+    - requirement: Electives
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 114
+        - course: MUSIC 141
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 237
+        - course: MUSIC 251
+
+  Musicology:
+    result:
+      from: courses
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          - $and:
+              - subject: {$eq: MUSPF}
+              - level: {$eq: 100}
+              - name: {$neq: $primary-performing-medium}
+
+      limit:
+        - at-most: 0
+          where: {number: {$in: [294, 298, 394, 398]}}
+
+        - at-most: 1 credit
+          where: {course: {$eq: MUSIC 275}}
+
+        - at-most: 1 credit
+          where: {subject: {$eq: MUSPF}}
+
+      all:
+        - assert:
+            sum(credits):
+              at_most: true
+              $gte: 3
+
+              $ifs:
+                has-area-code(711): + 0.50
+                has-area-code(712): + 2.25
+                has-area-code(713): + 2.75
+                has-area-code(714): + 1.75
+                has-area-code(716): + 2.25
+
+        - where:
+            $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+  Performance Studies:
+    message:
+      Once accepted into the B.M. Performance program, students must register
+      for a minimum of 6 semesters of 1.0 credit lessons (4 at Level I,
+      subsequent at Level II)
+
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSPF}
+          - credits: {$eq: 1.0}
+          - level: {$in: [100, 200]}
+          - name: {$eq: $primary-performing-medium}
+          - institution: {$eq: STOLAF}
+
+      all:
+        - assert: {count(terms): {$gte: 6, at_most: true}}
+
+        - where: {level: {$eq: 100}}
+          assert: {count(terms): {$lte: 4}}
+
+  Required Performances:
+    result:
+      all:
+        - requirement: Solos
+        - requirement: Entrance Examination
+        - requirement: Continuance Examination
+        - requirement: Junior Recital
+        - requirement: Senior Recital
+
+    requirements:
+      Solos:
+        message: |
+          2 solo performances on a St. Olaf Student Recital (may include
+          Entrance and Continuance)
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Student Recital
+                - Vocal Student Recital
+                - Voice Student Recital
+                - Vocal BM-P
+                - Voice BM-P
+                - Instrumental BM-P
+                - $current-area-code-music-exam
+          assert: {count(performances): {$gte: 2}}
+
+      Entrance Examination:
+        result:
+          from: music performances
+          where:
+            $and:
+              - name: {$eq: $current-area-code-music-exam}
+              - status: {$eq: entrance}
+          assert: {count(performances): {$gte: 1}}
+
+      Continuance Examination:
+        result:
+          from: music performances
+          where:
+            $and:
+              - name: {$eq: $current-area-code-music-exam}
+              - status: {$eq: continuance}
+          assert: {count(performances): {$gte: 1}}
+
+      Junior Recital:
+        result:
+          from: music performances
+          where:
+            $or:
+              - name: {$eq: Instrumental Junior Recital}
+              - name: {$eq: Vocal Junior Recital}
+              - name: {$eq: Voice Junior Recital}
+              - $and:
+                  - name: {$eq: Junior Recital}
+                  - role: {$eq: Soloist}
+          assert: {count(performances): {$gte: 1}}
+
+      Senior Recital:
+        result:
+          from: music performances
+          where:
+            $or:
+              - name: {$eq: Instrumental Senior Recital}
+              - name: {$eq: Vocal Senior Recital}
+              - name: {$eq: Voice Senior Recital}
+              - name: {$eq: Composition Senior Recital}
+              - $and:
+                  - name: {$eq: Senior Recital}
+                  - role: {$eq: Soloist}
+          assert: {count(performances): {$gte: 1}}
+
+  Official Ensemble Participation:
+    message:
+      Every semester in an official ensemble
+    result:
+      from: courses
+      where: {subject: {$eq: MUSEN}}
+      assert:
+        count(terms): {$gte: $terms-since-declaring-major, at_most: true}
+
+  Required Recital Attendance:
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
+
+emphases:
+  711:
+    name: Voice
+
+    result:
+      all:
+        - requirement: Keyboard Proficiency
+        - requirement: Lyric Diction
+        - requirement: Vocal Solo Literature
+        - requirement: Vocal Pedagogy
+        - requirement: Elective
+        - requirement: Foreign Language
+
+    requirements:
+      Lyric Diction:
+        result:
+          all:
+            - course: MUSIC 263
+            - course: MUSIC 264
+
+      Vocal Solo Literature:
+        result:
+          all:
+            - course: MUSIC 281
+            - course: MUSIC 282
+
+      Vocal Pedagogy:
+        result:
+          all:
+            - course: MUSIC 291
+            - course: MUSIC 292
+
+      Elective:
+        result:
+          at_most: true
+          any:
+            - course: MUSIC 267
+            - course: MUSIC 268
+            - course: MUSIC 269
+
+      Keyboard Proficiency:
+        result:
+          all:
+            - proficiency: Keyboard Level I
+              course: {course: MUSIC 161}
+            - proficiency: Keyboard Level II
+              course: {course: MUSIC 162}
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261}
+            - proficiency: Keyboard Level IV
+              course: {course: MUSIC 262}
+
+      Foreign Language:
+        message:
+          Vocal performance majors must satisfactorily complete the
+          second-level course of two languages. One of these must be French or
+          German.
+        result:
+          from: courses
+          where:
+            attribute:
+              $in:
+                - bm_fol_chin
+                - bm_fol_fren
+                - bm_fol_germ
+                - bm_fol_greek
+                - bm_fol_japan
+                - bm_fol_latin
+                - bm_fol_norw
+                - bm_fol_russn
+                - bm_fol_span
+          all:
+            - assert: {count(courses): {$gte: 2, at_most: true}}
+
+            - assert: {count(subjects): {$gte: 2}}
+
+            - where:
+                attributes:
+                  $in: [bm_fol_fren, bm_fol_germ]
+              assert: {count(courses): {$gte: 1}}
+
+  712:
+    name: Strings
+
+    result:
+      all:
+        - requirement: Keyboard Proficiency
+        - requirement: String Literature and Pedagogy
+        - requirement: Chamber Music
+
+    requirements:
+      Keyboard Proficiency:
+        result:
+          all:
+            - proficiency: Keyboard Level I
+              course: {course: MUSIC 161}
+            - proficiency: Keyboard Level II
+              course: {course: MUSIC 162}
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261}
+
+      String Literature and Pedagogy:
+        result:
+          course: MUSIC 295
+
+      Chamber Music:
+        result:
+          from: courses
+          where: {course: {$eq: MUSIC 275}}
+          assert: {count(terms): {$gte: 2, at_most: true}}
+
+  713:
+    name: Piano
+
+    result:
+      all:
+        - requirement: Required Courses
+
+    requirements:
+      Required Courses:
+        result:
+          all:
+            - course: MUSIC 270
+              grade: B-
+
+            - course: MUSIC 283
+            - course: MUSIC 293
+
+  714:
+    name: Winds, Brass, Percussion
+
+    result:
+      all:
+        - requirement: Proficiencies
+        - requirement: Pedagogy and Literature
+        - requirement: Instrumental Chamber Music
+
+    requirements:
+      Proficiencies:
+        result:
+          all:
+            - proficiency: Keyboard Level I
+              course: {course: MUSIC 161}
+            - proficiency: Keyboard Level II
+              course: {course: MUSIC 162}
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261}
+
+      Pedagogy and Literature:
+        result:
+          # MUSIC 298, name=Pedagogy and Literature
+          from: courses
+          where: {attributes: {$eq: music_emph_winds_brass_percussion_pedlit}}
+          assert: {count(courses): {$gte: 1}}
+
+      Instrumental Chamber Music:
+        result:
+          from: courses
+          where: {course: {$eq: MUSIC 275}}
+          assert: {count(terms): {$gte: 2, at_most: true}}
+
+  716:
+    name: Organ
+
+    result:
+      all:
+        - requirement: Advanced Keyboard Skills
+        - requirement: Keyboard Pedagogy
+        - requirement: Organ Literature
+
+    requirements:
+      Advanced Keyboard Skills:
+        result:
+          course: MUSIC 270
+          grade: B-
+
+      Keyboard Pedagogy:
+        result:
+          course: MUSIC 293
+
+      Organ Literature:
+        # MUSIC 298, name=Organ Literature
+        result:
+          from: courses
+          where: {attributes: {$eq: music_emph_organ_lit}}
+          assert: {count(courses): {$gte: 1}}
+
+  702:
+    name: Collaborative Keyboard Performance
+
+    result:
+      all:
+        - requirement: Chamber Music
+        - requirement: Vocal Solo Literature
+        - requirement: Collaborative Keyboard
+        - requirement: Required Performances
+        - requirement: Electives
+
+    requirements:
+      Chamber Music:
+        result:
+          from: courses
+          where: {course: {$eq: MUSIC 275}}
+          assert: {count(terms): {$gte: 2, at_most: true}}
+
+      Vocal Solo Literature:
+        result:
+          all:
+            - course: MUSIC 281
+            - course: MUSIC 282
+
+      Collaborative Keyboard:
+        result:
+          from: courses
+          where: {course: {$eq: MUSPF 106}}
+          assert: {count(terms): {$gte: 1, at_most: true}}
+
+      Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: music_coll_keyboard_elective}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+      Required Performances:
+        message:
+          2 collaborative performances on student recitals,
+          with at least one of those performances
+          during junior or senior year.
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Collab Keyboard Performance
+          assert: {count(performances): {$gte: 2}}

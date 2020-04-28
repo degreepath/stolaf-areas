@@ -1,0 +1,58 @@
+---
+name: Spanish
+type: major
+code: '620'
+degree: B.A.
+
+result:
+  all:
+    - course: SPAN 250
+    - course: SPAN 275
+    - course: SPAN 276
+    - requirement: Additional Requirements
+
+  audit:
+    where: {is_stolaf: {$eq: false}}
+    assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Additional Requirements:
+    message: |
+      Either SPAN 313 or SPAN 314 is required.
+
+      Additionally, you must take one (1) additional on-campus level III
+      course, and three (3) electives above the 250 level.
+
+      Of these five (5) courses, at least one must focus on Spain, and one on
+      Latin America.
+
+      Level III courses may be repeated as long as a different topic is
+      offered each time.
+
+      Courses from abroad or from other U.S. institutions count as 270-level
+      electives.
+
+    result:
+      from: courses
+      where: {attribute: {$eq: spanish_elective}}
+      all:
+        - assert: {count(courses): {$gte: 5}}
+
+        - where: {course: {$in: [SPAN 313, SPAN 314]}}
+          assert: {count(courses): {$gte: 1}}
+          message: Either SPAN 313 or SPAN 314
+
+        - where: {attribute: {$eq: spanish_focus_spain}}
+          assert: {count(courses): {$gte: 1}}
+          message: At least one must focus on Spain
+
+        - where: {attribute: {$eq: spanish_focus_latinamerica}}
+          assert: {count(courses): {$gte: 1}}
+          message: At least one must focus on Latin America
+
+        - where:
+            $and:
+              - level: {$eq: 300}
+              - is_stolaf: {$eq: true}
+          assert: {count(courses): {$gte: 2}}
+          message: Two 300-level courses

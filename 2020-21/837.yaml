@@ -1,0 +1,27 @@
+---
+name: German Studies
+type: concentration
+code: '837'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Electives
+
+  audit:
+    where: {s/u: {$eq: true}}
+    assert: {count(courses): {$lte: 1}}
+
+requirements:
+  Language:
+    result:
+      from: courses
+      where: {attributes: {$eq: german_langauge}}
+      assert: {count(courses): {$gte: 3}}
+
+  Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: german_elective}}
+      assert: {count(courses): {$eq: 2}}

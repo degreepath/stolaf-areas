@@ -1,0 +1,129 @@
+---
+name: International Relations
+type: concentration
+code: '843'
+degree: B.A.
+
+result:
+  all:
+    - requirement: International Relations
+    - requirement: Complementary
+    - requirement: Around The World
+    - requirement: International Political Science
+
+requirements:
+  International Relations:
+    result:
+      from: courses
+      where: {attributes: {$eq: intlr_intro}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Complementary:
+    result:
+      from: courses
+      where: {attributes: {$eq: intlr_complementary}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Around The World:
+    result:
+      at_most: true
+      either:
+        - requirement: World Language
+        - requirement: World Region
+
+    requirements:
+      World Language:
+        message: |
+          One course numbered 232 or higher in Chinese, Greek, Japanese,
+          Latin, Norwegian, or Russian; or one course numbered 250 or higher
+          in French, German, or Spanish.
+
+          The course must be taught in the target language.
+
+        result:
+          from: courses
+          where:
+            attributes:
+              $in:
+                - fol_beyond_chin
+                - fol_beyond_fren
+                - fol_beyond_germ
+                - fol_beyond_greek
+                - fol_beyond_japan
+                - fol_beyond_latin
+                - fol_beyond_norw
+                - fol_beyond_russn
+                - fol_beyond_span
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      World Region:
+        message: |
+          Two courses focused upon any single contemporary world region or
+          country (e.g., Africa, Asia, China, Germany, Japan, Latin America,
+          the Middle East, or Russia).
+
+          The courses can be from any department and may include courses
+          completed in approved St. Olaf off-campus programs.
+
+          No more than one course in this option can come from the Political
+          Science Department. Area studies courses should have at least 50
+          percent of the course content dedicated to target country or region.
+
+        result:
+          at_most: true
+          any:
+            - requirement: US
+            - requirement: Central & South America
+            - requirement: Europe
+            - requirement: Middle East & North Africa
+            - requirement: Sub-saharan Africa
+            - requirement: Asia
+
+        requirements:
+          US:
+            result:
+              from: courses
+              where: {attributes: {$eq: intlr_region_us}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+          Central & South America:
+            result:
+              from: courses
+              where: {attributes: {$eq: intlr_region_central_south_america}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+          Europe:
+            result:
+              from: courses
+              where: {attributes: {$eq: intlr_region_europe}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+          Middle East & North Africa:
+            result:
+              from: courses
+              where: {attributes: {$eq: intlr_region_middle_east_north_africa}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+          Sub-saharan Africa:
+            result:
+              from: courses
+              where: {attributes: {$eq: intlr_region_sub_saharan_africa}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+          Asia:
+            result:
+              from: courses
+              where: {attributes: {$eq: intlr_region_asia}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+  International Political Science:
+    result:
+      from: courses
+      where: {attributes: {$eq: intlr_polisci}}
+      assert: {count(courses): {$gte: 2, at_most: true}}

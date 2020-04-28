@@ -1,0 +1,67 @@
+---
+name: Film Studies
+type: concentration
+code: '834'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Intro to Film Studies
+    - requirement: History, Theory, or Cultural Meaning of Film
+    - requirement: Practical Film Studies
+    - requirement: Integrative Film Studies
+
+  audit:
+    all:
+      - where: {level: {$eq: 100}}
+        assert: {count(courses): {$lte: 2}}
+
+      - where: {is_stolaf: {$eq: false}}
+        assert: {count(courses): {$lte: 1}}
+
+requirements:
+  Intro to Film Studies:
+    result:
+      course: FILM 101
+
+  History, Theory, or Cultural Meaning of Film:
+    message: |
+      Two elective courses that focus on the history, theory, or cultural
+      expression of film within the United States or in a global context.
+      These courses examine the production, critical evaluation, cultural
+      history, and reception of film. Students take two courses to develop
+      fluency with the critical and theoretical methods of the discipline (see
+      list below).
+
+    result:
+      from: courses
+      where: {attribute: {$eq: film_meaning}}
+      assert: {count(courses): {$gte: 2}}
+
+  Practical Film Studies:
+    message: |
+      One elective course that focuses on practical aspects of film creation
+      or criticism. These courses emphasize modern film as professional
+      practice, asking students to master at least one of the main creative or
+      technical skill sets used in film-making (see list below).
+
+    result:
+      from: courses
+      where: {attribute: {$eq: film_practical}}
+      assert: {count(courses): {$gte: 1}}
+
+  Integrative Film Studies:
+    message: |
+      One more elective drawn from the above categories, or an integrative
+      film topics course approved by the program (see list below), or a
+      contract course worked out in consultation with the program director and
+      the instructor. This course challenges students to synthesize their
+      previous study of film in ways consistent with their own needs and
+      interests, emphasizing the interdisciplinary nature of film studies.
+      Students must present to the program director a brief explanation of how
+      their work in this course synthesizes previous interests.
+
+    result:
+      from: courses
+      where: {attribute: {$eq: film_integrative}}
+      assert: {count(courses): {$gte: 1}}

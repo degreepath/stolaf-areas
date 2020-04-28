@@ -1,0 +1,170 @@
+---
+name: Composition
+type: major
+code: '458'
+degree: B.M.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Composition Lessons
+    - requirement: Conducting
+    - requirement: Musicology
+    - requirement: Additional Upper-Level Elective
+    - requirement: Electives
+    - requirement: Musical Acoustics
+    - requirement: Performance Studies
+    - requirement: Required Recital Attendance
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Portfolio
+    - requirement: Continuance Examination
+    - requirement: Senior Recital
+
+limit:
+  - at-most: 0
+    where: {s/u: {$eq: true}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - {course: MUSIC 114}
+        - {course: MUSIC 141}
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162}
+        - {course: MUSIC 166}
+        - {course: MUSIC 167}
+        - {course: MUSIC 168}
+        - {course: MUSIC 169}
+        - {course: MUSIC 212}
+        - {course: MUSIC 214}
+        - {course: MUSIC 223}
+        - {course: MUSIC 225}
+        - {course: MUSIC 237}
+        - {course: MUSIC 251}
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261}
+        - proficiency: Keyboard Level IV
+          course: {course: MUSIC 262}
+        - {course: MUSIC 314}
+        - {course: MUSIC 324}
+
+  Composition Lessons:
+    result:
+      from: courses
+      where: {course: {$eq: MUSPF 326}}
+      assert: {count(courses): {$gte: 4}}
+
+  Conducting:
+    result:
+      either:
+        - course: MUSIC 252
+        - course: MUSIC 253
+
+  Musicology:
+    result:
+      from: courses
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Upper-Level Elective:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSIC}
+          - level: {$in: [200, 300]}
+      assert: {count(courses): {$gte: 3}}
+
+  Musical Acoustics:
+    result:
+      course: PHYS 252
+
+  Performance Studies:
+    message:
+      6 semesters; 4 in the same instrument/voice
+
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSPF}
+          - number: {$neq: 326}
+      all:
+        - assert: {count(terms_from_most_common_course): {$gte: 4}}
+        - assert: {count(terms): {$gte: 6}}
+
+  Official Ensemble Participation:
+    message:
+      Every semester in an official ensemble
+    result:
+      from: courses
+      where: {subject: {$eq: MUSEN}}
+      assert:
+        count(terms): {$gte: $terms-since-declaring-major, at_most: true}
+
+  Required Performances:
+    message:
+      Two solo performances on a St. Olaf Student Recital.
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+            - Voice Student Recital
+            - 'Exam: 450'
+            - 'Exam: 453'
+            - 'Exam: 454'
+            - 'Exam: 455'
+            - 'Exam: 456'
+            - 'Exam: 458'
+      assert: {count(performances): {$gte: 2}}
+
+  Required Recital Attendance:
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
+
+  Required Portfolio:
+    message: |
+      With approval of the composition faculty, the student submits a
+      portfolio of at least 3 compositions previously submitted for Level III
+      composition courses to the music office by May 1 of the senior year.
+    department_audited: true
+
+  Continuance Examination:
+    message: Continuance examination must be completed before senior recital.
+    result:
+      from: music performances
+      where:
+        $and:
+          - name: {$eq: $current-area-code-music-exam}
+          - status: {$eq: continuance}
+      assert: {count(performances): {$gte: 1}}
+
+  Senior Recital:
+    message: Senior recital of original works.
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Senior Composition Recital
+      assert: {count(performances): {$gte: 1}}

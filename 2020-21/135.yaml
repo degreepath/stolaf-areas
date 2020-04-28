@@ -1,0 +1,70 @@
+---
+name: Art History
+type: major
+code: '135'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Intro
+    - requirement: Methods
+    - requirement: Studio Art
+    - requirement: Electives
+    - requirement: Lasting Legacy
+
+requirements:
+  Intro:
+    result:
+      course: ART 153
+
+  Methods:
+    result:
+      course: ART 350
+
+  Studio Art:
+    result:
+      from: courses
+      where: {attribute: {$eq: arth_studio_art}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    message:
+      At least two courses must focus on Asian, African, Indigenous American,
+      or Near Eastern/Islamic art; at least two courses must focus on American
+      or European art; one course must cover art created before 1700 CE; one
+      must cover art created after 1700 CE.
+
+    result:
+      from: courses
+      where: {attribute: {$eq: arth_elective}}
+      all:
+        - assert: {count(courses): {$gte: 6}}
+
+        - where:
+            attribute:
+              $in:
+                - arth_locale_asian
+                - arth_locale_african
+                - arth_locale_indigenous_american
+                - arth_locale_near_eastern
+          assert: {count(courses): {$gte: 2}}
+
+        - where:
+            attribute:
+              $in:
+                - arth_locale_european
+                - arth_locale_american
+          assert: {count(courses): {$gte: 2}}
+
+        - where: {attribute: {$eq: arth_period_pre1700}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attribute: {$eq: arth_period_post1700}}
+          assert: {count(courses): {$gte: 1}}
+
+  Lasting Legacy:
+    department_audited: true
+    message:
+      Majors must successfully complete the non-credit, senior "lasting legacy"
+      project or its equivalent.

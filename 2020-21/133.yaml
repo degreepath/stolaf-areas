@@ -1,0 +1,100 @@
+---
+name: Ancient Studies
+type: major
+code: '133'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Ancient History
+    - requirement: Classics
+    - requirement: Electives
+    - requirement: Independent Research
+
+requirements:
+  Language:
+    result:
+      at_most: true
+      either:
+        - requirement: Greek Language
+        - requirement: Latin Language
+
+    requirements:
+      Greek Language:
+        result: &greek-lang
+          from: courses
+          where: {attribute: {$eq: ancient_greek_lang}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Latin Language:
+        result: &latin-lang
+          from: courses
+          where: {attribute: {$eq: ancient_latin_lang}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Ancient History:
+    result:
+      from: courses
+      where: {attribute: {$eq: ancient_history}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Classics:
+    result:
+      from: courses
+      where: {subject: {$eq: CLASS}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    message: >
+      At most one GREEK or LATIN course may be used as an elective
+
+      <ul>
+        <li>
+          One GREEK course may be used as an elective if the student satisfies
+          the required language portion of the major with Latin courses.
+        </li>
+        <li>
+          One LATIN course may be used as an elective if the student satisfies
+          the required language portion of the major with Greek courses.
+        </li>
+      </ul>
+
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: ancient_elective}
+
+          - $if: *greek-lang
+            $then:
+              attribute: {$eq: ancient_elective_if_greek_lang}
+            $else:
+              $if: *latin-lang
+              $then:
+                attribute: {$eq: ancient_elective_if_latin_lang}
+
+      all:
+        - assert: {count(courses): {$gte: 4, at_most: true}}
+
+        - if:
+            where: {subject: {$eq: GREEK}}
+            assert: {count(courses): {$gte: 1}}
+          then:
+            where: {subject: {$eq: GREEK}}
+            assert: {count(courses): {$lte: 1}}
+
+        - if:
+            where: {subject: {$eq: LATIN}}
+            assert: {count(courses): {$gte: 1}}
+          then:
+            where: {subject: {$eq: LATIN}}
+            assert: {count(courses): {$lte: 1}}
+
+  Independent Research:
+    message:
+      Any Independent Research course.
+    result:
+      from: courses
+      where: {attribute: {$eq: ancient_ir}}
+      assert: {count(courses): {$gte: 1}}

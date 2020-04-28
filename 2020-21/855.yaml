@@ -1,0 +1,44 @@
+---
+name: Linguistic Studies
+type: concentration
+code: '855'
+degree: B.A.
+
+result:
+  all:
+    - requirement: English Language and Linguistics
+    - requirement: Level III Elective
+    - requirement: Electives
+
+requirements:
+  English Language and Linguistics:
+    result:
+      course: LNGST 250
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: lngst_elective}}
+      limit:
+        - at-most: 1
+          where:
+            course:
+              $in:
+                - CSCI 121
+                - PHYS 130
+                - CSCI 125
+                - CSCI 251
+      all:
+        - assert: {count(courses): {$gte: 3}}
+        - assert: {count(subjects): {$gte: 2}}
+
+  Level III Elective:
+    message:
+      One approved level III course or approved advanced study experience.
+    result:
+      from: courses
+      where:
+        $and:
+          - attributes: {$eq: lngst_elective}
+          - level: {$eq: 300}
+      assert: {count(courses): {$gte: 1}}

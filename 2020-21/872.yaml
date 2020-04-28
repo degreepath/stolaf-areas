@@ -1,0 +1,15 @@
+---
+name: Middle Eastern Studies
+type: concentration
+code: '872'
+degree: B.A.
+
+result:
+  requirement: Electives
+
+requirements:
+  Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: mest_elective}}
+      assert: {count(courses): {$gte: 5}}
