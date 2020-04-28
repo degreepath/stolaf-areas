@@ -150,23 +150,27 @@ requirements:
         result:
           from: music performances
           where:
-            name:
-              $in:
-                - Instrumental Junior Recital
-                - Vocal Junior Recital
-                - Voice Junior Recital
+            $or:
+              - name: {$eq: Instrumental Junior Recital}
+              - name: {$eq: Vocal Junior Recital}
+              - name: {$eq: Voice Junior Recital}
+              - $and:
+                  - name: {$eq: Junior Recital}
+                  - role: {$eq: Soloist}
           assert: {count(performances): {$gte: 1}}
 
       Senior Recital:
         result:
           from: music performances
           where:
-            name:
-              $in:
-                - Instrumental Senior Recital
-                - Vocal Senior Recital
-                - Voice Senior Recital
-                - Composition Senior Recital
+            $or:
+              - name: {$eq: Instrumental Senior Recital}
+              - name: {$eq: Vocal Senior Recital}
+              - name: {$eq: Voice Senior Recital}
+              - name: {$eq: Composition Senior Recital}
+              - $and:
+                  - name: {$eq: Senior Recital}
+                  - role: {$eq: Soloist}
           assert: {count(performances): {$gte: 1}}
 
   Official Ensemble Participation:
