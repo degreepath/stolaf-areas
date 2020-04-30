@@ -6,37 +6,37 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Description
-    - requirement: Learning Experiences
-    - requirement: Senior Integrative Project
-    - requirement: Justification
+    - requirement: Approval for Integrative Studies Major
+    - template: individual_major
+    - requirement: Capstone Project
+    - requirement: Web Portfolio
 
 requirements:
-  Description:
+  Approval for Integrative Studies Major:
     department_audited: true
     message: |
-      A description of the proposed area of study.
+      The CIS is the academic home for students pursuing self-designed,
+      integrative majors. Students propose a sequence of courses, seminars,
+      independent studies, or experiential learning as the means of pursuing
+      an individual major. Proposals must include:
 
-  Learning Experiences:
-    message: |
-      A list of 11-12 courses and other learning experiences, with an
-      explanation of how each contributes to the major.
+      Each proposal must have the support of a faculty academic advisor. The
+      coherence, depth, and feasibility of each proposal are evaluated in a
+      Final Review Consultation (FRC) convened by the CIS, after which the
+      proposal is forwarded to a faculty committee that gives final approval
+      or returns the proposal for further revision. At the end of the senior
+      year, the student’s work in the major is presented to a CIS faculty
+      certification committee for review. Proposals for individual majors may
+      be submitted any time during the sophomore year and the first part of
+      the junior year.
+
+  Capstone Project:
     result:
-      from: courses
-      where: {attributes: {$eq: im_learning_experiences}}
-      assert: {count(courses): {$gte: 11}}
+      course: IS 392
 
-  Senior Integrative Project:
-    message: |
-      Initial plans for 2-3 potential senior integrative projects.
-    result:
-      from: courses
-      where: {attributes: {$eq: im_projects}}
-      assert: {count(courses): {$gte: 2}}
-
-  Justification:
+  Web Portfolio:
     department_audited: true
     message: |
-      A summary of the student’s preparation to carry out the proposed major,
-      and a justification of the major as a coherent, integrative academic
-      plan.
+      All individual majors must complete a Web Portfolio.
+      
+      The final version is due in May of the senior year.

@@ -6,12 +6,13 @@ degree: B.A.
 
 result:
   all:
-    - course: IS 391
-    - course: IS 392
-    - requirement: Integrative Studies
+    - requirement: Approval for Integrative Studies Major
+    - template: individual_major
+    - requirement: Capstone Project
+    - requirement: Web Portfolio
 
 requirements:
-  Integrative Studies:
+  Approval for Integrative Studies Major:
     department_audited: true
     message: |
       The CIS is the academic home for students pursuing self-designed,
@@ -28,3 +29,16 @@ requirements:
       certification committee for review. Proposals for individual majors may
       be submitted any time during the sophomore year and the first part of
       the junior year.
+
+  Capstone Project:
+    result:
+      all:
+        - course: IS 391
+        - course: IS 392
+
+  Web Portfolio:
+    department_audited: true
+    message: |
+      All individual majors must complete a Web Portfolio.
+      
+      The final version is due in May of the senior year.
