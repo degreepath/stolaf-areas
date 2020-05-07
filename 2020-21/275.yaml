@@ -9,7 +9,7 @@ result:
     - requirement: Core
     - requirement: Production
     - requirement: Level III Elective
-    - requirement: Electives
+    - requirement: Remaining Electives
   audit:
     where: {is_stolaf: {$eq: false}}
     assert: {count(courses): {$lte: 2}}
