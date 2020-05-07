@@ -44,13 +44,16 @@ requirements:
     result:
       from: courses
       where:
-        attributes:
-          $in:
-            - engl_elective
-            - engl_topic_genre
-            - engl_topic_crosscultural
-            - engl_topic_literary_history
-            - engl_topic_crossdisciplinary
+        $or:
+          - attributes: {$eq: engl_elective}
+          - attributes: {$eq: engl_topic_genre}
+          - attributes: {$eq: engl_topic_crosscultural}
+          - attributes: {$eq: engl_topic_literary_history}
+          - attributes: {$eq: engl_topic_crossdisciplinary}
+          - $and:
+              - subject: {$eq: ENGL}
+              - number: {$nin: [294, 298, 394, 398]}
+              - is_stolaf: {$eq: true}
 
       limit:
         - at_most: 1
