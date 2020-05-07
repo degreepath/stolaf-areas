@@ -32,11 +32,13 @@ requirements:
 
   Capstone Project:
     result:
-      course: IS 392
+      all:
+        - {course: IS 391, optional: true}
+        - {course: IS 392}
 
   Web Portfolio:
     department_audited: true
     message: |
       All individual majors must complete a Web Portfolio.
-      
+
       The final version is due in May of the senior year.
