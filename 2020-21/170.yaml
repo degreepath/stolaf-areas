@@ -101,7 +101,8 @@ requirements:
         result:
           from: courses
           where: {attribute: {$eq: chem_elective}}
-          assert: {count(courses): {$gte: 1, at_most: true}}
+          # can't be at-most; Cs in major needs more sometimes
+          assert: {count(courses): {$gte: 1}}
 
   Physics:
     result:
