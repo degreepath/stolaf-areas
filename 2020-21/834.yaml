@@ -36,7 +36,7 @@ requirements:
     result:
       from: courses
       where: {attribute: {$eq: film_meaning}}
-      assert: {count(courses): {$gte: 2}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   Practical Film Studies:
     message: |
@@ -48,12 +48,12 @@ requirements:
     result:
       from: courses
       where: {attribute: {$eq: film_practical}}
-      assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Integrative Film Studies:
     message: |
       One more elective drawn from the above categories, or an integrative
-      film topics course approved by the program (see list below), or a
+      film topics course approved by the program, or a
       contract course worked out in consultation with the program director and
       the instructor. This course challenges students to synthesize their
       previous study of film in ways consistent with their own needs and
@@ -63,5 +63,9 @@ requirements:
 
     result:
       from: courses
-      where: {attribute: {$eq: film_integrative}}
-      assert: {count(courses): {$gte: 1}}
+      where: 
+        $or:
+          - attribute: {$eq: film_integrative}
+          - attribute: {$eq: film_practical}
+          - attribute: {$eq: film_meaning}
+      assert: {count(courses): {$gte: 1, at_most: true}}
