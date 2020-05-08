@@ -4,6 +4,9 @@ type: major
 code: '280'
 degree: B.A.
 
+credit:
+  name=AP French: '1.00'
+
 result:
   all:
     - requirement: Level II (250)
