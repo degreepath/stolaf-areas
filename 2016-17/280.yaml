@@ -4,6 +4,9 @@ type: major
 code: '280'
 degree: B.A.
 
+credit:
+  name=AP French: '1.00'
+
 result:
   all:
     - requirement: Level II (250)
@@ -14,28 +17,21 @@ result:
 requirements:
   Level II (250):
     result:
-      count: 2
-      at_most: true
-      of:
-        - course: FREN 250
-        - course: FREN 251
-        - course: FREN 253
+      from: courses
+      where: {attribute: {$eq: french_250}}
+      assert: {sum(credits): {$gte: 2}}
 
   Level II (270):
     result:
-      count: 2
-      at_most: true
-      of:
-        - course: FREN 271
-        - course: FREN 272
-        - course: FREN 273
-        - course: FREN 275
+      from: courses
+      where: {attribute: {$eq: french_270}}
+      assert: {sum(credits): {$gte: 2}}
 
   Level III:
     result:
       from: courses
       where: {attribute: {$eq: french_level_300}}
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      assert: {sum(credits): {$gte: 2}}
 
   Electives:
     result:
@@ -43,4 +39,4 @@ requirements:
       where: {attribute: {$eq: french_elective}}
       limit:
         - {at-most: 1, where: {subject: {$neq: FREN}}}
-      assert: {count(courses): {$gte: 2, at_most: true}}
+      assert: {sum(credits): {$gte: 2}}
