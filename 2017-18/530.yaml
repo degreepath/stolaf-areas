@@ -19,8 +19,12 @@ requirements:
         - course: ESTH 374
         - course: ESTH 375
         - course: ESTH 390
-        - course: NURS 110
-        - any:
+        - at_most: true
+          any:
+            - course: ESTH 250
+            - course: NURS 110
+        - at_most: true
+          any:
             - course: PSYCH 125
             - ap: AP Psychology
             - ap: IB Psychology

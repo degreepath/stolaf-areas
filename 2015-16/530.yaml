@@ -20,7 +20,8 @@ requirements:
         - course: ESTH 374
         - course: ESTH 375
         - course: ESTH 390
-        - any:
+        - at_most: true
+          any:
             - course: PSYCH 125
             - ap: AP Psychology
             - ap: IB Psychology
