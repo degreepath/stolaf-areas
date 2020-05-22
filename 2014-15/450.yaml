@@ -62,7 +62,7 @@ requirements:
       Level II Keyboard Proficiency Exam
     result:
       proficiency: Keyboard Level II
-      course: {course: MUSIC 162}
+      course: {course: MUSIC 162, grade: B-}
 
   Official Ensemble Participation:
     result:

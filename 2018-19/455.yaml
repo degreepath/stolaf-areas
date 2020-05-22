@@ -27,9 +27,9 @@ requirements:
         - {course: MUSIC 114}
         - {course: MUSIC 141}
         - proficiency: Keyboard Level I
-          course: {course: MUSIC 161}
+          course: {course: MUSIC 161, grade: B-}
         - proficiency: Keyboard Level II
-          course: {course: MUSIC 162}
+          course: {course: MUSIC 162, grade: B-}
         - {course: MUSIC 165}
         - {course: MUSIC 212}
         - {course: MUSIC 214}
@@ -165,7 +165,7 @@ emphases:
                 - course: MUSIC 252
                 - course: MUSIC 354
             - proficiency: Keyboard Level III
-              course: {course: MUSIC 261}
+              course: {course: MUSIC 261, grade: B-}
 
       Electives:
         result:
@@ -268,9 +268,9 @@ emphases:
             - course: MUSIC 291
             - course: MUSIC 292
             - proficiency: Keyboard Level III
-              course: {course: MUSIC 261}
+              course: {course: MUSIC 261, grade: B-}
             - proficiency: Keyboard Level IV
-              course: {course: MUSIC 262}
+              course: {course: MUSIC 262, grade: B-}
 
       Electives:
         result:
