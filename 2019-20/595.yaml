@@ -11,7 +11,7 @@ result:
 
   audit:
     all:
-      - where: {s/u: {$eq: true}}
+      - where: {grade_option: {$eq: s/u}}
         assert: {count(courses): {$lte: 1}}
 
       - where: {is_stolaf: {$eq: false}}

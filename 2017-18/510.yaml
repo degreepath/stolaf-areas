@@ -23,7 +23,7 @@ requirements:
       from: courses
       where: {attribute: {$eq: phil_l3_seminar}}
       limit:
-        - {at most: 0, where: {s/u: {$eq: true}}}
+        - {at most: 0, where: {grade_option: {$eq: s/u}}}
       assert: {count(courses): {$gte: 3}}
 
   Electives:

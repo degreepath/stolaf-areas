@@ -17,7 +17,7 @@ result:
         where: {is_stolaf: {$eq: false}}
 
       - assert: {count(courses): {$lte: 2}}
-        where: {s/u: {$eq: true}}
+        where: {grade_option: {$eq: s/u}}
 
 requirements:
   Core:

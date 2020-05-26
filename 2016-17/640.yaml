@@ -15,7 +15,7 @@ result:
     where:
       $and:
         - subject: {$eq: THEAT}
-        - s/u: {$eq: true}
+        - grade_option: {$eq: s/u}
         - credits: {$eq: 1.00}
 
 requirements:
