@@ -5,7 +5,7 @@ code: 'B.A.'
 
 result:
   all:
-    - name: Declared Major:
+    - name: Error
       message:
         The B.A. for this catalog year has not yet been transcribed.
       department_audited: true
