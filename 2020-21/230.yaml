@@ -18,8 +18,9 @@ requirements:
         - {course: ECON 261, grade_option: grade}
         - {course: ECON 262, grade_option: grade}
         - at_most: true
-          either:
-            - {course: ECON 263, grade_option: grade}
+          any:
+            - {course: ECON 263, grade_option: grade, hidden: true}
+            - {course: ECON 260, grade_option: grade}
             # or
             - both:
                 - {course: STAT 272, grade_option: grade}

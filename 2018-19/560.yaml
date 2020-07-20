@@ -84,6 +84,7 @@ requirements:
         - course: STAT 212
         - course: STAT 214
         - course: ECON 263
+        - course: ECON 260
 
   Electives:
     result:
