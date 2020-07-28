@@ -1,5 +1,5 @@
 ---
-name: Engineering
+name: Engineering Studies
 type: concentration
 code: '827'
 degree: B.A.
@@ -14,28 +14,22 @@ requirements:
   Core:
     result:
       all:
-        - name: Calculus I
-          result:
-            at_most: true
-            either:
-              - course: MATH 119
-              - course: MATH 120
+        - at_most: true
+          either:
+            - course: MATH 119
+            - course: MATH 120
 
         - course: MATH 126
         - course: MATH 220
         - course: MATH 226
         - course: MATH 230
 
-        - name: Chemistry
-          result:
-            at_most: true
-            any:
-              - course: CHEM 125
-              - both:
-                  - course: CHEM 121
-                  - course: CHEM 123
-              - course: CHEM 122
-              - course: CH/BI 125
+        - at_most: true
+          any:
+            - course: CHEM 125
+            - both: [{course: CHEM 121}, {course: CHEM 123}]
+            - course: CHEM 122
+            - course: CH/BI 125
 
   Physics:
     result:
