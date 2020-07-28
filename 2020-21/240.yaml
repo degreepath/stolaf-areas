@@ -1,0 +1,53 @@
+---
+name: Education
+type: major
+code: '240'
+degree: B.A.
+
+result:
+  all:
+    - course: EDUC 290
+    - course: EDUC 231
+    - course: EDUC 330
+    - course: EDUC 291
+    - course: EDUC 372
+    - at_most: true
+      either:
+        - course: EDUC 374
+        - course: EDUC 321
+    - course: EDUC 375
+    - at_most: true
+      either:
+        - course: EDUC 378
+        - course: EDUC 379
+    - course: EDUC 381
+    - course: EDUC 385
+    - course: EDUC 389
+
+    - name: Special Methods
+      department_audited: true
+      message: |
+        EDUC 3XX: Special Methods (varies by content area).
+        1 credit + 20 Field Experience hours.
+
+    - name: Content Area Major
+      result:
+        from: areas
+        where:
+          $and:
+            - type: {$eq: Major}
+            - name: 
+                $in:
+                  - English
+                  - Math
+                  - Biology
+                  - Chemistry
+                  - Physics
+                  - Theater
+                  - Studio Art
+                  - Art History
+                  - French
+                  - German
+                  - Spanish
+                  - Latin
+        assert: {count(areas): {$gte: 1}}
