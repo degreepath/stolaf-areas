@@ -31,16 +31,9 @@ requirements:
       list below).
 
     result:
-      count: 2
-      of:
-        - course: ASIAN 144
-        - course: ENGL 275
-        - course: FILM 201
-        - course: FILM 310
-        - course: GERM 249
-        - course: MEDIA 240
-        - course: NORW 130
-        - course: RUSSN 265
+      from: courses
+      where: {attribute: {$eq: film_meaning}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   Practical Film Studies:
     message: |
@@ -50,22 +43,14 @@ requirements:
       technical skill sets used in film-making (see list below).
 
     result:
-      count: 1
-      of:
-        - course: ART 104
-        - course: ART 228
-        - course: ART 229
-        - course: ART 239
-        - course: DANCE 150
-        - course: ENGL 296
-        - course: IS 214
-        - course: THEAT 130
-        - course: THEAT 275
+      from: courses
+      where: {attribute: {$eq: film_practical}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Integrative Film Studies:
     message: |
       One more elective drawn from the above categories, or an integrative
-      film topics course approved by the program (see list below), or a
+      film topics course approved by the program, or a
       contract course worked out in consultation with the program director and
       the instructor. This course challenges students to synthesize their
       previous study of film in ways consistent with their own needs and
@@ -74,38 +59,10 @@ requirements:
       their work in this course synthesizes previous interests.
 
     result:
-      count: 1
-      of:
-        - course: ASIAN 156
-        - course: FREN 250
-        - course: HIST 290
-        - course: IS 204
-        - course: MEDIA 160
-        - course: MEDIA 260
-        - course: NURS 120
-        - course: PHIL 260
-        - course: REL 121
-        - course: WRIT 111
-
-      audit:
-        all:
-          - where:
-              $and:
-                - course: {$eq: WRIT 111}
-                - name: {$neq: Words on Film}
-            assert: {count(courses): {$eq: 0}}
-
-          - where:
-              $and:
-                - course: {$eq: REL 111}
-                - name:
-                    $nin:
-                      - 'American Values, American Films'
-                      - 'The Bible as Screen Play'
-            assert: {count(courses): {$eq: 0}}
-
-          - where:
-              $and:
-                - course: {$eq: IS 204}
-                - name: {$neq: 'Top: Censors/Degenerates'}
-            assert: {count(courses): {$eq: 0}}
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: film_integrative}
+          - attribute: {$eq: film_practical}
+          - attribute: {$eq: film_meaning}
+      assert: {count(courses): {$gte: 1, at_most: true}}
