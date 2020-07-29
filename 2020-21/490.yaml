@@ -7,7 +7,7 @@ degree: B.A.
 result:
   all:
     - requirement: Prerequisites
-    - requirement: Requirements
+    - requirement: Graduation Requirements
     - requirement: Ethics
 
 requirements:
