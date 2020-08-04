@@ -261,6 +261,7 @@ emphases:
                 - bm_fol_norw
                 - bm_fol_russn
                 - bm_fol_span
+                - bm_fol_other
           all:
             - assert: {count(courses): {$gte: 2, at_most: true}}
 
