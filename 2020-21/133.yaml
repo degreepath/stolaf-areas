@@ -14,32 +14,27 @@ result:
 
 requirements:
   Language:
+    message: >
+      Completion of the 4th semester (or higher) of Greek or Latin
     result:
-      at_most: true
-      either:
-        - requirement: Greek Language
-        - requirement: Latin Language
-
-    requirements:
-      Greek Language:
-        result: &greek-lang
-          from: courses
-          where: {attribute: {$eq: ancient_greek_lang}}
-          assert: {count(courses): {$gte: 1, at_most: true}}
-
-      Latin Language:
-        result: &latin-lang
-          from: courses
-          where: {attribute: {$eq: ancient_latin_lang}}
-          assert: {count(courses): {$gte: 1, at_most: true}}
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: ancient_greek_lang}
+          - attribute: {$eq: ancient_latin_lang}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Ancient History:
+    message: >
+      One (1) ancient history course
     result:
       from: courses
       where: {attribute: {$eq: ancient_history}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Classics:
+    message: >
+      One (1) Classics course
     result:
       from: courses
       where: {subject: {$eq: CLASS}}
@@ -47,7 +42,13 @@ requirements:
 
   Electives:
     message: >
-      At most one GREEK or LATIN course may be used as an elective
+      Four (4) electives selected from the Departments of Art & Art History,
+      Asian Studies, Classics, English, History, Philosophy, Political
+      Science, Religion, and Theater.
+
+      Great Conversation 113 and 115 may be used as electives.
+
+      At most one GREEK or LATIN course may be used as an elective.
 
       <ul>
         <li>
@@ -62,34 +63,24 @@ requirements:
 
     result:
       from: courses
+
+      limit:
+        - at-most: 1 course
+          where: {attribute: {$eq: ancient_elective_if_greek_lang}}
+
+        - at-most: 1 course
+          where: {attribute: {$eq: ancient_elective_if_latin_lang}}
+
       where:
         $or:
           - attribute: {$eq: ancient_elective}
-
-          - $if: *greek-lang
-            $then:
-              attribute: {$eq: ancient_elective_if_greek_lang}
+          - $if: {has-course-with-attribute: ancient_greek_lang}
+            $then: {attribute: {$eq: ancient_elective_if_greek_lang}}
             $else:
-              $if: *latin-lang
-              $then:
-                attribute: {$eq: ancient_elective_if_latin_lang}
+              $if: {has-course-with-attribute: ancient_latin_lang}
+              $then: {attribute: {$eq: ancient_elective_if_latin_lang}}
 
-      all:
-        - assert: {count(courses): {$gte: 4, at_most: true}}
-
-        - if:
-            where: {subject: {$eq: GREEK}}
-            assert: {count(courses): {$gte: 1}}
-          then:
-            where: {subject: {$eq: GREEK}}
-            assert: {count(courses): {$lte: 1}}
-
-        - if:
-            where: {subject: {$eq: LATIN}}
-            assert: {count(courses): {$gte: 1}}
-          then:
-            where: {subject: {$eq: LATIN}}
-            assert: {count(courses): {$lte: 1}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
 
   Independent Research:
     message:

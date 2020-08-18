@@ -101,7 +101,7 @@ requirements:
       load_potentials: false
       claim: record
       allow_claimed: true
-      assert: {average(grades): {$gte: 2.0}}
+      assert: {average(grades): {$gte: '2.0'}}
 
   Level II/III Course Credit:
     message: |
@@ -161,7 +161,7 @@ requirements:
         $or:
           - {grade_option: {$eq: s/u}}
           - {course: {$eq: REG 0005}}
-      assert: {sum(credits): {$lte: 6.00}}
+      assert: {sum(credits): {$lte: '6.00'}}
 
   First-Year Writing:
     message: |
@@ -171,7 +171,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: FYW}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -183,7 +183,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: WRI}}
       assert: {count(courses): {$gte: 4, at_most: true}}
 
@@ -195,7 +195,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where:
         $or:
           - attribute:
@@ -233,7 +233,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: ORC}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -245,7 +245,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$in: [AQR, SED, IST]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -258,14 +258,14 @@ requirements:
       allow_claimed: true
       limit:
         - at-most: 0
-          where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}
+          where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}
         - at-most: 1
           where:
             $and:
               - subject: {$eq: ESAC}
               - number: {$gte: 171}
               - number: {$lte: 194}
-              - credits: {$eq: 0.25}
+              - credits: {$eq: '0.25'}
           message:
             Only one 0.25 SPM course credit may be earned by students as a
             result of participation in an approved intercollegiate sport. This
@@ -285,7 +285,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$in: [HWC, ALS-L]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -297,7 +297,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$in: [MCD, MCG]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -309,7 +309,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$in: [BTS-B, BTS-T]}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -328,7 +328,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: HBS}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -340,6 +340,6 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: EIN}}
       assert: {count(courses): {$gte: 1, at_most: true}}

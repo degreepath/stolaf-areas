@@ -65,12 +65,12 @@ requirements:
               at_most: true
               $gte: 3
 
-              $ifs:
-                has-area-code(711): + 0.50
-                has-area-code(712): + 2.25
-                has-area-code(713): + 2.75
-                has-area-code(714): + 1.75
-                has-area-code(716): + 2.25
+              $change:
+                - [{has-area-code: '711'}, {add: '0.50'}]
+                - [{has-area-code: '712'}, {add: '2.25'}]
+                - [{has-area-code: '713'}, {add: '2.75'}]
+                - [{has-area-code: '714'}, {add: '1.75'}]
+                - [{has-area-code: '716'}, {add: '2.25'}]
 
         - where:
             $and:
@@ -89,7 +89,7 @@ requirements:
       where:
         $and:
           - subject: {$eq: MUSPF}
-          - credits: {$eq: 1.0}
+          - credits: {$eq: '1.0'}
           - level: {$in: [100, 200]}
           - name: {$eq: $primary-performing-medium}
           - institution: {$eq: STOLAF}

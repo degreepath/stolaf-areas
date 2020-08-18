@@ -280,7 +280,7 @@ emphases:
               - {subject: {$eq: MUSIC}}
               - {level: {$in: [200, 300]}}
               - {number: {$nin: [294, 298, 394, 398]}}
-          assert: {sum(credits): {$gte: 0.75, at_most: true}}
+          assert: {sum(credits): {$gte: '0.75', at_most: true}}
 
       Education:
         result:

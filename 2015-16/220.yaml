@@ -38,7 +38,7 @@ requirements:
     result:
       from: courses
       where: {attributes: {$eq: dance_movement}}
-      assert: {sum(credits): {$gte: 1.5}}
+      assert: {sum(credits): {$gte: '1.5'}}
 
   Senior Dance Seminar:
     message:

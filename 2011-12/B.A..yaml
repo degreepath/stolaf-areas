@@ -105,7 +105,7 @@ requirements:
       load_potentials: false
       claim: record
       allow_claimed: true
-      assert: {average(grades): {$gte: 2.0}}
+      assert: {average(grades): {$gte: '2.0'}}
 
   Level II/III Course Credit:
     message: |
@@ -166,7 +166,7 @@ requirements:
         $or:
           - {grade_option: {$eq: s/u}}
           - {course: {$eq: REG 0005}}
-      assert: {sum(credits): {$lte: 6.00}}
+      assert: {sum(credits): {$lte: '6.00'}}
 
   First-Year Writing:
     message: |
@@ -176,7 +176,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: FYW}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -188,7 +188,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: WRI}}
       assert: {count(courses): {$gte: 4, at_most: true}}
 
@@ -200,7 +200,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where:
         gereqs:
           $in:
@@ -226,7 +226,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: ORC}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -238,7 +238,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: AQR}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -251,14 +251,14 @@ requirements:
       allow_claimed: true
       limit:
         - at-most: 0
-          where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}
+          where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}
         - at-most: 1
           where:
             $and:
               - subject: {$eq: ESAC}
               - number: {$gte: 171}
               - number: {$lte: 194}
-              - credits: {$eq: 0.25}
+              - credits: {$eq: '0.25'}
           message: |
             Only one 0.25 SPM course credit may be earned by students as a
             result of participation in an approved intercollegiate sport.
@@ -282,7 +282,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: HWC}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -298,7 +298,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$in: [MCD, MCG]}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -318,7 +318,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: ALS-A}}
       # where `credits_from_single_subject` finds the most common
       # subject in a set of items, then returns the .credits prop from the
@@ -333,7 +333,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: ALS-L}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
@@ -345,7 +345,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$in: [BTS-B, BTS-T]}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -367,7 +367,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$in: [SED, IST]}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -392,7 +392,7 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: HBS}}
       all:
         - assert: {count(courses): {$gte: 2}}
@@ -409,6 +409,6 @@ requirements:
       claim: record
       allow_claimed: true
       limit:
-        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: 0.25}]}}
+        - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
       where: {gereqs: {$eq: EIN}}
       assert: {count(courses): {$gte: 1}}
