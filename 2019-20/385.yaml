@@ -9,7 +9,8 @@ result:
     - requirement: Core Language
     - requirement: Upper-Level Language
     - requirement: Language and Culture
-    - requirement: Double-Majors
+    - $if: {has-declared-area-code: '150'}
+      $then: {requirement: Double-Majors}
 
 requirements:
   Core Language:
@@ -51,12 +52,6 @@ requirements:
           assert: {count(courses): {$gte: 1}}
 
   Double-Majors:
-    if:
-      from: areas
-      # asian studies or chinese
-      where: {code: {$in: ['150', '180']}}
-      assert: {count(areas): {$gte: 1}}
-
     department-audited: true
 
     message: |

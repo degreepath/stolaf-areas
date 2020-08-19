@@ -13,15 +13,18 @@ result:
     - course: ENVST 399
     - requirement: Experiential Component
 
-    - name: Required Emphasis
-      if:
-        from: areas
-        # arts, natural science, social science
-        where: {code: {$in: ['708', '733', '738']}}
-        assert: {count(areas): {$eq: 0}}
-      message: >
-        You must declare one of the Environmental Studies areas of emphasis.
-      department-audited: true
+    - $if:
+        $not:
+          $or:
+            - {has-declared-area-code: '708'}
+            - {has-declared-area-code: '733'}
+            - {has-declared-area-code: '738'}
+      $then:
+        name: Required Emphasis
+        message: >
+          You must declare one of the Environmental Studies areas of emphasis.
+        department-audited: true
+      $hide-when-false: true
 
 requirements:
   Experiential Component:

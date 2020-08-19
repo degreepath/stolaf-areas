@@ -6,44 +6,30 @@ degree: B.A.
 
 result:
   all:
-    - requirement: American Studies
-
-requirements:
-  American Studies:
-    if:
-      from: courses
-      where:
-        # if any of the four are in-progress
-        $or:
-          - $and:
-              - course:
-                  $in: [
-                    AMCON 101, AMCON 110,
-                    AMCON 102, AMCON 111,
-                    AMCON 201, AMCON 210,
-                    AMCON 202, AMCON 211,
-                  ]
-              - is_in_progress: {$eq: true}
-          # or if the final course has been completed
-          - $and:
-              - course: {$in: [AMCON 202, AMCON 211]}
-              - is_in_progress: {$eq: false}
-      assert: {count(courses): {$gte: 1, treat_in_progress_as_pass: true}}
-
-    then:
-      from: courses
+    - from: courses
       where:
         $or:
-          - course:
-              $in:
-                - AMCON 102
-                - AMCON 111
-                - AMCON 201
-                - AMCON 210
-                - AMCON 202
-                - AMCON 211
           - attribute:
               $in: [amst_topics, amst_seminar, amst_id]
+          - $if: &in-amcon
+              $or:
+                - {has-ip-course: AMCON 101}
+                - {has-ip-course: AMCON 102}
+                - {has-ip-course: AMCON 110}
+                - {has-ip-course: AMCON 111}
+                - {has-ip-course: AMCON 201}
+                - {has-ip-course: AMCON 210}
+                - {has-completed-course: AMCON 202}
+                - {has-completed-course: AMCON 211}
+            $then:
+              course:
+                $in:
+                  - AMCON 102
+                  - AMCON 111
+                  - AMCON 201
+                  - AMCON 210
+                  - AMCON 202
+                  - AMCON 211
 
       all:
         - assert: {count(courses): {$gte: 9}}
@@ -53,54 +39,25 @@ requirements:
 
         - assert: {count(subjects): {$gte: 3}}
 
-        - where: {course: {$in: [AMST 100, AMCON 102, AMCON 111]}}
+        - where:
+            $or:
+              - course: {$eq: AMST 100}
+              - $if: *in-amcon
+                $then:
+                  course: {$in: [AMCON 102, AMCON 111]}
           assert: {count(courses): {$gte: 1}}
 
         - where:
             $or:
-              - $and:
-                  - subject: {$eq: AMST}
-                  - level: {$eq: 200}
-              - course:
-                  $in:
-                    - AMCON 201
-                    - AMCON 210
-                    - AMCON 202
-                    - AMCON 211
-          assert: {count(courses): {$gte: 1}}
-
-        - where:
-            $and:
-              - subject: {$eq: AMST}
-              - level: {$eq: 300}
-          assert: {count(courses): {$gte: 1}}
-
-        - where: {gereqs: {$eq: MCD}}
-          assert: {count(courses): {$gte: 2}}
-
-
-    else:
-
-      from: courses
-      where:
-        attribute:
-          $in: [amst_topics, amst_seminar, amst_id]
-
-      all:
-        - assert: {count(courses): {$gte: 9}}
-
-        - where: {level: {$eq: 300}}
-          assert: {count(courses): {$gte: 2}}
-
-        - assert: {count(subjects): {$gte: 3}}
-
-        - where: {course: {$eq: AMST 100}}
-          assert: {count(courses): {$gte: 1}}
-
-        - where:
-            $and:
-              - subject: {$eq: AMST}
-              - level: {$eq: 200}
+              - {subject: {$eq: AMST}, level: {$eq: 200}}
+              - $if: *in-amcon
+                $then:
+                  course:
+                    $in:
+                      - AMCON 201
+                      - AMCON 210
+                      - AMCON 202
+                      - AMCON 211
           assert: {count(courses): {$gte: 1}}
 
         - where:
