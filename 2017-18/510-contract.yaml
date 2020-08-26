@@ -8,24 +8,12 @@ result:
   all:
     - course: PHIL 235
     - course: PHIL 236
-    - requirement: Level III Seminars
     - course: PHIL 240
-    - requirement: Complementary Courses
-
-requirements:
-  Level III Seminars:
-    result:
-      from: courses
-      where: {attribute: {$eq: phil_l3_seminar}}
-      limit:
-        - {at most: 0, where: {grade_option: {$eq: s/u}}}
-      assert: {count(courses): {$gte: 2}}
-
-  Complementary Courses:
-    message:
-      Three level II or III courses in another department chosen to complement
-      the work in philosophy.
-    result:
-      from: courses
-      where: {attribute: {$eq: phil_contract_courses}}
-      assert: {count(courses): {$gte: 3}}
+    - template: phil_contract
+    - name: Level III Seminars
+      result:
+        from: claimed
+        where: {attribute: {$eq: phil_l3_seminar}}
+        limit:
+          - {at most: 0, where: {grade_option: {$eq: s/u}}}
+        assert: {count(courses): {$gte: 2}}
