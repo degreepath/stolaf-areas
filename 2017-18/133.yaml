@@ -37,7 +37,10 @@ requirements:
       One (1) Classics course
     result:
       from: courses
-      where: {subject: {$eq: CLASS}}
+      where:
+        $and:
+          - {subject: {$eq: CLASS}}
+          - {course: {$neq: 'CLASS 396'}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
