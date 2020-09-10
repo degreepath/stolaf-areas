@@ -15,11 +15,17 @@ requirements:
     result:
       all:
         - at_most: true
-          either:
+          any:
             - course: MATH 119
             - course: MATH 120
+            - ap: AP Calculus I
 
-        - course: MATH 126
+        - at_most: true
+          any:
+            - course: MATH 126
+            - course: MATH 128
+            - ap: AP Calculus II
+
         - course: MATH 220
         - course: MATH 226
         - course: MATH 230
