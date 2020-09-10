@@ -84,7 +84,7 @@ requirements:
                 - [{has-area-code: '714'}, {add: '1.75'}]
                 - [{has-area-code: '716'}, {add: '2.25'}]
 
-                passed-proficiency-exam(Keyboard Level III): + 0.75
+                - [{passed-proficiency-exam: 'Keyboard Level III'}, {add: '0.75'}]
 
         - message: At most 1.0 credits of 100-level secondary lessons
           where: {subject: {$eq: MUSPF}}
