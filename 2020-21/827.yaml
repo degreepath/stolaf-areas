@@ -19,12 +19,13 @@ requirements:
             - course: MATH 119
             - course: MATH 120
             - ap: AP Calculus I
+            - {ap: AP Calculus I and II, allow_claimed: true}
 
         - at_most: true
           any:
             - course: MATH 126
             - course: MATH 128
-            - ap: AP Calculus II
+            - {ap: AP Calculus I and II, allow_claimed: true}
 
         - course: MATH 220
         - course: MATH 226
