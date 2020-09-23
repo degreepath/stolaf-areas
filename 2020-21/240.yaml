@@ -6,15 +6,15 @@ degree: B.A.
 
 result:
   all:
-    - course: EDUC 290
-
     - course: EDUC 231
 
-    - course: EDUC 330
+    - course: EDUC 272
+
+    - course: EDUC 290
 
     - course: EDUC 291
 
-    - course: EDUC 372
+    - course: EDUC 330
 
     - at_most: true
       either:
