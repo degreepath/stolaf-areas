@@ -18,9 +18,14 @@ requirements:
     result:
       all:
         # - {course: FILM 101, alternative: {course: MEDIA 160, year: '< 2021'}}
-        - course: FILM 101
         - at_most: true
-          either:
+          any:
+            - course: FMS 101
+            - course: FILM 101
+            - course: MEDIA 160
+        - at_most: true
+          any:
+            - course: FMS 140
             - course: FILM 140
             - course: MEDIA 160
 
@@ -34,8 +39,4 @@ requirements:
     result:
       from: courses
       where: {attributes: {$eq: filmmedia_elective}}
-      all:
-        - assert: {count(courses): {$gte: 2, at_most: true}}
-
-        - where: {subject: {$in: [FILM, MEDIA, FMS]}}
-          assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
