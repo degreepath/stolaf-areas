@@ -18,9 +18,14 @@ requirements:
     result:
       all:
         # - {course: FILM 101, alternative: {course: MEDIA 160, year: '< 2021'}}
-        - course: FILM 101
         - at_most: true
-          either:
+          any:
+            - course: FMS 101
+            - course: FILM 101
+            - course: MEDIA 160
+        - at_most: true
+          any:
+            - course: FMS 140
             - course: FILM 140
             - course: MEDIA 160
 
