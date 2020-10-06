@@ -34,8 +34,4 @@ requirements:
     result:
       from: courses
       where: {attributes: {$eq: filmmedia_elective}}
-      all:
-        - assert: {count(courses): {$gte: 2, at_most: true}}
-
-        - where: {subject: {$in: [FILM, MEDIA, FMS]}}
-          assert: {count(courses): {$gte: 1}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
