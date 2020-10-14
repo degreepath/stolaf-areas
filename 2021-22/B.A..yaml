@@ -1,0 +1,305 @@
+---
+name: B.A.
+type: degree
+code: 'B.A.'
+
+result:
+  all:
+    # - heading: Graduation Requirements
+
+    - name: Required Course Credit
+      message: |
+        35 St. Olaf credits are required.
+      result:
+        from: courses
+        where:
+          $or:
+            - subject: {$neq: REG}
+            - course: {$eq: REG 0001}
+        load_potentials: false
+        claim: record
+        allow_claimed: true
+        assert: {sum(credits): {$gte: 35}}
+
+    - name: Credits Taken At/Through St. Olaf College
+      message: |
+        17 of the 35 credits required for graduation must be earned through St.
+        Olaf College.
+      result:
+        from: courses
+        load_potentials: false
+        claim: record
+        allow_claimed: true
+        where:
+          $or:
+            - is_stolaf: {$eq: true}
+            - is_in_gpa: {$eq: true}
+        assert: {sum(credits): {$gte: 17}}
+
+    - name: Transfer Credit
+      message: |
+        After matriculation, you may transfer in the equivalent of 4 St. Olaf
+        credits.
+      result:
+        from: courses
+        where: {course: {$eq: REG 0004}}
+        claim: record
+        allow_claimed: true
+        assert: {sum(credits): {$lte: 4}}
+
+    - name: Interim Credits
+      message: |
+        3 credits must be earned in 3 separate Interims. 1 credit must be
+        taken in Interim of your first year.
+      result:
+        from: courses
+        load_potentials: false
+        claim: record
+        allow_claimed: true
+        where:
+          $or:
+            - {semester: {$eq: 2}}
+            - {course: {$eq: REG 0003}}
+        all:
+          - assert: {sum(credits): {$gte: 3}}
+
+          - assert: {count(terms): {$gte: 3}}
+
+          - where:
+              $or:
+                - year: {$eq: $matriculation-year}
+                - $and: [{course: {$eq: REG 0003}}, {semester: {$eq: 9}}]
+            assert: {sum(credits): {$gte: 1}}
+
+    - name: Cumulative Grade Point Average
+      message: |
+        A 2.0 GPA is required.
+      result:
+        from: courses
+        load_potentials: false
+        claim: record
+        allow_claimed: true
+        assert: {average(grades): {$gte: '2.0'}}
+
+    - name: Level II/III Course Credit
+      message: |
+        18 credits must be earned above level I (numbered 200 and higher).
+
+        A course can earn only its assigned level. It cannot be raised in level
+        as the result of extra studies, assignments, or performance.
+      result:
+        from: courses
+        load_potentials: false
+        claim: record
+        allow_claimed: true
+        where:
+          $or:
+            - {level: {$gte: 200}}
+            - {course: {$eq: REG 0006}}
+        assert: {sum(credits): {$gte: 18}}
+
+    - name: Graded Course Credit
+      message: |
+        24 graded credits must be earned through courses taught by a St. Olaf
+        professor.
+      result:
+        from: courses
+        load_potentials: false
+        claim: record
+        allow_claimed: true
+        where:
+          $or:
+            - {grade_option: {$eq: grade}}
+            - {course: {$eq: REG 0002}}
+        assert: {sum(credits): {$gte: 24}}
+
+    - name: Declared Major
+      message: |
+        1 major is required.
+
+        You must declare a major by the spring of your sophomore year.
+      result:
+        from: areas
+        claim: record
+        allow_claimed: true
+        where:
+          $and:
+            - type: {$eq: Major}
+            - degree: {$eq: B.A.}
+        assert: {count(areas): {$gte: 1}}
+
+    - name: Allowed S/U Course Credit
+      message: |
+        6 credits may be earned on an S/U basis.
+      result:
+        from: courses
+        load_potentials: false
+        claim: record
+        allow_claimed: true
+        where:
+          $or:
+            - {grade_option: {$eq: s/u}}
+            - {course: {$eq: REG 0005}}
+        assert: {sum(credits): {$lte: '6.00'}}
+
+    # - heading: The OLE Core Requirements
+
+    - name: The OLE Seminar
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: TOS}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Writing and Rhetoric
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: WRR}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Religion, Faith and Values
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: RFV}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Christian Theology in Dialogue
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: CTD}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Power and Race
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: PAR}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Global Histories and Societies
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: GHS}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Natural Science
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: NTS}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Social Sciences
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: SCS}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Writing Across the Curriculum
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: WAC}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Quantitative and Computational Reasoning
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: QCR}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: World Languages and Cultures
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: WLC}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Creativity
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: CRE}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Ethical Reasoning in Context
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: EIC}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: OLE Experience in Practice
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: OEP}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Writing in the Major
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: WIM}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+    - name: Active Body
+      result:
+        from: courses
+        claim: record
+        allow_claimed: true
+        limit:
+          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        where: {gereqs: {$eq: ACB}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
