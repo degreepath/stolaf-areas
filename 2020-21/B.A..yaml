@@ -75,7 +75,7 @@ requirements:
 
   Interim Credits:
     message: |
-      3 credits must be earned in three separate Interims. 1 credit must be
+      3 credits must be earned in 3 separate Interims. 1 credit must be
       taken in Interim of your first year.
     result:
       from: courses
@@ -84,12 +84,12 @@ requirements:
       allow_claimed: true
       where:
         $or:
-          - $and:
-              - {semester: {$eq: 2}}
-              - {grade_option: {$neq: no grade}}
+          - {semester: {$eq: 2}}
           - {course: {$eq: REG 0003}}
       all:
         - assert: {sum(credits): {$gte: 3}}
+
+        - assert: {count(terms): {$gte: 3}}
 
         - where:
             $or:
@@ -134,9 +134,11 @@ requirements:
       claim: record
       allow_claimed: true
       where:
-        $or:
-          - {grade_option: {$eq: grade}}
-          - {course: {$eq: REG 0002}}
+        $and:
+          - subject: {$neq: OFFC}
+          - $or:
+              - {grade_option: {$eq: grade}}
+              - {course: {$eq: REG 0002}}
       assert: {sum(credits): {$gte: 24}}
 
   Declared Major:
