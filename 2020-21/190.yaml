@@ -41,7 +41,7 @@ requirements:
   Classics:
     result:
       from: courses
-      where: {subject: {$eq: CLASS}}
+      where: {attributes: {$eq: classics_elective}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Ancient History:
