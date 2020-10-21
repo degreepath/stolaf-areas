@@ -17,17 +17,18 @@ requirements:
   Core:
     result:
       all:
-        # - {course: FILM 101, alternative: {course: MEDIA 160, year: '< 2021'}}
         - at_most: true
           any:
             - course: FMS 101
             - course: FILM 101
             - course: MEDIA 160
+            - crsid: '0000021584'
         - at_most: true
           any:
             - course: FMS 140
             - course: FILM 140
             - course: MEDIA 160
+            - crsid: '0000028967'
 
   Production Elective:
     result:
