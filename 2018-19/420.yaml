@@ -186,3 +186,6 @@ requirements:
         - both:
             - {course: MATH 262, from_claimed: true}
             - {course: STAT 322, from_claimed: true}
+        - both:
+            - {course: MATH 232, from_claimed: true}
+            - {course: MATH 332, from_claimed: true}
