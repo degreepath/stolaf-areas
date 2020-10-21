@@ -63,7 +63,7 @@ requirements:
 
     result:
       from: courses
-      where: 
+      where:
         $or:
           - attribute: {$eq: film_integrative}
           - attribute: {$eq: film_practical}
