@@ -14,7 +14,7 @@ requirements:
   Required:
     result:
       all:
-        - course: FAMST 232
+        - crsid: '0000000648'
         - course: FAMST 242
         - course: FAMST 391
 
