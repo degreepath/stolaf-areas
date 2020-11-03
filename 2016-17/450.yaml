@@ -59,9 +59,11 @@ requirements:
     result:
       from: courses
       where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$in: [200, 300]}
+        $or:
+          - attribute: {$eq: music_elective}
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
 
       all:
         - message: >

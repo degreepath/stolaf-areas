@@ -57,6 +57,8 @@ requirements:
       from: courses
       where:
         $or:
+          - attribute: {$eq: music_elective}
+
           - $and:
               - subject: {$eq: MUSIC}
               - level: {$in: [200, 300]}
