@@ -23,9 +23,9 @@ requirements:
   Core:
     result:
       all:
-        - course: EDUC 260
-        - course: EDUC 290
-        - course: EDUC 372
+        - crsid: '0000024363'  # EDUC 260
+        - crsid: '0000000311'  # EDUC 290
+        - crsid: '0000000335'  # EDUC 272
 
   Field Experience:
     result:
