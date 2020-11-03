@@ -43,11 +43,11 @@ requirements:
                     - course: MATH 119
                     - ap: AP Calculus I
                     - ap: IB Calculus I
+                    - {ap: IB Mathematics, hidden: true}
                 - at_most: true
                   any:
                     - course: MATH 126
                     - course: MATH 128
-                    - {ap: IB Mathematics, hidden: true}
             - ap: AP Calculus I and II
             - ap: IB Calculus I and II
         - course: MATH 220
