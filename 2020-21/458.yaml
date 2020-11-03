@@ -9,9 +9,8 @@ result:
     - requirement: Core
     - requirement: Composition Lessons
     - requirement: Conducting
-    - requirement: Musicology
-    - requirement: Additional Upper-Level Elective
-    - requirement: Electives
+    - requirement: Upper-Level Required Electives
+    - requirement: Other Required Electives
     - requirement: Musical Acoustics
     - requirement: Performance Studies
     - requirement: Required Recital Attendance
@@ -29,28 +28,28 @@ requirements:
   Core:
     result:
       all:
-        - {course: MUSIC 114}
-        - {course: MUSIC 141}
+        - course: MUSIC 114
+        - course: MUSIC 141
         - proficiency: Keyboard Level I
           course: {course: MUSIC 161, grade: B-}
         - proficiency: Keyboard Level II
           course: {course: MUSIC 162, grade: B-}
-        - {course: MUSIC 166}
-        - {course: MUSIC 167}
-        - {course: MUSIC 168}
-        - {course: MUSIC 169}
-        - {course: MUSIC 212}
-        - {course: MUSIC 214}
-        - {course: MUSIC 223}
-        - {course: MUSIC 225}
-        - {course: MUSIC 237}
-        - {course: MUSIC 251}
+        - course: MUSIC 166
+        - course: MUSIC 167
+        - course: MUSIC 168
+        - course: MUSIC 169
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 223
+        - course: MUSIC 225
+        - course: MUSIC 237
+        - course: MUSIC 251
         - proficiency: Keyboard Level III
           course: {course: MUSIC 261, grade: B-}
         - proficiency: Keyboard Level IV
           course: {course: MUSIC 262, grade: B-}
-        - {course: MUSIC 314}
-        - {course: MUSIC 324}
+        - course: MUSIC 314
+        - course: MUSIC 324
 
   Composition Lessons:
     result:
@@ -64,29 +63,57 @@ requirements:
         - course: MUSIC 252
         - course: MUSIC 253
 
-  Musicology:
-    result:
-      from: courses
-      where: {attribute: {$eq: music_upper_musicology}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+  Upper-Level Required Electives:
+    message: |
+      2 credits from 300-level music electives, including at least one
+      upper level musicology elective (MUSIC 34x)
 
-  Additional Upper-Level Elective:
     result:
       from: courses
       where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$eq: 300}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+        $or:
+          - attribute: {$eq: music_upper_musicology}
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+      all:
+        - assert: {sum(credits): {$gte: 2, at_most: true}}
 
-  Electives:
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+  Other Required Electives:
+    message: |
+      At least 2 credits from 200- or 300-level music electives that can
+      include up to 1.0 credit of 100-level secondary lessons
+
     result:
       from: courses
       where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$in: [200, 300]}
-      assert: {count(courses): {$gte: 3}}
+        $or:
+          - attribute: {$eq: music_elective}
+
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          - $and:
+              - subject: {$eq: MUSPF}
+              - level: {$eq: 100}
+              - name: {$neq: $primary-performing-medium}
+
+      all:
+        - message: >
+            At least 3 additional credits of MUSIC electives
+          assert: {sum(credits): {$gte: 2, at_most: true}}
+
+        - message: At most 1.0 credits of 100-level secondary lessons
+          where: {subject: {$eq: MUSPF}}
+          assert: {sum(credits): {$lte: 1}}
+
+        - message: At most 1.0 credit's worth of MUSIC 275
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$lte: 1}}
 
   Musical Acoustics:
     result:
