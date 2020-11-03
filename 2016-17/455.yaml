@@ -93,7 +93,7 @@ requirements:
         - course: EDUC 290
         - course: EDUC 291
         - course: EDUC 330
-        - course: EDUC 372
+        - crsid: '0000000335'
         - course: EDUC 374
         - course: EDUC 375
         - at_most: true
