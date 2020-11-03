@@ -7,6 +7,8 @@ degree: B.M.
 result:
   all:
     - requirement: Core
+    - requirement: Upper-Level Required Electives
+    - requirement: Other Required Electives
     - requirement: Entrance Examination
     - requirement: Continuance Examination
     - requirement: Official Ensemble Participation
@@ -30,6 +32,65 @@ requirements:
         - course: MUSIC 237
         - course: MUSIC 251
         - course: MUSIC 252
+
+  Upper-Level Required Electives:
+    message: |
+      2 credits from 300-level music electives, including at least one
+      upper level musicology elective (MUSIC 34x)
+
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: music_upper_musicology}
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+      all:
+        - assert: {sum(credits): {$gte: 2, at_most: true}}
+
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+  Other Required Electives:
+    message: |
+      At least 3 credits from 200- or 300-level music electives that can
+      include up to 1.0 credit of additional 100-level secondary lessons
+
+    result:
+      from: courses
+
+      where:
+        $or:
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          - $and:
+              - subject: {$eq: MUSPF}
+              - level: {$eq: 100}
+              - name: {$neq: $primary-performing-medium}
+
+      all:
+        - message: >
+            At least 2* credits of MUSIC electives (*: may change
+            depending on your emphasis)
+          assert:
+            sum(credits):
+              at_most: true
+              $gte: 1
+
+              $ifs:
+                has-area-code(706): '= 2.00'
+                has-area-code(707): '= 3.00'
+
+        - message: At most 1.0 credits of 100-level secondary lessons
+          where: {subject: {$eq: MUSPF}}
+          assert: {sum(credits): {$lte: 1}}
+
+        - message: At most 1.0 credit's worth of MUSIC 275
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$lte: 1}}
 
   Entrance Examination:
     result:
@@ -102,9 +163,6 @@ emphases:
     result:
       all:
         - requirement: Core
-        - requirement: Musicology
-        - requirement: Electives
-        - requirement: Additional Upper-Level Elective
         - requirement: Voice Performance Studies
         - requirement: Keyboard Performance Studies
         - requirement: Junior or Senior Half Voice Recital
@@ -123,30 +181,6 @@ emphases:
             - {course: MUSIC 292}
             - {course: MUSIC 354}
             - {course: EDUC 355}
-
-      Musicology:
-        result:
-          from: courses
-          where: {attribute: {$eq: music_upper_musicology}}
-          assert: {count(courses): {$gte: 1, at_most: true}}
-
-      Additional Upper-Level Elective:
-        result:
-          from: courses
-          where:
-            $and:
-              - subject: {$eq: MUSIC}
-              - level: {$eq: 300}
-          assert: {count(courses): {$gte: 1, at_most: true}}
-
-      Electives:
-        result:
-          from: courses
-          where:
-            $and:
-              - subject: {$eq: MUSIC}
-              - level: {$in: [200, 300]}
-          assert: {count(courses): {$gte: 2}}
 
       Voice Performance Studies:
         message:
@@ -189,9 +223,6 @@ emphases:
       all:
         - requirement: Core
         - requirement: Conducting
-        - requirement: Musicology
-        - requirement: Electives
-        - requirement: Additional Upper-Level Elective
         - requirement: Organ Performance Studies
         - requirement: Voice Performance Studies
         - requirement: Junior Recital
@@ -210,30 +241,6 @@ emphases:
           either:
             - {course: MUSIC 253}
             - {course: MUSIC 354}
-
-      Musicology:
-        result:
-          from: courses
-          where: {attribute: {$eq: music_upper_musicology}}
-          assert: {count(courses): {$gte: 1, at_most: true}}
-
-      Additional Upper-Level Elective:
-        result:
-          from: courses
-          where:
-            $and:
-              - subject: {$eq: MUSIC}
-              - level: {$eq: 300}
-          assert: {count(courses): {$gte: 1, at_most: true}}
-
-      Electives:
-        result:
-          from: courses
-          where:
-            $and:
-              - subject: {$eq: MUSIC}
-              - level: {$in: [200, 300]}
-          assert: {count(courses): {$gte: 2}}
 
       Organ Performance Studies:
         message:

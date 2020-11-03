@@ -92,7 +92,6 @@ requirements:
           where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$lte: 1}}
 
-
   Performance Studies:
     message:
       Once accepted into the B.M. Performance program, students must register

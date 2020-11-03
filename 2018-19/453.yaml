@@ -11,9 +11,8 @@ limit:
 result:
   all:
     - requirement: Core
-    - requirement: Musicology
-    - requirement: Electives
-    - requirement: Additional Upper-Level Electives
+    - requirement: Upper-Level Required Electives
+    - requirement: Other Required Electives
     - requirement: Performance Studies
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
@@ -24,43 +23,68 @@ requirements:
   Core:
     result:
       all:
-        - {course: MUSIC 114}
-        - {course: MUSIC 141}
+        - course: MUSIC 114
+        - course: MUSIC 141
         - proficiency: Keyboard Level I
           course: {course: MUSIC 161, grade: B-}
         - proficiency: Keyboard Level II
           course: {course: MUSIC 162, grade: B-}
-        - {course: MUSIC 212}
-        - {course: MUSIC 214}
-        - {course: MUSIC 237}
-        - {course: MUSIC 251}
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 237
+        - course: MUSIC 251
         - proficiency: Keyboard Level III
           course: {course: MUSIC 261, grade: B-}
-        - {course: MUSIC 298}
+        - course: MUSIC 298
 
-  Musicology:
-    result:
-      from: courses
-      where: {attribute: {$eq: music_upper_musicology}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+  Upper-Level Required Electives:
+    message: |
+      3 credits from 300-level music electives, including at least one
+      upper level musicology elective (MUSIC 34x)
 
-  Additional Upper-Level Electives:
-    result:
-      from: courses
-      where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$eq: 300}
-      assert: {count(courses): {$gte: 2, at_most: true}}
-
-  Electives:
     result:
       from: courses
       where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$in: [200, 300]}
-      assert: {count(courses): {$gte: 2}}
+        $or:
+          - attribute: {$eq: music_upper_musicology}
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+      all:
+        - assert: {sum(credits): {$gte: 3, at_most: true}}
+
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+  Other Required Electives:
+    message: |
+      5 additional credits from 200- or 300-level music electives that can
+      include up to 1.0 credit of 100-level secondary lessons
+
+    result:
+      from: courses
+      where:
+        $or:
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          - $and:
+              - subject: {$eq: MUSPF}
+              - level: {$eq: 100}
+              - name: {$neq: $primary-performing-medium}
+
+      all:
+        - message: 5 credits of MUSIC electives
+          assert: {sum(credits): {$gte: 5, at_most: true}}
+
+        - message: At most 1.0 credits of 100-level secondary lessons
+          where: {subject: {$eq: MUSPF}}
+          assert: {sum(credits): {$lte: 1}}
+
+        - message: At most 1.0 credit's worth of MUSIC 275
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$lte: 1}}
 
   Performance Studies:
     message: |

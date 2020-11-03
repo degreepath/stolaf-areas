@@ -7,9 +7,8 @@ degree: B.M.
 result:
   all:
     - requirement: Core
-    - requirement: Musicology
-    - requirement: Additional Upper-Level Elective
-    - requirement: Additional Electives
+    - requirement: Upper-Level Required Electives
+    - requirement: Other Required Electives
     - requirement: Education
     - requirement: Required Solo Performances
     - requirement: Required Recital Attendance
@@ -34,31 +33,54 @@ requirements:
         - {course: MUSIC 212}
         - {course: MUSIC 214}
         - {course: MUSIC 237}
-        - {course: MUSIC 251}
 
-  Musicology:
-    result:
-      from: courses
-      where: {attribute: {$eq: music_upper_musicology}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+  Upper-Level Required Electives:
+    message: |
+      2 credits from 300-level music electives, including at least one
+      upper level musicology elective (MUSIC 34x)
 
-  Additional Upper-Level Elective:
     result:
       from: courses
       where:
-        $and:
-          - subject: {$eq: MUSIC}
-          - level: {$eq: 300}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+        $or:
+          - attribute: {$eq: music_upper_musicology}
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
 
-  Additional Electives:
+      all:
+        - assert: {sum(credits): {$gte: 2, at_most: true}}
+
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+  Other Required Electives:
+    message: |
+      At least 1 credit from 200- or 300-level music electives that can
+      include up to 1.0 credit of 100-level secondary lessons
+
     result:
       from: courses
       where:
         $and:
           - subject: {$eq: MUSIC}
           - level: {$in: [200, 300]}
-      assert: {sum(credits): {$gte: 1, at_most: true}}
+
+      all:
+        - message: >
+            At least 1* credit of MUSIC electives (*: may change
+            depending on your emphasis)
+          assert:
+            sum(credits):
+              at_most: true
+              $gte: 1
+
+              $ifs:
+                has-area-code(731): '+ 0.75'
+
+        - message: At most 1.0 credit's worth of MUSIC 275
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$lte: 1}}
 
   Education:
     result:
@@ -135,6 +157,11 @@ requirements:
             - Composition Senior Recital
       assert: {count(performances): {$gte: 1}}
 
+multicountable:
+  MUSIC 251:
+    - [Instrumental, Conducting]
+    - [Vocal, Conducting]
+
 emphases:
   732:
     name: Instrumental
@@ -142,7 +169,7 @@ emphases:
     result:
       all:
         - requirement: Core
-        - requirement: Electives
+        - requirement: Conducting
         - requirement: Education
         - requirement: Performance Studies
         - requirement: Official Choral Ensemble Participation
@@ -158,24 +185,19 @@ emphases:
             - course: MUSIC 168
             - course: MUSIC 169
             - course: MUSIC 221
-            - course: MUSIC 253
             - course: MUSIC 290
+            - proficiency: Keyboard Level III
+              course: {course: MUSIC 261, grade: B-}
+
+      Conducting:
+        result:
+          all:
+            - course: MUSIC 251
+            - course: MUSIC 253
             - at_most: true
               any:
                 - course: MUSIC 252
                 - course: MUSIC 354
-            - proficiency: Keyboard Level III
-              course: {course: MUSIC 261, grade: B-}
-
-      Electives:
-        result:
-          from: courses
-          where:
-            $and:
-              - {subject: {$eq: MUSIC}}
-              - {level: {$in: [200, 300]}}
-              - {number: {$nin: [294, 298, 394, 398]}}
-          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Education:
         result:
@@ -249,7 +271,7 @@ emphases:
     result:
       all:
         - requirement: Core
-        - requirement: Electives
+        - requirement: Conducting
         - requirement: Education
         - requirement: Performance Studies
         - requirement: Official Choral Ensemble Participation
@@ -259,11 +281,6 @@ emphases:
       Core:
         result:
           all:
-            - course: MUSIC 252
-            - at_most: true
-              any:
-                - course: MUSIC 253
-                - course: MUSIC 354
             - course: MUSIC 287
             - course: MUSIC 291
             - course: MUSIC 292
@@ -272,15 +289,15 @@ emphases:
             - proficiency: Keyboard Level IV
               course: {course: MUSIC 262, grade: B-}
 
-      Electives:
+      Conducting:
         result:
-          from: courses
-          where:
-            $and:
-              - {subject: {$eq: MUSIC}}
-              - {level: {$in: [200, 300]}}
-              - {number: {$nin: [294, 298, 394, 398]}}
-          assert: {sum(credits): {$gte: 0.75, at_most: true}}
+          all:
+            - course: MUSIC 251
+            - course: MUSIC 252
+            - at_most: true
+              any:
+                - course: MUSIC 253
+                - course: MUSIC 354
 
       Education:
         result:
