@@ -44,6 +44,9 @@ requirements:
         $or:
           - attribute: {$eq: music_upper_musicology}
           - $and:
+              - attribute: {$eq: music_elective}
+              - level: {$eq: 300}
+          - $and:
               - subject: {$eq: MUSIC}
               - level: {$eq: 300}
       all:
