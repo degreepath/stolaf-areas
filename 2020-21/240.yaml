@@ -36,10 +36,10 @@ result:
         where:
           $and:
             - type: {$eq: Major}
-            - name: 
+            - name:
                 $in:
                   - English
-                  - Math
+                  - Mathematics
                   - Biology
                   - Chemistry
                   - Physics
