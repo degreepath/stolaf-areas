@@ -1,0 +1,59 @@
+---
+name: Economics
+type: major
+code: '230'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Economic Analysis
+
+requirements:
+  Core:
+    result:
+      all:
+        - {course: ECON 261, grade_option: grade}
+        - {course: ECON 262, grade_option: grade}
+        - at_most: true
+          any:
+            - {course: ECON 263, grade_option: grade}
+            - {course: ECON 260, grade_option: grade}
+            # or
+            - both:
+                - {course: STAT 272, grade_option: grade}
+                - {course: ECON 385, grade_option: grade}
+
+  Foundation:
+    result:
+      at_most: true
+      any:
+        - course: MATH 119
+        - course: MATH 120
+        - course: MATH 126
+        - course: MATH 128
+        - course: MATH 220
+        - ap: AP Calculus I
+        - ap: AP Calculus I and II
+        - ap: IB Mathematics
+
+  Economic Analysis:
+    result:
+      from: courses
+      where: {attribute: {$eq: econ_analysis}}
+
+      all:
+        - assert: {count(courses): {$gte: 4, at_most: true}}
+
+        - where: {level: {$eq: 200}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+multicountable:
+  ECON 385:
+    - [Core]
+    - [Economic Analysis]
