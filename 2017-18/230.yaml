@@ -25,6 +25,9 @@ requirements:
             - both:
                 - {course: STAT 272, grade_option: grade}
                 - {course: ECON 385, grade_option: grade}
+            - both:
+                - {course: STAT 272, grade_option: grade}
+                - {course: ECON 384, grade_option: grade}
 
   Foundation:
     result:
@@ -179,6 +182,10 @@ emphases:
           assert: {count(courses): {$gte: 3, at_most: true}}
 
 multicountable:
+  ECON 384:
+    - [Core]
+    - [Economic Analysis]
+
   ECON 385:
     - [Core]
     - [Economic Analysis]
