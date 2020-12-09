@@ -98,6 +98,7 @@ requirements:
       A 2.0 GPA is required.
     result:
       from: courses
+      include_failed: true
       load_potentials: false
       claim: record
       allow_claimed: true
