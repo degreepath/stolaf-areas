@@ -131,6 +131,7 @@ requirements:
             - Instrumental Student Recital
             - Vocal Student Recital
             - Voice Student Recital
+            - Student Recital
             - Vocal BM-E
             - Voice BM-E
             - Instrumental BM-E
@@ -160,6 +161,7 @@ requirements:
             - Vocal Senior Recital
             - Voice Senior Recital
             - Composition Senior Recital
+            - Senior Recital
       assert: {count(performances): {$gte: 1}}
 
 multicountable:

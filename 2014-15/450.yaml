@@ -82,6 +82,7 @@ requirements:
           $in:
             - Instrumental Student Recital
             - Vocal Student Recital
+            - Student Recital
             - Voice BM-E
             - Instrumental BM-E
             - Voice BM-P

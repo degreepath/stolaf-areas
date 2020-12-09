@@ -109,23 +109,23 @@ requirements:
     result:
       from: music performances
       where:
-        name:
-          $in:
-            - Instrumental Student Recital
-            - Vocal Student Recital
-            - Voice Student Recital
-            - Voice BM-E
-            - Vocal BM-E
-            - Instrumental BM-E
-            - Voice BM-P
-            - Vocal BM-P
-            - Instrumental BM-P
-            - 'Exam: 450'
-            - 'Exam: 453'
-            - 'Exam: 454'
-            - 'Exam: 455'
-            - 'Exam: 456'
-            - 'Exam: 458'
+        $or:
+          - name: {$eq: 'Instrumental Student Recital'}
+          - name: {$eq: 'Vocal Student Recital'}
+          - name: {$eq: 'Voice Student Recital'}
+          - $and: [{name: {$eq: 'Student Recital'}}, {role: {$neq: Composer}}]
+          - name: {$eq: 'Voice BM-E'}
+          - name: {$eq: 'Vocal BM-E'}
+          - name: {$eq: 'Instrumental BM-E'}
+          - name: {$eq: 'Voice BM-P'}
+          - name: {$eq: 'Vocal BM-P'}
+          - name: {$eq: 'Instrumental BM-P'}
+          - name: {$eq: 'Exam: 450'}
+          - name: {$eq: 'Exam: 453'}
+          - name: {$eq: 'Exam: 454'}
+          - name: {$eq: 'Exam: 455'}
+          - name: {$eq: 'Exam: 456'}
+          - name: {$eq: 'Exam: 458'}
       assert: {count(performances): {$gte: 2}}
 
   Required Recital Attendance:
@@ -167,10 +167,8 @@ emphases:
           from: music performances
           where:
             $or:
-              - name:
-                  $in:
-                    - Junior Composition Recital
-                    - Senior Composition Recital
+              - name: {$eq: Junior Composition Recital}
+              - name: {$eq: Senior Composition Recital}
               - $and:
                   - name: {$eq: Student Recital}
                   - role: {$eq: Composer}

@@ -156,6 +156,7 @@ requirements:
             - Instrumental Student Recital
             - Vocal Student Recital
             - Voice Student Recital
+            - Student Recital
             - 'Exam: 450'
             - 'Exam: 453'
             - 'Exam: 454'
@@ -194,7 +195,7 @@ requirements:
     result:
       from: music performances
       where:
-        name:
-          $in:
-            - Senior Composition Recital
+        $or:
+          - name: {$eq: Senior Composition Recital}
+          - $and: [{name: {$eq: 'Senior Recital'}}, {role: {$eq: Composer}}]
       assert: {count(performances): {$gte: 1}}
