@@ -23,7 +23,7 @@ requirements:
   Electives:
     result:
       from: courses
-      where: {attribute: {$eq: german_elective}}
+      where: {attribute: {$in: [german_elective, german_conc_elective]}}
       all:
         - assert: {count(courses): {$eq: 3}}
 

@@ -22,7 +22,7 @@ result:
 requirements:
   Intro to Film Studies:
     result:
-      course: FILM 101
+      crsid: '0000021584'  # FILM 101
 
   History, Theory, or Cultural Meaning of Film:
     message: |
@@ -63,7 +63,7 @@ requirements:
 
     result:
       from: courses
-      where: 
+      where:
         $or:
           - attribute: {$eq: film_integrative}
           - attribute: {$eq: film_practical}

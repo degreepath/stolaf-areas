@@ -50,7 +50,7 @@ requirements:
       Olaf instructor)
     result:
       from: courses
-      where: {attribute: {$eq: german_elective}}
+      where: {attribute: {$in: [german_elective, german_major_elective]}}
       limit:
         # > a maximum of one course in English with a significant German
         # > focus taught by a St. Olaf instructor

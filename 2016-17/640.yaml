@@ -7,7 +7,7 @@ degree: B.A.
 result:
   all:
     - requirement: Part 1
-    - requirement: Part 2
+    - requirement: Electives
     - requirement: Practicum
 
   audit:
@@ -32,15 +32,11 @@ requirements:
         - course: THEAT 270
         - course: THEAT 271
 
-  Part 2:
+  Electives:
     result:
-      count: 2
-      of:
-        - course: THEAT 338
-        - course: THEAT 379
-        - course: THEAT 380
-        - course: THEAT 394
-        - course: THEAT 398
+      from: courses
+      where: {attributes: {$eq: theater_elective}}
+      assert: {count(courses): {$gte: 2}}
 
   Practicum:
     message:

@@ -35,19 +35,21 @@ requirements:
     result:
       all:
         - at_most: true
-          either:
+          any:
             - all:
                 - at_most: true
                   any:
                     - course: MATH 120
                     - course: MATH 119
                     - ap: AP Calculus I
+                    - ap: IB Calculus I
+                    - {ap: IB Mathematics, hidden: true}
                 - at_most: true
                   any:
                     - course: MATH 126
                     - course: MATH 128
-                    - ap: IB Mathematics
             - ap: AP Calculus I and II
+            - ap: IB Calculus I and II
         - course: MATH 220
 
   Electives:
@@ -177,3 +179,6 @@ requirements:
         - both:
             - {course: MATH 262, from_claimed: true}
             - {course: STAT 322, from_claimed: true}
+        - both:
+            - {course: MATH 232, from_claimed: true}
+            - {course: MATH 332, from_claimed: true}

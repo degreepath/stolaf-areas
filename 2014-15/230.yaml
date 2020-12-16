@@ -19,7 +19,7 @@ requirements:
         - {course: ECON 262, grade_option: grade}
         - at_most: true
           any:
-            - {course: ECON 263, grade_option: grade, hidden: true}
+            - {crsid: '0000001404', grade_option: grade, hidden: true}
             - {course: ECON 260, grade_option: grade}
             # or
             - both:

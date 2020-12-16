@@ -40,9 +40,11 @@ requirements:
         $or:
           - attribute: {$eq: music_upper_musicology}
           - $and:
+              - attribute: {$eq: music_elective}
+              - level: {$eq: 300}
+          - $and:
               - subject: {$eq: MUSIC}
               - level: {$eq: 300}
-              - number: {$nin: [394, 398]}
       all:
         - assert: {sum(credits): {$gte: 2, at_most: true}}
 
@@ -58,10 +60,11 @@ requirements:
       from: courses
       where:
         $or:
+          - attribute: {$eq: music_elective}
+
           - $and:
               - subject: {$eq: MUSIC}
               - level: {$in: [200, 300]}
-              - number: {$nin: [294, 298, 394, 398]}
 
           - $and:
               - subject: {$eq: MUSPF}
@@ -93,7 +96,6 @@ requirements:
         - message: At most 1.0 credit's worth of MUSIC 275
           where: {course: {$eq: MUSIC 275}}
           assert: {sum(credits): {$lte: 1}}
-
 
   Performance Studies:
     message:
@@ -139,6 +141,7 @@ requirements:
                 - Instrumental Student Recital
                 - Vocal Student Recital
                 - Voice Student Recital
+                - Student Recital
                 - Vocal BM-P
                 - Voice BM-P
                 - Instrumental BM-P

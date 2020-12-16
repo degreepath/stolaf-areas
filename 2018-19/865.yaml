@@ -14,7 +14,7 @@ result:
 requirements:
   Introduction to Media Studies:
     result:
-      course: MEDIA 160
+      crsid: '0000000792'  # MEDIA 160
 
   Electives:
     result:

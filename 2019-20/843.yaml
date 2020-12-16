@@ -78,6 +78,7 @@ requirements:
             - requirement: Middle East & North Africa
             - requirement: Sub-saharan Africa
             - requirement: Asia
+            - requirement: Australia & New Zealand
 
         requirements:
           US:
@@ -119,6 +120,13 @@ requirements:
             result:
               from: courses
               where: {attributes: {$eq: intlr_region_asia}}
+              limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
+              assert: {count(courses): {$gte: 2, at_most: true}}
+
+          Australia & New Zealand:
+            result:
+              from: courses
+              where: {attributes: {$eq: intlr_region_australia_nz}}
               limit: [{at-most: 1 course, where: {subject: {$eq: PSCI}}}]
               assert: {count(courses): {$gte: 2, at_most: true}}
 

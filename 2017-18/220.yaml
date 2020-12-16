@@ -9,7 +9,7 @@ result:
     - requirement: Language-Intensive Courses (Theory)
     - requirement: Movement-Intensive Courses (Technique)
     - requirement: Senior Dance Seminar
-    - requirement: Area of Speciality
+    - requirement: Area of Specialty
     - requirement: Dance Companies
     - requirement: Productions
 
@@ -41,7 +41,7 @@ requirements:
     result:
       course: DANCE 399
 
-  Area of Speciality:
+  Area of Specialty:
     message:
       Each student designs an individualized area of specialty derived
       from their own interests and investigation. Select at least two

@@ -6,33 +6,23 @@ degree: B.A.
 
 result:
   all:
-    - course: EDUC 231
-
-    - course: EDUC 272
-
-    - course: EDUC 290
-
-    - course: EDUC 291
-
-    - course: EDUC 330
-
+    - crsid: '0000000311'  # EDUC 290
+    - crsid: '0000000309'  # EDUC 231
+    - crsid: '0000000321'  # EDUC 330
+    - crsid: '0000000312'  # EDUC 291
+    - crsid: '0000000335'  # EDUC 272
     - at_most: true
       either:
-        - course: EDUC 374
-        - course: EDUC 321
-
-    - course: EDUC 375
-
+        - crsid: '0000022779'  # EDUC 374
+        - crsid: '0000000319'  # EDUC 321
+    - crsid: '0000000336'  # EDUC 375
     - at_most: true
       either:
-        - course: EDUC 378
-        - course: EDUC 379
-
-    - course: EDUC 381
-
-    - course: EDUC 385
-
-    - course: EDUC 389
+        - crsid: '0000000338'  # EDUC 378
+        - crsid: '0000000339'  # EDUC 379
+    - crsid: '0000000340'  # EDUC 381
+    - crsid: '0000000342'  # EDUC 385
+    - crsid: '0000000343'  # EDUC 389
 
     - name: Special Methods
       message: |
