@@ -6,7 +6,12 @@ degree: B.A.
 
 result:
   all:
-    - from: courses
+    - requirement: American Studies
+
+requirements:
+  American Studies:
+    result:
+      from: courses
       where:
         $or:
           - attribute:
