@@ -77,10 +77,10 @@ requirements:
               at_most: true
               $gte: 3
 
-              $ifs:
-                has-area-code(700): '= 1.00'
-                has-area-code(701): '= 2.00'
-                has-area-code(704): '= 1.00'
+              $changes:
+                - [{has-declared-area-code: '700'}, {set: '1.00'}]
+                - [{has-declared-area-code: '701'}, {set: '2.00'}]
+                - [{has-declared-area-code: '704'}, {set: '1.00'}]
 
         - message: At most 1.0 credit's worth of MUSIC 275
           where: {course: {$eq: MUSIC 275}}

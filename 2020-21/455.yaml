@@ -80,8 +80,8 @@ requirements:
               at_most: true
               $gte: 1
 
-              $ifs:
-                has-area-code(731): '+ 0.75'
+              $changes:
+                - [{has-declared-area-code: '731'}, {add: '0.75'}]
 
         - message: At most 1.0 credit's worth of MUSIC 275
           where: {course: {$eq: MUSIC 275}}

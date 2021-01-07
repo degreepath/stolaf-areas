@@ -101,9 +101,9 @@ requirements:
       all:
         - assert: {count(terms): {$gte: 6}}
 
-        - assert: {sum(credits): {$gte: 2.5}}
+        - assert: {sum(credits): {$gte: '2.5'}}
 
-        - where: {credits: {$eq: 0.5}}
+        - where: {credits: {$eq: '0.5'}}
           assert: {count(terms): {$gte: 4}}
 
   Official Ensemble Participation:

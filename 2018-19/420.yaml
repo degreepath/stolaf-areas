@@ -72,22 +72,13 @@ requirements:
                 - math_perspective_d
                 - math_perspective_m
 
-          - $if:
-              from: areas
-              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Physics}}]}
-              assert: {count(areas): {$gte: 1}}
+          - $if: {has-declared-area-code: '540'}  # Physics
             $then: {course: {$eq: PHYS 375}}
 
-          - $if:
-              from: areas
-              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Economics}}]}
-              assert: {count(areas): {$gte: 1}}
+          - $if: {has-declared-area-code: '260'}  # Economics
             $then: {course: {$eq: ECON 385}}
 
-          - $if:
-              from: areas
-              where: {$and: [{type: {$eq: Major}}, {name: {$eq: Chemistry}}]}
-              assert: {count(areas): {$gte: 1}}
+          - $if: {has-declared-area-code: '170'}  # Chemistry
             $then: {course: {$eq: CHEM 371}}
 
           - $and:

@@ -10,7 +10,12 @@ result:
     - requirement: Language
     - requirement: Seminar
     - requirement: Electives
-    - requirement: Double-Majors
+
+    - $if:
+        $or:
+          - {has-declared-area-code: '180'}
+          - {has-declared-area-code: '385'}
+      $then: {requirement: Double-Majors}
 
 requirements:
   Language:
@@ -53,12 +58,6 @@ requirements:
           assert: {count(courses): {$lte: 4}}
 
   Double-Majors:
-    if:
-      from: areas
-      # chinese or japanese
-      where: {code: {$in: ['180', '385']}}
-      assert: {count(areas): {$gte: 1}}
-
     department-audited: true
 
     message: |

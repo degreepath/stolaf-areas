@@ -10,7 +10,6 @@ result:
     - requirement: Upper-Level Language
     - requirement: Language and Culture
 
-
 requirements:
   Core Language:
     result:

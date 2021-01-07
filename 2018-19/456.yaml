@@ -80,14 +80,14 @@ requirements:
               at_most: true
               $gte: 2
 
-              $ifs:
-                has-area-code(711): + 0.50
-                has-area-code(712): + 2.25
-                has-area-code(713): + 2.75
-                has-area-code(714): + 1.75
-                has-area-code(716): + 2.25
+              $changes:
+                - [{has-declared-area-code: '711'}, {add: '0.50'}]
+                - [{has-declared-area-code: '712'}, {add: '2.25'}]
+                - [{has-declared-area-code: '713'}, {add: '2.75'}]
+                - [{has-declared-area-code: '714'}, {add: '1.75'}]
+                - [{has-declared-area-code: '716'}, {add: '2.25'}]
 
-                passed-proficiency-exam(Keyboard Level III): + 0.75
+                - [{passed-proficiency-exam: 'Keyboard Level III'}, {add: '0.75'}]
 
         - message: At most 1.0 credits of 100-level secondary lessons
           where: {subject: {$eq: MUSPF}}
@@ -108,7 +108,7 @@ requirements:
       where:
         $and:
           - subject: {$eq: MUSPF}
-          - credits: {$eq: 1.0}
+          - credits: {$eq: '1.0'}
           - level: {$in: [100, 200]}
           - name: {$eq: $primary-performing-medium}
           - institution: {$eq: STOLAF}

@@ -16,7 +16,7 @@ result:
       $and:
         - subject: {$eq: THEAT}
         - grade_option: {$eq: s/u}
-        - credits: {$eq: 1.00}
+        - credits: {$eq: '1.00'}
 
 requirements:
   Part 1:

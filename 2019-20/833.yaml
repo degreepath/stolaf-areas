@@ -11,7 +11,7 @@ result:
     - requirement: Electives
   audit:
     all:
-      - assert: {average(grades): {$gte: 2.7}}
+      - assert: {average(grades): {$gte: '2.7'}}
 
       - assert: {count(courses): {$lte: 2}}
         where: {is_stolaf: {$eq: false}}

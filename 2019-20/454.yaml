@@ -85,9 +85,9 @@ requirements:
               at_most: true
               $gte: 1
 
-              $ifs:
-                has-area-code(706): '= 2.00'
-                has-area-code(707): '= 3.00'
+              $changes:
+                - [{has-declared-area-code: '706'}, {set: '2.00'}]
+                - [{has-declared-area-code: '707'}, {set: '3.00'}]
 
         - message: At most 1.0 credits of 100-level secondary lessons
           where: {subject: {$eq: MUSPF}}

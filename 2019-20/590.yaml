@@ -21,10 +21,7 @@ requirements:
         $or:
           - attribute: {$eq: russian_area_elective}
 
-          - $if:
-              from: areas
-              where: {code: {$eq: '580'}}
-              assert: {count(areas): {$eq: 0}}
+          - $if: {$not: {has-declared-area-code: '580'}}
             $then:
               attribute: {$eq: russian_area_elective_if_not_rusn_lang}
 
