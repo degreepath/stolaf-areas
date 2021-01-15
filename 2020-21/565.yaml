@@ -10,6 +10,11 @@ result:
     - requirement: Electives
     - requirement: Senior Project
 
+multicountable:
+    RACE 396: 
+        - [Electives]
+        - [Senior Project, Capstone Course]
+
 requirements:
   Core:
     result:
@@ -33,8 +38,15 @@ requirements:
         - assert: {count(subjects): {$gte: 3}}
 
   Senior Project:
-    message: |
-      Race and Ethnic Studies majors are required to complete a senior project
-      and to give an oral presentation of their findings before the program
-      faculty in early May of their senior year.
-    department-audited: true
+    result:
+      any:
+        - name: Project
+          message: |
+              Race and Ethnic Studies majors are required to complete a senior project
+              and to give an oral presentation of their findings before the program
+              faculty in early May of their senior year.
+          department-audited: true
+
+        - name: Capstone Course
+          result:
+            crsid: '0000027332'  # RACE 396
