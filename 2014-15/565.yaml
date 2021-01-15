@@ -22,7 +22,11 @@ requirements:
       from: courses
       where: {attribute: {$eq: race_elective}}
       limit:
-        - {at-most: 1, where: {number: {$in: [296, 298, 396, 398]}}}
+        - {at-most: 1, where: {number: {$in: [296, 396, 398]}}}
+        - {at-most: 1, where: {number: {$in: [296]}}}
+        - {at-most: 1, where: {number: {$in: [298]}}}
+        - {at-most: 1, where: {number: {$in: [396]}}}
+        - {at-most: 1, where: {number: {$in: [398]}}}
         - {at-most: 1, where: {is_stolaf: {$eq: false}}}
       all:
         - assert: {count(courses): {$gte: 7}}
