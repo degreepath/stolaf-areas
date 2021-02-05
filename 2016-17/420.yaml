@@ -75,7 +75,7 @@ requirements:
           - $if: {has-declared-area-code: '540'}  # Physics
             $then: {course: {$eq: PHYS 375}}
 
-          - $if: {has-declared-area-code: '260'}  # Economics
+          - $if: {has-declared-area-code: '230'}  # Economics
             $then: {course: {$eq: ECON 385}}
 
           - $if: {has-declared-area-code: '170'}  # Chemistry
