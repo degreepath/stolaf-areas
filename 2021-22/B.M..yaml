@@ -1,12 +1,10 @@
 ---
-name: B.A.
+name: B.M.
 type: degree
-code: 'B.A.'
+code: 'B.M.'
 
 result:
   all:
-    # - heading: Graduation Requirements
-
     - name: Required Course Credit
       message: |
         35 St. Olaf credits are required.
@@ -76,6 +74,7 @@ result:
         A 2.0 GPA is required.
       result:
         from: courses
+        include_failed: true
         load_potentials: false
         claim: record
         allow_claimed: true
@@ -127,7 +126,7 @@ result:
         where:
           $and:
             - type: {$eq: Major}
-            - degree: {$eq: B.A.}
+            - degree: {$eq: B.M.}
         assert: {count(areas): {$gte: 1}}
 
     - name: Allowed S/U Course Credit
@@ -135,7 +134,6 @@ result:
         6 credits may be earned on an S/U basis.
       result:
         from: courses
-        load_potentials: false
         claim: record
         allow_claimed: true
         where:
@@ -143,8 +141,6 @@ result:
             - {grade_option: {$eq: s/u}}
             - {course: {$eq: REG 0005}}
         assert: {sum(credits): {$lte: '6.00'}}
-
-    # - heading: The OLE Core Requirements
 
     - name: 'First-Year Experience: First-Year Seminar'
       result:
@@ -170,16 +166,22 @@ result:
         claim: true
         limit:
           - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where: {gereqs: {$eq: RFV}}
+        where:
+          $or:
+            - {gereqs: {$eq: RFV}}
+            - {gereqs: {$eq: CTD}}
         assert: {count(courses): {$gte: 1, at_most: true}}
 
-    - name: Christian Theology in Dialogue
+    - name: Natural Science or Reasoning
       result:
         from: courses
         claim: true
         limit:
           - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where: {gereqs: {$eq: CTD}}
+        where:
+          $or:
+            - {gereqs: {$eq: NTS}}
+            - {gereqs: {$eq: QCR}}
         assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: Global Histories and Societies
@@ -191,15 +193,6 @@ result:
         where: {gereqs: {$eq: GHS}}
         assert: {count(courses): {$gte: 1, at_most: true}}
 
-    - name: Natural Science
-      result:
-        from: courses
-        claim: true
-        limit:
-          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where: {gereqs: {$eq: NTS}}
-        assert: {count(courses): {$gte: 1, at_most: true}}
-
     - name: Social Sciences
       result:
         from: courses
@@ -207,15 +200,6 @@ result:
         limit:
           - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
         where: {gereqs: {$eq: SCS}}
-        assert: {count(courses): {$gte: 1, at_most: true}}
-
-    - name: Quantitative and Computational Reasoning
-      result:
-        from: courses
-        claim: true
-        limit:
-          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where: {gereqs: {$eq: QCR}}
         assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: World Languages and Cultures
