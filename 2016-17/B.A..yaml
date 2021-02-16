@@ -204,6 +204,11 @@ requirements:
       allow_claimed: true
       limit:
         - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        - at-most: 0
+          where:
+            $and:
+              - subject: {$eq: REG}
+              - number: {$in: ['0166', '0163', '0181', '0170', '0185', '0164']}
       where:
         gereqs:
           $in:
