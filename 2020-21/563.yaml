@@ -66,7 +66,7 @@ result:
 
 
 emphases:
-  710:
+  755:
     name: Finance
 
     result:
@@ -101,7 +101,7 @@ emphases:
               where: {attributes: {$eq: econ_emph_finance_elective}}
               assert: {count(courses): {$gte: 1}}
 
-  720:
+  756:
     name: International Economic Analysis and Policy
 
     result:
@@ -136,7 +136,7 @@ emphases:
           where: {attributes: {$eq: econ_emph_intl_topics}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
-  725:
+  757:
     name: Management
 
     result:
@@ -164,31 +164,6 @@ emphases:
           from: courses
           where: {attributes: {$eq: econ_emph_mgmt_elective}}
           assert: {count(courses): {$gte: 1, at_most: true}}
-
-  736:
-    name: Public Policy
-
-    result:
-      both:
-        - requirement: Public Policy
-        - requirement: Electives
-      audit:
-        where:
-          $and:
-            - grade: {$lt: C, $during_covid: C-}
-            - is_in_progress: {$eq: false}
-        assert: {count(courses): {$eq: 0}}
-
-    requirements:
-      Public Policy:
-        result:
-          course: ECON 371
-
-      Electives:
-        result:
-          from: courses
-          where: {attributes: {$eq: econ_emph_pubpol_elective}}
-          assert: {count(courses): {$gte: 3, at_most: true}}
 
 
 multicountable:
