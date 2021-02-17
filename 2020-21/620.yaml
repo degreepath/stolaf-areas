@@ -36,7 +36,12 @@ requirements:
       from: courses
       where: {attribute: {$eq: spanish_elective}}
       all:
-        - assert: {count(courses): {$gte: 5}}
+        - assert:
+            count(courses): 
+              $gte: 5
+
+              $changes:
+                - [{has-declared-area-code: '240'}, {set: '9.00'}]
 
         - where: {course: {$in: [SPAN 313, SPAN 314]}}
           assert: {count(courses): {$gte: 1}}
