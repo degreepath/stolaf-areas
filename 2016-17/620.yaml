@@ -41,7 +41,7 @@ requirements:
               $gte: 5
 
               $changes:
-                - [{has-declared-area-code: '240'}, {set: '9.00'}]
+                - [{has-declared-area-code: '240'}, {set: '6.00'}]
 
         - where: {course: {$in: [SPAN 313, SPAN 314]}}
           assert: {count(courses): {$gte: 1}}
