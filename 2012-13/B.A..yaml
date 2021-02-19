@@ -210,10 +210,12 @@ requirements:
               - subject: {$eq: REG}
               - number: {$in: ['0166', '0163', '0181', '0170', '0185', '0164']}
       where:
-        $if: {$not: {has-override-exception: fol-by-petition}}
+        $if: {has-override-exception: fol-by-petition}
         $args:
           hide_branching: true
         $then:
+          attribute: {$eq: fol_by_petition}
+        $else:
           gereqs:
             $in:
               - FOL-C
@@ -228,8 +230,6 @@ requirements:
               - FOL-S
               - FOL-T
               - FOL-Y
-        $else:
-          attribute: {$eq: fol_by_petition}
 
       assert:
         count(courses):
