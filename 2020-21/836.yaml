@@ -17,8 +17,8 @@ requirements:
   Core:
     result:
       all:
-        - crsid: '0000021584'
-        - crsid: '0000028967'
+        - crsid: '0000021584'  # FMS 101
+        - crsid: '0000028967'  # FMS 140
 
   Production Elective:
     result:
