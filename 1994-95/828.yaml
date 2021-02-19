@@ -10,4 +10,4 @@ result:
 requirements:
   Not Specified:
     message: This major has not yet been specified.
-    audited_by: department
+    department_audited: true
