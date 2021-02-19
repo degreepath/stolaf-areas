@@ -37,7 +37,7 @@ requirements:
       where: {attribute: {$eq: spanish_elective}}
       all:
         - assert:
-            count(courses): 
+            count(courses):
               $gte: 5
 
               $changes:
