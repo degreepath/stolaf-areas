@@ -211,6 +211,8 @@ requirements:
               - number: {$in: ['0166', '0163', '0181', '0170', '0185', '0164']}
       where:
         $if: {$not: {has-override-exception: fol-by-petition}}
+        $args:
+          hide_branching: true
         $then:
           gereqs:
             $in:
