@@ -210,21 +210,32 @@ requirements:
               - subject: {$eq: REG}
               - number: {$in: ['0166', '0163', '0181', '0170', '0185', '0164']}
       where:
-        gereqs:
-          $in:
-            - FOL-C
-            - FOL-F
-            - FOL-G
-            - FOL-K
-            - FOL-J
-            - FOL-L
-            - FOL-N
-            - FOL-O
-            - FOL-R
-            - FOL-S
-            - FOL-T
-            - FOL-Y
-      assert: {count(courses): {$gte: 1, at_most: true}}
+        $if: {$not: {has-override-exception: fol-by-petition}}
+        $then:
+          gereqs:
+            $in:
+              - FOL-C
+              - FOL-F
+              - FOL-G
+              - FOL-K
+              - FOL-J
+              - FOL-L
+              - FOL-N
+              - FOL-O
+              - FOL-R
+              - FOL-S
+              - FOL-T
+              - FOL-Y
+        $else:
+          attribute: {$eq: fol_by_petition}
+
+      assert:
+        count(courses):
+          $gte: 1
+          at_most: true
+
+          $changes:
+            - [{has-override-exception: fol-by-petition}, {set: '3'}]
 
   Oral Communication:
     message: |
