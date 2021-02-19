@@ -1,0 +1,13 @@
+---
+name: Economics
+type: degree
+code: '230'
+
+result:
+  all:
+    - requirement: Not Specified
+
+requirements:
+  Not Specified:
+    message: This major has not yet been specified.
+    audited_by: department
