@@ -710,7 +710,7 @@ requirements:
 ```
 # Common Requirements among All Majors
 
-TODO (hawken)
+TODO(hawken)
 
 # Common Recipes
 
