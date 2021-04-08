@@ -50,3 +50,4 @@ requirements:
         - name: Capstone Course
           result:
             crsid: '0000027332'  # RACE 396
+            allow_claimed: true
