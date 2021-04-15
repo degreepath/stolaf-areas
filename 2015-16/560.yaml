@@ -93,6 +93,7 @@ requirements:
         $or:
           - attribute: {$eq: psych_elective}
           - $and:
+              - {course: {$neq: PSYCH 125}}
               - subject: {$eq: PSYCH}
               - credits: {$eq: '1.0'}
       assert: {count(courses): {$gte: 2, at_most: true}}
