@@ -31,9 +31,7 @@ requirements:
             - both:
                 - course: GCON 217
                 - course: GCON 218
-        - from: courses
-          where: {attribute: {$eq: history_region_nonwesternworld}}
-          assert: {count(courses): {$gte: 1}}
+        - requirement: Level 2 Non-Western History Course
         - course: ECON 121
         - course: ID 234
         - course: PSCI 111
@@ -45,6 +43,13 @@ requirements:
             - course: SOAN 264
         - course: EDUC 290
         - course: EDUC 334
+
+    requirements:
+      Level 2 Non-Western History Course:
+        result:
+          from: courses
+          where: {attribute: {$eq: history_region_nonwesternworld}}
+          assert: {count(courses): {$gte: 1}}        
 
   Electives:
     result:
