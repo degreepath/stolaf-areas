@@ -6,12 +6,11 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Major Seminar
-    - requirement: Level III
+    - requirement: Level II Seminar
+    - requirement: Level III Seminars
     - requirement: Africa, Asia, and Latin America
     - requirement: Europe and Russia
     - requirement: The United States
-    - requirement: Pre-Modern Period
     - requirement: Additional Courses
 
   audit:
@@ -19,18 +18,8 @@ result:
       - assert: {count(courses): {$gte: 9}}
 
       - assert: {count(courses): {$lte: 3}}
-        where:
-          $and:
-            - {subject: {$eq: HIST}}
-            - {level: {$eq: 100}}
+        where: {level: {$eq: 100}}
 
-      - assert: {count(courses): {$lte: 2}}
-        where:
-          $and:
-            - {subject: {$eq: HIST}}
-            - {level: {$eq: 100}}
-            - {type: {$eq: Seminar}}
-      
       # Students may count one St. Olaf course taken outside of the department 
       # toward the major, by application or by successfully completing a course 
       # on the department's pre-approved list.
@@ -59,22 +48,14 @@ requirements:
       where: {attribute: {$eq: history_region_af_as_la}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Pre-Modern Period:
-    message: |
-      Waived by department request, as per Steve Hahn.
-    result:
-      from: courses
-      where: {attribute: {$eq: history_era_premodern}}
-      assert: {count(courses): {$gte: 0, at_most: true}}
-
-  Major Seminar:
+  Level II Seminar:
     result:
       from: courses
       allow_claimed: true
       where: {attribute: {$eq: history_l2_seminar}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Level III:
+  Level III Seminars:
     result:
       from: courses
       allow_claimed: true
@@ -92,6 +73,29 @@ requirements:
             - history_region_eu_ru
             - history_region_af_as_la
             - history_region_us
-            - history_era_premodern
             - history_extra
       assert: {count(courses): {$gte: 2}}
+
+emphases:
+  737:
+    name: Public History
+
+    result:
+      all:
+        - requirement: Core
+        - requirement: Electives
+
+    requirements:
+      Core:
+        result:
+          all:
+            - {course: HIST 280, allow_claimed: true}
+            - {course: HIST 294, allow_claimed: true}
+            - {course: HIST 296, allow_claimed: true}
+
+      Electives:
+        result:
+          from: courses
+          allow_claimed: true
+          where: {attributes: {$eq: hist_public_elective}}
+          assert: {count(courses): {$gte: 3, at_most: true}}
