@@ -1,0 +1,97 @@
+---
+name: History
+type: major
+code: '350'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Major Seminar
+    - requirement: Level III
+    - requirement: Africa, Asia, and Latin America
+    - requirement: Europe and Russia
+    - requirement: The United States
+    - requirement: Pre-Modern Period
+    - requirement: Additional Courses
+
+  audit:
+    all:
+      - assert: {count(courses): {$gte: 9}}
+
+      - assert: {count(courses): {$lte: 3}}
+        where:
+          $and:
+            - {subject: {$eq: HIST}}
+            - {level: {$eq: 100}}
+
+      - assert: {count(courses): {$lte: 2}}
+        where:
+          $and:
+            - {subject: {$eq: HIST}}
+            - {level: {$eq: 100}}
+            - {type: {$eq: Seminar}}
+      
+      # Students may count one St. Olaf course taken outside of the department 
+      # toward the major, by application or by successfully completing a course 
+      # on the department's pre-approved list.
+      - assert: {count(courses): {$lte: 1}}
+        where: 
+          $and:
+            - subject: {$neq: HIST}
+            - is_stolaf: {$eq: true}
+
+requirements:
+  Europe and Russia:
+    result:
+      from: courses
+      where: {attribute: {$eq: history_region_eu_ru}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  The United States:
+    result:
+      from: courses
+      where: {attribute: {$eq: history_region_us}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Africa, Asia, and Latin America:
+    result:
+      from: courses
+      where: {attribute: {$eq: history_region_af_as_la}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Pre-Modern Period:
+    message: |
+      Waived by department request, as per Steve Hahn.
+    result:
+      from: courses
+      where: {attribute: {$eq: history_era_premodern}}
+      assert: {count(courses): {$gte: 0, at_most: true}}
+
+  Major Seminar:
+    result:
+      from: courses
+      allow_claimed: true
+      where: {attribute: {$eq: history_l2_seminar}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Level III:
+    result:
+      from: courses
+      allow_claimed: true
+      where: {attribute: {$eq: history_l3_seminar}}
+      assert: {count(courses): {$gte: 3, at_most: true}}
+
+  Additional Courses:
+    result:
+      from: courses
+      where:
+        attribute:
+          $in:
+            - history_l2_seminar
+            - history_l3_seminar
+            - history_region_eu_ru
+            - history_region_af_as_la
+            - history_region_us
+            - history_era_premodern
+            - history_extra
+      assert: {count(courses): {$gte: 2}}
