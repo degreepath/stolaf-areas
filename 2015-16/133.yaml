@@ -72,13 +72,13 @@ requirements:
             At most one GREEK or LATIN course may be used as an elective.
 
         - assert: {count(courses): {$lte: 1}}
-          where: {attribute: {$eq: ancient_elective_if_greek_lang}}
+          where: {attribute: {$eq: ancient_elective_if_latin_lang}}
           message: >
             One GREEK course may be used as an elective if the student satisfies
             the required language portion of the major with Latin courses.
 
         - assert: {count(courses): {$lte: 1}}
-          where: {attribute: {$eq: ancient_elective_if_latin_lang}}
+          where: {attribute: {$eq: ancient_elective_if_greek_lang}}
           message: >
             One LATIN course may be used as an elective if the student satisfies
             the required language portion of the major with Greek courses.
