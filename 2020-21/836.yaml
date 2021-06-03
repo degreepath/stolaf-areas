@@ -18,7 +18,9 @@ requirements:
     result:
       all:
         - crsid: '0000021584'  # FMS 101
-        - crsid: '0000028967'  # FMS 140
+        - either: 
+            - crsid: '0000028967'  # FMS 140
+            - crsid: '0000000792'  # FMS 160
 
   Production Elective:
     result:
