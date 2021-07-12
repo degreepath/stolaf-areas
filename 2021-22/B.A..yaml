@@ -224,22 +224,32 @@ result:
         claim: true
         limit:
           - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where: 
-          $or:
-            - {gereqs: {$eq: WLC}}
-              # assert: {count(courses): {$gte: 1, at_most: true}}
-            - $and:
-                - course: 'FREN 111'
-                - course: 'FREN 112'
-                - course: 'FREN 231'
-            - $and:
-                - course: 'GERM 111'
-                - course: 'GERM 112'
-                - course: 'GERM 231'
-            - $and:
-                - course: 'SPAN 111'
-                - course: 'SPAN 112'
-                - course: 'SPAN 231'
+        where: {gereqs: {$eq: WLC}} 
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
+# not working version
+    # - name: World Languages and Cultures
+    #   result:
+    #     from: courses
+    #     claim: true
+    #     limit:
+    #       - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+    #     where: 
+    #       $or:
+    #         - {gereqs: {$eq: WLC}}
+    #           # assert: {count(courses): {$gte: 1, at_most: true}}
+    #         - $and:
+    #             - course: 'FREN 111'
+    #             - course: 'FREN 112'
+    #             - course: 'FREN 231'
+    #         - $and:
+    #             - course: 'GERM 111'
+    #             - course: 'GERM 112'
+    #             - course: 'GERM 231'
+    #         - $and:
+    #             - course: 'SPAN 111'
+    #             - course: 'SPAN 112'
+    #             - course: 'SPAN 231'
 
     - name: Creativity
       result:
