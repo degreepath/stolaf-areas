@@ -231,7 +231,7 @@ result:
       result:
         any:
           - requirement: WLC-GE
-          # - requirement: French Sequence
+          - requirement: French Sequence
           # - requirement: German Sequence
           # - requirement: Spanish Sequence
 
@@ -245,12 +245,12 @@ result:
             where: {gereqs: {$eq: WLC}} 
             assert: {count(courses): {$gte: 1, at_most: true}}
 
-          # French Sequence:
-          #   result: 
-          #     all:
-          #       - course: FREN 111
-          #       - course: FREN 112
-          #       - course: FREN 231
+        French Sequence:
+          result: 
+            all:
+              - course: FREN 111
+              - course: FREN 112
+              - course: FREN 231
 
           # German Sequence:
           #   result: 
