@@ -227,29 +227,68 @@ result:
     #     where: {gereqs: {$eq: WLC}} 
     #     assert: {count(courses): {$gte: 1, at_most: true}}
 
-# not working version
     - name: World Languages and Cultures
       result:
-        from: courses
-        claim: true
-        limit:
-          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where:
-          $or:
-            - {gereqs: {$eq: WLC}}
-            - $and:
-              - course: FREN 111
-              - course: FREN 112
-              - course: FREN 231
-            - $and:
-              - course: GERM 111
-              - course: GERM 112
-              - course: GERM 231
-            - $and:
-              - course: SPAN 111
-              - course: SPAN 112
-              - course: SPAN 231
-        assert: {count(courses): {$gte: 1, at_most: true}}
+        any:
+          - requirement: World Languages and Cultures GE
+          - requirement: French Sequence
+          - requirement: German Sequence
+          - requirement: Spanish Sequence
+
+        requirements:
+          World Languages and Cultures:
+            result:
+              from: courses
+              claim: true
+              limit:
+                - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+              where: {gereqs: {$eq: WLC}} 
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
+          French Sequence:
+            result: 
+              all:
+                - course: FREN 111
+                - course: FREN 112
+                - course: FREN 231
+
+          German Sequence:
+            result: 
+              all:
+                - course: GERM 111
+                - course: GERM 112
+                - course: GERM 231
+
+          Spanish Sequence:
+            result:
+              all:
+                - course: SPAN 111
+                - course: SPAN 112
+                - course: SPAN 231
+
+# not working version
+        # from: courses
+        # claim: true
+        # limit:
+        #   - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+        # where:
+        #   any:
+        #     - 
+        #   $or:
+        #     - {gereqs: {$eq: WLC}}
+        #     - $and:
+        #       - course: FREN 111
+        #       - course: FREN 112
+        #       - course: FREN 231
+        #     - $and:
+        #       - course: GERM 111
+        #       - course: GERM 112
+        #       - course: GERM 231
+        #     - $and:
+        #       - course: SPAN 111
+        #       - course: SPAN 112
+        #       - course: SPAN 231
+        # assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: Creativity
       result:
