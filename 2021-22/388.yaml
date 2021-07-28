@@ -19,11 +19,11 @@ requirements:
           either:
             - course: KINES 150
             - ap: IB Sports Exercise Health Science
+        - course: KINES 231            
         - course: KINES 250
         - course: KINES 374
         - course: KINES 375
         - course: KINES 390
-        - course: KINES 231
 
   Electives:
     result:
