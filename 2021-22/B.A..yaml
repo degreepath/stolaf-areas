@@ -235,7 +235,7 @@ result:
         limit:
           - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
         where:
-          any:
+          $or:
             - {gereqs: {$eq: WLC}}  
             - $and:
                 - course: 'FREN 111'
