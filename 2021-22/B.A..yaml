@@ -232,8 +232,8 @@ result:
         any:
           - requirement: WLC-GE
           - requirement: French Sequence
-          # - requirement: German Sequence
-          # - requirement: Spanish Sequence
+          - requirement: German Sequence
+          - requirement: Spanish Sequence
 
       requirements:
         WLC-GE:
@@ -252,19 +252,19 @@ result:
               - course: FREN 112
               - course: FREN 231
 
-          # German Sequence:
-          #   result: 
-          #     all:
-          #       - course: GERM 111
-          #       - course: GERM 112
-          #       - course: GERM 231
+        German Sequence:
+          result: 
+            all:
+              - course: GERM 111
+              - course: GERM 112
+              - course: GERM 231
 
-          # Spanish Sequence:
-          #   result:
-          #     all:
-          #       - course: SPAN 111
-          #       - course: SPAN 112
-          #       - course: SPAN 231
+        Spanish Sequence:
+          result:
+            all:
+              - course: SPAN 111
+              - course: SPAN 112
+              - course: SPAN 231
 
 # not working version
         # from: courses
