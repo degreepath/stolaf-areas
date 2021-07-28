@@ -19,10 +19,7 @@ requirements:
           either:
             - course: KINES 150
             - ap: IB Sports Exercise Health Science
-        - at_most: true
-          any:
-            - course: KINES 250
-            - course: NURS 110
+        - course: KINES 250
         - course: KINES 374
         - course: KINES 375
         - course: KINES 390
