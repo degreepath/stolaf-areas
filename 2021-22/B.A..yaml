@@ -230,13 +230,13 @@ result:
     - name: World Languages and Cultures
       result:
         any:
-          - requirement: World Languages and Cultures GE
+          - requirement: WLC-GE
           - requirement: French Sequence
           - requirement: German Sequence
           - requirement: Spanish Sequence
 
         requirements:
-          World Languages and Cultures GE:
+          WLC-GE:
             result:
               from: courses
               claim: true
