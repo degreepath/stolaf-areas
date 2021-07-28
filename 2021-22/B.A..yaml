@@ -227,7 +227,7 @@ result:
     #     where: {gereqs: {$eq: WLC}} 
     #     assert: {count(courses): {$gte: 1, at_most: true}}
 
-# test working version
+# not working version
     - name: World Languages and Cultures
       result:
         from: courses
@@ -237,19 +237,19 @@ result:
         where:
           $or:
             - {gereqs: {$eq: WLC}}  
-            $and:
+            - $and:
               - course: FREN 111
               - course: FREN 112
               - course: FREN 231
-            $and:
+            - $and:
               - course: GERM 111
               - course: GERM 112
               - course: GERM 231
-            $and:
+            - $and:
               - course: SPAN 111
               - course: SPAN 112
               - course: SPAN 231
-        assert: {count(courses): {$gte: 1, at_most: true}}
+        # assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: Creativity
       result:
