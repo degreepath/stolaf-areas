@@ -236,7 +236,7 @@ result:
           - requirement: Spanish Sequence
 
         requirements:
-          World Languages and Cultures:
+          World Languages and Cultures GE:
             result:
               from: courses
               claim: true
