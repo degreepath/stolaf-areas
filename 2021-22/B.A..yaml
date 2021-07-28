@@ -237,8 +237,9 @@ result:
         where:
           $or:
             - {gereqs: {$eq: WLC}}  
+              assert: {count(courses): {$gte: 1, at_most: true}}
             - $and:
-              - course: 'FREN 111'
+              - course: FREN 111
               - course: FREN 112
               - course: FREN 231
             - $and:
@@ -249,7 +250,7 @@ result:
               - course: SPAN 111
               - course: SPAN 112
               - course: SPAN 231
-        # assert: {count(courses): {$gte: 1, at_most: true}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: Creativity
       result:
