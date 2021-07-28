@@ -1,0 +1,55 @@
+---
+name: Gender and Sexuality Studies
+type: major
+code: '278'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Introduction
+    - requirement: Advanced Topics
+    - requirement: Additional Courses
+
+requirements:
+  Introduction:
+    result:
+      course: GSS 121
+
+  Advanced Topics:
+    result:
+      course: GSS 399
+
+  Additional Courses:
+    message: |
+      Seven additional courses, with the following criteria:
+
+      <ol>
+        <li>One must be at level III</li>
+        <li>One course must focus on women's lived experiences</li>
+        <li>
+          One course from each of the following areas:
+          <ul>
+            <li>Theory and methods applicable to studying gender</li>
+            <li>Gender in historical contexts</li>
+            <li>Gender in global, comparative, or diverse contexts</li>
+          </ul>
+        </li>
+      </ol>
+
+    result:
+      from: courses
+      where: {attributes: {$eq: wmgst_elective}}
+      all:
+        - assert: {count(courses): {$gte: 7}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attributes: {$eq: wmgst_theory}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attributes: {$eq: wmgst_historical}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {attributes: {$eq: wmgst_diverse}}
+          assert: {count(courses): {$gte: 1}}
