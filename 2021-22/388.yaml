@@ -28,7 +28,7 @@ requirements:
   Electives:
     result:
       from: courses
-      where: {attributes: {$eq: esth_elective}}
+      where: {attributes: {$eq: kines_elective}}
       limit:
         - at-most: 1
           where:
