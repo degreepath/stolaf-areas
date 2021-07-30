@@ -20,11 +20,11 @@ requirements:
       where:
         attributes:
           $in:
-            - wmgst_concentration_interdisciplinary
-            - wmgst_elective
-            - wmgst_theory
-            - wmgst_historical
-            - wmgst_diverse
+            - gss_concentration_interdisciplinary
+            - gss_elective
+            - gss_theory
+            - gss_historical
+            - gss_diverse
       all:
         - assert: {count(courses): {$gte: 4}}
 

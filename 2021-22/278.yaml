@@ -38,18 +38,18 @@ requirements:
 
     result:
       from: courses
-      where: {attributes: {$eq: wmgst_elective}}
+      where: {attributes: {$eq: gss_elective}}
       all:
         - assert: {count(courses): {$gte: 7}}
 
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
 
-        - where: {attributes: {$eq: wmgst_theory}}
+        - where: {attributes: {$eq: gss_theory}}
           assert: {count(courses): {$gte: 1}}
 
-        - where: {attributes: {$eq: wmgst_historical}}
+        - where: {attributes: {$eq: gss_historical}}
           assert: {count(courses): {$gte: 1}}
 
-        - where: {attributes: {$eq: wmgst_diverse}}
+        - where: {attributes: {$eq: gss_diverse}}
           assert: {count(courses): {$gte: 1}}
