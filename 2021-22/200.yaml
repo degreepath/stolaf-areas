@@ -47,9 +47,7 @@ requirements:
     requirements:
       Designated Courses:
         result: 
-          from: courses
-          limit: 
-            - {course: {$in: [CSCI 273, CSCI 276, CSCI 300, CSCI 333]}}
+          from: [CSCI 273, CSCI 276, CSCI 300, CSCI 333]
           assert: {count(courses): {$gte: 2}}
 
  #     Other Electives:
