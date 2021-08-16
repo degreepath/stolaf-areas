@@ -41,7 +41,7 @@ requirements:
     result:
       all:
         - requirement: Designated Courses
-#        - requirement: Other Electives
+        - requirement: Other Electives
       # assert: {count(courses): {$gte: 3}}
 
     requirements:
