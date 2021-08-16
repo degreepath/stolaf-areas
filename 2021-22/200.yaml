@@ -41,22 +41,22 @@ requirements:
     result:
       all:
         - requirement: Designated Courses
-#        - requirement: Other Electives
-#      assert: {count(courses): {$gte: 3}}
+        - requirement: Other Electives
+      assert: {count(courses): {$gte: 3}}
 
     requirements:
       Designated Courses:
         result: 
-          from: {courses: {$in:[CSCI 273, CSCI 276, CSCI 300, CSCI 333]}}
+          from: courses
+          where: {attributes: {$eq: csci_designated_electives}}
           assert: {count(courses): {$gte: 2}}
 
-    # requirements:
-    #   Designated Courses:
-    #     result: 
-    #       from: courses
-    #       where: {attributes: {$eq: csci_designated_electives}}
-    #       assert: {count(courses): {$gte: 2}}
-
+    requirements:
+      Other Electives:
+        result: 
+          from: courses
+          where: {attributes: {$eq: csci_other_electives}}
+          
  #     Other Electives:
  #       result:
  #         given: these courses
