@@ -55,6 +55,7 @@ requirements:
         result: 
           from: courses
           where: {attributes: {$eq: csci_other_electives}}
+          assert: {count(courses): {$gte: 0}}
           
  #     Other Electives:
  #       result:
