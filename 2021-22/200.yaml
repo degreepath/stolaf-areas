@@ -41,7 +41,7 @@ requirements:
     result:
       all:
         - requirement: Designated Courses
-      #   - requirement: Other Electives
+#        - requirement: Other Electives
       # assert: {count(courses): {$gte: 3}}
 
     requirements:
@@ -51,7 +51,6 @@ requirements:
           where: {attributes: {$eq: csci_designated_electives}}
           assert: {count(courses): {$gte: 2}}
 
-    requirements:
       Other Electives:
         result: 
           from: courses
