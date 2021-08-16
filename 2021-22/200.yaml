@@ -47,7 +47,8 @@ requirements:
     requirements:
       Designated Courses:
         result: 
-          from: [CSCI 273, CSCI 276, CSCI 300, CSCI 333]
+          given: these courses
+          courses: [CSCI 273, CSCI 276, CSCI 300, CSCI 333]
           assert: {count(courses): {$gte: 2}}
 
  #     Other Electives:
