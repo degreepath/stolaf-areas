@@ -42,16 +42,19 @@ requirements:
       all:
         - requirement: Designated Courses
 #        - requirement: Other Electives
+      assert: {count(courses): {$gte: 3}}
 
     requirements:
       Designated Courses:
         result: 
           given: these courses
           courses: [CSCI 273, CSCI 276, CSCI 300, CSCI 333]
-          do: count >= 2
+          assert: {count(these courses): {$gte: 2}}
 
-      Other Electives:
-
+ #     Other Electives:
+ #       result:
+ #         given: these courses
+ #         courses: [CSCI 200, CSCI 284, CSCI 336, CSCI 356, MATH 282, MSCS 341, PHYS 246]
 
 
 
