@@ -10,12 +10,8 @@ result:
     - requirement: Required Computer Science
     - requirement: Required Mathematics
     - requirement: Upper-Level Electives
-    
-  #try
-  # do: count >= 11
-  #or
-  # assert: {count(courses): {$gte: 11, at_most: true}}
-  #also, does it matter if it's counting courses or credits?
+
+  #does it matter if it's counting courses vs credits?
 
 requirements:
   Required Computer Science:
@@ -44,26 +40,33 @@ requirements:
 
   Upper-Level Electives:
     result:
+      from: courses
+        where:
+          $or:
+            - {attributes: {$eq: csci_designated_electives}}
+            - {attributes: {$eq: csci_other_electives}}
       all:
-        - requirement: Designated Courses
-        - requirement: Other Electives
-      #try
-      # do: count >= 3
-      #or
-      # assert: {count(courses): {$gte: 3, at_most: true}}
+        - assert: {count(courses): {$eq: 3, at_most: true}}
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}
 
-    requirements:
-      Designated Courses:
-        result: 
-          from: courses
-          where: {attributes: {$eq: csci_designated_electives}}
-          assert: {count(courses): {$gte: 2}}
+    # requirements:
+    #   Designated Courses:
+    #     result: 
+    #       from: courses
+    #       where: {attributes: {$eq: csci_designated_electives}}
+    #       assert: {count(courses): {$gte: 0}}
 
-      Other Electives:
-        result: 
-          from: courses
-          where: {attributes: {$eq: csci_other_electives}}
-          assert: {count(courses): {$gte: 0}}
+    #   Other Electives:
+    #     result: 
+    #       from: courses
+    #       where: {attributes: {$eq: csci_other_electives}}
+    #       assert: {count(courses): {$gte: 0}}
+          
+
+
+
+
           
  #     Other Electives:
  #       result:
