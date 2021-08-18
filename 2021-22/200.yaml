@@ -10,7 +10,11 @@ result:
     - requirement: Required Computer Science
     - requirement: Required Mathematics
     - requirement: Upper-Level Electives
-
+  #try
+  # do: count >= 11
+  #or
+  # assert: {count(courses): {$gte: 11, at_most: true}}
+  #also, does it matter if it's counting courses or credits?
 
 requirements:
   Required Computer Science:
@@ -42,7 +46,10 @@ requirements:
       all:
         - requirement: Designated Courses
         - requirement: Other Electives
-      #assert: {count(courses): {$gte: 3}}
+      #try
+      # do: count >= 3
+      #or
+      # assert: {count(courses): {$gte: 3, at_most: true}}
 
     requirements:
       Designated Courses:
