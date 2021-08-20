@@ -16,8 +16,9 @@ requirements:
         - course: BIO 143
         - course: BIO 243
         - at_most: true
-          either:
-            - course: KINES 150
+          any:
+            - course: KINES 195
+            - course: ESTH 150
             - ap: IB Sports Exercise Health Science
         - either:
           - course: ESTH 231
