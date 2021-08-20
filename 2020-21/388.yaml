@@ -28,8 +28,12 @@ requirements:
         - either:
           - course: ESTH 374
           - course: KINES 374
-        - course: KINES 375
-        - course: KINES 390
+        - either:
+          - course: ESTH 375
+          - course: KINES 375
+        - either:
+          - course: ESTH 390
+          - course: KINES 390
 
   Electives:
     result:
