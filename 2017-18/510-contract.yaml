@@ -1,9 +1,0 @@
----
-name: Philosophy
-type: major
-code: '510-contract'
-degree: B.A.
-
-result:
-  all:
-    - template: phil_contract
