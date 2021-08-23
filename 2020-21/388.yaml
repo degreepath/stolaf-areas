@@ -23,9 +23,7 @@ requirements:
         - either:
           - course: ESTH 231
           - course: KINES 231
-        - either:
-          - course: ESTH 250
-          - course: KINES 250
+        - course: KINES 250
         - either:
           - course: ESTH 374
           - course: KINES 374
