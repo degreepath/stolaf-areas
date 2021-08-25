@@ -50,8 +50,8 @@ requirements:
             where: {attributes: {$eq: csci_other_electives}}
             assert: {count(courses): {$gte: 1, at_most: true}}
       
-      - assert: {count(courses): {$gte: 3, at_most: true}}
-      - where: {level: {$eq: 300}}
+        - assert: {count(courses): {$gte: 3, at_most: true}}
+        - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
 
 #        $or:
