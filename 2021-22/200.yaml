@@ -56,7 +56,7 @@ requirements:
                 - attributes: {$eq: csci_designated_electives}
                 - attributes: {$eq: csci_other_electives}
             
-              - where: {level: {$eq: 300}}
+              - level: {$eq: 300}
           assert: {count(courses): {$gte: 1}}
      
 
