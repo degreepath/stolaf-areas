@@ -57,7 +57,7 @@ requirements:
                 - attributes: {$eq: csci_other_electives}
             
               - level: {$eq: 300}
-              - allow_claimed: true
+          allow_claimed: true
           assert: {count(courses): {$gte: 1}}
      
 
