@@ -52,7 +52,7 @@ requirements:
         - from: courses
           where: 
             $and: 
-              $or:
+              - $or:
                 - attributes: {$eq: csci_designated_electives}
                 - attributes: {$eq: csci_other_electives}
             
