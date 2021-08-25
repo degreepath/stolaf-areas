@@ -40,10 +40,12 @@ requirements:
 
   Upper-Level Electives:
     result:
-      all:
+      count: all
+      of:
         - requirement: Designated Electives
         - requirement: Other Electives
 
+      all:
         - assert: {count(courses): {$gte: 3, at_most: true}}
         
         - where: {level: {$eq: 300}}
