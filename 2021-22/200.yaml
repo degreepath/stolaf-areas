@@ -49,7 +49,14 @@ requirements:
           where: {attributes: {$eq: csci_other_electives}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
-        - where: {level: {$eq: 300}}
+        - from: courses
+          where: 
+            $and: 
+              $or:
+                - attributes: {$eq: csci_designated_electives}
+                - attributes: {$eq: csci_other_electives}
+            
+              - attributes: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
      
 
