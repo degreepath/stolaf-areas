@@ -50,13 +50,14 @@ requirements:
           assert: {count(courses): {$gte: 1, at_most: true}}
 
         - from: courses
-          where: {level: {$eq: 300}}
-            # $and: 
-            #   - $or:
-            #     - attributes: {$eq: csci_designated_electives}
-            #     - attributes: {$eq: csci_other_electives}
+          where: 
+            $and: 
+              - $or:
+                - attributes: {$eq: csci_designated_electives}
+                - attributes: {$eq: csci_other_electives}
             
-            #   - level: {$eq: 300}
+              - level: {$eq: 300}
+              - allow_claimed: true
           assert: {count(courses): {$gte: 1}}
      
 
