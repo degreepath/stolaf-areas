@@ -40,16 +40,37 @@ requirements:
 
   Upper-Level Electives:
     result:
-      from: courses
-      where:
-        $or:
-          - attributes: {$eq: csci_designated_electives}
-          - attributes: {$eq: csci_other_electives}
       all:
-        - assert: {count(courses): {$gte: 3, at_most: true}}
+        - requirement: Designated Electives
+        - requirement: Other Electives
 
+        - assert: {count(courses): {$gte: 3, at_most: true}}
+        
         - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
+      
+    requirements:
+      Designated Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: csci_designated_electives}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+      Other Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: csci_other_electives}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+
+#      from: courses
+#      where: 
+
+#        $or:
+#          - attributes: {$eq: csci_designated_electives}
+#          - attributes: {$eq: csci_other_electives}
+#      all:
+        
 
 #      all: 
 #        both:
