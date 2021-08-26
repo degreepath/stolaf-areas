@@ -11,8 +11,6 @@ result:
     - requirement: Required Mathematics
     - requirement: Upper-Level Electives
 
-  #does it matter if it's counting courses vs credits?
-
 requirements:
   Required Computer Science:
     result:
