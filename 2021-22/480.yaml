@@ -93,19 +93,22 @@ requirements:
     # Option Å: one (1) level II or level III course partially in Norwegian (must total at least 0.50 credit)
     # and one (1) level III course entirely in Norwegian
       Option 2:
-        result:
-          both:
-            any:
-              - course: NORW 205
-              - course: NORW 244
-              - course: NORW 277
-              - course: NORW 294
-              - course: NORW 296
-              #off-campus study courses
-            # assert: {sum(credits): {$gte: 0.5, at_most: true}}
+        both:
+          result:
+            from: courses
+              where:
+                - course: NORW 205
+                - course: NORW 244
+                - course: NORW 277
+                - course: NORW 294
+                - course: NORW 296
+                #off-campus study courses
+            assert: {sum(credits): {$gte: 0.5, at_most: true}}
 
-            any:
+          result:
+            from: courses
+              where:
               - course: NORW 371
               - course: NORW 372
               - course: NORW 396
-            # assert: {count(courses): {$gte: 1, at_most: true}}
+            assert: {count(courses): {$gte: 1, at_most: true}}
