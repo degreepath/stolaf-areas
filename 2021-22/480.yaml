@@ -75,10 +75,9 @@ requirements:
 
   Advanced Courses:
     result: 
-      all:
-        either:
-          - requirement: Option 1
-          - requirement: Option 2
+      either:
+        - requirement: Option 1
+        - requirement: Option 2
 
     requirements:
     # Option Æ: select two (2) level III courses taught in Norwegian
@@ -104,7 +103,7 @@ requirements:
                 - course: NORW 294
                 - course: NORW 296
                 #off-campus study courses
-              assert: {count(credits): {$gte: 0.5, at_most: true}}
+              assert: {sum(credits): {$gte: 0.5, at_most: true}}
 
               any:
                 - course: NORW 371
