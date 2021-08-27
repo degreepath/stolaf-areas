@@ -1,0 +1,109 @@
+---
+name: Norwegian
+type: major
+code: '480'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Foundational
+    - requirement: Nordic Diversity, Inequity, and Social Justice
+    - requirement: Additional Humanities
+    - requirement: Additional Norwegian or Nordic Studies Course
+    - requirement: Advanced Courses
+
+  audit:
+    where: {grade_option: {$eq: s/u}}
+    assert: {count(courses): {$lte: 1}}
+
+requirements:
+  Foundational:
+    result:
+      all:
+        - course: NORW 111
+        - course: NORW 112
+        - course: NORW 231
+        - course: NORW 232
+        - course: NORW 253
+
+  Nordic Diversity, Inequity, and Social Justice:
+    result:
+      any:
+        - course: NORST 264
+        - course: NORW 224
+        - course: NORW 244
+        - course: ENVST 283
+        - course: PSYCH 232
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Humanities:
+    result:
+      any:
+        - course: HIST 211
+        - course: HIST 222
+        - course: NORW 130
+        - course: NORW 140
+        - course: NORW 180
+        - course: NORW 240
+        - course: NORW 244
+        - course: NORW 246
+        - course: NORW 260
+        - course: NORW 282
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Additional Norwegian or Nordic Studies Course:
+    result:
+      any:
+        - course: NORST 200
+        - course: NORST 264
+        - course: NORST 277
+        - course: NORST 280
+        - course: NORST 396
+        - course: NORW 130
+        - course: NORW 140
+        - course: NORW 180
+        - course: NORW 224
+        - course: NORW 240
+        - course: NORW 244
+        - course: NORW 246
+        - course: NORW 260
+        - course: NORW 282
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Advanced Courses:
+    result: 
+      all:
+        either:
+          - requirement: Option 1
+          - requirement: Option 2
+
+    requirements:
+    # Option Æ: select two (2) level III courses taught in Norwegian
+      Option 1:
+        result:
+          any:
+            - course: NORW 371
+            - course: NORW 372
+            - course: NORW 396
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+    # Option Å: one (1) level II or level III course partially in Norwegian (must total at least 0.50 credit)
+    # and one (1) level III course entirely in Norwegian
+      Option 2:
+        result:
+          all:
+            both:
+              any:
+                - course: NORW 205
+                - course: NORW 244
+                - course: NORW 277
+                - course: NORW 294
+                - course: NORW 296
+                #off-campus study courses
+              assert: {count(credits): {$gte: 0.5, at_most: true}}
+
+              any:
+                - course: NORW 371
+                - course: NORW 372
+                - course: NORW 396
+              assert: {count(courses): {$gte: 1, at_most: true}}
