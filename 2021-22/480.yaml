@@ -10,7 +10,7 @@ result:
     - requirement: Nordic Diversity Inequity and Social Justice
     - requirement: Additional Humanities
     - requirement: Additional Norwegian or Nordic Studies Course
-    - requirement: Advanced Courses
+    # - requirement: Advanced Courses
 
   audit:
     where: {grade_option: {$eq: s/u}}
@@ -73,40 +73,40 @@ requirements:
         - course: NORW 260
         - course: NORW 282
 
-  Advanced Courses:
-    result: 
-      either:
-        - requirement: Option 1
-        - requirement: Option 2
+  # Advanced Courses:
+  #   result: 
+  #     either:
+  #       - requirement: Option 1
+  #       - requirement: Option 2
 
-    requirements:
-    # Option Æ: select two (2) level III courses taught in Norwegian
-      Option 1:
-        result:
-          at_most: true
-          count: 2
-          of:
-            - course: NORW 371
-            - course: NORW 372
-            - course: NORW 396
+  #   requirements:
+  #   # Option Æ: select two (2) level III courses taught in Norwegian
+  #     Option 1:
+  #       result:
+  #         at_most: true
+  #         count: 2
+  #         of:
+  #           - course: NORW 371
+  #           - course: NORW 372
+  #           - course: NORW 396
 
-    # Option Å: one (1) level II or level III course partially in Norwegian (must total at least 0.50 credit)
-    # and one (1) level III course entirely in Norwegian
-      Option 2:
-        result:
-          all:
-            both:
-              any:
-                - course: NORW 205
-                - course: NORW 244
-                - course: NORW 277
-                - course: NORW 294
-                - course: NORW 296
-                #off-campus study courses
-              assert: {sum(credits): {$gte: 0.5, at_most: true}}
+  #   # Option Å: one (1) level II or level III course partially in Norwegian (must total at least 0.50 credit)
+  #   # and one (1) level III course entirely in Norwegian
+  #     Option 2:
+  #       result:
+  #         all:
+  #           both:
+  #             any:
+  #               - course: NORW 205
+  #               - course: NORW 244
+  #               - course: NORW 277
+  #               - course: NORW 294
+  #               - course: NORW 296
+  #               #off-campus study courses
+  #             assert: {sum(credits): {$gte: 0.5, at_most: true}}
 
-              any:
-                - course: NORW 371
-                - course: NORW 372
-                - course: NORW 396
-              assert: {count(courses): {$gte: 1, at_most: true}}
+  #             any:
+  #               - course: NORW 371
+  #               - course: NORW 372
+  #               - course: NORW 396
+  #             assert: {count(courses): {$gte: 1, at_most: true}}
