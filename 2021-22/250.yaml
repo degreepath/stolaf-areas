@@ -1,0 +1,113 @@
+---
+name: English
+type: major
+code: '250'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Literary Studies
+    - requirement: Literature Categories
+    - requirement: Antiracism
+    - requirement: Electives
+    - requirement: Level III
+    - requirement: Pre 1800
+
+requirements:
+  Literary Studies:
+    result:
+      all:
+        - course: ENGL 185
+
+  # we want one course each from two of three unique categories
+  Literature Categories:
+    result:
+      any:
+        - requirement: American Literature
+        - requirement: Anglophone Literature
+        - requirement: British Literature
+
+    requirements:
+      American Literature:
+        result:
+          any:
+            - course: ENGL 203
+            - course: ENGL 205
+            - course: ENGL 207
+            - course: ENGL 209
+            - course: ENGL 232
+            - course: ENGL 251
+            - course: ENGL 261
+            - course: ENGL 263
+            - course: ENGL 279
+            - course: ENGL 340
+            - course: ENGL 345
+            - course: ENGL 392
+          assert: {count(courses): {$gte: 1, at_most: true}}
+    
+      Anglophone Literature:
+        result:
+          any:
+            - course: ENGL 201
+            - course: ENGL 204
+            - course: ENGL 206
+            - course: ENGL 212
+            - course: ENGL 347
+          assert: {count(courses): {$gte: 1, at_most: true}}
+    
+      British Literature:
+        result:
+          any:
+            - course: ENGL 208
+            - course: ENGL 222
+            - course: ENGL 223
+            - course: ENGL 225
+            - course: ENGL 228
+            - course: ENGL 229
+            - course: ENGL 243
+            - course: ENGL 256
+            - course: ENGL 269
+            - course: ENGL 271
+            - course: ENGL 330
+            - course: ENGL 380
+            - course: ENGL 391
+            - course: ENGL 395
+          assert: {count(courses): {$gte: 1, at_most: true}}
+    
+  Antiracism:
+    result:
+      any:
+        - course: ENGL 203
+        - course: ENGL 205
+        - course: ENGL 208
+        - course: ENGL 232
+        - course: ENGL 360
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - attributes: {$eq: engl_elective}
+          - attributes: {$eq: engl_topic_genre}
+          - attributes: {$eq: engl_topic_crosscultural}
+          - attributes: {$eq: engl_topic_literary_history}
+          - attributes: {$eq: engl_topic_crossdisciplinary}
+      all:
+        - assert: {count(courses): {$gte: 5, at_most: true}}
+
+  Level III:
+    result:
+      from: courses
+        where: {level: {$eq: 300}}
+      allow_claimed: true
+      assert: {count(courses): {$gte: 2}}
+
+  Pre 1800:
+    result:
+      from: courses
+        where: {attribute: {$eq: engl_period_pre1800}}
+      allow_claimed: true
+      assert: {count(courses): {$gte: 1, at_most: true}}
