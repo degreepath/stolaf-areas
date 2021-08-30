@@ -31,7 +31,9 @@ requirements:
     requirements:
       American Literature:
         result:
-          any:
+          at_most: true
+          count: 1
+          of:
             - course: ENGL 203
             - course: ENGL 205
             - course: ENGL 207
@@ -44,21 +46,23 @@ requirements:
             - course: ENGL 340
             - course: ENGL 345
             - course: ENGL 392
-          assert: {count(courses): {$gte: 1, at_most: true}}
     
       Anglophone Literature:
         result:
-          any:
+          at_most: true
+          count: 1
+          of:
             - course: ENGL 201
             - course: ENGL 204
             - course: ENGL 206
             - course: ENGL 212
             - course: ENGL 347
-          assert: {count(courses): {$gte: 1, at_most: true}}
     
       British Literature:
         result:
-          any:
+          at_most: true
+          count: 1
+          of:
             - course: ENGL 208
             - course: ENGL 222
             - course: ENGL 223
@@ -73,17 +77,17 @@ requirements:
             - course: ENGL 380
             - course: ENGL 391
             - course: ENGL 395
-          assert: {count(courses): {$gte: 1, at_most: true}}
     
   Antiracism:
     result:
-      any:
+      at_most: true
+      count: 1
+      of:
         - course: ENGL 203
         - course: ENGL 205
         - course: ENGL 208
         - course: ENGL 232
         - course: ENGL 360
-      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
