@@ -106,18 +106,19 @@ requirements:
 
   Level III:
     result:
-      from: courses
-      where:
-        both:
-          - course: {$in: [ENGL 340, ENGL 345, ENGL 392, ENGL 347, ENGL 330, ENGL 380, ENGL 391, ENGL 395]}
-            allow_claimed: true
-            assert: {count(courses): {$gte: 1}}
+      both:
+        - from: courses
+        where: {course: {$in: [ENGL 340, ENGL 345, ENGL 392, ENGL 347, ENGL 330, ENGL 380, ENGL 391, ENGL 395]}}
+        allow_claimed: true
+        assert: {count(courses): {$gte: 1}}
 
+        - from: courses
+        where:
           $and:
             - level: {$eq: 300}
             - course: {$nin: [ENGL 398]}
-          allow_claimed: true
-          assert: {count(courses): {$gte: 2}}
+        allow_claimed: true
+        assert: {count(courses): {$gte: 2}}
 
   Pre 1800:
     result:
