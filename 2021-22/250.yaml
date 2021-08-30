@@ -101,13 +101,13 @@ requirements:
   Level III:
     result:
       from: courses
-        where: {level: {$eq: 300}}
+      where: {level: {$eq: 300}}
       allow_claimed: true
       assert: {count(courses): {$gte: 2}}
 
   Pre 1800:
     result:
       from: courses
-        where: {attribute: {$eq: engl_period_pre1800}}
+      where: {attribute: {$eq: engl_period_pre1800}}
       allow_claimed: true
       assert: {count(courses): {$gte: 1, at_most: true}}
