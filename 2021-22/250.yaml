@@ -108,17 +108,17 @@ requirements:
     result:
       both:
         - from: courses
-        where: {course: {$in: [ENGL 340, ENGL 345, ENGL 392, ENGL 347, ENGL 330, ENGL 380, ENGL 391, ENGL 395]}}
-        allow_claimed: true
-        assert: {count(courses): {$gte: 1}}
+          where: {course: {$in: [ENGL 340, ENGL 345, ENGL 392, ENGL 347, ENGL 330, ENGL 380, ENGL 391, ENGL 395]}}
+          allow_claimed: true
+          assert: {count(courses): {$gte: 1}}
 
         - from: courses
-        where:
-          $and:
-            - level: {$eq: 300}
-            - course: {$nin: [ENGL 398]}
-        allow_claimed: true
-        assert: {count(courses): {$gte: 2}}
+          where:
+            $and:
+              - level: {$eq: 300}
+              - course: {$nin: [ENGL 398]}
+          allow_claimed: true
+          assert: {count(courses): {$gte: 2}}
 
   Pre 1800:
     result:
