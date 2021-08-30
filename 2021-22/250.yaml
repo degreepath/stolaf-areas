@@ -103,7 +103,10 @@ requirements:
   Level III:
     result:
       from: courses
-      where: {level: {$eq: 300}}
+      where:
+        $and:
+          - level: {$eq: 300}
+          - course: {$nin: 398}
       allow_claimed: true
       assert: {count(courses): {$gte: 2}}
 
