@@ -33,18 +33,18 @@ requirements:
 
   Additional Level III:
     result:
-      any:
-        - where:
-          $and:
-            - level: {$eq: 300}
-            - is_stolaf: {$eq: true}
-        assert: {count(courses): {$gte: 1}}
+      from: courses
+      where:
+        $and:
+          - level: {$eq: 300}
+          - is_stolaf: {$eq: true}
+      assert: {count(courses): {$gte: 1}}
 
   Electives:
     result:
-      all:
-        - where:
-          $and:
-            - level: {$gt: 251}
-            - {attribute: {$eq: spanish_elective}}
-        assert: {count(courses): {$gte: 3}}
+      from: courses
+      where:
+        $and:
+          - level: {$gt: 251}
+          - {attribute: {$eq: spanish_elective}}
+      assert: {count(courses): {$gte: 3}}
