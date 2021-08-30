@@ -26,6 +26,10 @@ requirements:
         - requirement: American Literature
         - requirement: Anglophone Literature
         - requirement: British Literature
+      where:
+        level: {$eq: 300}
+        assert: {count(courses): {$gte: 2}}
+
 
     requirements:
       American Literature:
@@ -104,11 +108,16 @@ requirements:
     result:
       from: courses
       where:
-        $and:
-          - level: {$eq: 300}
-          - course: {$nin: [ENGL 398]}
-      allow_claimed: true
-      assert: {count(courses): {$gte: 2}}
+        both:
+          - course: {$in: [ENGL 340, ENGL 345, ENGL 392, ENGL 347, ENGL 330, ENGL 380, ENGL 391, ENGL 395]}
+          allow_claimed: true
+          assert: {count(courses): {$gte: 1}}
+
+          $and:
+            - level: {$eq: 300}
+            - course: {$nin: [ENGL 398]}
+          allow_claimed: true
+          assert: {count(courses): {$gte: 2}}
 
   Pre 1800:
     result:
