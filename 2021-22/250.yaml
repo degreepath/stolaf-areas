@@ -23,7 +23,7 @@ requirements:
   # we want one course each from two of three unique categories
   Literature Categories:
     result:
-      any:
+      all:
         - requirement: American Literature
         - requirement: Anglophone Literature
         - requirement: British Literature
