@@ -28,8 +28,8 @@ requirements:
         - course: SPAN 275
         - course: SPAN 276
         - either:
-          - course: CSCI 313
-          - course: CSCI 314
+          - course: SPAN 313
+          - course: SPAN 314
 
   Additional Level III:
     result:
