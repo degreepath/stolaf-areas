@@ -1,0 +1,70 @@
+---
+name: Nordic Studies
+type: major
+code: '470'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Foundational
+    - requirement: Additional II or III
+    - requirement: Cultural and Historical Perspectives
+    - requirement: Advanced Course
+
+requirements:
+  Foundational:
+    result:
+      all:
+        - course: NORW 111
+        - course: NORW 112
+        - course: NORW 231
+        - course: NORW 232
+
+  Additional II or III:
+    result:
+      from: courses
+      where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
+      # Off-campus study courses: grammar course, Nynorsk course (ISS)
+      assert: {sum(credits): {$gte: '0.5', at_most: true}}
+
+  Cultural and Historical Perspectives:
+    result:
+      all:
+        - requirement: Diversity Inequity and Social Justice
+        - requirement: Comparative Perspective
+        - requirement: Additional Course
+
+    requirements:
+      Diversity Inequity and Social Justice:
+        result:
+          any:
+            - course: NORW 224
+            - course: NORW 244
+            - course: NORST 264
+            - course: NORST 277
+            - course: ENVST 283
+            - course: PSYCH 232
+
+      Comparative Perspective:
+        result:
+          any:
+            - course: NORW 260
+
+      Additional Course:
+        result:
+          any:
+            - course: NORW 224
+            - course: NORW 244
+            - course: NORST 264
+            - course: NORST 277
+            - course: ENVST 283
+            - course: PSYCH 232
+            - course: NORW 260
+
+  Advanced Course:
+    result:
+      any:
+        - course: NORST 396
+        - course: NORW 396
+        - course: NORST 398
+        - course: NORW 398
