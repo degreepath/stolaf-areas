@@ -94,19 +94,11 @@ requirements:
     # and one (1) level III course entirely in Norwegian
       Option 2:
         result:
-          any:
-            where:
-              - course: NORW 205
-              - course: NORW 244
-              - course: NORW 277
-              - course: NORW 294
-              - course: NORW 296
-              #off-campus study courses
-          assert: {sum(credits): {$gte: 0.5, at_most: true}}
-
-          any:
-            where:
-            - course: NORW 371
-            - course: NORW 372
-            - course: NORW 396
-          assert: {count(courses): {$gte: 1, at_most: true}}
+          both:
+            from: courses
+            where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 294, NORW 296]}}
+            #off-campus study courses
+            assert: {sum(credits): {$gte: 0.5, at_most: true}}
+  
+            where: {course: {$in: [NORW 371, NORW 372, NORW 396]}}
+            assert: {count(courses): {$gte: 1, at_most: true}}
