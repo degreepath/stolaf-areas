@@ -117,7 +117,9 @@ requirements:
           - attributes: {$eq: engl_topic_literary_history}
           - attributes: {$eq: engl_topic_crossdisciplinary}
       all:
-        - assert: {count(courses): {$gte: 5, at_most: true}}
+        - assert: {count(courses): {$gte: 2, at_most: true}}
+        
+      # 1 required where course is pre-1800s
 
   Antiracism:
     result:
