@@ -1,0 +1,133 @@
+---
+name: Creative Writing
+type: major
+code: '210'
+degree: B.A.
+
+# 9 credits here- should be 10?
+
+result:
+  all:
+    - requirement: Level II Workshops
+    - requirement: Additional Writing
+    - requirement: Level III Workshops
+    - requirement: Literary Studies
+    - requirement: Other Categories
+    - requirement: Electives
+    - requirement: Antiracism
+
+requirements:
+  Level II Workshops:
+    result:
+      at_most: true
+      count: 2
+      of:
+        - course: ENGL 291
+        - course: ENGL 292
+        - course: ENGL 293
+
+  Additional Writing:
+    result:
+      at_most: true
+      count: 1
+      of:
+        - course: ENGL 150
+        - course: ENGL 291
+        - course: ENGL 292
+        - course: ENGL 293
+
+  Level III Workshops:
+    result:
+      at_most: true
+      count: 2
+      of:
+        - course: ENGL 371
+        - course: ENGL 372
+        - course: ENGL 373
+
+  Literary Studies:
+    result:
+      all:
+        - course: ENGL 185
+
+  Other Categories:
+    result:
+      count: 2
+      of:
+        - requirement: American Literature
+        - requirement: Anglophone Literature
+        - requirement: British Literature
+
+    requirements:
+      American Literature:
+        result:
+          at_most: true
+          count: 1
+          of:
+            - course: ENGL 203
+            - course: ENGL 205
+            - course: ENGL 207
+            - course: ENGL 209
+            - course: ENGL 232
+            - course: ENGL 251
+            - course: ENGL 261
+            - course: ENGL 263
+            - course: ENGL 279
+            - course: ENGL 340
+            - course: ENGL 345
+            - course: ENGL 392
+
+      Anglophone Literature:
+        result:
+          at_most: true
+          count: 1
+          of:
+            - course: ENGL 201
+            - course: ENGL 204
+            - course: ENGL 206
+            - course: ENGL 212
+            - course: ENGL 347
+
+      British Literature:
+        result:
+          at_most: true
+          count: 1
+          of:
+            - course: ENGL 208
+            - course: ENGL 222
+            - course: ENGL 223
+            - course: ENGL 225
+            - course: ENGL 228
+            - course: ENGL 229
+            - course: ENGL 243
+            - course: ENGL 256
+            - course: ENGL 269
+            - course: ENGL 271
+            - course: ENGL 330
+            - course: ENGL 380
+            - course: ENGL 391
+            - course: ENGL 395
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - attributes: {$eq: engl_elective}
+          - attributes: {$eq: engl_topic_genre}
+          - attributes: {$eq: engl_topic_crosscultural}
+          - attributes: {$eq: engl_topic_literary_history}
+          - attributes: {$eq: engl_topic_crossdisciplinary}
+      all:
+        - assert: {count(courses): {$gte: 5, at_most: true}}
+
+  Antiracism:
+    result:
+      at_most: true
+      count: 1
+      of:
+        - course: ENGL 203
+        - course: ENGL 205
+        - course: ENGL 208
+        - course: ENGL 232
+        - course: ENGL 360
