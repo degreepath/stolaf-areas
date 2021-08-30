@@ -94,7 +94,7 @@ requirements:
       # and one (1) level III course entirely in Norwegian
       Option 2:
         result:
-          all:
+          both:
             - from: courses
               where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 294, NORW 296]}}
               assert: {sum(credits): {$gte: '0.5', at_most: true}}
