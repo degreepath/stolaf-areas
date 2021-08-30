@@ -26,10 +26,6 @@ requirements:
         - requirement: American Literature
         - requirement: Anglophone Literature
         - requirement: British Literature
-      where:
-        level: {$eq: 300}
-        assert: {count(courses): {$gte: 2}}
-
 
     requirements:
       American Literature:
