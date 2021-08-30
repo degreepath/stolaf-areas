@@ -104,5 +104,5 @@ requirements:
               assert: {count(courses): {$gte: 1, at_most: true}}
 
             - limit:
-              at-most: 1
-              where: {grade_option: {$eq: s/u}}
+              - at-most: 1
+                where: {grade_option: {$eq: s/u}}
