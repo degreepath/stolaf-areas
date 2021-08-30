@@ -102,3 +102,7 @@ requirements:
             - from: courses
               where: {course: {$in: [NORW 371, NORW 372, NORW 396]}}
               assert: {count(courses): {$gte: 1, at_most: true}}
+
+            - from: courses
+              where: {grade_option: {$eq: s/u}}
+              assert: {count(courses): {$lte: 1}}
