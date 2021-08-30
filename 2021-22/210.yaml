@@ -4,8 +4,6 @@ type: major
 code: '210'
 degree: B.A.
 
-# 9 credits here- should be 10?
-
 result:
   all:
     - requirement: Level II Workshops
