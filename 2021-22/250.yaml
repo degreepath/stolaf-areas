@@ -20,11 +20,9 @@ requirements:
       all:
         - course: ENGL 185
 
-  # we want one course each from two of three unique categories
   Literature Categories:
     result:
-      count: 2
-      of:
+      all:
         - requirement: American Literature
         - requirement: Anglophone Literature
         - requirement: British Literature
