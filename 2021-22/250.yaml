@@ -106,7 +106,7 @@ requirements:
       where:
         $and:
           - level: {$eq: 300}
-          - course: {$nin: 398}
+          - course: {$nin: ENGL 398}
       allow_claimed: true
       assert: {count(courses): {$gte: 2}}
 
