@@ -21,7 +21,7 @@ requirements:
 
   Intermediate:
     result:
-      - from: courses
+        from: courses
         where: {course: {$in: [NORW 205, NORW 232, NORW 244, NORW 296]}}
         # - Off-campus study courses: grammar course, Nynorsk course (ISS) ?
         assert: {sum(credits): {$gte: '0.5', at_most: true}}
