@@ -11,6 +11,11 @@ result:
     - requirement: Cultural and Historical Perspectives
     - requirement: Advanced Course
 
+  audit:
+    all:
+      - where: {is_stolaf: {$eq: false}}
+        assert: {count(courses): {$lte: 3}}
+
 requirements:
   Foundational:
     result:
