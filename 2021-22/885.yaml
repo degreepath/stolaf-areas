@@ -1,0 +1,58 @@
+---
+name: Nordic Studies
+type: concentration
+code: '885'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Foundational
+    - requirement: Intermediate
+    - requirement: Nordic Diversity, Inequity, and Social Justice
+    - requirement: Additional Courses
+
+requirements:
+  Foundational:
+    result:
+      all:
+        - course: NORW 111
+        - course: NORW 112
+        - course: NORW 231
+
+  Intermediate:
+    result:
+      - from: courses
+        where: {course: {$in: [NORW 205, NORW 232, NORW 244, NORW 296]}}
+        # - Off-campus study courses: grammar course, Nynorsk course (ISS) ?
+        assert: {sum(credits): {$gte: '0.5', at_most: true}}
+
+  Nordic Diversity, Inequity, and Social Justice:
+    result:
+      any:
+        - course: NORW 224
+        - course: NORW 244
+        - course: NORST 264
+        - course: NORST 277
+        - course: ENVST 283
+        - course: PSYCH 232
+
+  Additional Courses:
+    result:
+      at_most: true
+      count: 3
+      of:
+        - course: NORST 264
+        - course: NORST 277
+        - course: NORW 224
+        - course: ENVST 283
+        - course: PSYCH 232
+        - course: HIST 211
+        - course: MUSPF 118
+        - course: NORW 260
+        - course: NORST 396
+        - course: NORW 396
+        - course: NORST 280
+        - course: NORST 398
+        - course: NORW 398
+        - course: PHIL 233
+        - course: REL 238
