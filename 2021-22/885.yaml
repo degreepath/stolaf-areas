@@ -11,6 +11,11 @@ result:
     - requirement: Nordic Diversity, Inequity, and Social Justice
     - requirement: Additional Courses
 
+  audit:
+    all:
+      where: {is_stolaf: {$eq: false}}
+      assert: {count(courses): {$lte: 3}}
+
 requirements:
   Foundational:
     result:
@@ -23,7 +28,7 @@ requirements:
     result:
         from: courses
         where: {course: {$in: [NORW 205, NORW 232, NORW 244, NORW 296]}}
-        # - Off-campus study courses: grammar course, Nynorsk course (ISS) ?
+        # -  study courses: grammar course, Nynorsk course (ISS) ?
         assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
   Nordic Diversity, Inequity, and Social Justice:
