@@ -68,3 +68,32 @@ requirements:
         - course: NORW 396
         - course: NORST 398
         - course: NORW 398
+
+emphases:
+  760:
+    name: Sami and Critical Indigenous Studies
+
+    result:
+      all:
+        - requirement: Foundational Courses
+        - requirement: Electives
+    
+    requirements:
+      Foundational Courses:
+        result:
+          all:
+            - course: NORW 244
+            - course: RACE 252
+    
+      Electives:
+        result:
+          at_most: true
+          count: 2
+          of:
+            - course: ENVST 283
+            - course: NORW 205
+            - course: NORW 372
+            - course: MUSIC 141
+            - course: MUSIC 245
+            - course: MUSIC 237
+            - course: SOAN 233
