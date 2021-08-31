@@ -108,10 +108,16 @@ emphases:
     result:
       all:
         - requirement: Foundational Courses
-        - requirement: Electives
+        - requirement: Other Electives
 
     requirements:
-      Electives:
+      Foundational Courses:
+        result:
+          all:
+            - course: NORW 244
+            - course: RACE 252
+
+      Other Electives:
         result:
           at_most: true
           count: 2
@@ -123,9 +129,3 @@ emphases:
             - course: MUSIC 245
             - course: MUSIC 237
             - course: SOAN 233
-
-      Foundational Courses:
-        result:
-          all:
-            - course: NORW 244
-            - course: RACE 252
