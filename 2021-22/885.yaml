@@ -13,8 +13,8 @@ result:
 
   audit:
     all:
-      where: {is_stolaf: {$eq: false}}
-      assert: {count(courses): {$lte: 3}}
+      - where: {is_stolaf: {$eq: false}}
+        assert: {count(courses): {$lte: 3}}
 
 requirements:
   Foundational:
