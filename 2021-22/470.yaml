@@ -81,7 +81,7 @@ emphases:
     result:
       all:
         - requirement: Foundational Courses
-        - requirement: Electives
+        - requirement: Other Electives
     
     requirements:
       Foundational Courses:
@@ -90,7 +90,7 @@ emphases:
             - course: NORW 244
             - course: RACE 252
     
-      Electives:
+      Other Electives:
         result:
           at_most: true
           count: 2
