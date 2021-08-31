@@ -24,18 +24,18 @@ requirements:
     result:
       from: courses
       where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
-      # Off-campus study courses: grammar course, Nynorsk course (ISS)
+      #  study courses: grammar course, Nynorsk course (ISS)
       assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
   Cultural and Historical Perspectives:
     result:
       all:
-        - requirement: Diversity Inequity and Social Justice
+        - requirement: Diversity, Inequity, and Social Justice
         - requirement: Comparative Perspective
         - requirement: Additional Course
 
     requirements:
-      Diversity Inequity and Social Justice:
+      Diversity, Inequity, and Social Justice:
         result:
           any:
             - course: NORW 224
@@ -70,6 +70,7 @@ requirements:
         - course: NORW 398
 
 emphases:
+  # new code to come?
   760:
     name: Sami and Critical Indigenous Studies
 
