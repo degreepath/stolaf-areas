@@ -75,8 +75,7 @@ requirements:
         - course: NORW 398
 
 emphases:
-  # new code to come?
-  760:
+  762:
     name: Sami and Critical Indigenous Studies
 
     result:
