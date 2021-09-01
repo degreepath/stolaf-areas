@@ -12,6 +12,10 @@ result:
     - requirement: Additional Norwegian or Nordic Studies Course
     - requirement: Advanced Courses
 
+    - $if:
+      {has-declared-area-code: '485'}
+      $then: {requirement: Double-Majors}
+
   audit:
     where: {grade_option: {$eq: s/u}}
     assert: {count(courses): {$lte: 1}}
@@ -100,6 +104,17 @@ requirements:
             - from: courses
               where: {course: {$in: [NORW 371, NORW 372, NORW 396]}}
               assert: {count(courses): {$gte: 1, at_most: true}}
+              
+  Double-Majors:
+    result:
+      from: courses
+      assert: {sum(credits): {$gte: 15, at_most: true}}
+      
+    # if the department should manage requirements rather than the registrar...
+    department-audited: true
+    message: |
+      If a student chooses to double major in Norwegian and Nordic Studies,
+      they must have a total of 15 credits between both programs.
 
 emphases:
   760:
