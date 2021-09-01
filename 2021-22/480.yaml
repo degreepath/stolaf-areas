@@ -109,8 +109,8 @@ requirements:
       from: courses
       where:
         $or:
-          - code: '470'
-          - code: '480'
+          - {code: {$eq: '470'}}
+          - {code: {$eq: '480'}}
       assert: {sum(credits): {$gte: 15, at_most: true}}
       
     # if the department should manage requirements rather than the registrar...
