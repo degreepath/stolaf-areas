@@ -9,10 +9,7 @@ result:
     - requirement: Foundational
     - requirement: Intermediate
     - requirement: Nordic Diversity, Inequity, and Social Justice
-    - requirement: Additional 
-    
-    - $if: {has-declared-area-code: '480'}
-      $then: {requirement: Double-Majors}
+    - requirement: Additional
 
   audit:
     all:
@@ -64,14 +61,3 @@ requirements:
         - course: NORW 398
         - course: PHIL 233
         - course: REL 238
-
-  Double-Majors:
-    result:
-      from: courses
-      assert: {sum(credits): {$gte: 15, at_most: true}}
-
-    # if the department should manage requirements rather than the registrar...
-    department-audited: true
-    message: |
-      If a student chooses to double major in Norwegian and Nordic Studies,
-      they must have a total of 15 credits between both programs.
