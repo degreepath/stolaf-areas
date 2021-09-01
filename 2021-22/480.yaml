@@ -107,10 +107,6 @@ requirements:
   Double-Majors:
     result:
       from: courses
-      where:
-        $or:
-          - {code: {$eq: '470'}}
-          - {code: {$eq: '480'}}
       assert: {sum(credits): {$gte: 15, at_most: true}}
       
     # if the department should manage requirements rather than the registrar...
