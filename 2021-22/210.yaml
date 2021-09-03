@@ -129,7 +129,6 @@ requirements:
 
   Antiracism:
     result:
-      at_most: true
       allow_claimed: true
       count: 1
       of:
