@@ -4,28 +4,15 @@ type: major
 code: '570'
 degree: B.A.
 
-attributes:
-  courses2:
-    REL 122: [sacred_texts]
-    REL 124: [sacred_texts]
-    REL 125: [sacred_texts]
-    REL 221: [sacred_texts]
-    REL 222: [sacred_texts]
-    REL 271: [sacred_texts]
-    REL 273: [sacred_texts]
-    REL 275: [sacred_texts]
-    REL 276: [sacred_texts]
-    REL 320: [sacred_texts]
-
 result:
   all:
     - requirement: Foundation
     - requirement: Sacred Texts
-    # - requirement: Religion in History and Culture
-    # - requirement: Religious Thought
-    # - requirement: Traditions
-    # - requirement: Intensive Studies
-    # - requirement: Elective
+    - requirement: Religion in History and Culture
+    - requirement: Religious Thought
+    - requirement: Traditions
+    - requirement: Intensive Studies
+    - requirement: Elective
 
   # audit:
   #   assert: {count(courses): {$gte: 8}}
@@ -37,92 +24,201 @@ requirements:
 
   Sacred Texts:
     result:
-      from: courses2
-      where: {attributes: {$eq: sacred_texts}}
-      assert: {count(courses2): {$gte: 1, at_most: true}}
+      any:
+        - course: REL 122
+        - course: REL 124
+        - course: REL 125
+        - course: REL 221
+        - course: REL 222
+        - course: REL 271
+        - course: REL 273
+        - course: REL 275
+        - course: REL 276
+        - course: REL 320
 
+  Religion in History and Culture:
+    result:
+      any:
+        - course: AS/RE 289
+        - course: AS/RE 253
+        - course: REL 131
+        - course: REL 202
+        - course: REL 207
+        - course: REL 208
+        - course: REL 209
+        - course: REL 217
+        - course: REL 218
+        - course: REL 225
+        - course: REL 227
+        - course: REL 230
+        - course: REL 236
+        - course: REL 239
+        - course: REL 242
+        - course: REL 244
+        - course: REL 245
+        - course: REL 252
+        - course: REL 253
+        - course: REL 254
+        - course: REL 263
+        - course: REL 267
+        - course: REL 293
+        - course: REL 296
+        - course: REL 302
+        - course: REL 303
+        - course: REL 304
+        - course: REL 344
 
+  Religious Thought:
+    result:
+      any:
+        - course: AS/RE 254
+        - course: AS/RE 256
+        - course: REL 126
+        - course: REL 141
+        - course: REL 212
+        - course: REL 213
+        - course: REL 214
+        - course: REL 231
+        - course: REL 233
+        - course: REL 238
+        - course: REL 243
+        - course: REL 246
+        - course: REL 248
+        - course: REL 260
+        - course: REL 267
+        - course: REL 272
+        - course: REL 275
+        - course: REL 277
+        - course: REL 280
+        - course: REL 293
 
+  Traditions:
+    result:
+      - any:
+        - course: AS/RE 250
+        - course: AS/RE 253
+        - course: AS/RE 256
+        - course: AS/RE 257
+        - course: AS/RE 289
+        - course: REL 217
+        - course: REL 246
+        - course: REL 248
+        - course: REL 253
 
+      - all:
+        # cannot be a course that carries Christian Theology in Dialogue OLE Core attribute
+        - where: {gereqs: {$eq: CTD}}
+          assert: {count(courses): {$eq: 0}}
 
+  Intensive Studies:
+    result:
+      count: 2
+      of:
+        - course: REL 302
+        - course: REL 303
+        - course: REL 304
+        - course: REL 320
+        - course: REL 344
+        - course: REL 390
+        - course: REL 391
+        - course: REL 392
+        - course: REL 393
+        - course: REL 395
+        - course: REL 397
+        - course: REL 398
+        - course: REL 399
 
-  # Religion in History and Culture:
-  #   result:
-  #     from: courses
-  #     allow_claimed: true
-  #     where: {attributes: {$eq: rel_history_culture}}
-  #     assert: {count(courses): {$gte: 1, at_most: true}}
+      - where: {course: {$in: [REL 390, REL 391, REL 392, REL 393, REL 395, REL 399]}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
 
-  # Religious Thought:
-  #   result:
-  #     from: courses
-  #     allow_claimed: true
-  #     where: {attributes: {$eq: rel_thought}}
-  #     assert: {count(courses): {$gte: 1, at_most: true}}
+  Elective:
+    result:
+      $or:
+        any:
+          - course: REL 122
+          - course: REL 124
+          - course: REL 125
+          - course: REL 221
+          - course: REL 222
+          - course: REL 271
+          - course: REL 273
+          - course: REL 275
+          - course: REL 276
+          - course: REL 320
+          - course: AS/RE 289
+          - course: AS/RE 253
+          - course: REL 131
+          - course: REL 202
+          - course: REL 207
+          - course: REL 208
+          - course: REL 209
+          - course: REL 217
+          - course: REL 218
+          - course: REL 225
+          - course: REL 227
+          - course: REL 230
+          - course: REL 236
+          - course: REL 239
+          - course: REL 242
+          - course: REL 244
+          - course: REL 245
+          - course: REL 252
+          - course: REL 253
+          - course: REL 254
+          - course: REL 263
+          - course: REL 267
+          - course: REL 293
+          - course: REL 296
+          - course: REL 302
+          - course: REL 303
+          - course: REL 304
+          - course: REL 344
+          - course: AS/RE 254
+          - course: AS/RE 256
+          - course: REL 126
+          - course: REL 141
+          - course: REL 212
+          - course: REL 213
+          - course: REL 214
+          - course: REL 231
+          - course: REL 233
+          - course: REL 238
+          - course: REL 243
+          - course: REL 246
+          - course: REL 248
+          - course: REL 260
+          - course: REL 267
+          - course: REL 272
+          - course: REL 275
+          - course: REL 277
+          - course: REL 280
+          - course: REL 293
+          - course: AS/RE 250
+          - course: AS/RE 253
+          - course: AS/RE 256
+          - course: AS/RE 257
+          - course: AS/RE 289
+          - course: REL 217
+          - course: REL 246
+          - course: REL 248
+          - course: REL 253
+          - course: REL 302
+          - course: REL 303
+          - course: REL 304
+          - course: REL 320
+          - course: REL 344
+          - course: REL 390
+          - course: REL 391
+          - course: REL 392
+          - course: REL 393
+          - course: REL 395
+          - course: REL 397
+          - course: REL 398
+          - course: REL 399
 
-  # Traditions:
-  #   result:
-  #     - any:
-  #       - course: AS/RE 250
-  #       - course: AS/RE 253
-  #       - course: AS/RE 256
-  #       - course: AS/RE 257
-  #       - course: AS/RE 289
-  #       - course: REL 217
-  #       - course: REL 246
-  #       - course: REL 248
-  #       - course: REL 253
-
-  #     # from: courses
-  #     # allow_claimed: true
-  #     # where:
-  #     #   attributes:
-  #     #     $in:
-  #     #       - rel_tradition_buddhism
-  #     #       - rel_tradition_china
-  #     #       - rel_tradition_christianity
-  #     #       - rel_tradition_hinduism
-  #     #       - rel_tradition_islam
-  #     #       - rel_tradition_judaism
-
-  #     - all:
-  #       # cannot be a course that carries Christian Theology in Dialogue OLE Core attribute
-  #       - where: {attributes: {$eq: CTD}}
-  #         assert: {count(courses): {$eq: 0}}
-
-  # Intensive Studies:
-  #   result:
-  #     from: courses
-  #     allow_claimed: true
-  #     where: {attributes: {$eq: rel_intensive}}
-  #     all:
-  #       - assert: {count(courses): {$gte: 2, at_most: true}}
-
-  #       - where: {type: {$eq: Seminar}}
-  #         assert: {count(courses): {$gte: 1}}
-
-  # Elective:
-  #   result:
-  #     from: courses
-  #     where:
-  #       $or:
-  #         - attribute:
-  #             $in:
-  #               - rel_elective
-  #               - rel_sacred_texts
-  #               - rel_history_culture
-  #               - rel_thought
-  #               - rel_intensive
-  #         - attribute:
-  #             $in:
-  #               - rel_tradition_buddhism
-  #               - rel_tradition_china
-  #               - rel_tradition_christianity
-  #               - rel_tradition_hinduism
-  #               - rel_tradition_islam
-  #               - rel_tradition_judaism
-  #         - gereqs:
-  #             $in:
-  #               - BTS-B
-  #               - BTS-T
-  #     assert: {count(courses): {$gte: 1, at_most: true}}
+        any:
+          from: courses
+          where:
+            $and:
+              - gereqs: {$in: [RFV, CTD]}
+              - subject: {$neq: REL}
