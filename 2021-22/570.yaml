@@ -128,8 +128,8 @@ requirements:
         - course: REL 398
         - course: REL 399
 
-      - where: {course: {$in: [REL 390, REL 391, REL 392, REL 393, REL 395, REL 399]}}
-        assert: {count(courses): {$gte: 1, at_most: true}}
+      where: {course: {$in: [REL 390, REL 391, REL 392, REL 393, REL 395, REL 399]}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Elective:
     result:
