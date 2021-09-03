@@ -94,7 +94,8 @@ requirements:
 
   Traditions:
     result:
-      - any:
+      count: 1
+      of:
         - course: AS/RE 250
         - course: AS/RE 253
         - course: AS/RE 256
@@ -105,10 +106,9 @@ requirements:
         - course: REL 248
         - course: REL 253
 
-      - all:
-        # cannot be a course that carries Christian Theology in Dialogue OLE Core attribute
-        - where: {gereqs: {$eq: CTD}}
-          assert: {count(courses): {$eq: 0}}
+      # cannot be a course that carries Christian Theology in Dialogue OLE Core attribute
+      where: {gereqs: {$eq: CTD}}
+      assert: {count(courses): {$eq: 0}}
 
   Intensive Studies:
     result:
