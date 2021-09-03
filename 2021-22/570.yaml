@@ -1,0 +1,128 @@
+---
+name: Religion
+type: major
+code: '570'
+degree: B.A.
+
+attributes:
+  courses:
+    REL 122: [sacred_texts]
+    REL 124: [sacred_texts]
+    REL 125: [sacred_texts]
+    REL 221: [sacred_texts]
+    REL 222: [sacred_texts]
+    REL 271: [sacred_texts]
+    REL 273: [sacred_texts]
+    REL 275: [sacred_texts]
+    REL 276: [sacred_texts]
+    REL 320: [sacred_texts]
+
+result:
+  all:
+    - requirement: Foundation
+    - requirement: Sacred Texts
+    # - requirement: Religion in History and Culture
+    # - requirement: Religious Thought
+    # - requirement: Traditions
+    # - requirement: Intensive Studies
+    # - requirement: Elective
+
+  # audit:
+  #   assert: {count(courses): {$gte: 8}}
+
+requirements:
+  Foundation:
+    result:
+      course: REL 285
+
+  Sacred Texts:
+    result:
+      from: courses
+      where: {attributes: {$eq: sacred_texts}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+
+
+
+
+
+  # Religion in History and Culture:
+  #   result:
+  #     from: courses
+  #     allow_claimed: true
+  #     where: {attributes: {$eq: rel_history_culture}}
+  #     assert: {count(courses): {$gte: 1, at_most: true}}
+
+  # Religious Thought:
+  #   result:
+  #     from: courses
+  #     allow_claimed: true
+  #     where: {attributes: {$eq: rel_thought}}
+  #     assert: {count(courses): {$gte: 1, at_most: true}}
+
+  # Traditions:
+  #   result:
+  #     - any:
+  #       - course: AS/RE 250
+  #       - course: AS/RE 253
+  #       - course: AS/RE 256
+  #       - course: AS/RE 257
+  #       - course: AS/RE 289
+  #       - course: REL 217
+  #       - course: REL 246
+  #       - course: REL 248
+  #       - course: REL 253
+
+  #     # from: courses
+  #     # allow_claimed: true
+  #     # where:
+  #     #   attributes:
+  #     #     $in:
+  #     #       - rel_tradition_buddhism
+  #     #       - rel_tradition_china
+  #     #       - rel_tradition_christianity
+  #     #       - rel_tradition_hinduism
+  #     #       - rel_tradition_islam
+  #     #       - rel_tradition_judaism
+
+  #     - all:
+  #       # cannot be a course that carries Christian Theology in Dialogue OLE Core attribute
+  #       - where: {attributes: {$eq: CTD}}
+  #         assert: {count(courses): {$eq: 0}}
+
+  # Intensive Studies:
+  #   result:
+  #     from: courses
+  #     allow_claimed: true
+  #     where: {attributes: {$eq: rel_intensive}}
+  #     all:
+  #       - assert: {count(courses): {$gte: 2, at_most: true}}
+
+  #       - where: {type: {$eq: Seminar}}
+  #         assert: {count(courses): {$gte: 1}}
+
+  # Elective:
+  #   result:
+  #     from: courses
+  #     where:
+  #       $or:
+  #         - attribute:
+  #             $in:
+  #               - rel_elective
+  #               - rel_sacred_texts
+  #               - rel_history_culture
+  #               - rel_thought
+  #               - rel_intensive
+  #         - attribute:
+  #             $in:
+  #               - rel_tradition_buddhism
+  #               - rel_tradition_china
+  #               - rel_tradition_christianity
+  #               - rel_tradition_hinduism
+  #               - rel_tradition_islam
+  #               - rel_tradition_judaism
+  #         - gereqs:
+  #             $in:
+  #               - BTS-B
+  #               - BTS-T
+  #     assert: {count(courses): {$gte: 1, at_most: true}}
