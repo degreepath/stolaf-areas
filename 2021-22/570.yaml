@@ -4,20 +4,20 @@ type: major
 code: '570'
 degree: B.A.
 
-result:
-  attributes:
-    courses:
-      REL 122: [sacred_texts]
-      REL 124: [sacred_texts]
-      REL 125: [sacred_texts]
-      REL 221: [sacred_texts]
-      REL 222: [sacred_texts]
-      REL 271: [sacred_texts]
-      REL 273: [sacred_texts]
-      REL 275: [sacred_texts]
-      REL 276: [sacred_texts]
-      REL 320: [sacred_texts]
+attributes:
+  courses2:
+    REL 122: [sacred_texts]
+    REL 124: [sacred_texts]
+    REL 125: [sacred_texts]
+    REL 221: [sacred_texts]
+    REL 222: [sacred_texts]
+    REL 271: [sacred_texts]
+    REL 273: [sacred_texts]
+    REL 275: [sacred_texts]
+    REL 276: [sacred_texts]
+    REL 320: [sacred_texts]
 
+result:
   all:
     - requirement: Foundation
     - requirement: Sacred Texts
@@ -37,9 +37,9 @@ requirements:
 
   Sacred Texts:
     result:
-      from: courses
+      from: courses2
       where: {attributes: {$eq: sacred_texts}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      assert: {count(courses2): {$gte: 1, at_most: true}}
 
 
 
