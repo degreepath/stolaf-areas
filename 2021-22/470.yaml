@@ -81,10 +81,12 @@ requirements:
   Double-Majors:
     result:
       from: courses
+      where:
+        $or:
+          - {subject: {$eq: NORW}}
+          - {subject: {$eq: NORST}}
       assert: {sum(credits): {$gte: 15, at_most: true}}
-
-    # if the department should manage requirements rather than the registrar...
-    # department-audited: true
+      
     message: |
       If a student chooses to double major in Norwegian and Nordic Studies,
       they must have a total of 15 credits between both programs.
