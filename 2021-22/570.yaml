@@ -140,6 +140,15 @@ requirements:
       either:
         - count: 1
           of:
+            - course: AS/RE 289
+            - course: AS/RE 253
+            - course: AS/RE 254
+            - course: AS/RE 256
+            - course: AS/RE 250
+            - course: AS/RE 253
+            - course: AS/RE 256
+            - course: AS/RE 257
+            - course: AS/RE 289
             - course: REL 122
             - course: REL 124
             - course: REL 125
@@ -150,8 +159,6 @@ requirements:
             - course: REL 275
             - course: REL 276
             - course: REL 320
-            - course: AS/RE 289
-            - course: AS/RE 253
             - course: REL 131
             - course: REL 202
             - course: REL 207
@@ -178,8 +185,6 @@ requirements:
             - course: REL 303
             - course: REL 304
             - course: REL 344
-            - course: AS/RE 254
-            - course: AS/RE 256
             - course: REL 126
             - course: REL 141
             - course: REL 212
@@ -198,11 +203,6 @@ requirements:
             - course: REL 277
             - course: REL 280
             - course: REL 293
-            - course: AS/RE 250
-            - course: AS/RE 253
-            - course: AS/RE 256
-            - course: AS/RE 257
-            - course: AS/RE 289
             - course: REL 217
             - course: REL 246
             - course: REL 248
