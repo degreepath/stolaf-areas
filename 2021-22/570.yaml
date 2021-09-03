@@ -106,24 +106,26 @@ requirements:
 
   Intensive Studies:
     result:
-      count: 2
-      of:
-        - course: REL 302
-        - course: REL 303
-        - course: REL 304
-        - course: REL 320
-        - course: REL 344
-        - course: REL 390
-        - course: REL 391
-        - course: REL 392
-        - course: REL 393
-        - course: REL 395
-        - course: REL 397
-        - course: REL 398
-        - course: REL 399
+      both:
+        - count: 2
+          of:
+            - course: REL 302
+            - course: REL 303
+            - course: REL 304
+            - course: REL 320
+            - course: REL 344
+            - course: REL 390
+            - course: REL 391
+            - course: REL 392
+            - course: REL 393
+            - course: REL 395
+            - course: REL 397
+            - course: REL 398
+            - course: REL 399
 
-      where: {course: {$in: [REL 390, REL 391, REL 392, REL 393, REL 395, REL 399]}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+        - from: courses
+          where: {course: {$in: [REL 390, REL 391, REL 392, REL 393, REL 395, REL 399]}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Elective:
     result:
