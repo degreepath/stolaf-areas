@@ -57,7 +57,7 @@ requirements:
       in any one discipline (including the discipline of the core course)
     result:
       from: courses
-      where: {attribute: {$in: [lamst_elective, lamst_conc_elective]}}
+      where: {attribute: {$eq: lamst_conc_elective}}
       limit:
         - at-most: 1
           where:
