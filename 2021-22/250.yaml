@@ -12,7 +12,7 @@ result:
     - requirement: Antiracism
     - requirement: Electives
     - requirement: Level III
-    - requirement: Pre 1800
+    - requirement: Pre-1800
 
 requirements:
   Literary Studies:
@@ -104,7 +104,7 @@ requirements:
     result:
       both:
         - from: courses
-          where: {course: {$in: [ENGL 340, ENGL 345, ENGL 392, ENGL 347, ENGL 330, ENGL 380, ENGL 391, ENGL 395]}}
+          where: {course: {$in: [ENGL 330, ENGL 340, ENGL 345, ENGL 347, ENGL 380, ENGL 391, ENGL 392, ENGL 395]}}
           allow_claimed: true
           assert: {count(courses): {$gte: 1}}
 
@@ -116,7 +116,7 @@ requirements:
           allow_claimed: true
           assert: {count(courses): {$gte: 2}}
 
-  Pre 1800:
+  Pre-1800:
     result:
       from: courses
       where: {attribute: {$eq: engl_period_pre1800}}

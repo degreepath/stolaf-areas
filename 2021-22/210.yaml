@@ -10,8 +10,9 @@ result:
     - requirement: Additional Writing
     - requirement: Level III Workshops
     - requirement: Literary Studies
-    - requirement: Other Categories
+    - requirement: Literature Categories
     - requirement: Electives
+    - requirement: Pre-1800
     - requirement: Antiracism
 
 requirements:
@@ -48,7 +49,7 @@ requirements:
       all:
         - course: ENGL 185
 
-  Other Categories:
+  Literature Categories:
     result:
       count: 2
       of:
@@ -118,8 +119,13 @@ requirements:
           - attributes: {$eq: engl_topic_crossdisciplinary}
       all:
         - assert: {count(courses): {$gte: 2, at_most: true}}
-        
-      # 1 required where course is pre-1800s
+
+  Pre-1800:
+    result:
+      from: courses
+      where: {attribute: {$eq: engl_period_pre1800}}
+      allow_claimed: true
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Antiracism:
     result:
