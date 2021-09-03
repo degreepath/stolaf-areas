@@ -109,10 +109,10 @@ requirements:
       from: courses
       where:
         $or:
-          - {code: {$eq: '470'}}
-          - {code: {$eq: '480'}}
+          - {subject: {$eq: NORW}}
+          - {subject: {$eq: NORST}}
       assert: {sum(credits): {$gte: 15, at_most: true}}
-      
+
     message: |
       If a student chooses to double major in Norwegian and Nordic Studies,
       they must have a total of 15 credits between both programs.
