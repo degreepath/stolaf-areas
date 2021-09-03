@@ -6,46 +6,104 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Family, Gender, Race
+    - either:
+      - course: SPAN 250
+      - course: SPAN 251
+    - course: SPAN 275
+    - course: SPAN 276
     - requirement: Additional Requirements
-    - requirement: Additional Level III
-    - requirement: Electives
 
   audit:
     where: {is_stolaf: {$eq: false}}
-    assert: {count(courses): {$lte: 2}} 
+    assert: {count(courses): {$lte: 2}}
 
 requirements:
-  Family, Gender, Race:
-    result:
-      either:
-        - course: SPAN 250
-        - course: SPAN 251
-
   Additional Requirements:
     result:
+      from: courses
+      where: {attribute: {$eq: spanish_elective}}
       all:
-        - course: SPAN 275
-        - course: SPAN 276
-        - either:
-          - course: SPAN 313
-          - course: SPAN 314
+        - assert:
+            count(courses):
+              $gte: 5
 
-  Additional Level III:
-    result:
-      from: courses
-      where:
-        $and:
-          - level: {$eq: 300}
-          - is_stolaf: {$eq: true}
-          - subject: {$eq: SPAN}
-      assert: {count(courses): {$gte: 1}}
+              $changes:
+                - [{has-declared-area-code: '240'}, {set: '6.00'}]
 
-  Electives:
-    result:
-      from: courses
-      where:
-        $and:
-          - level: {$gt: 251}
-          - {attribute: {$eq: spanish_elective}}
-      assert: {count(courses): {$gte: 3}}
+        - where: {course: {$in: [SPAN 313, SPAN 314]}}
+          assert: {count(courses): {$gte: 1}}
+          message: Either SPAN 313 or SPAN 314
+
+        - where: {attribute: {$eq: spanish_focus_spain}}
+          assert: {count(courses): {$gte: 1}}
+          message: At least one must focus on Spain
+
+        - where: {attribute: {$eq: spanish_focus_latinamerica}}
+          assert: {count(courses): {$gte: 1}}
+          message: At least one must focus on Latin America
+
+        - where:
+            $and:
+              - level: {$eq: 300}
+              - is_stolaf: {$eq: true}
+          assert: {count(courses): {$gte: 2}}
+          message: Two 300-level courses
+
+
+
+
+
+
+
+
+# ---
+# name: Spanish
+# type: major
+# code: '620'
+# degree: B.A.
+
+# result:
+#   all:
+#     - requirement: Family, Gender, Race
+#     - requirement: Additional Requirements
+#     - requirement: Additional Level III
+#     - requirement: Electives
+
+#   audit:
+#     where: {is_stolaf: {$eq: false}}
+#     assert: {count(courses): {$lte: 2}} 
+
+# requirements:
+#   Family, Gender, Race:
+#     result:
+#       either:
+#         - course: SPAN 250
+#         - course: SPAN 251
+
+#   Additional Requirements:
+#     result:
+#       all:
+#         - course: SPAN 275
+#         - course: SPAN 276
+#         - either:
+#           - course: SPAN 313
+#           - course: SPAN 314
+
+#   Additional Level III:
+#     result:
+#       from: courses
+#       where:
+#         $and:
+#           - level: {$eq: 300}
+#           - is_stolaf: {$eq: true}
+#           - subject: {$eq: SPAN}
+#       assert: {count(courses): {$gte: 1}}
+
+#   Electives:
+#     result:
+#       from: courses
+#       where:
+#         $and:
+#           - level: {$gt: 251}
+#           - {attribute: {$eq: spanish_elective}}
+#       assert: {count(courses): {$gte: 3}}
