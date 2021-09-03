@@ -111,7 +111,7 @@ requirements:
         $or:
           - {subject: {$eq: NORW}}
           - {subject: {$eq: NORST}}
-          - {course: {$in [ENVST 283, PSYCH 232, HIST 211, HIST 222]}}
+          - {course: {$in: [ENVST 283, PSYCH 232, HIST 211, HIST 222]}}
       assert: {sum(credits): {$gte: 15, at_most: true}}
 
     message: |
