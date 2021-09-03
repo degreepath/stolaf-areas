@@ -129,11 +129,7 @@ requirements:
 
   Antiracism:
     result:
+      from: courses
+      where: {course: {$in: [ENGL 203, ENGL 205, ENGL 208, ENGL 232, ENGL 360]}}
       allow_claimed: true
-      count: 1
-      of:
-        - course: ENGL 203
-        - course: ENGL 205
-        - course: ENGL 208
-        - course: ENGL 232
-        - course: ENGL 360
+      assert: {count(courses): {$gte: 1}}
