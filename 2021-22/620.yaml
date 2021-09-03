@@ -38,6 +38,7 @@ requirements:
         $and:
           - level: {$eq: 300}
           - is_stolaf: {$eq: true}
+          - subject: {$eq: SPAN}
       assert: {count(courses): {$gte: 1}}
 
   Electives:
