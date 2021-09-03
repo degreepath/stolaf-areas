@@ -130,7 +130,7 @@ requirements:
   Elective:
     result:
       $or:
-        any:
+        - any:
           - course: REL 122
           - course: REL 124
           - course: REL 125
@@ -212,7 +212,7 @@ requirements:
           - course: REL 398
           - course: REL 399
 
-        any:
+        - any:
           from: courses
           where:
             $and:
