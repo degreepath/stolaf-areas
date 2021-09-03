@@ -12,7 +12,7 @@ result:
     - requirement: Additional Norwegian or Nordic Studies Course
     - requirement: Advanced Courses
 
-    - $if: {has-declared-area-code: '485'}
+    - $if: {has-declared-area-code: '470'}
       $then: {requirement: Double-Majors}
 
   audit:
@@ -122,7 +122,7 @@ emphases:
     name: Sami and Critical Indigenous Studies
 
     result:
-      all:
+      both:
         - requirement: Foundational Courses
         - requirement: Other Electives
 
