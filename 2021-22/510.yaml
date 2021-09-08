@@ -4,6 +4,10 @@ type: major
 code: '510'
 degree: B.A.
 
+limit:
+  - at-most: 1
+    where: {level: {$eq: 100}}
+
 result:
   all:
     - requirement: Foundational
@@ -13,12 +17,6 @@ result:
     - requirement: Expanding Perspectives
     - requirement: Level III Seminars
     - requirement: Elective
-
-  audit:
-    all:
-      limit:
-        - at_most: 1
-          where: {level: {$eq: 100}}
 
 requirements:
   Foundational:
