@@ -5,7 +5,7 @@ code: '510'
 degree: B.A.
 
 result:
-  - all:
+  all:
     - requirement: Foundational
     - requirement: Metaphysics and Epistemology
     - requirement: Value Theory
@@ -14,7 +14,9 @@ result:
     - requirement: Level III Seminars
     - requirement: Elective
 
-  - limit: [{at-most: 1 course, where: {level: {$eq: 100}}}]
+  audit:
+    all:
+      limit: [{at-most: 1 course, where: {level: {$eq: 100}}}]
 
 requirements:
   Foundational:
