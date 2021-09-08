@@ -16,7 +16,9 @@ result:
 
   audit:
     all:
-      limit: [{at-most: 1 course, where: {level: {$eq: 100}}}]
+      limit:
+        - at_most: 1
+          where: {{level: {$eq: 100}}}
 
 requirements:
   Foundational:
