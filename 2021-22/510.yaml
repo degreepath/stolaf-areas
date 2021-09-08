@@ -4,8 +4,6 @@ type: major
 code: '510'
 degree: B.A.
 
-# 8 credits here- should be 9?
-
 result:
   all:
     - requirement: Foundational
@@ -14,6 +12,9 @@ result:
     - requirement: History of Western Philosophy
     - requirement: Expanding Perspectives
     - requirement: Level III Seminars
+    - requirement: Elective
+
+  limit: [{at-most: 1 course, where: {level: {$eq: 100}}}]
 
 requirements:
   Foundational:
@@ -65,3 +66,9 @@ requirements:
       assert: {count(courses): {$gte: 3}}
       limit:
         - {at most: 0, where: {grade_option: {$eq: s/u}}}
+
+  Elective:
+    result:
+      from: courses
+      where: {subject: {$eq: PHIL}}
+      assert: {count(courses): {$gte: 1}}
