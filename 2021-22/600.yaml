@@ -23,17 +23,17 @@ requirements:
     result:
       all:
         - any:
-            - {course: SOAN 121, grade: C-}
-            - {course: SOAN 264, grade: C-}
-            - ap: IB Sociology/Anthropology
+          - {course: SOAN 121, grade: C-}
+          - {course: SOAN 264, grade: C-}
+          - ap: IB Sociology/Anthropology
         - any:
-            - {course: PSYCH 125, grade: D-}
-            - ap: AP Psychology
-            - ap: IB Psychology
+          - {course: PSYCH 125, grade: D-}
+          - ap: AP Psychology
+          - ap: IB Psychology
         - course: {course: PSYCH 241, grade: C-}
         - either:
-            - {course: BIO 123, grade: C-}
-            - {course: BIO 243, grade: C-}              
+          - {course: BIO 123, grade: C-}
+          - {course: BIO 243, grade: C-}              
 
   Foundation:
     result:
