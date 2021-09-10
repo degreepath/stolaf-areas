@@ -1,0 +1,56 @@
+---
+name: Social Work
+type: major
+code: '600'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Prerequisites
+    - requirement: Foundation
+
+limit:
+  - at-most: 0
+    where:
+      $and:
+        - grade: {$lt: C, $during_covid: C-}
+        - is_in_progress: {$eq: false}
+        - course_type: {$neq: AP}
+
+requirements:
+  Prerequisites:
+    in_gpa: false
+    result:
+      all:
+        - any:
+            - course: {course: SOAN 121, grade: C-}
+            - course: {course: SOAN 264, grade: C-}
+            - ap: IB Sociology/Anthropology
+        - any:
+            - course: {course: PSYCH 125, grade: D-}
+            - ap: AP Psychology
+            - ap: IB Psychology
+        - course: {course: PSYCH 241, grade: C-}
+        - either:
+            - course: {course: BIO 123, grade: C-}
+            - course: {course: BIO 243, grade: C-}              
+
+  Foundation:
+    result:
+      all:
+        - course: SWRK 221
+        - course: SWRK 246
+        - course: SWRK 254
+        - at_most: true
+          any:
+            - course: SWRK 258
+            - {course: SWRK 271, institution: GLOBSOCW}
+            - {course: SWRK 295, institution: GLOBSOCW}
+        - at_most: true
+          any:
+            - course: SWRK 261
+            - {course: SWRK 316, institution: GLOBSOCW}
+        - course: SWRK 274
+        - course: SWRK 373
+        - course: SWRK 380
+        - course: SWRK 381
