@@ -34,14 +34,14 @@ requirements:
         - either:
             - course: BIO 123
             - course: BIO 243
-        - limit:
-          at-most: 0
-          where:
-            $and:
-              - grade: {$lt: C-,}
-              - is_in_progress: {$eq: false}
-              - course_type: {$neq: AP}
-              - subject: {$neq: PSYCH}
+    limit:
+      at-most: 0
+      where:
+        $and:
+          - grade: {$lt: C-,}
+          - is_in_progress: {$eq: false}
+          - course_type: {$neq: AP}
+          - subject: {$neq: PSYCH}
               
 
   Foundation:
