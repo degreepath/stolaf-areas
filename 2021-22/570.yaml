@@ -5,8 +5,7 @@ code: '570'
 degree: B.A.
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Foundation
     - requirement: Sacred Texts
     - requirement: Religion in History and Culture

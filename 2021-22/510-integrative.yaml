@@ -1,0 +1,43 @@
+---
+name: Philosophy
+type: major
+code: '510-integrative'
+degree: B.A.
+
+limit:
+  - at-most: 1
+    where: {level: {$eq: 100}}
+
+result:
+  all:
+    - either:
+      - course: PHIL 235
+      - course: PHIL 236
+    - requirement: Electives
+    - requirement: Level III Seminars
+    - requirement: Additional Courses
+
+requirements:
+  Electives:
+    result:
+      from: courses
+      where: {subject: {$eq: PHIL}}
+      assert: {count(courses): {$gte: 4}}
+
+  Level III Seminars:
+    result:
+      from: courses
+      where: {attribute: {$eq: phil_l3_seminar}}
+      assert: {count(courses): {$gte: 2}}
+      limit:
+        - {at most: 0, where: {grade_option: {$eq: s/u}}}
+
+  Additional Courses:
+    department_audited: true
+    result:
+      from: courses
+      where:
+        $and:
+          - {subject: {$neq: PHIL}}
+          - {level: {$in: [200, 300]}}
+      assert: {count(courses): {$gte: 3}}
