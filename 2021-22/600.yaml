@@ -30,7 +30,7 @@ requirements:
           - {course: PSYCH 125, grade: D-}
           - ap: AP Psychology
           - ap: IB Psychology
-        - course: {course: PSYCH 241, grade: C-}
+        - {course: PSYCH 241, grade: C-}
         - either:
           - {course: BIO 123, grade: C-}
           - {course: BIO 243, grade: C-}              
