@@ -10,67 +10,34 @@ limit:
 
 result:
   all:
-    - requirement: Foundational
-    - requirement: Metaphysics and Epistemology
-    - requirement: Value Theory
-    - requirement: History of Western Philosophy
-    - requirement: Expanding Perspectives
+    - either:
+      - course: PHIL 235
+      - course: PHIL 236
+    - requirement: Electives
     - requirement: Level III Seminars
-    - requirement: Elective
+    - requirement: Additional Courses
 
 requirements:
-  Foundational:
+  Electives:
     result:
-      all:
-        - course: PHIL 240
-
-  Metaphysics and Epistemology:
-    result:
-      any:
-        - course: PHIL 231
-        - course: PHIL 241
-        - course: PHIL 244
-        - course: PHIL 246
-
-  Value Theory:
-    result:
-      any:
-        - course: PHIL 243
-        - course: PHIL 250
-        - course: PHIL 251
-        - course: PHIL 252
-        - course: PHIL 253
-        - course: PHIL 254
-        - course: PHIL 256
-        - course: PHIL 257
-        - course: PHIL 258
-        - course: PHIL 259
-        - course: PHIL 260
-        - course: PHIL 278
-
-  History of Western Philosophy:
-    result:
-      any:
-        - course: PHIL 235
-        - course: PHIL 236
-
-  Expanding Perspectives:
-    result:
-      any:
-        - course: PHIL 245
-        - course: PHIL 249
-        - course: PHIL 255
+      from: courses
+      where: {subject: {$eq: PHIL}}
+      assert: {count(courses): {$gte: 4}}
 
   Level III Seminars:
     result:
       from: courses
       where: {attribute: {$eq: phil_l3_seminar}}
-      assert: {count(courses): {$gte: 3}}
+      assert: {count(courses): {$gte: 2}}
       limit:
         - {at most: 0, where: {grade_option: {$eq: s/u}}}
 
-  Elective:
+  Additional Courses:
     result:
       from: courses
-      where: {subject: {$eq: PHIL}}
-      assert: {count(courses): {$gte: 1}}
+      where:
+        $and:
+          - {subject: {$neq: PHIL}}
+          - $or: {level: {$in: [200, 300]}}
+      assert: {count(courses): {$gte: 3}}
+      department_audited: true
