@@ -38,6 +38,6 @@ requirements:
       where:
         $and:
           - {subject: {$neq: PHIL}}
-          - $or: {level: {$in: [200, 300]}}
+          - {level: {$in: [200, 300]}}
       assert: {count(courses): {$gte: 3}}
       department_audited: true
