@@ -33,6 +33,7 @@ requirements:
         - {at most: 0, where: {grade_option: {$eq: s/u}}}
 
   Additional Courses:
+    department_audited: true
     result:
       from: courses
       where:
@@ -40,4 +41,3 @@ requirements:
           - {subject: {$neq: PHIL}}
           - {level: {$in: [200, 300]}}
       assert: {count(courses): {$gte: 3}}
-      department_audited: true
