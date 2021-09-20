@@ -246,6 +246,7 @@ result:
             assert: {count(courses): {$gte: 1, at_most: true}}
 
         French Sequence:
+          message: The top/final course in the sequence must be taken graded.
           result: 
             all:
               - course: FREN 111
@@ -253,6 +254,7 @@ result:
               - {course: FREN 231, grade_option: grade}
 
         German Sequence:
+          message: The top/final course in the sequence must be taken graded.
           result: 
             all:
               - course: GERM 111
@@ -261,6 +263,7 @@ result:
 
 
         Spanish Sequence:
+          message: The top/final course in the sequence must be taken graded.
           result:
             all:
               - course: SPAN 111
