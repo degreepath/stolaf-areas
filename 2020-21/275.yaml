@@ -35,10 +35,7 @@ requirements:
   Level III Elective:
     result:
       from: courses
-      where:
-        $and:
-          - {attributes: {$eq: filmmedia_elective}}
-          - {level: {$eq: 300}}
+      where: {course: {$eq: FMS 350}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Remaining Electives:
