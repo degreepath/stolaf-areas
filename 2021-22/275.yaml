@@ -1,0 +1,49 @@
+---
+name: Film and Media Studies
+type: major
+code: '275'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Production
+    - requirement: Level III Elective
+    - requirement: Remaining Electives
+  audit:
+    where: {is_stolaf: {$eq: false}}
+    assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - crsid: '0000021584'  # FILM 101 / FMS 101
+        - either:
+            - crsid: '0000028967'  # FMS 140
+            - crsid: '0000000792'  # FMS 160
+        - crsid: '0000035239'  # FMS 280
+
+  Production:
+    result:
+      both:
+        - crsid: '0000034662'  # FMS 220 / FILM 220
+        - from: courses
+          where: {attributes: {$eq: filmmedia_production_elective}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Level III Elective:
+    result:
+      from: courses
+      where: {course: {$eq: FMS 350}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Remaining Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: filmmedia_elective}}
+      all:
+        - assert: {count(courses): {$gte: 4, at_most: true}}
+
+        - where: {subject: {$in: [FILM, MEDIA, FMS]}}
+          assert: {count(courses): {$gte: 2}}
