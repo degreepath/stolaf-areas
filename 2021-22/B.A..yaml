@@ -248,7 +248,7 @@ result:
                 hide_branching: true
               $then:
                 attribute: {$eq: fol_by_petition}
-              $else:{gereqs: {$eq: WLC}} 
+              $else: {gereqs: {$eq: WLC}}
             assert: {count(courses): {$gte: 1, at_most: true}}
 
         French Sequence:
