@@ -239,7 +239,8 @@ result:
         WLC-GE:
           result:
             from: courses
-            claim: true
+            claim: record
+            allow_claimed: true
             limit:
               - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
             where: 
@@ -249,7 +250,13 @@ result:
               $then:
                 attribute: {$eq: fol_by_petition}
               $else: {gereqs: {$eq: WLC}}
-            assert: {count(courses): {$gte: 1, at_most: true}}
+            assert: 
+              count(courses): 
+                $gte: 1
+                at_most: true
+
+                $changes:
+                  - [{has-override-exception: fol-by-petition}, {set: '3'}]
 
         French Sequence:
           message: The top/final course in the sequence must be taken graded.
