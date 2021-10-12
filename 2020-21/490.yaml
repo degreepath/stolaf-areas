@@ -26,7 +26,6 @@ requirements:
             - course: PSYCH 125
             - ap: AP Psychology
         - course: PSYCH 241
-        - course: SOAN 262
         - at_most: true
           either:
             - course: BIO 121
@@ -40,6 +39,7 @@ requirements:
             - course: SOAN 128
             - course: SOAN 260
             - course: SOAN 261
+            - course: SOAN 262
             - course: SOAN 264
             - course: SOAN 267
 
