@@ -39,3 +39,4 @@ requirements:
               - course: {$in: [STAT 110, STAT 212, STAT 214]}
               - ap: {$eq: AP Statistics}
       assert: {count(courses): {$gte: 2, at_most: true}}
+      
