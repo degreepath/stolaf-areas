@@ -1,0 +1,35 @@
+---
+name: Russian Area Studies
+type: major
+code: '590'
+degree: B.A.
+
+result:
+  all:
+    - course: RUSSN 111
+    - course: RUSSN 112
+    - course: RUSSN 231
+    - course: RUSSN 232
+    - requirement: Electives
+    - requirement: Senior Project
+
+requirements:
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: russian_area_elective}
+
+          - $if: {$not: {has-declared-area-code: '580'}}
+            $then:
+              attribute: {$eq: russian_area_elective_if_not_rusn_lang}
+
+      assert: {count(courses): {$gte: 5}}
+
+  Senior Project:
+    department-audited: true
+    message: |
+      This may be taken for course credit as RUSSN 398 (Independent Research).
+      Guidelines are available from the department chair. The project is due
+      on April 15.

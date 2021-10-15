@@ -1,0 +1,112 @@
+---
+name: Political Science
+type: major
+code: '550'
+degree: B.A.
+
+credit:
+  name=AP Comparative Government: '1.00'
+  name=AP U.S. Government: '1.00'
+  name=IB Global Politics: '1.00'
+
+result:
+  all:
+    - requirement: Research Methods
+    - requirement: American Politics and Public Policy
+    - requirement: Comparative Politics
+    - requirement: International Relations
+    - requirement: Political Theory
+    - requirement: Level III Electives
+    - requirement: Optional Electives
+
+  audit:
+    all:
+      - assert: {sum(credits): {$gte: 9}}
+
+      - where: {is_stolaf: {$eq: false}}
+        assert: {count(courses): {$lte: 2}}
+
+      - where:
+          $and:
+            - {subject: {$eq: PSCI}}
+            - {level: {$eq: 100}}
+        assert: {count(courses): {$lte: 3}}
+
+requirements:
+  Research Methods:
+    result:
+      course: PSCI 220
+
+  American Politics and Public Policy:
+    result:
+      from: courses
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_american}}
+          - {level: {$in: [100, 200]}}
+      assert: {count(courses): {$gte: 1}}
+
+  Comparative Politics:
+    result:
+      from: courses
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_comparative}}
+          - {level: {$in: [100, 200]}}
+      assert: {count(courses): {$gte: 1}}
+
+  International Relations:
+    result:
+      from: courses
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_international}}
+          - {level: {$in: [100, 200]}}
+      assert: {count(courses): {$gte: 1}}
+
+  Political Theory:
+    result:
+      from: courses
+      where:
+        $and:
+          - {attribute: {$eq: psci_topic_theory}}
+          - {level: {$in: [100, 200]}}
+      assert: {count(courses): {$gte: 1}}
+
+  Level III Electives:
+    result:
+      from: courses
+      where:
+        $and:
+          - attribute:
+              $in:
+                - psci_topic_american
+                - psci_topic_comparative
+                - psci_topic_international
+                - psci_topic_theory
+                - psci_level_3
+          - {level: {$eq: 300}}
+      assert: {count(courses): {$gte: 2}}
+
+  Optional Electives:
+    in_gpa: false
+    message: |
+      One elected statistics course OR one additional semester of a world
+      language.
+
+      Students may designate a selected statistics course OR one additional
+      semester of a world language beyond the level of proficiency required
+      for general education (French, German, or Spanish numbered above 232 or
+      Chinese, Greek, Latin, Japanese, Norwegian, or Russian numbered above
+      231 and taught in the target language) as one of their nine courses in
+      the political science major.
+
+      Additional study in statistics and/or a world language is especially
+      recommended for students considering graduate study.
+    result:
+      from: courses
+      where: {attribute: {$eq: psci_optional_elective}}
+      limit:
+        - at-most: 1
+          where: {attribute: {$eq: psci_optional_elective}}
+      assert: {count(courses): {$gte: 0, treat_in_progress_as_pass: true}}

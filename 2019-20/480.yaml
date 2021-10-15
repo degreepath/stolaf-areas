@@ -1,0 +1,34 @@
+---
+name: Norwegian
+type: major
+code: '480'
+degree: B.A.
+
+result:
+  all:
+    - course: NORW 111
+    - course: NORW 112
+    - course: NORW 231
+    - course: NORW 232
+    - course: NORW 253
+    - course: NORW 371
+    - course: NORW 372
+    - requirement: History & Culture
+    - requirement: Upper-Level Elective
+
+  audit:
+    where: {grade_option: {$eq: s/u}}
+    assert: {count(courses): {$lte: 1}}
+
+requirements:
+  History & Culture:
+    result:
+      from: courses
+      where: {attribute: {$eq: norw_history_culture}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Upper-Level Elective:
+    result:
+      from: courses
+      where: {attribute: {$eq: norw_upper_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}

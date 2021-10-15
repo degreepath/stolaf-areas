@@ -1,0 +1,50 @@
+---
+name: Family Studies
+type: concentration
+code: '832'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Required
+    - requirement: Electives
+    - requirement: Experiential
+
+requirements:
+  Required:
+    result:
+      all:
+        - crsid: '0000000648'
+        - crsid: '0000000649'
+        - crsid: '0000000655'
+
+  Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: famst_elective}}
+      all:
+        - assert: {count(courses): {$gte: 2}}
+
+        - where:
+            $and:
+              - subject: {$neq: SWRK}
+              - subject: {$neq: FAMST}
+          assert: {count(courses): {$gte: 1}}
+
+  Experiential:
+    message: |
+      This requirement is usually an academic, credit-bearing experience
+      completed during the senior year (including the previous summer.)
+
+      It is designed to ensure that concentrators participate in an experience
+      that applies basic family knowledge (theories, frameworks, concepts) to
+      real families in a setting beyond the classroom. It must be approved by
+      a faculty member in the Department of Social Work and Family Studies
+      prior to enrollment and entered into the Department GoogleDoc.
+
+      The experience and concomitant learning is presented as a graded
+      assignment for a public audience in the senior seminar FAMST 391.
+      Through the experience, students demonstrate attainment of intended
+      learning outcomes for family studies.
+
+    department_audited: true

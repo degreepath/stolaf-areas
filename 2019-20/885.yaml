@@ -1,0 +1,47 @@
+---
+name: Nordic Studies
+type: concentration
+code: '885'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Electives
+
+  audit:
+    all:
+      - where: {grade_option: {$eq: s/u}}
+        assert: {count(courses): {$lte: 1}}
+
+      - where: {attribute: {$neq: nordic_focus_norway}}
+        assert: {count(courses): {$gte: 2}}
+        message: |
+          At least two of the five courses must have a focus on at least one
+          Nordic country other than Norway.
+
+requirements:
+  Language:
+    result:
+      at_most: true
+      any:
+        - course: NORW 232
+        - course: NORW 253
+        - course: NORW 371
+        - course: NORW 372
+
+  Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: nordic_elective}}
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        - where:
+            $or:
+              - subject: {$neq: NORW}
+              - institution: {$neq: STOLAF}
+              - course: {$eq: NORW 296}
+          assert: {count(courses): {$gte: 2}}
+          message: |
+            Two or three courses from other departments

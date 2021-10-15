@@ -1,0 +1,36 @@
+---
+name: Philosophy
+type: major
+code: '510'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Level III Seminars
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: PHIL 235
+        - course: PHIL 236
+        - course: PHIL 240
+
+  Level III Seminars:
+    result:
+      from: courses
+      where: {attribute: {$eq: phil_l3_seminar}}
+      limit:
+        - {at most: 0, where: {grade_option: {$eq: s/u}}}
+      assert: {count(courses): {$gte: 3}}
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - subject: {$eq: PHIL}
+          - attribute: {$eq: phil_elective}
+      assert: {count(courses): {$gte: 3}}

@@ -1,0 +1,184 @@
+---
+name: Mathematics
+type: major
+code: '420'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Basics
+    - requirement: Electives
+    - requirement: Transitions
+    - requirement: Perspectives
+    - requirement: Level III
+    - requirement: Sequence
+
+  audit:
+    all:
+      - where: {year: {$gte: $matriculation-year}}
+        assert: {count(courses): {$gte: 6}}
+
+      - where: {subject: {$neq: MATH}}
+        assert: {count(courses): {$lte: 2}}
+
+      - assert: {count(courses): {$lte: 1}}
+        where:
+          course:
+            $in:
+              - STAT 212
+              - STAT 214
+              - STAT 272
+              - MSCS 264
+
+requirements:
+  Basics:
+    result:
+      all:
+        - at_most: true
+          any:
+            - all:
+                - at_most: true
+                  any:
+                    - course: MATH 120
+                    - course: MATH 119
+                    - ap: AP Calculus I
+                    - ap: IB Calculus I
+                    - {ap: IB Mathematics, hidden: true}
+                - at_most: true
+                  any:
+                    - course: MATH 126
+                    - course: MATH 128
+            - ap: AP Calculus I and II
+            - ap: IB Calculus I and II
+        - course: MATH 220
+
+  Electives:
+    disjoint: true
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute:
+              $in:
+                - math_electives
+                - math_transitions
+                - math_l2_electives
+                - math_l3_electives
+
+          - attribute:
+              $in:
+                - math_perspective_a
+                - math_perspective_c
+                - math_perspective_d
+                - math_perspective_m
+
+          - $if: {has-declared-area-code: '540'}  # Physics
+            $then: {course: {$eq: PHYS 375}}
+
+          - $if: {has-declared-area-code: '230'}  # Economics
+            $then: {course: {$eq: ECON 385}}
+
+          - $if: {has-declared-area-code: '170'}  # Chemistry
+            $then: {course: {$eq: CHEM 371}}
+
+          - $and:
+              - subject: {$eq: MATH}
+              - level: {$eq: 200}
+              - type: {$eq: course}
+      assert:
+        count(courses): {$gte: 7, at_most: true}
+
+  Transitions:
+    result:
+      from: claimed
+      where: {attribute: {$eq: math_transitions}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  Perspectives:
+    result:
+      at_most: true
+      count: 3
+      of:
+        - requirement: A
+        - requirement: C
+        - requirement: D
+        - requirement: M
+      audit:
+        all:
+          - assert: {count(courses): {$gte: 3}}
+          - assert: {count(math_perspectives): {$gte: 3}}
+
+    requirements:
+      A:
+        result:
+          from: claimed
+          where: {attribute: {$eq: math_perspective_a}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      C:
+        result:
+          from: claimed
+          where: {attribute: {$eq: math_perspective_c}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      D:
+        result:
+          from: claimed
+          where: {attribute: {$eq: math_perspective_d}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      M:
+        result:
+          from: claimed
+          where: {attribute: {$eq: math_perspective_m}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Level III:
+    result:
+      from: claimed
+      where: {attribute: {$eq: math_l3_electives}}
+      all:
+        - message: Two 300-level courses
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+        - message: At least one 300-level MATH course
+          where: {subject: {$eq: MATH}}
+          assert: {count(courses): {$gte: 1}}
+
+  Sequence:
+    result:
+      at_most: true
+      any:
+        - both:
+            - {course: MATH 220, from_claimed: true}
+            - {course: MATH 320, from_claimed: true}
+        - both:
+            - {course: MATH 220, from_claimed: true}
+            - {course: MATH 356, from_claimed: true}
+        - both:
+            - {course: MATH 220, from_claimed: true}
+            - {course: MSCS 341, from_claimed: true}
+        - both:
+            - {course: MATH 226, from_claimed: true}
+            - {course: MATH 340, from_claimed: true}
+        - both:
+            - {course: MATH 230, from_claimed: true}
+            - {course: MATH 330, from_claimed: true}
+        - both:
+            - {course: MATH 232, from_claimed: true}
+            - {course: MATH 364, from_claimed: true}
+        - both:
+            - {course: MATH 244, from_claimed: true}
+            - {course: MATH 344, from_claimed: true}
+        - both:
+            - {course: MATH 244, from_claimed: true}
+            - {course: MATH 348, from_claimed: true}
+        - both:
+            - {course: MATH 252, from_claimed: true}
+            - {course: MATH 352, from_claimed: true}
+        - both:
+            - {course: MATH 262, from_claimed: true}
+            - {course: STAT 322, from_claimed: true}
+        - both:
+            - {course: MATH 232, from_claimed: true}
+            - {course: MATH 332, from_claimed: true}

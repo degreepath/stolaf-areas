@@ -1,0 +1,79 @@
+---
+name: English
+type: major
+code: '250'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Literary Studies
+    - requirement: Cross-Cultural Studies
+    - requirement: Literary History
+    - requirement: Cross-Disciplinary and Genre Studies
+    - requirement: Electives
+    - requirement: 1800s
+
+requirements:
+  Literary Studies:
+    result:
+      course: ENGL 185
+
+  Cross-Cultural Studies:
+    result:
+      from: courses
+      where: {attribute: {$eq: engl_topic_crosscultural}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Literary History:
+    result:
+      from: courses
+      where: {attribute: {$eq: engl_topic_literary_history}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Cross-Disciplinary and Genre Studies:
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: engl_topic_crossdisciplinary}
+          - attribute: {$eq: engl_topic_genre}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - attributes: {$eq: engl_elective}
+          - attributes: {$eq: engl_topic_genre}
+          - attributes: {$eq: engl_topic_crosscultural}
+          - attributes: {$eq: engl_topic_literary_history}
+          - attributes: {$eq: engl_topic_crossdisciplinary}
+          - $and:
+              - subject: {$eq: ENGL}
+              - number: {$nin: [294, 298, 394, 398]}
+              - is_stolaf: {$eq: true}
+
+      limit:
+        - at_most: 1
+          where: {attributes: {$eq: engl_focus_creative_writing}}
+
+      all:
+        - assert: {count(courses): {$gte: 6, at_most: true}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+  1800s:
+    result:
+      both:
+        - from: courses
+          where: {attribute: {$eq: engl_period_pre1800}}
+          allow_claimed: true
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+        - from: courses
+          where: {attribute: {$eq: engl_period_post1800}}
+          allow_claimed: true
+          assert: {count(courses): {$gte: 1, at_most: true}}
