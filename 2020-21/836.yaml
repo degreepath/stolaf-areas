@@ -31,5 +31,5 @@ requirements:
   Remaining Electives:
     result:
       from: courses
-      where: {attributes: {$eq: filmmedia_elective}}
+      where: {attributes: {$eq: filmmedia_conc_elective}}
       assert: {count(courses): {$gte: 2, at_most: true}}
