@@ -47,6 +47,7 @@ result:
               - neuro_elective_a
               - neuro_elective_b
               - neuro_elective_c
+        assert: {count(courses): {$gte: 1}}
 
     # - name: Electives
     #   message: |
