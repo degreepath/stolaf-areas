@@ -39,7 +39,7 @@ result:
 
 
     - name: Additional Elective
-      results:
+      result:
         from: courses
         where:
           attribute:
