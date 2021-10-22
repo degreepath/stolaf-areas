@@ -29,7 +29,7 @@ result:
                 assert: {count(courses): {$gte: 1}}
 
               - where: {attribute: {$eq: neuro_elective_b}}
-                assert: {count(subjects): {$gte: 1}}
+                assert: {count(courses): {$gte: 1}}
 
               - assert: {count(subjects): {$gte: 2}}
 
