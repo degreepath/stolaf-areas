@@ -14,17 +14,16 @@ result:
 
     - name: Lab Electives
       result:
-        from: courses
+        all:
+          - either:
+            - where: {attribute: {$eq: neuro_elective_a}}
+              assert: {count(courses): {$gte: 2}}
+              message: Two courses must be from category A
 
-        either:
-          - where: {attribute: {$eq: neuro_elective_a}}
-            assert: {count(courses): {$gte: 2}}
-            message: Two courses must be from category A
-
-          - where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
-            assert: {count(subjects): {$gte: 2}}
-            message:
-              The category A and category B courses must be different subjects
+            - where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
+              assert: {count(subjects): {$gte: 2}}
+              message:
+                The category A and category B courses must be different subjects
 
 
     #     all:
