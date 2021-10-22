@@ -13,6 +13,9 @@ result:
           - course: NEURO 239
 
     - name: Lab Electives
+      message: Two courses must be from category A OR 1 course from category A 
+        and 1 course from category B. The category A and category B courses 
+        must be different subjects.
       result:
         either:
           - from: courses
