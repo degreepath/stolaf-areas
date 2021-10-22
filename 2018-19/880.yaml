@@ -13,7 +13,8 @@ result:
           - course: NEURO 239
 
     - name: Lab Electives
-      message: Two courses must be from category A OR 1 course from category A 
+      message: |
+        Two courses must be from category A OR 1 course from category A 
         and 1 course from category B. The category A and category B courses 
         must be different subjects.
       result:
@@ -21,7 +22,6 @@ result:
           - from: courses
             where: {attribute: {$eq: neuro_elective_a}}
             assert: {count(courses): {$gte: 2}}
-#            message: Two courses must be from category A
 
           - from: courses
             all:
@@ -32,9 +32,6 @@ result:
                 assert: {count(subjects): {$gte: 1}}
 
               - assert: {count(subjects): {$gte: 2}}
-#            message: The category A and category B courses must be different subjects
-
-
 
     #     all:
     #       - where: {attribute: {$eq: neuro_elective_a}}
@@ -52,16 +49,16 @@ result:
     #             The category A and category B courses must be different subjects
 
 
-    # - name: Additional Elective
-    #   result:
-    #     from: courses
-    #     where:
-    #       attribute:
-    #         $in:
-    #           - neuro_elective_a
-    #           - neuro_elective_b
-    #           - neuro_elective_c
-    #     assert: {count(courses): {$gte: 1}}
+    - name: Additional Elective
+      result:
+        from: courses
+        where:
+          attribute:
+            $in:
+              - neuro_elective_a
+              - neuro_elective_b
+              - neuro_elective_c
+        assert: {count(courses): {$gte: 1}}
 
     # Original
 
