@@ -228,6 +228,8 @@ result:
     #     assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: World Languages and Cultures
+      message: |
+        A course must have the WLC Core attribute OR you may complete one of the sequences below.
       result:
         any:
           - requirement: WLC-GE
@@ -259,7 +261,7 @@ result:
                   - [{has-override-exception: fol-by-petition}, {set: '3'}]
 
         French Sequence:
-          message: The top/final course in the sequence must be taken graded.
+          message: All three courses in the sequence must be completed to fulfill WLC. The top/final course in the sequence must be taken graded.
           result: 
             all:
               - course: FREN 111
@@ -267,7 +269,7 @@ result:
               - {course: FREN 231, grade_option: grade}
 
         German Sequence:
-          message: The top/final course in the sequence must be taken graded.
+          message: All three courses in the sequence must be completed to fulfill WLC. The top/final course in the sequence must be taken graded.
           result: 
             all:
               - course: GERM 111
@@ -276,7 +278,7 @@ result:
 
 
         Spanish Sequence:
-          message: The top/final course in the sequence must be taken graded.
+          message: All three courses in the sequence must be completed to fulfill WLC. The top/final course in the sequence must be taken graded.
           result:
             all:
               - course: SPAN 111
