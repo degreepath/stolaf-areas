@@ -1,0 +1,83 @@
+---
+name: Computer Science
+type: major
+code: '200'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Capstone
+
+requirements:
+  Foundation:
+    result:
+      all:
+        - requirement: Principles
+        - requirement: Hardware
+        - requirement: Software
+        - requirement: Mathematics
+
+    requirements:
+      Principles:
+        result:
+          any:
+            - course: CSCI 121
+            - course: CSCI 125
+            - course: PHYS 130
+
+      Hardware:
+        result:
+          course: CSCI 241
+
+      Software:
+        result:
+          both:
+            - course: CSCI 251
+            - course: CSCI 252.L
+
+      Mathematics:
+        result:
+          both:
+            - course: MATH 220
+            - from: courses
+              where: {attributes: {$eq: csci_proof_writing}}
+              assert: {count(courses): {$gte: 1}}
+
+  Core:
+    result:
+      all:
+        - either:
+          - course: CSCI 253
+          - course: CSCI 353
+        - course: CSCI 263
+        - requirement: Languages
+        - requirement: Systems
+
+    requirements:
+      Languages:
+        result:
+          from: courses
+          where: {attributes: {$eq: csci_languages}}
+          assert: {count(courses): {$gte: 1}}
+
+      Systems:
+        result:
+          from: courses
+          where: {attributes: {$eq: csci_systems}}
+          assert: {count(courses): {$gte: 1}}
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: csci_electives}}
+      assert: {count(courses): {$gte: 2}}
+
+  Capstone:
+    result:
+      from: courses
+      where: {attributes: {$eq: csci_capstone}}
+      assert: {count(courses): {$gte: 1}}
