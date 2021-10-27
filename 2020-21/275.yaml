@@ -37,7 +37,7 @@ requirements:
         - where: {course: {$in: [FMS 215, FMS 235, FMS 245, FMS 265, FMS 270]}}
           assert: {count(courses): {$gte: 2}}
 
-        - where: {leve: {$eq: 100}}
+        - where: {level: {$eq: 100}}
           assert: {count(courses): {$lte: 1}}
 
 
