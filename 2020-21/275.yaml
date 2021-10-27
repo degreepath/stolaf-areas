@@ -38,7 +38,7 @@ requirements:
           assert: {count(courses): {$gte: 2}}
 
         - where: {level: {$eq: 100}}
-          assert: {count(courses): {$lte: 1}}
+          assert: {count(courses): {$lte: 1, at_most: true}}
 
 
   Production:
