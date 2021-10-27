@@ -32,10 +32,15 @@ requirements:
       from: courses
       where: {attributes: {$eq: filmmedia_elective}}
       all:
-        - assert: {count(courses): {$gte: 4, at_most: true}}
-
         - where: {course: {$in: [FMS 215, FMS 235, FMS 245, FMS 265, FMS 270]}}
           assert: {count(courses): {$gte: 2}}
+
+        - assert: {count(courses): {$gte: 4, at_most: true}}
+
+        - limit:
+          at_most: 1
+          where: {level: {$eq: 100}}
+
 
   Production:
     result:
