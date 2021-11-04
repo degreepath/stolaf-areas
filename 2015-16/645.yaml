@@ -13,11 +13,17 @@ result:
 requirements:
   Introduction:
     result:
-      course: WMGST 121
+      all:
+        - either:
+          - course: WMGST 121
+          - course: GSS 121
 
   Advanced Topics:
     result:
-      course: WMGST 399
+      all:
+        - either:
+          - course: WMGST 399
+          - course: GSS 399
 
   Additional Courses:
     message: |
