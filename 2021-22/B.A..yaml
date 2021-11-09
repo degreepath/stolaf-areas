@@ -248,6 +248,7 @@ result:
 
       requirements:
         WLC-GE:
+          message: 3rd semester or higher in Chinese, Greek, Japanese, Latin, Norwegian, or Russian. 4th semester or higher in French, German, or Spanish
           result:
             from: courses
             claim: record
@@ -270,7 +271,7 @@ result:
                   - [{has-override-exception: fol-by-petition}, {set: '3'}]
 
         French Sequence:
-          message: All three courses in the sequence must be completed to fulfill WLC. The top/final course in the sequence must be taken graded.
+          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded.
           result: 
             all:
               - course: FREN 111
@@ -278,7 +279,7 @@ result:
               - {course: FREN 231, grade_option: grade}
 
         German Sequence:
-          message: All three courses in the sequence must be completed to fulfill WLC. The top/final course in the sequence must be taken graded.
+          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded.
           result: 
             all:
               - course: GERM 111
@@ -287,7 +288,7 @@ result:
 
 
         Spanish Sequence:
-          message: All three courses in the sequence must be completed to fulfill WLC. The top/final course in the sequence must be taken graded.
+          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded.
           result:
             all:
               - course: SPAN 111
