@@ -248,7 +248,7 @@ result:
 
       requirements:
         WLC-GE:
-          message: 3rd semester or higher in Chinese, Greek, Japanese, Latin, Norwegian, or Russian. 4th semester or higher in French, German, or Spanish
+          message: 4th semester or higher in French, German, or Spanish. 3rd semester or higher in Chinese, Greek, Japanese, Latin, Norwegian, or Russian. 
           result:
             from: courses
             claim: record
