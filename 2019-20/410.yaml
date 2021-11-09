@@ -29,7 +29,6 @@ result:
       - {where: {subject: {$eq: RACE}}, assert: {count(courses): {$lte: 2}}}
       - {where: {subject: {$eq: REL}}, assert: {count(courses): {$lte: 2}}}
       - {where: {subject: {$eq: SOAN}}, assert: {count(courses): {$lte: 2}}}
-      - {where: {subject: {$eq: SPAN}}, assert: {count(courses): {$lte: 3}}}
 
 requirements:
   Core:
