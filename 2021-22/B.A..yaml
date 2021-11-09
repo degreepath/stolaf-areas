@@ -229,7 +229,16 @@ result:
 
     - name: World Languages and Cultures
       message: |
-        A course must have the WLC Core attribute OR you may complete one of the sequences below.
+        Depending on placement, most incoming students will complete at least one course and a maximum of
+        three courses at St. Olaf in order to fulfill the requirement. Most students fulfill this requirement by:
+        • completing a 4th-semester or higher course in French, German, or Spanish
+        OR
+        • completing a 3rd-semester or higher course in Chinese, Greek, Japanese, Latin, Norwegian, or Russian
+
+        However, students who begin French, German, or Spanish in the 1st-semester course fulfill the language
+        requirement by completing the 3rd-semester course.
+
+        <a href="https://wp.stolaf.edu/curriculum-committee/files/2021/03/WLC.pdf">Full details regarding the WLC Requirement</a>
       result:
         any:
           - requirement: WLC-GE
