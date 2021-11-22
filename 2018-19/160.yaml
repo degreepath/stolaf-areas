@@ -119,9 +119,6 @@ requirements:
             - course: CHEM 123
             - course: CHEM 126
         - all:
-            - course: CHEM 122
-            - course: CHEM 126
-        - all:
             - course: CHEM 125
             - course: CHEM 126
         - all:
