@@ -6,7 +6,9 @@ degree: B.A.
 
 result:
   all:
-    - course: WMGST 121
+    - either:
+      - course: WMGST 121
+      - course: GSS 121
     - requirement: Interdisciplinary Focus
 
 requirements:
