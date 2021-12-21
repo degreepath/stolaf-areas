@@ -1,0 +1,50 @@
+---
+name: Kinesiology
+type: major
+code: '388'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: BIO 143
+        - course: BIO 243
+        - either:
+          - course: ESTH 150
+          - course: KINES 195
+        - at_most: true
+          any:
+            - course: ESTH 250
+            - course: NURS 110
+        - either:
+          - course: ESTH 374
+          - course: KINES 374
+        - either:
+          - course: ESTH 375
+          - course: KINES 375
+        - either:
+          - course: ESTH 390
+          - course: KINES 390
+        - at_most: true
+          any:
+            - course: PSYCH 125
+            - ap: AP Psychology
+            - ap: IB Psychology
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: kines_elective}}
+      limit:
+        - at-most: 1
+          where:
+            $or:
+              - course: {$in: [STAT 110, STAT 212, STAT 214]}
+              - ap: {$eq: AP Statistics}
+      assert: {count(courses): {$gte: 2, at_most: true}}
