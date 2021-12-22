@@ -144,7 +144,7 @@ requirements:
         - where: {graduation-year: {$eq: 2022}}
           assert: {count(recitals): {$gte: 50}}
         - where: {graduation-year: {$neq: 2022}}
-          assert: {count(recitals): {$gte: 60}}
+          assert: {count(recitals): {$gte: 61}}
 
   Secondary Field of Study:
     message:
