@@ -140,11 +140,7 @@ requirements:
       with a minimum of 60 overall.
     result:
       from: music recitals
-      - either:
-        - where: {graduation-year: {$eq: 2022}}
-          assert: {count(recitals): {$gte: 50}}
-        - where: {graduation-year: {$neq: 2022}}
-          assert: {count(recitals): {$gte: 61}}
+      assert: {count(recitals): {$gte: 60}}
 
   Secondary Field of Study:
     message:

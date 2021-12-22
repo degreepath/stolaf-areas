@@ -134,13 +134,7 @@ requirements:
       with a minimum of 60 overall.
     result:
       from: music recitals
-      where:
-        $if: {graduation-year: '2022'}
-        $then:
-          assert: {count(recitals): {$gte: 50}}
-        $else: 
-          assert: {count(recitals): {$gte: 60}}
-          
+      assert: {count(recitals): {$gte: 60}}
 
 emphases:
   700:
