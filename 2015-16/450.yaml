@@ -135,11 +135,12 @@ requirements:
     result:
       from: music recitals
       where:
-      - either:
-        - graduation-year: {$eq: 2022}
+        $if: {graduation-year: '2022'}
+        $then:
           assert: {count(recitals): {$gte: 50}}
-        - graduation-year: {$neq: 2022}
-          assert: {count(recitals): {$gte: 61}}
+        $else: 
+          assert: {count(recitals): {$gte: 60}}
+          
 
 emphases:
   700:
