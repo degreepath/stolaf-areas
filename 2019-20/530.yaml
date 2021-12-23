@@ -15,20 +15,14 @@ requirements:
       all:
         - course: BIO 143
         - course: BIO 243
-        - course: ESTH 255
+        - course: ESTH 150
         - at_most: true
           any:
             - course: ESTH 250
             - course: NURS 110
-        - either:
-          - course: ESTH 374
-          - course: KINES 374
-        - either:
-          - course: ESTH 375
-          - course: KINES 375
-        - either:
-          - course: ESTH 390
-          - course: KINES 390
+        - course: ESTH 374
+        - course: ESTH 375
+        - course: ESTH 390
         - at_most: true
           any:
             - course: PSYCH 125

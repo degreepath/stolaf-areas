@@ -16,8 +16,8 @@ requirements:
         - course: BIO 143
         - course: BIO 243
         - either:
-          - course: ESTH 150
-          - course: KINES 195
+          - course: KINES 255
+          - course: ESTH 255
         - at_most: true
           any:
             - course: ESTH 250

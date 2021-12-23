@@ -1,7 +1,7 @@
 ---
-name: Exercise Science
+name: Kinesiology
 type: major
-code: '530'
+code: '388'
 degree: B.A.
 
 result:
@@ -15,11 +15,14 @@ requirements:
       all:
         - course: BIO 143
         - course: BIO 243
-        - course: ESTH 255
+        - either:
+          - course: ESTH 150
+          - course: KINES 195
         - at_most: true
           any:
             - course: ESTH 250
             - course: NURS 110
+            - course: KINES 250
         - either:
           - course: ESTH 374
           - course: KINES 374
