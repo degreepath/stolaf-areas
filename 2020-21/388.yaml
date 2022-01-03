@@ -18,21 +18,12 @@ requirements:
         - at_most: true
           any:
             - course: KINES 195
-            - course: ESTH 150
             - ap: IB Sports Exercise Health Science
-        - either:
-          - course: ESTH 231
-          - course: KINES 231
+        - course: KINES 231
         - course: KINES 250
-        - either:
-          - course: ESTH 374
-          - course: KINES 374
-        - either:
-          - course: ESTH 375
-          - course: KINES 375
-        - either:
-          - course: ESTH 390
-          - course: KINES 390
+        - course: KINES 374
+        - course: KINES 375
+        - course: KINES 390
 
   Electives:
     result:
