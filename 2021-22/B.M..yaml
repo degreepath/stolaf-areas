@@ -203,13 +203,81 @@ result:
         assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: World Languages and Cultures
+      message: |
+        <p>Depending on placement, most incoming students will complete at least one course and a maximum of
+        three courses at St. Olaf in order to fulfill the requirement. Most students fulfill this requirement by:
+        <ul><li>completing a 4th-semester or higher course in French, German, or Spanish</li></ul>
+        OR
+        <ul><li>completing a 3rd-semester or higher course in Chinese, Greek, Japanese, Latin, Norwegian, or Russian</li></ul></p>
+        <p>
+        However, students who begin French, German, or Spanish in the 1st-semester course fulfill the language
+        requirement by completing the 3rd-semester course.</p>
+
+        <p><a href="https://wp.stolaf.edu/curriculum-committee/files/2021/03/WLC.pdf" target="_blank">Full details regarding the WLC Requirement</a></p>
       result:
-        from: courses
-        claim: true
-        limit:
-          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where: {gereqs: {$eq: WLC}}
-        assert: {count(courses): {$gte: 1, at_most: true}}
+        any:
+          - requirement: WLC-GE
+          - requirement: French Sequence
+          - requirement: German Sequence
+          - requirement: Spanish Sequence
+
+      requirements:
+        WLC-GE:
+          message: 4th semester or higher in French, German, or Spanish. 3rd semester or higher in Chinese, Greek, Japanese, Latin, Norwegian, or Russian. 
+          result:
+            from: courses
+            claim: record
+            allow_claimed: true
+            limit:
+              - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+            where: 
+              $if: {has-override-exception: fol-by-petition}
+              $args:
+                hide_branching: true
+              $then:
+                attribute: {$eq: fol_by_petition}
+              $else: {gereqs: {$eq: WLC}}
+            assert: 
+              count(courses): 
+                $gte: 1
+                at_most: true
+
+                $changes:
+                  - [{has-override-exception: fol-by-petition}, {set: '3'}]
+
+        French Sequence:
+          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded.
+          result: 
+            all:
+              - course: FREN 111
+              - course: FREN 112
+              - {course: FREN 231, grade_option: grade}
+
+        German Sequence:
+          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded.
+          result: 
+            all:
+              - course: GERM 111
+              - course: GERM 112
+              - {course: GERM 231, grade_option: grade}
+
+
+        Spanish Sequence:
+          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded.
+          result:
+            all:
+              - course: SPAN 111
+              - course: SPAN 112
+              - {course: SPAN 231, grade_option: grade}
+
+#    - name: World Languages and Cultures
+#      result:
+#        from: courses
+#        claim: true
+#        limit:
+#          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
+#        where: {gereqs: {$eq: WLC}}
+#        assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: Creativity
       result:
