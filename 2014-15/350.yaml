@@ -13,6 +13,10 @@ limit:
       $and:
         - subject: {$neq: HIST}
         - is_stolaf: {$eq: true}
+  # Students may count one AP credit
+  - at-most: 1 course
+    where:
+      - course_type: {$eq: AP}
 
 result:
   all:

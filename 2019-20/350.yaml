@@ -4,6 +4,13 @@ type: major
 code: '350'
 degree: B.A.
 
+
+limit:
+  # Students may count one AP credit
+  - at-most: 1 course
+    where:
+      - course_type: {$eq: AP}
+
 result:
   all:
     - requirement: Level II Seminar
