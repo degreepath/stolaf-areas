@@ -20,7 +20,6 @@ requirements:
       all:
         - course: BIO 143
         - course: BIO 243
-        - course: ID 210
         - course: NURS 110
         - any:
             - course: PSYCH 125
