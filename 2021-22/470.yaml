@@ -40,7 +40,7 @@ requirements:
       all:
         - requirement: Diversity, Inequity, and Social Justice
         - requirement: Comparative Perspective
-        - requirement: Additional Course
+        - requirement: Additional Courses
 
     requirements:
       Diversity, Inequity, and Social Justice:
@@ -58,17 +58,21 @@ requirements:
           any:
             - course: NORW 260
 
-      Additional Course:
+      Additional Courses:
         result:
-          any:
+          at_most: true
+          count: 2
+          of:          
+            - course: NORW 205
             - course: NORW 224
             - course: NORW 244
+            - course: NORW 260
+            - course: NORST 219
             - course: NORST 264
             - course: NORST 277
             - course: ENVST 283
             - course: PSYCH 232
-            - course: NORW 260
-
+            
   Advanced Course:
     result:
       any:
