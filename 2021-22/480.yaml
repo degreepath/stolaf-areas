@@ -35,7 +35,7 @@ requirements:
       count: 1
       of:
         - course: NORST 264
-        - course: NORW 224
+        - course: NORW 205
         - course: NORW 244
         - course: ENVST 283
         - course: PSYCH 232
@@ -61,6 +61,7 @@ requirements:
       count: 1
       of:
         - course: NORST 200
+        - course: NORST 219
         - course: NORST 264
         - course: NORST 277
         - course: NORST 280
@@ -68,11 +69,12 @@ requirements:
         - course: NORW 130
         - course: NORW 140
         - course: NORW 180
-        - course: NORW 224
+        - course: NORW 205
         - course: NORW 240
         - course: NORW 244
         - course: NORW 260
         - course: NORW 282
+        - course: ENVST 283
 
   Advanced Courses:
     result: 
@@ -89,6 +91,7 @@ requirements:
           of:
             - course: NORW 371
             - course: NORW 372
+            - course: NORW 373
             - course: NORW 396
 
       # Option Å: one (1) level II or level III course partially in Norwegian (must total at least 0.50 credit)
@@ -101,7 +104,7 @@ requirements:
               assert: {sum(credits): {$gte: '0.5', at_most: true}}
   
             - from: courses
-              where: {course: {$in: [NORW 371, NORW 372, NORW 396]}}
+              where: {course: {$in: [NORW 371, NORW 372, NORW373, NORW 396]}}
               assert: {count(courses): {$gte: 1, at_most: true}}
               
   Double-Majors:
