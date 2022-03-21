@@ -29,6 +29,7 @@ requirements:
         - course: NORW 253
         - course: NORW 371
         - course: NORW 372
+        - course: NORW 373
 
   Electives:
     result:
