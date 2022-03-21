@@ -27,9 +27,15 @@ result:
       result:
         from: courses
 
+        where:
+          attribute:
+            $in:
+              - neuro_elective_a
+              - neuro_elective_b
+              - neuro_elective_c
+
         all:
-          - where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
-            assert: {count(courses): {$gte: 3}}
+          - assert: {count(courses): {$gte: 3}}
             message: Three electives
 
           - where: {attribute: {$eq: neuro_elective_a}}
