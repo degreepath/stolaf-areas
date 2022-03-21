@@ -226,7 +226,9 @@ emphases:
       Economic Analysis:
         result:
           both:
-            - course: ECON 121
+            - either:
+              - course: ECON 113
+              - course: ECON 121
             - course: ECON 242
 
       Environmental Political Policy and Institutions:
