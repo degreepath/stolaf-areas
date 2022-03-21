@@ -12,7 +12,9 @@ result:
     - course: NORW 232
     - course: NORW 253
     - course: NORW 371
-    - course: NORW 372
+    - either:
+      - course: NORW 372
+      - course: NORW 373
     - requirement: History & Culture
     - requirement: Upper-Level Elective
 
