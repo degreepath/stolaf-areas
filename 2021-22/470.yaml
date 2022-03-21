@@ -46,10 +46,10 @@ requirements:
       Diversity, Inequity, and Social Justice:
         result:
           any:
+            - course: NORST 264
+            - course: NORST 277            
             - course: NORW 224
             - course: NORW 244
-            - course: NORST 264
-            - course: NORST 277
             - course: ENVST 283
             - course: PSYCH 232
 
@@ -63,14 +63,17 @@ requirements:
           at_most: true
           count: 2
           of:          
+            - course: NORST 219
+            - course: NORST 264
+            - course: NORST 277  
             - course: NORW 205
             - course: NORW 224
             - course: NORW 244
             - course: NORW 260
-            - course: NORST 219
-            - course: NORST 264
-            - course: NORST 277
+            - course: NORW 373                      
             - course: ENVST 283
+            - course: HIST 211
+            - course: PHIL 233
             - course: PSYCH 232
             
   Advanced Course:
