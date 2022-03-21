@@ -54,7 +54,6 @@ result:
 
           - where: {attribute: {$eq: neuro_elective_c}}
             assert: {count(courses): {$lte: 1, at_most: true}}
-            message: At most one course can come from Category C
 
     - name: Seminar
       result:
