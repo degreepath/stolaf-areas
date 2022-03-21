@@ -27,15 +27,9 @@ result:
       result:
         from: courses
 
-        where:
-          attribute:
-            $in:
-              - neuro_elective_a
-              - neuro_elective_b
-              - neuro_elective_c
-
         all:
-          - assert: {count(courses): {$gte: 3}}
+          - where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
+            assert: {count(courses): {$gte: 3}}
             message: Three electives
 
           - where: {attribute: {$eq: neuro_elective_a}}
@@ -53,9 +47,7 @@ result:
                 The category A and category B courses must be different subjects
 
           - where: {attribute: {$eq: neuro_elective_c}}
-            limit: 
-              - {at-most: 1}
-            assert: {count(courses): {$lte: 1}}
+            assert: {count(courses): {$lte: 1, at_most: true}} 
             message: At most one course can come from Category C
 
     - name: Seminar
