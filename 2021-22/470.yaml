@@ -6,8 +6,8 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Foundational
-    - requirement: Additional II or III
+    - requirement: Foundational Language
+    - requirement: Additional II or III Language
     - requirement: Cultural and Historical Perspectives
     - requirement: Advanced Course
         
@@ -20,7 +20,7 @@ result:
         assert: {count(courses): {$lte: 3}}
 
 requirements:
-  Foundational:
+  Foundational Language:
     result:
       all:
         - course: NORW 111
@@ -28,7 +28,7 @@ requirements:
         - course: NORW 231
         - course: NORW 232
 
-  Additional II or III:
+  Additional II or III Language:
     result:
       from: courses
       where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
@@ -39,7 +39,7 @@ requirements:
     result:
       all:
         - requirement: Diversity, Inequity, and Social Justice
-        - requirement: Comparative Perspective
+        - requirement: Comparative Nordic Linguistics
         - requirement: Additional Courses
 
     requirements:
@@ -53,7 +53,7 @@ requirements:
             - course: ENVST 283
             - course: PSYCH 232
 
-      Comparative Perspective:
+      Comparative Nordic Linguistics:
         result:
           any:
             - course: NORW 260
@@ -72,6 +72,7 @@ requirements:
             - course: NORW 260
             - course: NORW 373                      
             - course: ENVST 283
+            - course: GERM 247
             - course: HIST 211
             - course: PHIL 233
             - course: PSYCH 232
