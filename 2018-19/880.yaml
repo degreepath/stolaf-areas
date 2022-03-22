@@ -47,8 +47,8 @@ result:
                 - {query-has-course-with-attribute: neuro_elective_b}
                 - {query-has-single-course-with-attribute: neuro_elective_a}
             $then:
-              where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
-              assert: {count(subjects): {$gte: 2}}
+              # where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
+              # assert: {count(subjects): {$gte: 2}}
               message:
                 The category A and category B courses must be different subjects
 
