@@ -17,33 +17,47 @@ requirements:
         - course: PSYCH 238
         - course: NEURO 239
 
+
   Electives:
     message: |
-      Three electives; two must be lab electives.
+        Three electives; two must be lab electives.
 
-      The first must be from the approved list of Neuroscience Core courses.
+        The first must be from the approved list of Neuroscience Core courses.
 
-      The second may be from either Category A or Category B. If the second is
-      NOT from Category A, it must be from Category B and from a different
-      department.
+        The second may be from either Category A or Category B. If the second is
+        NOT from Category A, it must be from Category B and from a different
+        department.
 
-      The third may be from Category A, B, or C.
+        The third may be from Category A, B, or C.
+    requirements:
+      Two Or More Category A:
+        result:
+          both:
+            - from: courses
+              where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
+              assert: {count(courses): {$gte: 3}}
+              message: Three electives
+            - from: courses
+              where: {attribute: {$eq: neuro_elective_a}}
+              assert: {count(courses): {$gte: 2}}
+          
+      Only One Category A:
+        result:
+          both:
+            - from: courses
+              where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
+              assert: {count(courses): {$gte: 3}}
+              message: Three electives
+            - from: courses
+              where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
+              assert: {count(subjects): {$gte: 2}}
+              message: The category A and category B courses must be different subjects
 
     result:
-      from: courses
-      where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
-      
-      all:
-        - assert: {count(courses): {$gte: 3}}
-          message: Three electives
-
-        - either:
-          - where: {attribute: {$eq: neuro_elective_a}}
-            assert: {count(courses): {$gte: 2}}
-
-          - where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
-            assert: {count(subjects): {$gte: 2}}
-            message: The category A and category B courses must be different subjects
+      at_most: true
+      either:
+        - requirement: Two Or More Category A
+        - requirement: Only One Category A
 
   Seminar:
     result:
