@@ -31,13 +31,13 @@ requirements:
 
     result:
       all:
-        - requirement: Three electives
+        - requirement: Three Electives
         - either:
           - requirement: Two or More Category A
           - requirement: One Category A and One Category B
           
     requirements:
-      Three Courses:
+      Three Electives:
         result:
           from: courses
           where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
