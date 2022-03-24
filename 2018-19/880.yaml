@@ -35,13 +35,13 @@ requirements:
         attribute:
           $in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]
 
-        $or:
-          - attribute: {$eq: neuro_elective_a}
-            assert: {count(courses): {$gte: 2}}
+        # $or:
+        #   - attribute: {$eq: neuro_elective_a}
+        #     assert: {count(courses): {$gte: 2}}
 
-          - where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
-            assert: {count(subjects): {$gte: 2}}
-            message: The category A and category B courses must be different subjects
+        #   - where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
+        #     assert: {count(subjects): {$gte: 2}}
+        #     message: The category A and category B courses must be different subjects
 
       all:
         - assert: {count(courses): {$gte: 3}}
