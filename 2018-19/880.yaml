@@ -19,9 +19,9 @@ requirements:
 
   Electives:
     message: |
-      Three electives; two must be lab electives.
+      Three electives.
 
-      The first must be from the approved list of Neuroscience Core courses.
+      The first must be from the approved list of Neuroscience Core courses (Category A).
 
       The second may be from either Category A or Category B. If the second is
       NOT from Category A, it must be from Category B and from a different
@@ -56,6 +56,7 @@ requirements:
           where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
           allow_claimed: true
           assert: {count(subjects): {$gte: 2}}
+          message: The category A and category B courses must be different departments
 
   Seminar:
     result:
