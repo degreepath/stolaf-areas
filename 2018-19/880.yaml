@@ -36,7 +36,6 @@ requirements:
             - from: courses
               where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
               assert: {count(courses): {$gte: 3}}
-              message: Three electives
             - from: courses
               where: {attribute: {$eq: neuro_elective_a}}
               assert: {count(courses): {$gte: 2}}
@@ -47,7 +46,6 @@ requirements:
             - from: courses
               where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
               assert: {count(courses): {$gte: 3}}
-              message: Three electives
             - from: courses
               where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
               assert: {count(subjects): {$gte: 2}}
