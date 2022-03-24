@@ -48,8 +48,8 @@ requirements:
           message: The category A and category B courses must be different subjects
 
         - where: {attribute: {$eq: neuro_elective_c}}
-            assert: {count(courses): {$lte: 1, at_most: true}} 
-            message: At most one course can come from Category C
+          assert: {count(courses): {$lte: 1, at_most: true}} 
+          message: At most one course can come from Category C
 
   Seminar:
     result:
