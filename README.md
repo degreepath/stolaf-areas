@@ -9,8 +9,8 @@ Credit for the original impetus for investigating a static format, instead of wr
 # Table of Contents
 
 1. Introduction
-1. Sections, Sub-sections, and Requirements
-1. Rules
+1. [Sections, Sub-sections, and Requirements](#sections-sub-sections-and-requirements)
+1. [Rules](#rules)
    1. of/count
    1. both/either
    1. course

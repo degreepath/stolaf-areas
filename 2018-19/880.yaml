@@ -6,58 +6,55 @@ degree: B.A.
 
 result:
   all:
-    - name: Foundation Courses
-      result:
-        all:
-          - course: PSYCH 238
-          - course: NEURO 239
+    - requirement: Foundation Courses
+    - requirement: Electives
+    - requirement: Seminar
 
-    - name: Electives
-      message: |
-        Three electives; two must be lab electives.
+requirements:
+  Foundation Courses:
+    result:
+      all:
+        - course: PSYCH 238
+        - course: NEURO 239
 
-        The first must be from the approved list of Neuroscience Core courses.
+  Electives:
+    message: |
+      Three electives; two must be lab electives.
 
-        The second may be from either Category A or Category B. If the second is
-        NOT from Category A, it must be from Category B and from a different
-        department.
+      The first must be from the approved list of Neuroscience Core courses.
 
-        The third may be from Category A, B, or C.
+      The second may be from either Category A or Category B. If the second is
+      NOT from Category A, it must be from Category B and from a different
+      department.
 
-      result:
-        from: courses
+      The third may be from Category A, B, or C.
 
-        where:
-          attribute:
-            $in:
-              - neuro_elective_a
-              - neuro_elective_b
-              - neuro_elective_c
+    result:
+      from: courses
+      where:
+        attribute:
+          $in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]
 
-        all:
-          - assert: {count(courses): {$gte: 3}}
-            message: Three electives
+      all:
+        - assert: {count(courses): {$gte: 3}}
+          message: Three electives
 
-          - where: {attribute: {$eq: neuro_elective_a}}
-            assert: {count(courses): {$gte: 1}}
-            message: One course must be from category A
+        - where: {attribute: {$eq: neuro_elective_a}}
+          assert: {count(courses): {$gte: 1}}
+          message: One course must be from category A
 
-          - $when:
-              $and:
-                - {query-has-course-with-attribute: neuro_elective_b}
-                - {query-has-single-course-with-attribute: neuro_elective_a}
-            $then:
-              where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
-              assert: {count(subjects): {$gte: 2}}
-              message:
-                The category A and category B courses must be different subjects
+        - $if: {attribute: {$eq: neuro_elective_b}}
+          $then:
+            where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
+            assert: {count(subjects): {$gte: 2}}
+            message: The category A and category B courses must be different subjects
 
-          - where: {attribute: {$eq: neuro_elective_c}}
+        - where: {attribute: {$eq: neuro_elective_c}}
             assert: {count(courses): {$lte: 1, at_most: true}} 
             message: At most one course can come from Category C
 
-    - name: Seminar
-      result:
-        from: courses
-        where: {attribute: {$eq: neuro_capstone}}
-        assert: {count(courses): {$gte: 1}}
+  Seminar:
+    result:
+      from: courses
+      where: {attribute: {$eq: neuro_capstone}}
+      assert: {count(courses): {$gte: 1}}
