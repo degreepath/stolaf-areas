@@ -64,18 +64,9 @@ requirements:
 
       Comparative Organismal Biology:
         result:
-          at_most: true
-          any:
-            - course: BIO 224
-            - course: BIO 242
-            - course: BIO 247
-            - course: BIO 248
-            - course: BIO 251
-            - course: BIO 252
-            - course: BIO 266
-            - course: BIO 275
-            - {course: BIO 292, year: 2021, semester: 3}
-            - {course: BIO 386, term: 2021-2}
+          from: courses
+          where: {attribute: {$eq: bio_comparative_organismal}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Ecology:
         result:
