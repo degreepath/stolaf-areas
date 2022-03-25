@@ -66,16 +66,7 @@ requirements:
         result:
           at_most: true
           any:
-            - course: BIO 224
-            - course: BIO 242
-            - course: BIO 247
-            - course: BIO 248
-            - course: BIO 251
-            - course: BIO 252
-            - course: BIO 266
-            - course: BIO 275
-            - {course: BIO 292, term: 2021}
-            - {course: BIO 386, term: 2021-2}
+            - attribute: {$eq: bio_elective}
 
       Ecology:
         result:
