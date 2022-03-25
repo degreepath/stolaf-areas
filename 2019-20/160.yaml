@@ -64,7 +64,7 @@ requirements:
 
       Comparative Organismal Biology:
         result:
-          at_most: true
+          from: courses
           where:
             - attribute: {$eq: bio_elective}
           assert: {count(courses): {$gte: 1, at_most: true}}
