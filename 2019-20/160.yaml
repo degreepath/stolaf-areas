@@ -65,8 +65,7 @@ requirements:
       Comparative Organismal Biology:
         result:
           from: courses
-          where:
-            - attribute: {$eq: bio_comparative_organismal}
+          where: {attribute: {$eq: bio_comparative_organismal}}
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Ecology:
