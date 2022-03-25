@@ -74,7 +74,7 @@ requirements:
             - course: BIO 252
             - course: BIO 266
             - course: BIO 275
-            - {course: BIO 292, term: 2021-3}
+            - {course: BIO 292, term: 2021}
             - {course: BIO 386, term: 2021-2}
 
       Ecology:
