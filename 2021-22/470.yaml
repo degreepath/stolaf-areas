@@ -31,11 +31,14 @@ requirements:
   Additional II or III Language:
     result:
       any:
-        - { course: NORW 205, type: { $eq: Flac } }
-        - { course: NORW 244, type: { $eq: Flac } }
-        - { course: NORW 277, type: { $eq: Flac } }
-        - course: NORW 296
-      assert: { sum(credits): { $gte: "0.5", at_most: true } }
+        where:
+          $and:
+            - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
+            - {type: {$in: [Flac]}}
+        assert: { sum(credits): { $gte: "0.5", at_most: true } }
+      
+      
+      # - course: NORW 296
 
           # from: courses
           # where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
