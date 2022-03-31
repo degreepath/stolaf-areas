@@ -30,20 +30,12 @@ requirements:
 
   Additional II or III Language:
     result:
-      any:
-        where:
-          $and:
-            - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
-            - {type: {$eq: Flac}}
-        assert: { sum(credits): { $gte: "0.5", at_most: true } }
-      
-      
-      # - course: NORW 296
+      from: courses
+        where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
+        #  study courses: grammar course, Nynorsk course (ISS)
+        assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
-          # from: courses
-          # where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
-          # #  study courses: grammar course, Nynorsk course (ISS)
-          # assert: {sum(credits): {$gte: '0.5', at_most: true}}
+          
 
   Cultural and Historical Perspectives:
     result:
