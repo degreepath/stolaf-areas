@@ -1,130 +1,136 @@
 ---
 name: Nordic Studies
 type: major
-code: '470'
+code: "470"
 degree: B.A.
 
 result:
-  all:
-    - requirement: Foundational Language
-    - requirement: Additional II or III Language
-    - requirement: Cultural and Historical Perspectives
-    - requirement: Advanced Course
-        
-    - $if: {has-declared-area-code: '480'}
-      $then: {requirement: Double-Majors}
-
-  audit:
     all:
-      - where: {is_stolaf: {$eq: false}}
-        assert: {count(courses): {$lte: 3}}
+        - requirement: Foundational Language
+        - requirement: Additional II or III Language
+        - requirement: Cultural and Historical Perspectives
+        - requirement: Advanced Course
+
+        - $if: { has-declared-area-code: "480" }
+          $then: { requirement: Double-Majors }
+
+    audit:
+        all:
+            - where: { is_stolaf: { $eq: false } }
+              assert: { count(courses): { $lte: 3 } }
 
 requirements:
-  Foundational Language:
-    result:
-      all:
-        - course: NORW 111
-        - course: NORW 112
-        - course: NORW 231
-        - course: NORW 232
-
-  Additional II or III Language:
-    result:
-      from: courses
-      where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
-      #  study courses: grammar course, Nynorsk course (ISS)
-      assert: {sum(credits): {$gte: '0.5', at_most: true}}
-
-  Cultural and Historical Perspectives:
-    result:
-      all:
-        - requirement: Diversity, Inequity, and Social Justice
-        - requirement: Comparative Nordic Linguistics
-        - requirement: Additional Courses
-
-    requirements:
-      Diversity, Inequity, and Social Justice:
+    Foundational Language:
         result:
-          any:
-            - course: NORST 264
-            - course: NORST 277            
-            - course: NORW 224
-            - course: NORW 244
-            - course: ENVST 283
-            - course: PSYCH 232
+            all:
+                - course: NORW 111
+                - course: NORW 112
+                - course: NORW 231
+                - course: NORW 232
 
-      Comparative Nordic Linguistics:
+    Additional II or III Language:
         result:
-          any:
-            - course: NORW 260
+            any:
+                - { course: NORW 205, type: { $eq: Flac } }
+                - { course: NORW 244, type: { $eq: Flac } }
+                - { course: NORW 277, type: { $eq: Flac } }
+                - course: NORW 296
+            assert: { sum(credits): { $gte: "0.5", at_most: true } }
 
-      Additional Courses:
+            # from: courses
+            # where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 296]}}
+            # #  study courses: grammar course, Nynorsk course (ISS)
+            # assert: {sum(credits): {$gte: '0.5', at_most: true}}
+
+    Cultural and Historical Perspectives:
         result:
-          at_most: true
-          count: 2
-          of:          
-            - course: NORST 219
-            - course: NORST 264
-            - course: NORST 277  
-            - course: NORW 205
-            - course: NORW 224
-            - course: NORW 244
-            - course: NORW 260
-            - course: NORW 373                      
-            - course: ENVST 283
-            - course: GERM 247
-            - course: HIST 211
-            - course: PHIL 233
-            - course: PSYCH 232
-            
-  Advanced Course:
-    result:
-      any:
-        - course: NORST 396
-        - course: NORW 396
-        - course: NORST 398
-        - course: NORW 398
+            all:
+                - requirement: Diversity, Inequity, and Social Justice
+                - requirement: Comparative Nordic Linguistics
+                - requirement: Additional Courses
 
-        
-  Double-Majors:
-    result:
-      from: courses
-      where:
-        $or:
-          - {subject: {$eq: NORW}}
-          - {subject: {$eq: NORST}}
-          - {course: {$in: [ENVST 283, PSYCH 232, HIST 211, HIST 222]}}
-      assert: {sum(credits): {$gte: 15, at_most: true}}
-      
-    message: |
-      If a student chooses to double major in Norwegian and Nordic Studies,
-      they must have a total of 15 credits between both programs.
+        requirements:
+            Diversity, Inequity, and Social Justice:
+                result:
+                    any:
+                        - course: NORST 264
+                        - course: NORST 277
+                        - course: NORW 224
+                        - course: NORW 244
+                        - course: ENVST 283
+                        - course: PSYCH 232
+
+            Comparative Nordic Linguistics:
+                result:
+                    any:
+                        - course: NORW 260
+
+            Additional Courses:
+                result:
+                    at_most: true
+                    count: 2
+                    of:
+                        - course: NORST 219
+                        - course: NORST 264
+                        - course: NORST 277
+                        - course: NORW 205
+                        - course: NORW 224
+                        - course: NORW 244
+                        - course: NORW 260
+                        - course: NORW 373
+                        - course: ENVST 283
+                        - course: GERM 247
+                        - course: HIST 211
+                        - course: PHIL 233
+                        - course: PSYCH 232
+
+    Advanced Course:
+        result:
+            any:
+                - course: NORST 396
+                - course: NORW 396
+                - course: NORST 398
+                - course: NORW 398
+
+    Double-Majors:
+        result:
+            from: courses
+            where:
+                $or:
+                    - { subject: { $eq: NORW } }
+                    - { subject: { $eq: NORST } }
+                    - { course: { $in: [ENVST 283, PSYCH 232, HIST 211, HIST 222] } }
+            assert: { sum(credits): { $gte: 15, at_most: true } }
+
+        message: |
+            If a student chooses to double major in Norwegian and Nordic Studies,
+            they must have a total of 15 credits between both programs.
 
 emphases:
-  762:
-    name: Sami and Critical Indigenous Studies
+    762:
+        name: Sami and Critical Indigenous Studies
 
-    result:
-      both:
-        - requirement: Foundational Courses
-        - requirement: Electives
-    
-    requirements:
-      Foundational Courses:
         result:
-          all:
-            - course: NORW 244
-            - course: RACE 252
-    
-      Electives:
-        result:
-          at_most: true
-          count: 2
-          of:
-            - course: ENVST 283
-            - course: NORW 205
-            - course: NORW 372
-            - course: MUSIC 141
-            - course: MUSIC 245
-            - course: MUSIC 237
-            - course: SOAN 233
+            both:
+                - requirement: Foundational Courses
+                - requirement: Electives
+
+        requirements:
+            Foundational Courses:
+                result:
+                    all:
+                        - course: NORW 244
+                        - course: RACE 252
+
+            Electives:
+                result:
+                    at_most: true
+                    count: 2
+                    of:
+                        - course: ENVST 283
+                        - course: NORW 205
+                        - course: NORW 372
+                        - course: MUSIC 141
+                        - course: MUSIC 245
+                        - course: MUSIC 237
+                        - course: SOAN 233
