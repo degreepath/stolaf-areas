@@ -34,7 +34,7 @@ requirements:
         where:
           $and:
             - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
-            - {type: {$in: [Flac]}}
+            - {type: {$eq: Flac}}
         assert: { sum(credits): { $gte: "0.5", at_most: true } }
       
       
