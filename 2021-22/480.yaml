@@ -100,8 +100,16 @@ requirements:
         result:
           both:
             - from: courses
-              where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 294, NORW 296]}}
+              where:
+                $or:
+                  - $and:
+                    - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
+                    - {type: {$eq: Flac}}
+                  - {course: {$in: [NORW 294, NORW 296]}}
               assert: {sum(credits): {$gte: '0.5', at_most: true}}
+
+              # where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 294, NORW 296]}}
+              # assert: {sum(credits): {$gte: '0.5', at_most: true}}
   
             - from: courses
               where: {course: {$in: [NORW 371, NORW 372, NORW373, NORW 396]}}
