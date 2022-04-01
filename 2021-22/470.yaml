@@ -33,7 +33,7 @@ requirements:
       from: courses
       where:
         any:
-          $and:
+          - $and:
             - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
             - {type: {$eq: Flac}}
           - course: NORW 296
