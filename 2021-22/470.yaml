@@ -32,10 +32,11 @@ requirements:
     result:
       from: courses
       where:
-        $and:
-          - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
-          - {type: {$eq: Flac}}
-      #  study courses: grammar course, Nynorsk course (ISS)
+        any:
+          $and:
+            - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
+            - {type: {$eq: Flac}}
+          - course: NORW 296
       assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
   Cultural and Historical Perspectives:
