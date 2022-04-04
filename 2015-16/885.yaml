@@ -6,7 +6,7 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Language
+    - requirement: Norwegian Language
     - requirement: Electives
 
   audit:
@@ -21,7 +21,7 @@ result:
           Nordic country other than Norway.
 
 requirements:
-  Language:
+  Norwegian Language:
     result:
       at_most: true
       any:
