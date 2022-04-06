@@ -34,7 +34,10 @@ requirements:
     result:
       all:
         - course: MATH 220
-        - course: MATH 234
+        - at_most: true
+          either:
+            - course: MATH 234
+            - course: MATH 235
 
   Upper-Level Electives:
     result:
