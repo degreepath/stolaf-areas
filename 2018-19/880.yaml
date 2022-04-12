@@ -55,6 +55,8 @@ requirements:
         result:
           from: courses
           where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
+          limit:
+            - {at-most: 1, where: {attribute: {$eq: neuro_elective_b}}}
           allow_claimed: true
           assert: {count(subjects): {$gte: 2}}
 
