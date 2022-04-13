@@ -30,9 +30,9 @@ requirements:
         where:
           $or:
             - $and:
-              - {course: {$in: [NORW 205, NORW 232, NORW 244]}}
+              - {course: {$in: [NORST 277, NORW 205, NORW 244]}}
               - {type: {$eq: Flac}}
-            - {course: {$eq: NORW 296}}
+            - {course: {$in: [NORW 232, NORW 296]}}
         assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
   Nordic Diversity, Inequity, and Social Justice:
