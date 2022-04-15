@@ -41,7 +41,11 @@ requirements:
         result:
           from: courses
           where: {attribute: {$in: [neuro_elective_a, neuro_elective_b, neuro_elective_c]}}
-          assert: {count(courses): {$gte: 3}}
+          all:
+            - assert: {count(courses): {$gte: 3}}
+            
+            - where: {attribute: {$eq: neuro_elective_a}}
+              assert: {count(courses): {$gte: 1}}
 
       Two or More Category A:
         result:
