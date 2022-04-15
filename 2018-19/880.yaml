@@ -54,7 +54,10 @@ requirements:
         message: The category A and category B courses must be different departments
         result:
           from: courses
-          where: {attribute: {$in: [neuro_elective_a, neuro_elective_b]}}
+          where:
+            $and:
+              - {attribute: {$eq: neuro_elective_a}}
+              - {attribute: {$eq: neuro_elective_b}}
           allow_claimed: true
           assert: {count(subjects): {$gte: 2}}
 
