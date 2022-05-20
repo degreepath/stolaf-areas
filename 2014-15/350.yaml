@@ -28,12 +28,6 @@ result:
     all:
       - assert: {count(courses): {$gte: 9}}
 
-      - assert: {count(courses): {$lte: 3}}
-        where:
-          $and:
-            - {level: {$eq: 100}}
-            - {course: {$nin: [HIST 190, HIST 195, HIST 198, HIST 199]}}
-
       - assert: {count(courses): {$lte: 2}}
         where:
           $and:
