@@ -1,0 +1,37 @@
+---
+name: Art History
+type: major
+code: '135'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Intro
+    - requirement: Electives
+    
+
+requirements:
+  Intro:
+    result:
+      course: ART 153
+      course: ART 161
+      course: ART 350
+
+  Electives:
+    message:
+      Five elective courses, of which two must be Survey courses and two must be Topics courses.
+
+    result:
+      from: courses
+      where: {attribute: {$eq: arth_elective}}
+      all:
+        - assert: {count(courses): {$gte: 6}}
+
+        - where:
+            attribute: {$eq: arth_topics}
+          assert: {count(courses): {$gte: 2}}
+
+        - where:
+            attribute: {$eq: arth_survey}
+          assert: {count(courses): {$gte: 2}}
