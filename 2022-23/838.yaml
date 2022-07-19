@@ -1,0 +1,32 @@
+---
+name: Gender and Sexuality Studies
+type: concentration
+code: '838'
+degree: B.A.
+
+result:
+  all:
+    - either:
+      - course: WMGST 121
+      - course: GSS 121
+    - requirement: Interdisciplinary Focus
+
+requirements:
+  Interdisciplinary Focus:
+    message: |
+      Four additional courses taken in at least two departments or programs.
+
+    result:
+      from: courses
+      where:
+        attributes:
+          $in:
+            - gss_concentration_interdisciplinary
+            - gss_elective
+            - gss_theory
+            - gss_historical
+            - gss_diverse
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        - assert: {count(subjects): {$gte: 2}}
