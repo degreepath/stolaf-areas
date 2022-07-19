@@ -11,13 +11,15 @@ result:
 
 requirements:
   Core:
-    - either:
-      - course: WMGST 121
-      - course: GSS 121
-    - either:
-      - course: WMGST 399
-      - course: GSS 399
-    
+    result:
+      all:
+        - either:
+          - course: WMGST 121
+          - course: GSS 121
+        - either:
+          - course: WMGST 399
+          - course: GSS 399
+
   Additional Courses:
     message: |
       Seven additional courses, taken in at least three departments or programs.
