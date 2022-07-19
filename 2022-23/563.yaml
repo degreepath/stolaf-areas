@@ -73,7 +73,7 @@ emphases:
       all:
         - course: ECON 240
         - requirement: Upper-Level Courses
-        - requirement: Non-Econonics Course
+        - requirement: Non-Economics Course
       audit:
         where:
           $and:
