@@ -1,0 +1,28 @@
+---
+name: Gender and Sexuality Studies
+type: major
+code: '278'
+degree: B.A.
+
+result:
+  all:
+    - either:
+      - course: WMGST 121
+      - course: GSS 121
+    - either:
+      - course: WMGST 399
+      - course: GSS 399
+    - requirement: Additional Courses
+
+requirements:
+  Additional Courses:
+    message: |
+      Seven additional courses, taken in at least three departments or programs.
+
+    result:
+      from: courses
+      where: {attributes: {$eq: gss_elective}}
+      all:
+        - assert: {count(courses): {$gte: 7}}
+
+        - assert: {count(subjects): {$gte: 3}}
