@@ -1,0 +1,45 @@
+---
+name: Public Health Studies
+type: concentration
+code: '886'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Fundamentals
+    - requirement: Biological Basis of Health
+    - requirement: Social Science/Humanities Perspective of Health
+    - requirement: Research Methods and Data Tools
+    - requirement: Liberal Arts Dialog
+
+requirements:
+  Fundamentals:
+    result:
+      from: courses
+      where: {attributes: {$eq: pubhealth_fundamentals}}
+      assert: {count(courses): {$gte: 1}}
+
+  Biological Basis of Health:
+    result:
+      from: courses
+      where: {attributes: {$eq: pubhealth_biological}}
+      assert: {count(courses): {$gte: 1}}
+
+  Social Science/Humanities Perspective of Health:
+    result:
+      from: courses
+      where: {attributes: {$eq: pubhealth_perspectives}}
+      assert: {count(courses): {$gte: 1}}  
+
+  Research Methods and Data Tools:
+    result:
+      from: courses
+      where: {attributes: {$eq: pubhealth_research}}
+      assert: {count(courses): {$gte: 1}}   
+
+  Liberal Arts Dialog:
+    result:
+      from: courses
+      where: {attributes: {$eq: pubhealth_dialog}}
+      assert: {count(courses): {$gte: 1}}                         
+
