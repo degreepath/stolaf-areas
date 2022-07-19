@@ -26,7 +26,7 @@ requirements:
       from: courses
       where: {attribute: {$eq: arth_elective}}
       all:
-        - assert: {count(courses): {$gte: 6}}
+        - assert: {count(courses): {$gte: 5}}
 
         - where:
             attribute: {$eq: arth_topics}
