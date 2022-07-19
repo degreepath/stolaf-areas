@@ -6,15 +6,18 @@ degree: B.A.
 
 result:
   all:
+    - requirement: Core
+    - requirement: Additional Courses
+
+requirements:
+  Core:
     - either:
       - course: WMGST 121
       - course: GSS 121
     - either:
       - course: WMGST 399
       - course: GSS 399
-    - requirement: Additional Courses
-
-requirements:
+    
   Additional Courses:
     message: |
       Seven additional courses, taken in at least three departments or programs.
