@@ -1,0 +1,219 @@
+---
+name: Economics
+type: major
+code: '230'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Economic Analysis
+
+requirements:
+  Core:
+    result:
+      all:
+        - {course: ECON 261, grade_option: grade}
+        - {course: ECON 262, grade_option: grade}
+        - at_most: true
+          any:
+            - {course: ECON 263, grade_option: grade, hidden: true}
+            - {course: ECON 260, grade_option: grade}
+            # or
+            - both:
+                - {course: STAT 272, grade_option: grade}
+                - {course: ECON 385, grade_option: grade}
+            - both:
+                - {course: STAT 272, grade_option: grade}
+                - {course: ECON 384, grade_option: grade}
+
+  Foundation:
+    result:
+      at_most: true
+      any:
+        - course: MATH 119
+        - course: MATH 120
+        - course: MATH 126
+        - course: MATH 128
+        - course: MATH 220
+        - ap: AP Calculus I
+        - ap: AP Calculus I and II
+        - ap: IB Mathematics
+
+  Economic Analysis:
+    result:
+      from: courses
+      where: {attribute: {$eq: econ_analysis}}
+
+      all:
+        - assert: {count(courses): {$gte: 4, at_most: true}}
+
+        - where: {level: {$eq: 200}}
+          assert: {count(courses): {$gte: 1}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 2}}
+
+emphases:
+  710:
+    name: Finance
+
+    result:
+      both:
+        - requirement: Finance
+        - requirement: Electives
+      audit:
+        where:
+          $and:
+            - grade: {$lt: C, $during_covid: C-}
+            - is_in_progress: {$eq: false}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Finance:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 281
+            - course: MGMT 380
+
+      Electives:
+        result:
+          at_most: true
+          either:
+            - both:
+                - course: MGMT 250
+                - course: MGMT 251
+
+            - from: courses
+              where: {attributes: {$eq: econ_emph_finance_elective}}
+              assert: {count(courses): {$gte: 1}}
+
+  718:
+    name: Law and Public Policy
+
+    result:
+      all:
+        - course: ECON 240
+        - requirement: Upper-Level Courses
+        - requirement: Non-Econonics Course
+      audit:
+        where:
+          $and:
+            - grade: {$lt: C, $during_covid: C-}
+            - is_in_progress: {$eq: false}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Upper-Level Courses:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_law_upperlevel}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+      Non-Economics Course:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_law_outside}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  720:
+    name: International Economic Analysis and Policy
+
+    result:
+      all:
+        - requirement: International Economics
+        - requirement: Electives
+        - requirement: Non-Econ International Topics
+      audit:
+        where:
+          $and:
+            - grade: {$lt: C, $during_covid: C-}
+            - is_in_progress: {$eq: false}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      International Economics:
+        result:
+          course: ECON 382
+
+      Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_intl_elective}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
+
+      Non-Econ International Topics:
+        message:
+          An elective course outside of Economics Department that relates to
+          international topics.
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_intl_topics}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  725:
+    name: Management
+
+    result:
+      both:
+        - requirement: Management
+        - requirement: Electives
+      audit:
+        where:
+          $and:
+            - grade: {$lt: C, $during_covid: C-}
+            - is_in_progress: {$eq: false}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Management:
+        result:
+          all:
+            - course: MGMT 225
+            - course: MGMT 237
+            - course: MGMT 251
+            - course: MGMT 383
+
+      Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_mgmt_elective}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+  736:
+    name: Public Policy
+
+    result:
+      both:
+        - requirement: Public Policy
+        - requirement: Electives
+      audit:
+        where:
+          $and:
+            - grade: {$lt: C, $during_covid: C-}
+            - is_in_progress: {$eq: false}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Public Policy:
+        result:
+          course: ECON 371
+
+      Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: econ_emph_pubpol_elective}}
+          assert: {count(courses): {$gte: 3, at_most: true}}
+
+multicountable:
+  ECON 384:
+    - [Core]
+    - [Economic Analysis]
+
+  ECON 385:
+    - [Core]
+    - [Economic Analysis]
