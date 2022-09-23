@@ -271,7 +271,7 @@ result:
                   - [{has-override-exception: fol-by-petition}, {set: '3'}]
 
         French Sequence:
-          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded. Note:: If you start in 112 or higher, the final course in your sequence will be 232.
+          message: "All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded. Note: If you start in 112 or higher, the final course in your sequence will be 232."
           result: 
             all:
               - course: FREN 111
@@ -279,7 +279,7 @@ result:
               - {course: FREN 231, grade_option: grade}
 
         German Sequence:
-          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded. Note:: If you start in 112 or higher, the final course in your sequence will be 232.
+          message: "All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded. Note: If you start in 112 or higher, the final course in your sequence will be 232."
           result: 
             all:
               - course: GERM 111
@@ -288,7 +288,7 @@ result:
 
 
         Spanish Sequence:
-          message: All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded. Note:: If you start in 112 or higher, the final course in your sequence will be 232.
+          message: "All three courses in the sequence must be completed to fulfill WLC. The final course in the sequence must be taken graded. Note: If you start in 112 or higher, the final course in your sequence will be 232."
           result:
             all:
               - course: SPAN 111
