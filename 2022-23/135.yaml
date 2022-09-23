@@ -24,7 +24,7 @@ requirements:
 
     result:
       from: courses
-      where: {attribute: {$eq: arth_elective}}
+      where: {attribute: {$in: [arth_topics, arth_survey]}}
       all:
         - assert: {count(courses): {$gte: 5}}
 
