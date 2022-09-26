@@ -1,0 +1,49 @@
+---
+name: Educational Studies TEFL
+type: concentration
+code: '833'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Field Experience
+    - requirement: Electives
+  audit:
+    all:
+      - assert: {average(grades): {$gte: '2.7'}}
+
+      - assert: {count(courses): {$lte: 2}}
+        where: {is_stolaf: {$eq: false}}
+
+      - assert: {count(courses): {$lte: 2}}
+        where: {grade_option: {$eq: s/u}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - crsid: '0000021398'  # EDUC 245
+        - crsid: '0000031452'  # EDUC 250
+        - crsid: '0000037461'  # EDUC 295
+
+  Field Experience:
+    result:
+      from: courses
+      where: {attributes: {$eq: educ_studies_tefl_field_experience}}
+      assert: {count(courses): {$gte: 1}}
+
+  Electives:
+    message:
+      The following courses are approved electives. If you wish to propose an
+      alternative elective course, please contact the chair of the Education
+      department and provide a written 1-2 paragraph explanation of how the
+      substituted course is relevant to educators or learners and addresses
+      human development, differences in how various groups of people
+      experience the world, or social/cultural systems within which education
+      occurs.
+
+    result:
+      from: courses
+      where: {attributes: {$eq: educ_studies_elective}}
+      assert: {count(courses): {$gte: 2}}
