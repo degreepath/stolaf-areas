@@ -230,5 +230,5 @@ emphases:
       Electives:
         result:
           from: courses
-          where: {attribute: {$eq: envst_social_elective}}
+          where: {attribute: {$eq: envst_social}}
           assert: {count(courses): {$gte: 2}}
