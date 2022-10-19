@@ -80,6 +80,7 @@ result:
         claim: record
         allow_claimed: true
         assert: {average(grades): {$gte: '2.0'}}
+        include_failed: true
 
     - name: Level II/III Course Credit
       message: |
