@@ -1,0 +1,37 @@
+---
+name: Musical Theater
+type: concentration
+code: '878'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
+
+        - course: THEAT 131
+        - course: MUSIC 267
+        - course: THEAT 271
+
+        - from: courses
+          where: {attributes: {$eq: dance_movement}}
+          assert: {sum(credits): {$gte: '0.75'}}
+
+        - from: courses
+          where: {attributes: {$eq: musical_voice}}
+          assert: {sum(credits): {$gte: '0.75'}}
+
+        - from: courses
+          where: {attributes: {$eq: musical_perflab}}
+          assert: {sum(credits): {$gte: '0.50'}}          
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: musical_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
