@@ -25,7 +25,7 @@ requirements:
         $or:
           - {attributes: {$eq: asian_language_chinese}}
           - {attributes: {$eq: asian_language_japanese}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
 
   Seminar:
     result:
