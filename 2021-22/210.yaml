@@ -60,52 +60,21 @@ requirements:
     requirements:
       American Literature:
         result:
-          at_most: true
-          count: 1
-          of:
-            - course: ENGL 203
-            - course: ENGL 205
-            - course: ENGL 207
-            - course: ENGL 209
-            - course: ENGL 232
-            - course: ENGL 251
-            - course: ENGL 261
-            - course: ENGL 263
-            - course: ENGL 279
-            - course: ENGL 340
-            - course: ENGL 345
-            - course: ENGL 392
+          from: courses
+          where: {attribute: {$eq: engl_american_lit}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Anglophone Literature:
         result:
-          at_most: true
-          count: 1
-          of:
-            - course: ENGL 201
-            - course: ENGL 204
-            - course: ENGL 206
-            - course: ENGL 212
-            - course: ENGL 347
+          from: courses
+          where: {attribute: {$eq: engl_anglophone_lit}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       British Literature:
         result:
-          at_most: true
-          count: 1
-          of:
-            - course: ENGL 208
-            - course: ENGL 222
-            - course: ENGL 223
-            - course: ENGL 225
-            - course: ENGL 228
-            - course: ENGL 229
-            - course: ENGL 243
-            - course: ENGL 256
-            - course: ENGL 269
-            - course: ENGL 271
-            - course: ENGL 330
-            - course: ENGL 380
-            - course: ENGL 391
-            - course: ENGL 395
+          from: courses
+          where: {attribute: {$eq: engl_british_lit}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     result:
