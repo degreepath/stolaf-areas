@@ -60,8 +60,8 @@ result:
 
       result:
         from: courses
-        allow_claimed: true
         where: {attributes: {$eq: econ_quant_experience}}
+        allow_claimed: true
         assert: {count(courses): {$gte: 2, at_most: true}}
 
 
