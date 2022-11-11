@@ -35,7 +35,6 @@ result:
       result:
         from: courses
         where: {attribute: {$eq: econ_analysis}}
-        allow_claimed: true
         limit:
           - at-most: 1 course
             where: {course: {$in: [ECON 384, ECON 385]}}
@@ -49,16 +48,6 @@ result:
             assert: {count(courses): {$gte: 2}}
 
     - name: Quantitative Research Experience
-      message: >
-        Students must complete two courses in economics designated as
-        Quantitative Research (QR) courses.
-
-        The QR designation indicates that the course includes a substantial
-        research component that involves advanced mathematical and/or
-        econometric modeling. These can be courses taken to satisfy
-        requirements for the major, to fulfill requirements for an area of
-        emphasis, or as general electives.
-
       result:
         from: courses
         where: {attributes: {$eq: econ_quant_experience}}
