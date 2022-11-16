@@ -22,12 +22,14 @@ requirements:
             - {ap: AP Calculus I and II, allow_claimed: true}
             - {course: MATH 126, allow_claimed: true, hidden: true}
             - {course: MATH 128, allow_claimed: true, hidden: true}
+            - {course: MATH 220, allow_claimed: true, hidden: true}
 
         - at_most: true
           any:
             - course: MATH 126
             - course: MATH 128
             - {ap: AP Calculus I and II, allow_claimed: true}
+            - {course: MATH 220, allow_claimed: true, hidden: true}            
 
         - course: MATH 220
         - course: MATH 226
