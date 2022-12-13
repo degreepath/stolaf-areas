@@ -214,17 +214,17 @@ result:
         limit:
           - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
         where:
-          - attribute:
-              $in:
-                - bm_fol_chin
-                - bm_fol_fren
-                - bm_fol_germ
-                - bm_fol_greek
-                - bm_fol_japan
-                - bm_fol_latin
-                - bm_fol_norw
-                - bm_fol_russn
-                - bm_fol_span
+          attribute:
+            $in:
+              - bm_fol_chin
+              - bm_fol_fren
+              - bm_fol_germ
+              - bm_fol_greek
+              - bm_fol_japan
+              - bm_fol_latin
+              - bm_fol_norw
+              - bm_fol_russn
+              - bm_fol_span
         assert: {count(courses): {$gte: 1, at_most: true}}      
 
 #    - name: World Languages and Cultures
