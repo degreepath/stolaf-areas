@@ -103,6 +103,7 @@ requirements:
             - course: AS/RE 257
             - course: AS/RE 289
             - course: REL 217
+            - {course: REL 220, term: 2021-3}
             - course: REL 246
             - course: REL 248
             - course: REL 253
