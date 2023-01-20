@@ -35,7 +35,6 @@ result:
       result:
         from: courses
         where: {attribute: {$eq: econ_analysis}}
-        allow_claimed: true
         limit:
           - at-most: 1 course
             where: {course: {$in: [ECON 384, ECON 385]}}
