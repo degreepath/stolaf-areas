@@ -252,8 +252,7 @@ result:
           message: 4th semester or higher in French, German, or Spanish. 3rd semester or higher in Chinese, Greek, Japanese, Latin, Norwegian, or Russian. 
           result:
             from: courses
-            claim: record
-            allow_claimed: true
+            claim: true
             limit:
               - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
             where: 
