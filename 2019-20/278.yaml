@@ -48,9 +48,6 @@ requirements:
       all:
         - assert: {count(courses): {$gte: 7}}
 
-        - where: {level: {$eq: 300}}
-          assert: {count(courses): {$gte: 1}}
-
         - where: {attributes: {$eq: gss_theory}}
           assert: {count(courses): {$gte: 1}}
 

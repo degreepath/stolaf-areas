@@ -30,4 +30,4 @@ requirements:
       all:
         - assert: {count(courses): {$gte: 7}}
 
-        - assert: {count(subjects): {$gte: 3}}
+        - assert: {count(subjects): {$gte: 2}}
