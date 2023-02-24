@@ -45,7 +45,6 @@ requirements:
       where: {attribute: {$eq: soan_elective}}
       limit:
         - {at-most: 1, where: {grade_option: {$eq: s/u}}}
-        - {at-most: 1, where: {number: {$in: [121, 128]}}}
         - {at-most: 1, where: {number: {$in: [294, 394]}}}
         - {at-most: 1, where: {number: {$in: [298, 398]}}}
         - {at-most: 1, where: {number: {$in: [396]}}}
