@@ -31,8 +31,8 @@ requirements:
       any:
         - course: STAT 110
         - course: STAT 212
+        - course: ECON 260
         - {course: ECON 263, hidden: true}
-        - {course: ECON 260, hidden: true}
         - {course: PSCI 220, hidden: true}
         - ap: AP Statistics
 
