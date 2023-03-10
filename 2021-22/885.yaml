@@ -31,7 +31,7 @@ requirements:
           $or:
             - $and:
               - {course: {$in: [NORST 277, NORW 205, NORW 244]}}
-              - {attribute: {sub_type: Flac}}
+              - {sub_type: Flac}
             - {course: {$in: [NORW 232, NORW 296]}}
         assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
