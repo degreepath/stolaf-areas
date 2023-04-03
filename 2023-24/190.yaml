@@ -1,0 +1,49 @@
+---
+name: Classics
+type: major
+code: '190'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Classics or Ancient Studies Course
+    - requirement: Topics in Classical Studies
+
+requirements:
+  Language:
+    requirements:
+      Primarily Latin:
+        result:
+          both:
+            - from: courses
+              where: {attributes: {$eq: classics_latin}}
+              assert: {count(courses): {$gte: 6, at_most: true}}
+            - from: courses
+              where: {attributes: {$eq: classics_greek}}
+              assert: {count(courses): {$gte: 3, at_most: true}}
+
+      Primarily Greek:
+        result:
+          both:
+            - from: courses
+              where: {attributes: {$eq: classics_greek}}
+              assert: {count(courses): {$gte: 6, at_most: true}}
+            - from: courses
+              where: {attributes: {$eq: classics_latin}}
+              assert: {count(courses): {$gte: 3, at_most: true}}
+    result:
+      at_most: true
+      either:
+        - requirement: Primarily Latin
+        - requirement: Primarily Greek
+
+  Classics or Ancient Studies Course:
+    result:
+      from: courses
+      where: {attributes: {$in: classics_elective, classics_ancient_history}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Topics in Classical Studies:
+    result:
+      - course: CLASS 370
