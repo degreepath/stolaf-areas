@@ -9,7 +9,7 @@ result:
     - crsid: '0000000309'  # EDUC 231
     - course: EDUC 295
     - crsid: '0000000321'  # EDUC 330
-    - course: EDUC 330 L
+    - course: EDUC 330.L
     - course: EDUC 340
     - crsid: '0000022779'  # EDUC 374
     - at_most: true
