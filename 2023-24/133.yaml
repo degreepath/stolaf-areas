@@ -90,6 +90,6 @@ requirements:
       from: courses
       where: 
         $or:
-          - CLASS 370
-          - ANCST 398
+          - course: CLASS 370
+          - course: ANCST 398
       assert: {count(courses): {$gte: 1}}
