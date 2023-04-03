@@ -1,0 +1,151 @@
+---
+name: Elective Studies
+type: major
+code: '453'
+degree: B.M.
+
+limit:
+  - at-most: 0
+    where: {grade_option: {$eq: s/u}}
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Upper-Level Required Electives
+    - requirement: Other Required Electives
+    - requirement: Performance Studies
+    - requirement: Official Ensemble Participation
+    - requirement: Required Performances
+    - requirement: Required Recital Attendance
+    - requirement: Secondary Field of Study
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 114
+        - course: MUSIC 141
+        - proficiency: Keyboard Level I
+          course: {course: MUSIC 161, grade: B-}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162, grade: B-}
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 237
+        - course: MUSIC 251
+        - proficiency: Keyboard Level III
+          course: {course: MUSIC 261, grade: B-}
+        - course: MUSIC 298
+
+  Upper-Level Required Electives:
+    message: |
+      3 credits from 300-level music electives, including at least one
+      upper level musicology elective (MUSIC 34x)
+
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: music_upper_musicology}
+          - $and:
+              - attribute: {$eq: music_elective}
+              - level: {$eq: 300}
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+      all:
+        - assert: {sum(credits): {$gte: 3, at_most: true}}
+
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+  Other Required Electives:
+    message: |
+      5 additional credits from 200- or 300-level music electives that can
+      include up to 1.0 credit of 100-level secondary lessons
+
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: music_elective}
+
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          - $and:
+              - subject: {$eq: MUSPF}
+              - level: {$eq: 100}
+              - name: {$neq: $primary-performing-medium}
+
+      all:
+        - message: 5 credits of MUSIC electives
+          assert: {sum(credits): {$gte: 5, at_most: true}}
+
+        - message: At most 1.0 credits of 100-level secondary lessons
+          where: {subject: {$eq: MUSPF}}
+          assert: {sum(credits): {$lte: 1}}
+
+        - message: At most 1.0 credit's worth of MUSIC 275
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$lte: 1}}
+
+  Performance Studies:
+    message: |
+      0.25 credit prior to admission into BM Elective Studies and 0.5 credit
+      after admission, with a minimum of 4 semesters of 0.5 credit lessons
+    result:
+      from: courses
+      where: {subject: {$eq: MUSPF}}
+      all:
+        - assert: {count(terms): {$gte: 6}}
+
+        - assert: {sum(credits): {$gte: '2.5'}}
+
+        - where: {credits: {$eq: '0.5'}}
+          assert: {count(terms): {$gte: 4}}
+
+  Official Ensemble Participation:
+    message: Every semester in an official ensemble
+    result:
+      from: courses
+      where: {subject: {$eq: MUSEN}}
+      assert:
+        count(terms): {$gte: $terms-since-declaring-major, at_most: true}
+
+  Required Performances:
+    message: |
+      Two solo performances on a St. Olaf Student Recital.
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+            - Voice Student Recital
+            - Student Recital
+            - 'Exam: 450'
+            - 'Exam: 453'
+            - 'Exam: 454'
+            - 'Exam: 455'
+            - 'Exam: 456'
+            - 'Exam: 458'
+      assert: {count(performances): {$gte: 2}}
+
+  Required Recital Attendance:
+    message: |
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 50 overall.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 50}}
+
+  Secondary Field of Study:
+    message:
+      6 Electives in secondary field of study
+    result:
+      from: courses
+      where: {attribute: {$eq: music_bm_elective_studies_secondary}}
+      assert: {count(courses): {$gte: 6}}
