@@ -1,0 +1,32 @@
+---
+name: Latin
+type: major
+code: '400'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Classics or Ancient Roman History
+    - requirement: Topics in Classical Studies
+
+requirements:
+  Language:
+    result:
+      from: courses
+      where: {attributes: {$eq: latin_language}}
+      assert: {count(courses): {$gte: 7, at_most: true}}
+
+  Classics or Ancient Roman History:
+    result:
+      from: courses
+      where: 
+        attributes: 
+          $in: 
+            - latin_major_classics_course
+            - latin_elective
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Topics in Classical Studies:
+    result:
+      course: CLASS 370
