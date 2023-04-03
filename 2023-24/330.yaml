@@ -7,8 +7,8 @@ degree: B.A.
 result:
   all:
     - requirement: Language
-    - requirement: Classics
-    - requirement: Ancient Greek History
+    - requirement: Classics or Ancient Greek History
+    - requirement: Topics in Classical Studies
 
 requirements:
   Language:
@@ -17,14 +17,16 @@ requirements:
       where: {attributes: {$eq: greek_language}}
       assert: {count(courses): {$gte: 7, at_most: true}}
 
-  Classics:
+  Classics or Ancient Greek History:
     result:
       from: courses
-      where: {attributes: {$eq: greek_major_classics_course}}
+      where: 
+        attributes: 
+          $in: 
+            - greek_major_classics_course
+            - greek_elective
       assert: {count(courses): {$gte: 1, at_most: true}}
 
-  Ancient Greek History:
+  Topics in Classical Studies:
     result:
-      from: courses
-      where: {attributes: {$eq: greek_elective}}
-      assert: {count(courses): {$gte: 1, at_most: true}}
+      course: CLASS 370
