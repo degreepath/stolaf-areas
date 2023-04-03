@@ -1,0 +1,235 @@
+---
+name: Environmental Studies
+type: major
+code: '260'
+degree: B.A.
+
+result:
+  all:
+    - at_most: true
+      any:
+        - course: ENVST 137
+        - course: ENCON 111
+        - ap: AP Environmental Science
+    - course: ENVST 237
+    - course: ENVST 399
+
+    - $if:
+        $not:
+          $or:
+            - {has-declared-area-code: '708'}
+            - {has-declared-area-code: '733'}
+            - {has-declared-area-code: '738'}
+      $then:
+        name: Required Emphasis
+        message: >
+          You must declare one of the Environmental Studies areas of emphasis.
+        department-audited: true
+      $hide-when-false: true
+
+emphases:
+  708:
+    name: Arts and Humanities
+
+    result:
+      all:
+        - requirement: Outside your Emphasis
+        - requirement: Electives
+      audit:
+        assert: {count(courses): {$gte: 9}}
+
+    requirements:
+      Outside your Emphasis:
+        result:
+          all:
+            - requirement: Natural Sciences
+            - requirement: Social Sciences
+          audit:
+            assert: {count(courses): {$gte: 3}}
+
+        requirements:
+          Natural Sciences:
+            result:
+              from: courses
+              where: {attribute: {$eq: envst_natural}}
+              limit:
+                - at-most: 1
+                  where: {course: {$in: [BIO 226, BIO 261]}}
+                  message: Either BIO 226 or BIO 261 may count, but not both
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
+
+          Social Sciences:
+            result:
+              from: courses
+              where: {attribute: {$eq: envst_social}}
+              limit:
+                - at-most: 1
+                  where: {course: {$in: [ENVST 281, ENVST 381]}}
+                  message: Either ENVST 281 or ENVST 381 may count, but not both
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
+
+      Electives:
+        result:
+          from: courses
+          where:
+            attribute:
+              $in:
+                - envst_humanities
+                - envst_humanities_level_3
+          all:
+            - assert: {count(courses): {$gte: 6}}
+
+            - where: {attribute: {$eq: envst_humanities_level_3}}
+              assert: {count(courses): {$gte: 1}}
+
+  733:
+    name: Natural Science
+
+    result:
+      all:
+        - requirement: Outside your Emphasis
+        - requirement: Statistics, Modeling, and Mapping
+        - requirement: Intermediate Chemistry
+        - requirement: Intermediate Ecology
+        - requirement: Electives
+      audit:
+        assert: {count(courses): {$gte: 9}}
+
+    requirements:
+      Outside your Emphasis:
+        result:
+          all:
+            - requirement: Social Sciences
+            - requirement: Arts and Humanities
+          audit:
+            assert: {count(courses): {$gte: 3}}
+
+        requirements:
+          Social Sciences:
+            result:
+              from: courses
+              where: {attribute: {$eq: envst_social}}
+              limit:
+                - at_most: 1
+                  where: {course: {$in: [ENVST 281, ENVST 381]}}
+                  message: Either ENVST 281 or ENVST 381 may count, but not both
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
+
+          Arts and Humanities:
+            result:
+              from: courses
+              where: {attribute: {$eq: envst_humanities}}
+              limit:
+                - at_most: 1
+                  where: {course: {$in: [ENVST 281, ENVST 381]}}
+                  message: Either ENVST 281 or ENVST 381 may count, but not both
+                - at_most: 1
+                  where: {course: {$in: [PHIL 257, REL 278]}}
+                  message: Either PHIL 257 or REL 278 may count, but not both
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
+
+      Statistics, Modeling, and Mapping:
+        result:
+          from: courses
+          where: {attribute: {$eq: envst_stats}}
+          assert: {count(courses): {$gte: 1}}
+
+      Intermediate Chemistry:
+        result:
+          from: courses
+          where: {attribute: {$eq: envst_intermediate_chem}}
+          assert: {count(courses): {$gte: 1}}
+
+      Intermediate Ecology:
+        result:
+          from: courses
+          where: {attribute: {$eq: envst_intermediate_ecology}}
+          assert: {count(courses): {$gte: 1}}
+
+      Electives:
+        result:
+          from: courses
+          where:
+            attribute:
+              $in:
+                - envst_envsci
+                - envst_envsci_level_3
+
+          all:
+            - assert: {count(courses): {$gte: 3}}
+
+            - where: {attribute: {$eq: envst_envsci_level_3}}
+              assert: {count(courses): {$gte: 1}}
+
+            - where: {subject: {$in: [ENVST, BI/ES, ES/PS, AS/ES]}}
+              assert: {count(courses): {$gte: 1}}
+              message: At least one course must be in the ENVST subject code
+
+  738:
+    name: Social Science
+
+    result:
+      all:
+        - requirement: Outside your Emphasis
+        - requirement: Methodological Analysis
+        - requirement: Economic Analysis
+        - requirement: Environmental Political Policy and Institutions
+        - requirement: Electives
+      audit:
+        assert: {count(courses): {$gte: 9}}
+
+    requirements:
+      Outside your Emphasis:
+        result:
+          all:
+            - requirement: Natural Sciences
+            - requirement: Arts and Humanities
+          audit:
+            assert: {count(courses): {$gte: 3}}
+
+        requirements:
+          Natural Sciences:
+            result:
+              from: courses
+              where: {attribute: {$eq: envst_natural}}
+              limit:
+                - at_most: 1
+                  where: {course: {$in: [BIO 226, BIO 261]}}
+                  message: Either BIO 226 or BIO 261 may count, but not both
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
+
+          Arts and Humanities:
+            result:
+              from: courses
+              where: {attribute: {$eq: envst_humanities}}
+              limit:
+                - at_most: 1
+                  where: {course: {$in: [PHIL 257, REL 278]}}
+                  message: Either PHIL 257 or REL 278 may count, but not both
+              assert: {count(courses): {$gte: 1, label: "1 or 2"}}
+
+      Methodological Analysis:
+        result:
+          from: courses
+          where: {attribute: {$eq: envst_methods}}
+          assert: {count(courses): {$gte: 1}}
+
+      Economic Analysis:
+        result:
+          both:
+            - either:
+              - course: ECON 113
+              - course: ECON 121
+            - course: ECON 242
+
+      Environmental Political Policy and Institutions:
+        result:
+          from: courses
+          where: {attribute: {$eq: envst_policy}}
+          assert: {count(courses): {$gte: 1}}
+
+      Electives:
+        result:
+          from: courses
+          where: {attribute: {$eq: envst_social}}
+          assert: {count(courses): {$gte: 2}}
