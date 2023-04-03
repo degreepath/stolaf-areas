@@ -41,7 +41,11 @@ requirements:
   Classics or Ancient Studies Course:
     result:
       from: courses
-      where: {attributes: {$in: classics_elective, classics_ancient_history}}
+      where: 
+        attributes: 
+          $in: 
+            - classics_elective
+            - classics_ancient_history
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Topics in Classical Studies:
