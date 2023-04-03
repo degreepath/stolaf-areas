@@ -87,9 +87,6 @@ requirements:
     message:
       Topics in Classical Studies or Independent Research.
     result:
-      from: courses
-      where: 
-        $or:
-          - course: CLASS 370
-          - course: ANCST 398
-      assert: {count(courses): {$gte: 1}}
+      any:
+        - course: CLASS 370
+        - course: ANCST 398
