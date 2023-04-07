@@ -1,0 +1,297 @@
+---
+name: Church Music
+type: major
+code: '454'
+degree: B.M.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Upper-Level Required Electives
+    - requirement: Other Required Electives
+    - requirement: Entrance Examination
+    - requirement: Continuance Examination
+    - requirement: Official Ensemble Participation
+    - requirement: Required Solo Performances
+    - requirement: Required Recital Attendance
+
+limit:
+  - at-most: 0
+    where: {grade_option: {$eq: s/u}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: MUSIC 114
+        - course: MUSIC 141
+        - course: MUSIC 212
+        - course: MUSIC 214
+        - course: MUSIC 235
+        - course: MUSIC 236
+        - course: MUSIC 237
+        - course: MUSIC 251
+        - course: MUSIC 252
+
+  Upper-Level Required Electives:
+    message: |
+      2 credits from 300-level music electives, including at least one
+      upper level musicology elective (MUSIC 34x)
+
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: music_upper_musicology}
+          - $and:
+              - attribute: {$eq: music_elective}
+              - level: {$eq: 300}
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$eq: 300}
+      all:
+        - assert: {sum(credits): {$gte: 2, at_most: true}}
+
+        - where: {attribute: {$eq: music_upper_musicology}}
+          assert: {sum(credits): {$gte: 1, at_most: true}}
+
+  Other Required Electives:
+    message: |
+      At least 3 credits from 200- or 300-level music electives that can
+      include up to 1.0 credit of additional 100-level secondary lessons
+
+    result:
+      from: courses
+
+      where:
+        $or:
+          - attribute: {$eq: music_elective}
+
+          - $and:
+              - subject: {$eq: MUSIC}
+              - level: {$in: [200, 300]}
+
+          - $and:
+              - subject: {$eq: MUSPF}
+              - level: {$eq: 100}
+              - name: {$neq: $primary-performing-medium}
+
+      all:
+        - message: >
+            At least 2* credits of MUSIC electives (*: may change
+            depending on your emphasis)
+          assert:
+            sum(credits):
+              at_most: true
+              $gte: 1
+
+              $changes:
+                - [{has-declared-area-code: '706'}, {set: '2.00'}]
+                - [{has-declared-area-code: '707'}, {set: '3.00'}]
+
+        - message: At most 1.0 credits of 100-level secondary lessons
+          where: {subject: {$eq: MUSPF}}
+          assert: {sum(credits): {$lte: 1}}
+
+        - message: At most 1.0 credit's worth of MUSIC 275
+          where: {course: {$eq: MUSIC 275}}
+          assert: {sum(credits): {$lte: 1}}
+
+  Entrance Examination:
+    result:
+      from: music performances
+      where:
+        $and:
+          - name: {$eq: $current-area-code-music-exam}
+          - status: {$eq: entrance}
+      assert: {count(performances): {$gte: 1}}
+
+  Continuance Examination:
+    result:
+      from: music performances
+      where:
+        $and:
+          - name: {$eq: $current-area-code-music-exam}
+          - status: {$eq: continuance}
+      assert: {count(performances): {$gte: 1}}
+
+  Official Ensemble Participation:
+    message: Every semester in an official choral ensemble
+    result:
+      from: courses
+      where:
+        $and:
+          - subject: {$eq: MUSEN}
+          - name:
+              $in:
+                - Collegiate Chorale
+                - Manitou Singers
+                - St. Olaf Cantorei
+                - St. Olaf Chamber Singers
+                - St. Olaf Chapel Choir
+                - St. Olaf Choir
+                - Viking Chorus
+      assert:
+        count(terms): {$gte: $terms-since-declaring-major, at_most: true}
+
+  Required Solo Performances:
+    message:
+      Two solo performances on a St. Olaf Student Recital.
+    result:
+      from: music performances
+      where:
+        name:
+          $in:
+            - Instrumental Student Recital
+            - Vocal Student Recital
+            - Voice Student Recital
+            - Student Recital
+            - Vocal BM-E
+            - Voice BM-E
+            - Instrumental BM-E
+            - Vocal BM-P
+            - Voice BM-P
+            - Instrumental BM-P
+      assert: {count(performances): {$gte: 2}}
+
+  Required Recital Attendance:
+    message:
+      You must attend 10 recitals per semester on campus,
+      with a minimum of 60 overall.
+    result:
+      from: music recitals
+      assert: {count(recitals): {$gte: 60}}
+
+emphases:
+  706:
+    name: Choral
+
+    result:
+      all:
+        - requirement: Core
+        - requirement: Voice Performance Studies
+        - requirement: Keyboard Performance Studies
+        - requirement: Junior or Senior Half Voice Recital
+        - requirement: Capstone Performance Project
+
+    requirements:
+      Core:
+        result:
+          all:
+            - proficiency: Keyboard Level IV
+              course: {course: MUSIC 262, grade: B-}
+            - {course: MUSIC 263}
+            - {course: MUSIC 264}
+            - {course: MUSIC 287}
+            - {course: MUSIC 291}
+            - {course: MUSIC 292}
+            - {course: MUSIC 354}
+            - {course: EDUC 355}
+
+      Voice Performance Studies:
+        message:
+          6 semesters (0.50 credit following admission to the major)
+        result:
+          from: courses
+          where: {attributes: {$eq: music_voice_studies}}
+          assert: {count(terms): {$gte: 6}}
+
+      Keyboard Performance Studies:
+        message: |
+          5 semesters in addition to MUSIC 262 (any combination of 0.25-credit
+          piano lessons, organ lessons, or piano classes: MUSIC 161, MUSIC 162,
+          MUSIC 261)
+        result:
+          from: courses
+          where: {attributes: {$eq: music_keyboard_studies}}
+          assert: {count(terms): {$gte: 5}}
+
+      Junior or Senior Half Voice Recital:
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Vocal Junior Recital
+                - Voice Junior Recital
+                - Junior Recital
+                - Vocal Senior Recital
+                - Voice Senior Recital
+                - Senior Recital
+          assert: {count(performances): {$gte: 1}}
+
+      Capstone Performance Project:
+        result:
+          course: MUSPF 330
+
+  707:
+    name: Organ
+
+    result:
+      all:
+        - requirement: Core
+        - requirement: Conducting
+        - requirement: Organ Performance Studies
+        - requirement: Voice Performance Studies
+        - requirement: Junior Recital
+        - requirement: Senior Recital
+
+    requirements:
+      Core:
+        result:
+          all:
+            - {course: MUSIC 270, grade: B-}
+            - {course: MUSIC 290}
+
+      Conducting:
+        result:
+          at_most: true
+          either:
+            - {course: MUSIC 253}
+            - {course: MUSIC 354}
+
+      Organ Performance Studies:
+        message:
+          Once accepted into the B.M. in Church Music program, students must
+          register for a minimum of 6 semesters of 1.0 credit organ lessons (4
+          at Level I, subsequent at Level II)
+        result:
+          from: courses
+          where: {attributes: {$eq: music_organ_studies}}
+          all:
+            - assert: {count(terms): {$gte: 6}}
+
+            - where: {level: {$eq: 100}}
+              assert: {count(terms): {$gte: 4}}
+
+            - where: {level: {$eq: 200}}
+              assert: {count(terms): {$gte: 2}}
+
+      Voice Performance Studies:
+        result:
+          course: MUSPF 152
+
+      Junior Recital:
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Junior Recital
+                - Vocal Junior Recital
+                - Voice Junior Recital
+                - Junior Recital
+          assert: {count(performances): {$gte: 1}}
+
+      Senior Recital:
+        result:
+          from: music performances
+          where:
+            name:
+              $in:
+                - Instrumental Senior Recital
+                - Voice Senior Recital
+                - Vocal Senior Recital
+                - Composition Senior Recital
+                - Senior Recital
+          assert: {count(performances): {$gte: 1}}

@@ -101,6 +101,8 @@ requirements:
         - course: EDUC 375
         - at_most: true
           any:
+            - course: EDUC 170
+            - course: EDUC 347
             - course: EDUC 378
             - course: EDUC 379
         - course: EDUC 381
