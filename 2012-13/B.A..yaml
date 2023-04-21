@@ -276,7 +276,7 @@ requirements:
         - at-most: 1
           where:
             $and:
-              - subject: {$eq: ESAC | KINES}
+              - subject: {$in: [ESAC, KINES]}
               - number: {$gte: 171}
               - number: {$lte: 194}
               - credits: {$eq: '0.25'}
