@@ -369,6 +369,7 @@ result:
         assert: {count(courses): {$gte: 1, at_most: true}}
 
     - name: OLE Experience in Practice
+      message: More information on both <a href="https://wp.stolaf.edu/registrar/ole-experience-in-practice-oep/">credit-bearing and non-credit-bearing options for completing OEP</a>.
       result:
         from: courses
         claim: true
