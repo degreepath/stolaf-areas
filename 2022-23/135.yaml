@@ -14,9 +14,10 @@ result:
 requirements:
   Intro:
     result:
-      course: ART 153
-      course: ART 161
-      course: ART 350
+      all:
+        - course: ART 153
+        - course: ART 161
+        - course: ART 350
 
   Electives:
     message:
