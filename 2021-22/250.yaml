@@ -50,7 +50,6 @@ requirements:
     result:
       from: courses
       where: {course: {$in: [ENGL 203, ENGL 205, ENGL 208, ENGL 232, ENGL 360]}}
-      allow_claimed: true
       assert: {count(courses): {$gte: 1}}
 
   Electives:
