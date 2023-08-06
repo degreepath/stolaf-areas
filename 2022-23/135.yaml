@@ -8,6 +8,7 @@ result:
   count: all
   of:
     - requirement: Intro
+    - requirement: Studio Art
     - requirement: Electives
     
 
@@ -18,6 +19,12 @@ requirements:
         - course: ART 153
         - course: ART 161
         - course: ART 350
+
+  Studio Art:
+    result:
+      from: courses
+      where: {attribute: {$eq: arth_studio_art}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
     message:
