@@ -49,7 +49,7 @@ requirements:
   Antiracism:
     result:
       from: courses
-      where: {course: {$in: [ENGL 203, ENGL 205, ENGL 208, ENGL 232, ENGL 360]}}
+      where: {attribute: {$eq: engl_antiracism}}
       assert: {count(courses): {$gte: 1}}
 
   Electives:
