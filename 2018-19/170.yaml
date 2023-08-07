@@ -166,7 +166,7 @@ emphases:
             result:
               from: courses
               where: {attributes: {$eq: chem_acs_lab_hours}}
-              assert: {sum(credits): {$gte: 1.25}}
+              assert: {sum(credits): {$gte: '1.25'}}
 
           Biochemistry or Inorganic Topic:
             department_audited: true
@@ -177,4 +177,3 @@ emphases:
           from: courses
           where: {attributes: {$eq: chem_acs_mathstats}}
           assert: {count(courses): {$gte: 2}}
-          
