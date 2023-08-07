@@ -122,3 +122,59 @@ requirements:
     message:
       Attendance is required at 12 departmental seminars after
       declaration of major.
+
+emphases:
+  728:
+    name: American Chemical Society
+
+    result:
+      all:
+        - requirement: Required Courses
+        - requirement: Elective Course
+        - requirement: Additional Lab Hours
+        - requirement: Math or Stats
+      audit:
+        where:
+          $and:
+            - grade: {$lt: C, $during_covid: C-}
+            - is_in_progress: {$eq: false}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Required Courses:
+        result:
+          all:
+            - course: CHEM 379
+            - course: CHEM 378
+            - course: CHEM 382
+            - course: CHEM 386
+
+      Elective Course:
+        result:
+          from: courses
+          where: {attributes: {$eq: chem_acs_elective}}
+          assert: {count(courses): {$gte: 1}}
+
+      Additional Lab Hours:
+        result:
+          all:
+            - requirement: Lab Credits
+            - requirement: Biochemistry or Inorganic Topic
+
+        requirements:
+          Lab Credits:
+            result:
+              from: courses
+              where: {attributes: {$eq: chem_acs_lab_hours}}
+              assert: {sum(credits): {$gte: 1.25}}
+
+          Biochemistry or Inorganic Topic:
+            department_audited: true
+            message: One laboratory experience must include either biochemistry or inorganic topics.
+
+      Math or Stats:
+        result:
+          from: courses
+          where: {attributes: {$eq: chem_acs_mathstats}}
+          assert: {count(courses): {$gte: 2}}
+          
