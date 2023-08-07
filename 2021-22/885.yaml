@@ -50,19 +50,20 @@ requirements:
       at_most: true
       count: 3
       of:
+        - course: NORST 100
         - course: NORST 219
         - course: NORST 264
         - course: NORST 277
         - course: NORST 280
-        - course: NORST 396
-        - course: NORST 398
         - course: NORW 205
-        - course: NORW 260
-        - course: NORW 396
-        - course: NORW 398
-        - course: ENVST 283
+        - course: NORW 280
+        - course: NORW 282
+        - {course: ENVST 283, term: 2021-3}
+        - course: GERM 247
         - course: HIST 211
-        - course: MUSPF 118
+        - course: HIST 271
+        - course: LNGST 301
         - course: PHIL 233
-        - course: PSYCH 232  
+        - course: PSYCH 232
+        - course: REL 213
         - course: REL 238
