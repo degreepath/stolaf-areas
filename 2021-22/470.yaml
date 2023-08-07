@@ -34,7 +34,7 @@ requirements:
       where:
         $or:
           - $and:
-            - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
+            - {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 372]}}
             - {type: {$eq: Flac}}
           - {course: {$eq: NORW 296}}
       assert: {sum(credits): {$gte: '0.5', at_most: true}}
@@ -67,15 +67,15 @@ requirements:
           at_most: true
           count: 2
           of:          
+            - course: NORST 100
             - course: NORST 219
             - course: NORST 264
             - course: NORST 277  
             - course: NORW 205
-            - course: NORW 224
             - course: NORW 244
             - course: NORW 260
-            - course: NORW 373                      
-            - course: ENVST 283
+            - course: NORW 280
+            - course: NORW 282
             - course: GERM 247
             - course: HIST 211
             - course: PHIL 233
