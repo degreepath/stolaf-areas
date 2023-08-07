@@ -7,10 +7,10 @@ degree: B.A.
 result:
   all:
     - requirement: Foundational
+    - requirement: Advanced Courses
     - requirement: Nordic Diversity, Inequity, and Social Justice
     - requirement: Additional Humanities
     - requirement: Additional Norwegian or Nordic Studies Course
-    - requirement: Advanced Courses
 
     - $if: {has-declared-area-code: '470'}
       $then: {requirement: Double-Majors}
@@ -29,13 +29,54 @@ requirements:
         - course: NORW 232
         - course: NORW 253
 
+  Advanced Courses:
+    result: 
+      either:
+        - requirement: Option 1
+        - requirement: Option 2
+
+    requirements:
+      # Option Æ: select two (2) level III courses taught in Norwegian
+      Option 1:
+        result:
+          at_most: true
+          count: 2
+          of:
+            - course: NORW 371
+            - course: NORW 372
+            - course: NORW 373
+            - course: NORW 396
+
+      # Option Å: one (1) level II or level III course partially in Norwegian (must total at least 0.50 credit)
+      # and one (1) level III course entirely in Norwegian
+      Option 2:
+        result:
+          both:
+            - from: courses
+              where:
+                $or:
+                  - $and:
+                    - {course: {$in: [NORW 205, NORW 244, NORST 277]}}
+                    - {type: {$eq: Flac}}
+                  - {course: {$in: [NORW 294, NORW 296]}}
+              assert: {sum(credits): {$gte: '0.5', at_most: true}}
+
+              # where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 294, NORW 296]}}
+              # assert: {sum(credits): {$gte: '0.5', at_most: true}}
+  
+            - from: courses
+              where: {course: {$in: [NORW 371, NORW 372, NORW373, NORW 396]}}
+              assert: {count(courses): {$gte: 1, at_most: true}}
+
   Nordic Diversity, Inequity, and Social Justice:
     result:
       at_most: true
       count: 1
       of:
         - course: NORST 264
+        - course: NORST 277
         - course: NORW 205
+        - course: NORW 224
         - course: NORW 244
         - course: ENVST 283
         - course: PSYCH 232
@@ -76,44 +117,7 @@ requirements:
         - course: NORW 282
         - course: ENVST 283
 
-  Advanced Courses:
-    result: 
-      either:
-        - requirement: Option 1
-        - requirement: Option 2
 
-    requirements:
-      # Option Æ: select two (2) level III courses taught in Norwegian
-      Option 1:
-        result:
-          at_most: true
-          count: 2
-          of:
-            - course: NORW 371
-            - course: NORW 372
-            - course: NORW 373
-            - course: NORW 396
-
-      # Option Å: one (1) level II or level III course partially in Norwegian (must total at least 0.50 credit)
-      # and one (1) level III course entirely in Norwegian
-      Option 2:
-        result:
-          both:
-            - from: courses
-              where:
-                $or:
-                  - $and:
-                    - {course: {$in: [NORW 205, NORW 244, NORW 277]}}
-                    - {type: {$eq: Flac}}
-                  - {course: {$in: [NORW 294, NORW 296]}}
-              assert: {sum(credits): {$gte: '0.5', at_most: true}}
-
-              # where: {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 294, NORW 296]}}
-              # assert: {sum(credits): {$gte: '0.5', at_most: true}}
-  
-            - from: courses
-              where: {course: {$in: [NORW 371, NORW 372, NORW373, NORW 396]}}
-              assert: {count(courses): {$gte: 1, at_most: true}}
               
   Double-Majors:
     result:
