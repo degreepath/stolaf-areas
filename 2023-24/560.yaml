@@ -39,7 +39,6 @@ requirements:
         - requirement: Core B
         - requirement: Core C
         - requirement: Core D
-      assert: {count(courses): {$gte: 3, at_most: true}}
 
     requirements:
       Core A:
@@ -65,6 +64,8 @@ requirements:
           either:
             - course: PSYCH 244
             - course: PSYCH 247            
+
+      assert: {count(courses): {$gte: 3, at_most: true}}
 
   Level III Capstone:
     result:
