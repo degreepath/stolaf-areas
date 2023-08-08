@@ -1,0 +1,107 @@
+---
+name: Psychology
+type: major
+code: '560'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Foundation
+    - requirement: Content Core
+    - requirement: Level III Capstone
+    - requirement: General Education
+    - requirement: Electives
+
+  audit:
+    assert: {count(courses): {$lte: 2}}
+    where:
+      $and:
+        - {is_stolaf: {$eq: false}}
+        - $and:
+            - {course: {$neq: PSYCH 125}}
+            - {course_type: {$neq: AP}}
+
+requirements:
+  Foundation:
+    result:
+      both:
+        - at_most: true
+          any:
+            - course: PSYCH 125
+            - ap: AP Psychology
+            - ap: IB Psychology
+        - course: PSYCH 230
+
+  Content Core:
+    result:
+      all:
+        - requirement: Core A
+        - requirement: Core B
+        - requirement: Core C
+        - requirement: Core D
+      assert: {count(courses): {$gte: 3, at_most: true}}
+
+    requirements:
+      Core A:
+        result:
+          either:
+            - course: PSYCH 235
+            - course: PSYCH 238
+
+      Core B:
+        result:
+          either:
+            - course: PSYCH 236
+            - course: PSYCH 237
+
+      Core C:
+        result:
+          either:            
+            - course: PSYCH 241
+            - course: PSYCH 249
+
+      Core D:
+        result:
+          either:
+            - course: PSYCH 244
+            - course: PSYCH 247            
+
+  Level III Capstone:
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: psych_level_3}
+          - $and:
+              - subject: {$eq: PSYCH}
+              - level: {$eq: 300}
+      limit:
+        - at-most: 0
+          where: {course: {$eq: PSYCH 394}}
+        - at-most: 1
+          where: {course: {$in: [, PSYCH 393, PSYCH 396, PSYCH 398]}}
+      assert: {count(courses): {$gte: 2, at_most: true}}
+
+  General Education:
+    result:
+      at_most: true
+      any:
+        - ap: AP Statistics
+        - course: STAT 110
+        - course: STAT 172
+        - course: STAT 212
+        - course: STAT 214
+        - course: ECON 263
+        - course: ECON 260
+
+  Electives:
+    result:
+      from: courses
+      where:
+        $or:
+          - attribute: {$eq: psych_elective}
+          - $and:
+              - {course: {$neq: PSYCH 125}}
+              - subject: {$eq: PSYCH}
+              - credits: {$eq: '1.0'}
+      assert: {count(courses): {$gte: 2, at_most: true}}
