@@ -22,7 +22,7 @@ result:
 requirements:
   Core:
     result:
-      either:
+      any:
         - course: HIST 126
         - course: HIST 193
         - course: PSCI 257
