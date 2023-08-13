@@ -1,0 +1,25 @@
+---
+name: Applied Linguistic
+type: concentration
+code: '857'
+degree: B.A.
+
+result:
+  all:
+    - requirement: English Language and Linguistics
+    - requirement: Electives
+
+requirements:
+  English Language and Linguistics:
+    result:
+      course: LNGST 250
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: lngst_elective}}
+
+      all:
+        - assert: {count(courses): {$gte: 4}}
+        - assert: {count(subjects): {$gte: 2}}
+        - {level: {$in: [200, 300]}, {count(courses): {$gte: 2}}}
