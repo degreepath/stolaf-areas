@@ -1,7 +1,7 @@
 ---
-name: Management Studies
+name: Business and Management Studies
 type: concentration
-code: '863'
+code: '819'
 degree: B.A.
 
 result:
@@ -24,7 +24,7 @@ requirements:
   Core Courses:
     result:
       all:
-        - course: ECON 121
+        - crsid: '0000038378' # MGMT/BUS 110
         - crsid: '0000000768' # MGMT/BUS 225
         - crsid: '0000000778' # MGMT/BUS 251
 
