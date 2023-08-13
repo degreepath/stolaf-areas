@@ -1,0 +1,172 @@
+---
+name: Chemistry
+type: major
+code: '170'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Introductory Sequence
+    - requirement: Upper-Level Core
+    - requirement: Physics
+    - requirement: Mathematics
+    - requirement: Seminars
+
+  audit:
+    all:
+      - where:
+          $and:
+            - {subject: {$eq: CHEM}}
+            - $or:
+                - {grade: {$gte: C, $during_covid: C-}}
+                - {is_in_progress: {$eq: true}}
+            - {course: {$nin: [CHEM 298, CHEM 396, CHEM 398]}}
+            - {number: {$gte: 240}}
+            - {credits: {$eq: '1.0'}}
+        assert: {count(courses): {$gte: 4}}
+
+      - where:
+          $and:
+            - {subject: {$eq: CHEM}}
+            - $or:
+                - {grade: {$gte: C, $during_covid: C-}}
+                - {is_in_progress: {$eq: true}}
+        assert: {count(courses): {$gte: 6}}
+
+requirements:
+  Introductory Sequence:
+    requirements:
+      Option A:
+        result:
+          all:
+            - course: CHEM 121
+            - course: CHEM 123
+            - course: CHEM 126
+
+      Option B:
+        result:
+          all:
+            - course: CHEM 122
+            - course: CHEM 126
+
+      Option C:
+        result:
+          all:
+            - course: CHEM 125
+            - course: CHEM 126
+
+    result:
+      any:
+        - requirement: Option A
+        - requirement: Option B
+        - requirement: Option C
+
+  Upper-Level Core:
+    result:
+      all:
+        - requirement: Organic
+        - requirement: Analytical
+        - requirement: Physical
+        - requirement: Elective
+
+    requirements:
+      Organic:
+        result:
+          all:
+            - course: CHEM 247
+            - course: CHEM 253.L
+            - course: CHEM 248
+            - course: CHEM 254.L
+
+      Analytical:
+        result:
+          all:
+            - course: CHEM 255
+            - course: CHEM 256.L
+
+      Physical:
+        result:
+          all:
+            - course: CHEM 371
+            - course: CHEM 357.L
+
+      Elective:
+        result:
+          from: courses
+          where: {attribute: {$eq: chem_elective}}
+          # can't be at-most; Cs in major needs more sometimes
+          assert: {count(courses): {$gte: 1}}
+
+  Physics:
+    result:
+      either:
+        - course: PHYS 125
+        - course: PHYS 232
+
+  Mathematics:
+    result:
+      any:
+        - course: MATH 126
+        - course: MATH 128
+        - ap: AP Calculus I and II
+
+  Seminars:
+    department_audited: true
+    message:
+      Attendance is required at 12 departmental seminars after
+      declaration of major.
+
+emphases:
+  728:
+    name: American Chemical Society
+
+    result:
+      all:
+        - requirement: Required Courses
+        - requirement: Elective Course
+        - requirement: Additional Lab Hours
+        - requirement: Math or Stats
+      audit:
+        where:
+          $and:
+            - grade: {$lt: C, $during_covid: C-}
+            - is_in_progress: {$eq: false}
+        assert: {count(courses): {$eq: 0}}
+
+    requirements:
+      Required Courses:
+        result:
+          all:
+            - course: CHEM 379
+            - course: CHEM 378
+            - course: CHEM 382
+            - course: CHEM 386
+
+      Elective Course:
+        result:
+          from: courses
+          where: {attributes: {$eq: chem_acs_elective}}
+          assert: {count(courses): {$gte: 1}}
+
+      Additional Lab Hours:
+        result:
+          all:
+            - requirement: Lab Credits
+            - requirement: Biochemistry or Inorganic Topic
+
+        requirements:
+          Lab Credits:
+            result:
+              from: courses
+              where: {attributes: {$eq: chem_acs_lab_hours}}
+              assert: {sum(credits): {$gte: '1.25'}}
+
+          Biochemistry or Inorganic Topic:
+            department_audited: true
+            message: One laboratory experience must include either biochemistry or inorganic topics.
+
+      Math or Stats:
+        result:
+          from: courses
+          where: {attributes: {$eq: chem_acs_mathstats}}
+          assert: {count(courses): {$gte: 2}}
