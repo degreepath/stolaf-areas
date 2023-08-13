@@ -22,4 +22,4 @@ requirements:
       all:
         - assert: {count(courses): {$gte: 4}}
         - assert: {count(subjects): {$gte: 2}}
-        - {level: {$in: [200, 300]}, {count(courses): {$gte: 2}}}
+        - assert: {level: {$in: [200, 300]}, {count(courses): {$gte: 2}}}
