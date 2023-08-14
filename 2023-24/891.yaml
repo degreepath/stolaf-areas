@@ -1,0 +1,45 @@
+---
+name: Statistics and Data Science
+type: concentration
+code: '891'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Prerequisite
+    - requirement: Core
+    - requirement: Level III
+    - requirement: Electives
+
+limit:
+  - at-most: 1 course
+    where: {course: {$in: [ECON 384, ECON 385]}}
+
+requirements:
+  Prerequisite:
+    result:
+      any:
+        - course: STAT 110
+        - course: STAT 172
+        - {course: STAT 214, hidden: true}
+        - course: ECON 260
+        - course: ECON 263
+        - ap: AP Statistics
+
+  Core:
+    result:
+      all:
+        - course: MSCS 164
+        - course: STAT 272
+
+  Level III:
+    result:
+      from: courses
+      where: {attribute: {$eq: stat_level3}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    result:
+      from: courses
+      where: {attribute: {$eq: stat_elective}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
