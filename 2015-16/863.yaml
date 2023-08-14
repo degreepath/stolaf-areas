@@ -31,13 +31,13 @@ requirements:
   Management Elective:
     result:
       from: courses
-      where: {attribute: {$eq: mgmt_elective}}
+      where: {attribute: {$eq: bus_elective}}
       assert: {count(courses): {$gte: 1}}
 
   Distributed Elective:
     result:
       from: courses
-      where: {attribute: {$eq: mgmt_dist_elective}}
+      where: {attribute: {$eq: bus_dist_elective}}
       assert: {count(courses): {$gte: 1}}
 
   Experiential Learning:
