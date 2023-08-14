@@ -1,0 +1,42 @@
+---
+name: Spanish
+type: major
+code: '620'
+degree: B.A.
+
+result:
+  all:
+    - either:
+      - course: SPAN 250
+      - course: SPAN 251
+    - course: SPAN 275
+    - course: SPAN 276
+    - requirement: Additional Requirements
+
+  audit:
+    where: {is_stolaf: {$eq: false}}
+    assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Additional Requirements:
+    result:
+      from: courses
+      where: {attribute: {$eq: spanish_elective}}
+      all:
+        - assert:
+            count(courses):
+              $gte: 5
+
+              $changes:
+                - [{has-declared-area-code: '240'}, {set: '6.00'}]
+                
+        - where:
+            $and:
+              - level: {$eq: 300}
+              - is_stolaf: {$eq: true}
+          assert: {count(courses): {$gte: 2}}
+          message: Two 300-level courses
+
+        - where: {level: {$gt: 251}}
+          assert: {count(courses): {$gte: 3}}
+          message: Three additional Spanish electives above 250 or 251
