@@ -29,7 +29,7 @@ requirements:
 
               $changes:
                 - [{has-declared-area-code: '240'}, {set: '6.00'}]
-                
+
         - where:
             $and:
               - level: {$eq: 300}
@@ -37,6 +37,6 @@ requirements:
           assert: {count(courses): {$gte: 2}}
           message: Two 300-level courses
 
-        - where: {level: {$gt: 251}}
+        - where: {level: {$eq: 200}}
           assert: {count(courses): {$gte: 3}}
           message: Three additional Spanish electives above 250 or 251
