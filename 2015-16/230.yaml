@@ -72,18 +72,18 @@ emphases:
       Finance:
         result:
           all:
-            - course: MGMT 225
-            - course: MGMT 237
-            - course: MGMT 281
-            - course: MGMT 380
+            - crsid: '0000000768' # BUS/MGMT 225
+            - crsid: '0000000774' # BUS/MGMT 237
+            - crsid: '0000000783' # BUS/MGMT 281
+            - crsid: '0000000786' # BUS/MGMT 380
 
       Electives:
         result:
           at_most: true
           either:
             - both:
-                - course: MGMT 250
-                - course: MGMT 251
+                - crsid: '0000000777' # BUS/MGMT 250
+                - crsid: '0000000778' # BUS/MGMT 251
 
             - from: courses
               where: {attributes: {$eq: econ_emph_finance_elective}}
@@ -142,10 +142,10 @@ emphases:
       Management:
         result:
           all:
-            - course: MGMT 225
-            - course: MGMT 237
-            - course: MGMT 251
-            - course: MGMT 383
+            - crsid: '0000000768' # BUS/MGMT 225
+            - crsid: '0000000774' # BUS/MGMT 237
+            - crsid: '0000000778' # BUS/MGMT 251
+            - crsid: '0000000787' # BUS/MGMT 383
 
       Electives:
         result:
