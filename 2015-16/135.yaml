@@ -11,7 +11,6 @@ result:
     - requirement: Methods
     - requirement: Studio Art
     - requirement: Electives
-    - requirement: Lasting Legacy
 
 requirements:
   Intro:
@@ -62,9 +61,3 @@ requirements:
 
         - where: {attribute: {$eq: arth_period_post1700}}
           assert: {count(courses): {$gte: 1}}
-
-  Lasting Legacy:
-    department_audited: true
-    message:
-      Majors must successfully complete the non-credit, senior "lasting legacy"
-      project or its equivalent.
