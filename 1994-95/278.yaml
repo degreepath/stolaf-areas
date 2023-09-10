@@ -1,0 +1,13 @@
+---
+name: Unknown
+type: major
+code: '278'
+
+result:
+  all:
+    - requirement: Not Specified
+
+requirements:
+  Not Specified:
+    message: This major has not yet been specified.
+    department_audited: true
