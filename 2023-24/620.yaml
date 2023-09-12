@@ -30,6 +30,9 @@ requirements:
               $changes:
                 - [{has-declared-area-code: '240'}, {set: '6.00'}]
 
+        - where: {is_stolaf: {$eq: false}}
+          assert: {count(courses): {$lte: 2}}
+
         - where:
             $and:
               - level: {$eq: 300}
