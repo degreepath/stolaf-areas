@@ -4,11 +4,6 @@ type: major
 code: '350'
 degree: B.A.
 
-
-limiters:
-  - where: {subject: {$neq: HIST}}
-    at_most: 1
-
 result:
   all:
     - requirement: Level II Seminar
@@ -33,6 +28,10 @@ result:
           $and:
             - subject: {$neq: HIST}
             - is_stolaf: {$eq: true}
+
+      - limiters:
+        - where: {subject: {$neq: HIST}}
+          at_most: 1
 
 requirements:
   # Note:
