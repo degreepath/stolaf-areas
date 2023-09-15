@@ -4,6 +4,11 @@ type: major
 code: '350'
 degree: B.A.
 
+
+limiters:
+  - where: {department: '! HIST'}
+    at_most: 1
+      
 result:
   all:
     - requirement: Level II Seminar
@@ -12,10 +17,6 @@ result:
     - requirement: Europe and Russia
     - requirement: The United States
     - requirement: Additional Courses
-
-  limiters:
-    - where: {department: '! HIST'}
-      at_most: 1
 
   audit:
     all:
