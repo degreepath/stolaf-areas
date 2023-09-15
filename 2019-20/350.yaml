@@ -29,7 +29,7 @@ result:
             - subject: {$neq: HIST}
             - is_stolaf: {$eq: true}
 
-      - limiters:
+      - limit:
         - where: {subject: {$neq: HIST}}
           at_most: 1
 
