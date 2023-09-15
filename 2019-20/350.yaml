@@ -5,8 +5,7 @@ code: '350'
 degree: B.A.
 
 result:
-  message: >
-    Note:: Only 1 non-HIST course can count towards major.
+  message: Note:: Only 1 non-HIST course can count towards major.
   all:
     - requirement: Level II Seminar
     - requirement: Level III Seminars
