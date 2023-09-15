@@ -6,7 +6,8 @@ degree: B.A.
 
 result:
   all:
-    - requirement: Note
+    - name: Note
+      message: Note that only 1 non-HIST course can count towards major.
     - requirement: Level II Seminar
     - requirement: Level III Seminars
     - requirement: Africa, Asia, and Latin America
@@ -31,9 +32,9 @@ result:
             - is_stolaf: {$eq: true}
 
 requirements:
-  Note:
-    message: Please note that only 1 non-HIST course can count towards major.
-    department_audited: true
+  # Note:
+  #   message: Please note that only 1 non-HIST course can count towards major.
+  #   department_audited: true
 
   Europe and Russia:
     result:
