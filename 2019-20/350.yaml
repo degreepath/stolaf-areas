@@ -6,14 +6,16 @@ degree: B.A.
 
 result:
   all:
-    - name: Note
-      message: Note that only 1 non-HIST course can count towards major.
     - requirement: Level II Seminar
     - requirement: Level III Seminars
     - requirement: Africa, Asia, and Latin America
     - requirement: Europe and Russia
     - requirement: The United States
     - requirement: Additional Courses
+
+  limiters:
+    - where: {department: '! HIST'}
+    at_most: 1
 
   audit:
     all:
