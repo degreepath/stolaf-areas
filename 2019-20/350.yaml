@@ -5,7 +5,6 @@ code: '350'
 degree: B.A.
 
 result:
-  message: Please note that only 1 non-HIST course can count towards major.
   all:
     - requirement: Level II Seminar
     - requirement: Level III Seminars
@@ -31,6 +30,7 @@ result:
             - is_stolaf: {$eq: true}
 
 requirements:
+  message: Please note that only 1 non-HIST course can count towards major.
   Europe and Russia:
     result:
       from: courses
