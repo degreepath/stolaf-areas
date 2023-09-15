@@ -29,9 +29,9 @@ result:
             - subject: {$neq: HIST}
             - is_stolaf: {$eq: true}
 
-      - limit:
-        - where: {subject: {$neq: HIST}}
-          at_most: 1
+  limiters:
+    - where: {subject: {$neq: HIST}}
+      at_most: 1
 
 requirements:
   # Note:
