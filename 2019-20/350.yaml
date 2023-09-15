@@ -5,10 +5,6 @@ code: '350'
 degree: B.A.
 
 result:
-  limit:
-    - at_most: 1
-      where: {subject: {$neq: HIST}}
-
   all:
     - requirement: Level II Seminar
     - requirement: Level III Seminars
@@ -32,6 +28,10 @@ result:
           $and:
             - subject: {$neq: HIST}
             - is_stolaf: {$eq: true}
+
+limit:
+  - at_most: 1
+    where: {subject: {$neq: HIST}}
 
 requirements:
   # Note:
