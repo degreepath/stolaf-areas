@@ -15,7 +15,7 @@ result:
 
   limiters:
     - where: {department: '! HIST'}
-    at_most: 1
+      at_most: 1
 
   audit:
     all:
