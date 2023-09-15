@@ -6,8 +6,7 @@ degree: B.A.
 
 result:
   all:
-  message: 
-    Please note that only 1 non-HIST course can count towards major.
+    - message: Please note that only 1 non-HIST course can count towards major.
     - requirement: Level II Seminar
     - requirement: Level III Seminars
     - requirement: Africa, Asia, and Latin America
