@@ -6,9 +6,9 @@ degree: B.A.
 
 
 limiters:
-  - where: {department: '! HIST'}
+  - where: {subject: {$neq: HIST}}
     at_most: 1
-      
+
 result:
   all:
     - requirement: Level II Seminar
