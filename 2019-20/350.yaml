@@ -33,12 +33,7 @@ result:
 requirements:
   Note:
     message: Please note that only 1 non-HIST course can count towards major.
-    audit:
-      - assert: {count(courses): {$lte: 1}}
-        where: 
-          $and:
-            - subject: {$neq: HIST}
-            - is_stolaf: {$eq: true}
+    department_audited: true
 
   Europe and Russia:
     result:
