@@ -284,12 +284,3 @@ result:
         where: {gereqs: {$eq: ERC}}
         assert: {count(courses): {$gte: 1, at_most: true}}
 
-    - name: OLE Experience in Practice
-      result:
-        from: courses
-        claim: true
-        allow_claimed: true
-        limit:
-          - {at-most: 0, where: {$and: [grade_option: {$eq: s/u}, credits: {$neq: '0.25'}]}}
-        where: {gereqs: {$eq: OEP}}
-        assert: {count(courses): {$gte: 1, at_most: true}}
