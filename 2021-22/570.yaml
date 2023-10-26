@@ -43,18 +43,9 @@ requirements:
   Traditions:
     result:
       both:
-        - count: 1
-          of:
-            - course: AS/RE 250
-            - course: AS/RE 253
-            - course: AS/RE 256
-            - course: AS/RE 257
-            - course: AS/RE 289
-            - course: REL 217
-            - {course: REL 220, term: 2021-3}
-            - course: REL 246
-            - course: REL 248
-            - course: REL 253
+        - from: courses
+          where: {attributes: {$eq: rel_traditions_2021}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
         # cannot be a course that carries Christian Theology in Dialogue OLE Core attribute
         - from: courses
