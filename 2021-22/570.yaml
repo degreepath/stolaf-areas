@@ -8,8 +8,8 @@ result:
   all:
     - requirement: Foundation
     - requirement: Sacred Texts
+    - requirement: Religious Thought    
     - requirement: Religion in History and Culture
-    - requirement: Religious Thought
     - requirement: Traditions
     - requirement: Intensive Studies
     - requirement: Elective
@@ -24,47 +24,21 @@ requirements:
 
   Sacred Texts:
     result:
-      any:
-        - course: REL 122
-        - course: REL 124
-        - course: REL 125
-        - course: REL 221
-        - course: REL 222
-        - course: REL 271
-        - course: REL 273
-        - course: REL 275
-        - course: REL 276
-        - course: REL 320
+      from: courses
+      where: {attributes: {$eq: rel_sacred_texts_2021}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Religious Thought:
+    result:
+      from: courses
+      where: {attributes: {$eq: rel_thought_2021}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Religion in History and Culture:
     result:
       from: courses
       where: {attributes: {$eq: rel_history_culture_2021}}
       assert: {count(courses): {$gte: 1, at_most: true}}
-
-  Religious Thought:
-    result:
-      any:
-        - course: AS/RE 254
-        - course: AS/RE 256
-        - course: REL 126
-        - course: REL 141
-        - course: REL 212
-        - course: REL 213
-        - course: REL 214
-        - course: REL 231
-        - course: REL 233
-        - course: REL 238
-        - course: REL 243
-        - course: REL 246
-        - course: REL 248
-        - course: REL 260
-        - course: REL 267
-        - course: REL 272
-        - course: REL 275
-        - course: REL 277
-        - course: REL 280
-        - course: REL 293
 
   Traditions:
     result:
