@@ -60,6 +60,7 @@ requirements:
           either:            
             - course: PSYCH 241
             - course: PSYCH 249
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Core D:
         result:
