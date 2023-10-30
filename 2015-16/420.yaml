@@ -85,6 +85,9 @@ requirements:
           - $if: {has-declared-area-code: '200'}  # Computer Science
             $then: {course: {$eq: CSCI 353}}
 
+          - $if: {has-declared-area-code: '240'}  # Education
+            $then: {course: {$eq: EDUC 350}}
+
           - $and:
               - subject: {$eq: MATH}
               - level: {$eq: 200}
