@@ -45,25 +45,28 @@ requirements:
     requirements:
       Core A:
         result:
+          at_most: true
           either:
             - course: PSYCH 235
             - course: PSYCH 238
 
       Core B:
         result:
+          at_most: true
           either:
             - course: PSYCH 236
             - course: PSYCH 237
 
       Core C:
         result:
+          at_most: true
           either:            
             - course: PSYCH 241
             - course: PSYCH 249
-        assert: {count(courses): {$gte: 1, at_most: true}}
 
       Core D:
         result:
+          at_most: true
           either:
             - course: PSYCH 244
             - course: PSYCH 247            
