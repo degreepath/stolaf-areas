@@ -91,7 +91,7 @@ requirements:
       either:
         - from: courses
           where: {subject: {$eq: REL}}
-
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
         - from: courses
           where:
