@@ -30,6 +30,7 @@ requirements:
     result:
       all:
         - course: MSCS 164
+        - {course: MSCS 264, hidden: true}
         - course: STAT 272
 
   Level III:
