@@ -29,8 +29,9 @@ requirements:
   Core:
     result:
       all:
-        - course: MSCS 164
-        - {course: MSCS 264, hidden: true}
+        - either:
+          - course: MSCS 164
+          - course: MSCS 264
         - course: STAT 272
 
   Level III:
