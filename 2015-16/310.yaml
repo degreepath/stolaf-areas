@@ -20,6 +20,7 @@ requirements:
           - subject: {$eq: GERM}
           - number: {$gte: 250}
           - number: {$lte: 259}
+          - {type: {$neq: Discussion}}
       assert: {count(courses): {$gte: 2}}
 
   Level 270:
@@ -30,6 +31,7 @@ requirements:
           - subject: {$eq: GERM}
           - number: {$gte: 270}
           - number: {$lte: 279}
+          - {type: {$neq: Discussion}}
       assert: {count(courses): {$gte: 2}}
 
   Level III:
@@ -40,6 +42,7 @@ requirements:
         $and:
           - subject: {$eq: GERM}
           - level: {$eq: 300}
+          - {type: {$neq: Discussion}}
       assert: {count(courses): {$gte: 1}}
 
   Electives:
@@ -62,4 +65,5 @@ requirements:
             $and:
               - is_stolaf: {$eq: true}
               - attribute: {$eq: german_in_translation}
+              - {type: {$neq: Discussion}}
       assert: {count(courses): {$eq: 3}}
