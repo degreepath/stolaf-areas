@@ -70,53 +70,25 @@ requirements:
 
   Nordic Diversity, Inequity, and Social Justice:
     result:
-      at_most: true
-      count: 1
-      of:
-        - course: NORST 264
-        - course: NORST 277
-        - course: NORW 205
-        - course: NORW 224
-        - course: NORW 244
-        - course: ENVST 283
-        - course: PSYCH 232
+      from: courses
+      where: {attribute: {$eq: norw_diversity_inequity_justice}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Additional Humanities:
     result:
-      at_most: true
-      count: 1
-      of:
-        - course: HIST 211
-        - course: HIST 222
-        - course: NORW 130
-        - course: NORW 140
-        - course: NORW 180
-        - course: NORW 240
-        - course: NORW 244
-        - course: NORW 260
-        - course: NORW 282
+      from: courses
+      where: {attribute: {$eq: norw_humanities}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Additional Norwegian or Nordic Studies Course:
     result:
-      at_most: true
-      count: 1
-      of:
-        - course: NORST 200
-        - course: NORST 219
-        - course: NORST 264
-        - course: NORST 277
-        - course: NORST 280
-        - course: NORST 396
-        - course: NORW 130
-        - course: NORW 140
-        - course: NORW 180
-        - course: NORW 205
-        - course: NORW 240
-        - course: NORW 244
-        - course: NORW 260
-        - course: NORW 282
-        - course: ENVST 283
-
+      from: courses
+      where:
+        $or:
+          - {subject: {$eq: NORW}}
+          - {subject: {$eq: NORST}}
+          - {attribute: {$eq: norw_additional_courses}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
               
   Double-Majors:
