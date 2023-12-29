@@ -32,38 +32,17 @@ requirements:
             - $and:
               - {course: {$in: [NORST 277, NORW 205, NORW 244]}}
               - {type: {$eq: Flac}}
-            - {course: {$in: [NORW 232, NORW 296, NORW 372]}}
+            - {course: {$in: [NORW 232, NORW 253, NORW 296, NORW 372]}}
         assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
   Nordic Diversity, Inequity, and Social Justice:
     result:
-      any:
-        - course: NORST 264
-        - course: NORST 277
-        - course: NORW 205
-        - course: NORW 244
-        - course: ENVST 283
-        - course: PSYCH 232
+      from: courses
+      where: {attribute: {$eq: nordic_conc_diversity_inequity_justice}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Additional Courses:
     result:
-      at_most: true
-      count: 3
-      of:
-        - course: NORST 100
-        - course: NORST 219
-        - course: NORST 264
-        - course: NORST 277
-        - course: NORST 280
-        - course: NORW 205
-        - course: NORW 280
-        - course: NORW 282
-        - {course: ENVST 283, term: 2021-3}
-        - course: GERM 247
-        - course: HIST 211
-        - course: HIST 271
-        - course: LNGST 301
-        - course: PHIL 233
-        - course: PSYCH 232
-        - course: REL 213
-        - course: REL 238
+      from: courses
+      where: {attribute: {$eq: nordic_conc_additional_courses}}
+      assert: {count(courses): {$gte: 3, at_most: true}}
