@@ -49,13 +49,9 @@ requirements:
     requirements:
       Diversity, Inequity, and Social Justice:
         result:
-          any:
-            - course: NORST 264
-            - course: NORST 277            
-            - course: NORW 224
-            - course: NORW 244
-            - course: ENVST 283
-            - course: PSYCH 232
+          from: courses
+          where: {attribute: {$eq: nordic_diversity_inequity_justice}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
       Comparative Nordic Linguistics:
         result:
@@ -64,22 +60,9 @@ requirements:
 
       Additional Courses:
         result:
-          at_most: true
-          count: 2
-          of:          
-            - course: NORST 100
-            - course: NORST 219
-            - course: NORST 264
-            - course: NORST 277  
-            - course: NORW 205
-            - course: NORW 244
-            - course: NORW 260
-            - course: NORW 280
-            - course: NORW 282
-            - course: GERM 247
-            - course: HIST 211
-            - course: PHIL 233
-            - course: PSYCH 232
+          from: courses
+          where: {attribute: {$eq: nordic_additional_courses}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
             
   Advanced Course:
     result:
