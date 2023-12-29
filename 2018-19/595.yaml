@@ -40,7 +40,9 @@ requirements:
         - either:
             - course: SOAN 128
             - course: SOAN 264
-        - course: EDUC 290
+        - either:
+            - course: EDUC 290
+            - course: EDUC 295
         - course: EDUC 334
     
     requirements:
