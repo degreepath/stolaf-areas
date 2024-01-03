@@ -7,19 +7,14 @@ degree: B.A.
 result:
   count: all
   of:
-    - requirement: Intro
+    - course: ART 153
+    - course: ART 161
+    - course: ART 350
     - requirement: Studio Art
     - requirement: Electives
     
 
 requirements:
-  Intro:
-    result:
-      all:
-        - course: ART 153
-        - course: ART 161
-        - course: ART 350
-
   Studio Art:
     result:
       from: courses
