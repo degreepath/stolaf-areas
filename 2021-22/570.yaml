@@ -32,7 +32,8 @@ result:
 requirements:
   Foundation:
     result:
-      - course: REL 285
+      from: courses
+      where: {course: {$eq: REL 285}}
 
   Sacred Texts:
     result:
