@@ -18,6 +18,7 @@ result:
         assert: {count(courses): {$lte: 1}}
       - where: {attribute: {$eq: lamst_latinos_in_usa}}
         assert: {count(courses): {$lte: 3}}
+      - assert: {count(subjects): {$gte: 2}}
 
 requirements:
   Core:
@@ -59,4 +60,3 @@ requirements:
               - course: {$eq: SOAN 264}
       all:
         - assert: {count(courses): {$gte: 3}}
-        - assert: {count(subjects): {$gte: 2}}
