@@ -34,6 +34,7 @@ requirements:
     result:
       from: courses
       where: {course: {$eq: REL 285}}
+      assert: {count(courses): {$eq: 1, at_most: true}}
 
   Sacred Texts:
     result:
