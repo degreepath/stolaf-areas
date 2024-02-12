@@ -17,16 +17,16 @@ result:
   audit:
     all:
       - where: 
-        $and: 
-          - {gereqs: {$eq: CTD}}
-          - {subject: {$eq: REL}}
-        assert: {count(courses): {$gte: 1, at_most: true}}
+          $and: 
+            - {gereqs: {$eq: CTD}}
+            - {subject: {$eq: REL}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
       
       - where: 
-        $and: 
-          - {gereqs: {$eq: RFV}}
-          - {subject: {$eq: REL}}
-        assert: {count(courses): {$gte: 1, at_most: true}}
+          $and: 
+            - {gereqs: {$eq: RFV}}
+            - {subject: {$eq: REL}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
 
 
 requirements:
