@@ -14,13 +14,25 @@ result:
     - requirement: Intensive Studies
     - requirement: Elective
 
-  # audit:
-  #   assert: {count(courses): {$gte: 8}}
+  audit:
+    all:
+      - where: 
+        $and: 
+          - {gereqs: {$eq: CTD}}
+          - {subject: {$eq: REL}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+      
+      - where: 
+        $and: 
+          - {gereqs: {$eq: RFV}}
+          - {subject: {$eq: REL}}
+        assert: {count(courses): {$gte: 1, at_most: true}}
+
 
 requirements:
   Foundation:
     result:
-      course: REL 285
+      - course: REL 285
 
   Sacred Texts:
     result:
