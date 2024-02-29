@@ -127,6 +127,7 @@ emphases:
           count: 2
           of:
             - course: ENVST 283
+            - course: HIST 188B
             - course: NORW 205
             - course: NORW 372
             - course: MUSIC 141
