@@ -105,14 +105,7 @@ emphases:
     
       Electives:
         result:
-          at_most: true
-          count: 2
-          of:
-            - course: ENVST 283
-            - course: HIST 188B
-            - course: NORW 205
-            - course: NORW 372
-            - course: MUSIC 141
-            - course: MUSIC 245
-            - course: MUSIC 237
-            - course: SOAN 233
+          from: courses
+          allow_claimed: true
+          where: {attribute: {$eq: sami_crit_indi_electives}}
+          assert: {count(courses): {$gte: 2, at_most: true}}
