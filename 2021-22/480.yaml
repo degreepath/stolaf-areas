@@ -123,6 +123,7 @@ emphases:
 
       Electives:
         result:
+          allow_claimed: true
           at_most: true
           count: 2
           of:
