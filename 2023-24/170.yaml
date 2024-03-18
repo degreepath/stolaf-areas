@@ -146,6 +146,7 @@ emphases:
         result:
           from: courses
           where: {attributes: {$eq: chem_acs_elective}}
+          allow_claimed: true
           assert: {count(courses): {$gte: 1}}
 
       Additional Lab Hours:
