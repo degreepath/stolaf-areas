@@ -151,6 +151,7 @@ emphases:
       Courses:
         result:
           all:
+            - course: MUSIC 223
             - course: MUSIC 225
             - course: MUSIC 324
 
