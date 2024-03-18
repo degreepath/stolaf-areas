@@ -21,19 +21,16 @@ requirements:
       at_most: true
       count: 2
       of:
+        - course: ENGL 274
         - course: ENGL 291
         - course: ENGL 292
         - course: ENGL 293
 
   Additional Writing:
     result:
-      at_most: true
-      count: 1
-      of:
-        - course: ENGL 150
-        - course: ENGL 291
-        - course: ENGL 292
-        - course: ENGL 293
+      from: courses
+      where: {attribute: {$eq: creative_additional_writing}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level III Workshops:
     result:
