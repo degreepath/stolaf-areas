@@ -34,14 +34,15 @@ requirements:
               - {has-declared-area-code: '701'}
               - {has-declared-area-code: '704'}
           $then:
-            - course: MUSIC 212
-            - course: MUSIC 214
+            - both:
+              - course: MUSIC 212
+              - course: MUSIC 214
           $else:
             - at_most: true
               either: 
                 - course: MUSIC 212
                 - course: MUSIC 214
-                          
+
         # - at_most: true
         #   either:
         #     - course: MUSIC 212
