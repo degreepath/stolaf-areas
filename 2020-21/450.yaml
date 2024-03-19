@@ -28,13 +28,15 @@ requirements:
           course: {course: MUSIC 161, grade: B-}
         - proficiency: Keyboard Level II
           course: {course: MUSIC 162, grade: B-}
-        - $if: 
-            $or:
-              - {has-declared-area-code: '700'}
-              - {has-declared-area-code: '701'}
-              - {has-declared-area-code: '704'}
-          $then: {course: MUSIC 212}
-          $else: {course: MUSIC 214}
+        - course: {$in: [MUSIC 212, MUSIC 214]}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+        # - $if: 
+        #     $or:
+        #       - {has-declared-area-code: '700'}
+        #       - {has-declared-area-code: '701'}
+        #       - {has-declared-area-code: '704'}
+        #   $then: {course: MUSIC 212}
+        #   $else: {course: MUSIC 214}
           #   - at_most: true
           #     either: 
           #       - course: MUSIC 212
