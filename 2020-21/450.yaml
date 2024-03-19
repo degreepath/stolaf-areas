@@ -34,7 +34,7 @@ requirements:
               - {has-declared-area-code: '701'}
               - {has-declared-area-code: '704'}
           $then: {course: MUSIC 212}
-          $else: {course: {$in: [MUSIC 212, MUSIC 214]}}
+          $else: {course: MUSIC 214}
           #   - at_most: true
           #     either: 
           #       - course: MUSIC 212
