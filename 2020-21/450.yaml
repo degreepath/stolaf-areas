@@ -28,35 +28,10 @@ requirements:
           course: {course: MUSIC 161, grade: B-}
         - proficiency: Keyboard Level II
           course: {course: MUSIC 162, grade: B-}
-        - course: {$in: [MUSIC 212, MUSIC 214]}
-          assert: {count(courses): {$gte: 1, at_most: true}}
-        # - $if: 
-        #     $or:
-        #       - {has-declared-area-code: '700'}
-        #       - {has-declared-area-code: '701'}
-        #       - {has-declared-area-code: '704'}
-        #   $then: {course: MUSIC 212}
-        #   $else: {course: MUSIC 214}
-          #   - at_most: true
-          #     either: 
-          #       - course: MUSIC 212
-          #       - course: MUSIC 214
-          # }
-          # }
-
-        # - at_most: true
-        #   either:
-        #     - course: MUSIC 212
-        #     - course: MUSIC 214
-
-
-     #      where:
-     #        $or:
-     #          - course: {$in: [STAT 110, STAT 212, STAT 214]}
-     #          - ap: {$eq: AP Statistics}
-     #  assert: {count(courses): {$gte: 2, at_most: true}}
-
-     # - course: {$in: [STAT 110, STAT 172, STAT 212, STAT 214]}      
+        - at_most: true
+          either:
+            - course: MUSIC 212
+            - course: MUSIC 214
 
 
   Upper-Level Required Electives:
@@ -177,6 +152,8 @@ emphases:
       Courses:
         result:
           all:
+            - {course: MUSIC 212, allow_claimed: true}
+            - {course: MUSIC 214, allow_claimed: true}
             - course: MUSIC 223
             - course: MUSIC 225
             - course: MUSIC 324
@@ -221,6 +198,8 @@ emphases:
       Courses:
         result:
           all:
+            - {course: MUSIC 212, allow_claimed: true}
+            - {course: MUSIC 214, allow_claimed: true}
             - course: MUSIC 312
             - course: MUSIC 313
             - course: MUSIC 314
@@ -239,11 +218,18 @@ emphases:
 
     result:
       all:
+        - requirement: Core
         - requirement: Courses
         - requirement: More Courses
         - requirement: Portfolio
 
     requirements:
+      Core:
+        result:
+          all:
+            - {course: MUSIC 212, allow_claimed: true}
+            - {course: MUSIC 214, allow_claimed: true}
+
       Courses:
         result:
           at_most: true
