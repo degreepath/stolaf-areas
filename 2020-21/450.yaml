@@ -28,10 +28,24 @@ requirements:
           course: {course: MUSIC 161, grade: B-}
         - proficiency: Keyboard Level II
           course: {course: MUSIC 162, grade: B-}
-        - at_most: true
-          either:
+        - $if: 
+            $or:
+              - {has-declared-area-code: '700'}
+              - {has-declared-area-code: '701'}
+              - {has-declared-area-code: '704'}
+          $then:
             - course: MUSIC 212
             - course: MUSIC 214
+          $else:
+            - at_most: true
+              either: 
+                - course: MUSIC 212
+                - course: MUSIC 214
+                          
+        # - at_most: true
+        #   either:
+        #     - course: MUSIC 212
+        #     - course: MUSIC 214
 
   Upper-Level Required Electives:
     message: |
