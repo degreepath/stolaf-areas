@@ -34,16 +34,28 @@ requirements:
               - {has-declared-area-code: '701'}
               - {has-declared-area-code: '704'}
           $then: {course: MUSIC 212}
-          $else:
-            - at_most: true
-              either: 
-                - course: MUSIC 212
-                - course: MUSIC 214
+          $else: {course: {$in: [MUSIC 212, MUSIC 214]}}
+          #   - at_most: true
+          #     either: 
+          #       - course: MUSIC 212
+          #       - course: MUSIC 214
+          # }
+          # }
 
         # - at_most: true
         #   either:
         #     - course: MUSIC 212
         #     - course: MUSIC 214
+
+
+     #      where:
+     #        $or:
+     #          - course: {$in: [STAT 110, STAT 212, STAT 214]}
+     #          - ap: {$eq: AP Statistics}
+     #  assert: {count(courses): {$gte: 2, at_most: true}}
+
+     # - course: {$in: [STAT 110, STAT 172, STAT 212, STAT 214]}      
+
 
   Upper-Level Required Electives:
     message: |
