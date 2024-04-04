@@ -90,7 +90,8 @@ requirements:
 
   Senior Studies in Studio Art:
     result:
-      course: ART 343
+      all:
+        - course: ART 343
 
   Electives:
     result:
