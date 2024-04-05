@@ -160,9 +160,11 @@ emphases:
             - where: {attribute: {$eq: envst_envsci_level_3}}
               assert: {count(courses): {$gte: 1}}
 
-            - where: {subject: {$in: [ENVST, BI/ES, ES/PS, AS/ES]}}
+            - any: 
+                - where: {subject: {$in: [ENVST, BI/ES, ES/PS, AS/ES]}}
+                - course: CHEM 363
               assert: {count(courses): {$gte: 1}}
-              message: At least one course must be in the ENVST subject code
+              message: At least one course must be in the ENVST subject code or CHEM 363
 
   738:
     name: Social Science
