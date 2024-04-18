@@ -103,7 +103,6 @@ requirements:
     result:
       from: courses
       where: {subject: {$eq: MUSEN}}
-      allow_claimed: true
       assert: {count(terms): {$gte: 4, at_most: true}}
 
   Required Performances:
