@@ -1,0 +1,67 @@
+---
+name: Nursing
+type: major
+code: '490'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Prerequisites
+    - requirement: Graduation Requirements
+    - requirement: Ethics
+
+requirements:
+  Prerequisites:
+    in_gpa: false
+    message:
+      These courses must be completed before beginning any 300-level nursing
+      courses.
+    result:
+      all:
+        - course: BIO 143
+        - course: BIO 243
+        - course: NURS 110
+        - any:
+            - course: PSYCH 125
+            - ap: AP Psychology
+        - course: PSYCH 241
+        - at_most: true
+          either:
+            - either:
+              - course: BIO 121
+              - course: BIO 231
+            - course: BIO 140
+        - at_most: true
+          either:
+            - course: CHEM 122
+            - course: CHEM 125
+        - any:
+            - course: SOAN 121
+            - course: SOAN 128
+            - course: SOAN 260
+            - course: SOAN 261
+            - course: SOAN 262
+            - course: SOAN 264
+            - course: SOAN 267
+
+  Ethics:
+    result:
+      from: courses
+      where: {gereqs: {$eq: ERC}}
+      assert: {count(courses): {$gte: 1}}
+
+  Graduation Requirements:
+    result:
+      all:
+        - course: NURS 211
+        - course: NURS 212
+        - course: NURS 310
+        - course: NURS 312
+        - course: NURS 313
+        - course: NURS 314
+        - course: NURS 315
+        - course: NURS 316
+        - course: NURS 317
+        - course: NURS 318
+        - course: NURS 319
+        - course: NURS 399
