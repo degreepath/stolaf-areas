@@ -32,6 +32,7 @@ requirements:
             - $and:
               - {course: {$in: [NORST 277, NORW 205, NORW 244]}}
               - {type: {$eq: Flac}}
+              - {is_in_progress: {$eq: true}}
             - {course: {$in: [NORW 232, NORW 253, NORW 296, NORW 372]}}
         assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
