@@ -27,12 +27,12 @@ requirements:
   Intermediate:
     result:
         from: courses
-        where:
-          $or:
-            - $and:
-              - {course: {$in: [NORST 277, NORW 205, NORW 244]}}
-              - {type: {$eq: Flac}}
-            - {course: {$in: [NORW 232, NORW 253, NORW 296, NORW 372]}}
+        where: {attribute: {$eq: nordic_conc_intermediate}}
+          # $or:
+          #   - $and:
+          #     - {course: {$in: [NORST 277, NORW 205, NORW 244]}}
+          #     - {type: {$eq: Flac}}
+          #   - {course: {$in: [NORW 232, NORW 253, NORW 296, NORW 372]}}
         assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
   Nordic Diversity, Inequity, and Social Justice:
