@@ -31,12 +31,12 @@ requirements:
   Additional II or III Language:
     result:
       from: courses
-      where:
-        $or:
-          - $and:
-            - {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 372]}}
-            - {type: {$eq: Flac}}
-          - {course: {$eq: NORW 296}}
+      where: {attribute: {$eq: nordic_additional_lac_courses}}
+        # $or:
+        #   - $and:
+        #     - {course: {$in: [NORW 205, NORW 244, NORW 277, NORW 372]}}
+        #     - {type: {$eq: Flac}}
+        #   - {course: {$eq: NORW 296}}
       assert: {sum(credits): {$gte: '0.5', at_most: true}}
 
   Cultural and Historical Perspectives:
