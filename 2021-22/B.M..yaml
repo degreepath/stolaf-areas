@@ -136,6 +136,7 @@ result:
         from: courses
         claim: record
         allow_claimed: true
+        include_failed: true
         where:
           $or:
             - {grade_option: {$eq: s/u}}
