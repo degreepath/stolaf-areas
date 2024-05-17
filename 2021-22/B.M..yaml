@@ -129,9 +129,9 @@ result:
             - degree: {$eq: B.M.}
         assert: {count(areas): {$gte: 1}}
 
-    - name: Allowed S/U Course Credit
+    - name: Allowed S/U Course Limit
       message: |
-        6 credits may be earned on an S/U basis.
+        6 courses may be taken on an S/U basis.
       result:
         from: courses
         claim: record
@@ -140,7 +140,7 @@ result:
           $or:
             - {grade_option: {$eq: s/u}}
             - {course: {$eq: REG 0005}}
-        assert: {sum(credits): {$lte: '6.00'}}
+        assert: {count(courses): {$lte: '6.00'}}
 
     - name: 'First-Year Experience: First-Year Seminar'
       result:
