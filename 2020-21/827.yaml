@@ -66,4 +66,4 @@ requirements:
       limit:
         - at-most: 1 course
           where: {course: {$in: [CSCI 241, CSCI 251]}}      
-      assert: {count(courses): {$gte: 3, at_most: true}}
+      assert: {sum(credits): {$gte: 3, at_most: true}}
