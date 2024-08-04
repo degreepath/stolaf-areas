@@ -74,6 +74,7 @@ requirements:
             - course: BIO 226
             - {course: BIO 226, institution: ENVIRON}
             - course: BIO 261
+            - course: BIO 289
 
   Level III:
     result:
