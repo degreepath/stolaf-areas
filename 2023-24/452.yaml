@@ -58,8 +58,8 @@ requirements:
       from: courses
       where:
         - $and:
-            - subject: {$eq: MUSIC}
-            - level: {$eq: 300}
+          - {subject: {$eq: MUSIC}}
+          - {level: {$eq: 300}}
       all:
         - assert: {sum(credits): {$gte: 1, at_most: true}}
 
