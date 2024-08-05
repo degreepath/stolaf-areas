@@ -34,10 +34,10 @@ requirements:
   Keyboard or Guitar Studies:
     result:
       any:
-        either:
+        - either:
           - proficiency: Keyboard Level II
           - course: {course: MUSIC 161, grade: B-}
-        either: 
+        - either: 
           - proficiency: Keyboard Level II
           - course: {course: MUSIC 162, grade: B-}
         - course: MUSIC 165
