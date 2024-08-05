@@ -1,0 +1,25 @@
+---
+name: Russian Studies
+type: major
+code: '585'
+degree: B.A.
+
+result:
+  all:
+    - course: RUSSN 111
+    - course: RUSSN 112
+    - course: RUSSN 231
+    - course: RUSSN 232
+    - requirement: Electives
+
+requirements:
+  Electives:
+    message: One elective must be numbered 303 or above.
+    result:
+      from: courses
+      where: {attribute: {$eq: russian_studies_elective}}
+      all:
+        - assert: {count(courses): {$gte: 5}}
+        - where: {level: {$gte: 303}}
+          assert: {count(courses): {$gte: 1}}
+
