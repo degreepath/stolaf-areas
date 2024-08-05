@@ -32,14 +32,15 @@ requirements:
         - course: MUSIC 214
 
   Keyboard or Guitar Studies:
+    message: |
+      By successfully completing Keyboard Proficiency Exam Level II, a student is exempt from MUSIC 161 and MUSIC 162
+      
     result:
       any:
-        - either:
-          - proficiency: Keyboard Level II
-          - course: {course: MUSIC 161, grade: B-}
-        - either: 
-          - proficiency: Keyboard Level II
-          - course: {course: MUSIC 162, grade: B-}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 161, grade: B-}
+        - proficiency: Keyboard Level II
+          course: {course: MUSIC 162, grade: B-}
         - course: MUSIC 165
         - course: MUSIC 261
         - course: MUSIC 262
