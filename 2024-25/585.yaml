@@ -19,8 +19,10 @@ requirements:
       from: courses
       where: {attribute: {$eq: russian_studies_elective}}
       all:
-        - assert: {count(courses): {$gte: 5, at_most: true}}
-
-        - where: {level: {$gte: 303}}
+        - where: 
+            $and:
+              - {level: {$eq: 300}}
+              - {course: {$nin: [RUSSN 301, RUSSN 302]}}
           assert: {count(courses): {$gte: 1}}
 
+        - assert: {count(courses): {$gte: 5, at_most: true}}
