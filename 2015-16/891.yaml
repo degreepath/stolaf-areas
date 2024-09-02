@@ -33,7 +33,7 @@ requirements:
       all:
         - either:
           - course: MSCS 164
-          - course: MSCS 264
+          - crsid: '0000032292'
         - crsid: '0000001405'
 
   Level III:
