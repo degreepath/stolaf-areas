@@ -1,0 +1,66 @@
+---
+name: Chinese
+type: major
+code: '180'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core Language
+    - requirement: Upper-Level Language
+    - requirement: Language and Culture
+    - $if: {has-declared-area-code: '150'}
+      $then: {requirement: Double-Majors}    
+
+requirements:
+  Core Language:
+    result:
+      all:
+        - course: CHIN 231
+        - course: CHIN 232
+        - course: CHIN 301
+        - course: CHIN 302
+
+  Upper-Level Language:
+    result:
+      any:
+        - course: CHIN 320
+        - course: CHIN 351
+        - course: CHIN 360
+
+  Language and Culture:
+    message: |
+      One of these courses may be an Independent Study (capstone project) or
+      the Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
+
+    result:
+      from: courses
+      where: {attribute: {$eq: china_elective}}
+      limit:
+        - at_most: 1
+          where: {attribute: {$in: [china_is, china_senior_seminar]}}
+        - at_most: 1
+          where: {level: {$eq: 100}}
+      all:
+        - assert: {count(courses): {$gte: 4}}
+
+        - where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}
+
+  Double-Majors:
+    department-audited: true
+
+    message: |
+      For students double-majoring in Asian Studies and Chinese or Japanese,
+      the following rules apply:
+
+      1. 231 and 232 can count for both the language and area studies majors.
+
+      2. one 300-level course can count for both the language and area studies
+         major.
+
+      3. two level three language courses can count for both the language and
+         area studies major.
+
+      DegreePath prepares automated audits; other audit paths are possible. Please 
+      confer with your advisor and the Asian Studies department chair for clarification.
