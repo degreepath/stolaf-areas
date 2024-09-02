@@ -41,6 +41,7 @@ requirements:
         - course: ENGL 371
         - course: ENGL 372
         - course: ENGL 373
+        - course: ENGL 374
 
   Literary Studies:
     result:
