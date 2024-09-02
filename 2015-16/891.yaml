@@ -34,7 +34,7 @@ requirements:
         - either:
           - course: MSCS 164
           - course: MSCS 264
-        - course: STAT 272
+        - crsid: '0000001405'
 
   Level III:
     result:
