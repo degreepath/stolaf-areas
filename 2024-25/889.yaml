@@ -1,0 +1,59 @@
+---
+name: Statistics and Data Science
+type: major
+code: '889'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Statistics and Data Science Courses
+    - requirement: Mathematics Courses
+    - requirement: Philosophy Courses
+    - requirement: Electives
+
+requirements:
+  Statistics and Data Science Courses:
+    result:
+      all:
+        - crsid: '0000038706' # SDS 164
+        - crsid: '0000001403' # SDS 172
+        - crsid: '0000032292' # SDS 264
+        - crsid: '0000001405' # SDS 272
+        - crsid: '0000031455' # SDS 341
+
+  Mathematics Courses:
+    result:
+      all:
+        - either:
+          - course: MATH 120
+          - course: MATH 119
+        - course: MATH 220
+
+  Philosophy Courses:
+    message: The first offering of PHIL 244 Philosophy of Science (with Data Science Module) that will satisfy the SDS major will be in 2025-26.
+    result:
+      all:
+        - either:
+          - course: PHIL 244
+          - course: PHIL 251
+
+  Electives:
+    result:
+      all:
+        - requirement: Statistics Depth Courses
+        - requirement: Data Science Depth Courses
+        - where: {leve: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}
+
+    requirements:
+      Statistics Depth Courses:
+        result:
+          from: courses
+          where: {attribute: {$eq: stat_stats_depth}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Data Science Depth Courses:
+        result:
+          from: courses
+          where: {attribute: {$eq: stat_data_depth}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
