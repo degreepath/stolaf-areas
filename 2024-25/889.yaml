@@ -42,7 +42,7 @@ requirements:
       all:
         - requirement: Statistics Depth Courses
         - requirement: Data Science Depth Courses
-        - where: {leve: {$eq: 300}}
+        - where: {level: {$eq: 300}}
           assert: {count(courses): {$gte: 1}}
 
     requirements:
