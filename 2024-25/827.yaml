@@ -1,0 +1,67 @@
+---
+name: Engineering Studies
+type: concentration
+code: '827'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Physics
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
+        - at_most: true
+          any:
+            - course: MATH 119
+            - course: MATH 120
+            - ap: AP Calculus I
+            - {ap: AP Calculus I and II, allow_claimed: true}
+            - {course: MATH 126, allow_claimed: true, hidden: true}
+            - {course: MATH 128, allow_claimed: true, hidden: true}
+
+        - at_most: true
+          any:
+            - course: MATH 126
+            - course: MATH 128
+            - {ap: AP Calculus I and II, allow_claimed: true}            
+
+        - course: MATH 220
+        - course: MATH 226
+        - course: MATH 230
+
+        - at_most: true
+          any:
+            - course: CHEM 125
+            - course: CHEM 122
+
+  Physics:
+    result:
+      at_most: true
+      any:
+        - name: Track 1
+          result:
+            all:
+              - course: PHYS 124
+              - course: PHYS 125
+              - at_most: true
+                either:
+                  - course: CSCI 121
+                  - course: CSCI 125
+        - name: Track 2
+          result:
+            all:
+              - course: PHYS 130
+              - course: PHYS 131
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: engr_elective}}
+      limit:
+        - at-most: 1 course
+          where: {course: {$in: [CSCI 221, CSCI 241, CSCI 251]}}      
+      assert: {sum(credits): {$gte: 3, at_most: true}}
