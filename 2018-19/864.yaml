@@ -34,7 +34,7 @@ requirements:
         - at-most: 1
           where:
             course:
-              $in: [STAT 172, STAT 212, STAT 272]
+              $in: [SDS 172, SDS 212, SDS 272]
       assert: {count(courses): {$gte: 2}}
 
   BIO Electives:
