@@ -25,7 +25,7 @@ result:
         where:
           course:
             $in:
-              - STAT 272
+              - SDS 272
               - MSCS 264
 
 requirements:
@@ -185,7 +185,7 @@ requirements:
             - {course: MATH 352, from_claimed: true}
         - both:
             - {course: MATH 262, from_claimed: true}
-            - {course: STAT 322, from_claimed: true}
+            - {course: SDS 322, from_claimed: true}
         - both:
             - {course: MATH 232, from_claimed: true}
             - {course: MATH 332, from_claimed: true}
