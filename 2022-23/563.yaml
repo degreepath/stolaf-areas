@@ -25,10 +25,10 @@ result:
               - {course: ECON 260, grade_option: grade}
               - {course: ECON 263, grade_option: grade}
               - both:
-                  - {course: STAT 272, grade_option: grade}
+                  - {course: SDS 272, grade_option: grade}
                   - {course: ECON 384, grade_option: grade}
               - both:
-                  - {course: STAT 272, grade_option: grade}
+                  - {course: SDS 272, grade_option: grade}
                   - {course: ECON 385, grade_option: grade}
 
     - name: Economic Analysis
