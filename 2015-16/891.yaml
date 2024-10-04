@@ -22,7 +22,7 @@ requirements:
         - course: STAT 110
         - either:
           - course: SDS 172
-          - course: SDS 212
+          - course: STAT 212
         - {course: SDS 214, hidden: true}
         - course: ECON 260
         - course: ECON 263

@@ -32,7 +32,7 @@ requirements:
         - course: STAT 110
         - either:
           - course: SDS 172
-          - course: SDS 212
+          - course: STAT 212
         - course: ECON 260
         - {course: ECON 263, hidden: true}
         - {course: PSCI 220, hidden: true}

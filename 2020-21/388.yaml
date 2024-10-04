@@ -33,6 +33,6 @@ requirements:
         - at-most: 1
           where:
             $or:
-              - course: {$in: [STAT 110, SDS 172, SDS 212, SDS 214]}
+              - course: {$in: [STAT 110, SDS 172, STAT 212, SDS 214]}
               - ap: {$eq: AP Statistics}
       assert: {count(courses): {$gte: 2, at_most: true}}
