@@ -20,7 +20,7 @@ requirements:
       any:
         - course: STAT 110
         - either:
-          - course: SDS 172
+          - crsid: '0000001403' # SDS 172
           - course: STAT 212
         - course: SDS 214
         - course: ECON 260
