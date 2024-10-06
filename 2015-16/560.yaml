@@ -82,7 +82,6 @@ requirements:
         - ap: AP Statistics
         - course: STAT 110
         - any:
-          - course: STAT 172
           - course: SDS 172
           - course: STAT 212
         - course: SDS 214
