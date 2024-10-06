@@ -81,8 +81,9 @@ requirements:
       any:
         - ap: AP Statistics
         - course: STAT 110
-        - either:
-          - crsid: '0000001403' # SDS 172
+        - any:
+          - course: STAT 172
+          - course: SDS 172
           - course: STAT 212
         - course: SDS 214
         - course: ECON 263
