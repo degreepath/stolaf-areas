@@ -25,10 +25,10 @@ result:
               - {course: ECON 260, grade_option: grade}
               - {course: ECON 263, grade_option: grade}
               - both:
-                  - {course: SDS 272, grade_option: grade}
+                  - {crsid: '0000001405', grade_option: grade} # SDS 272
                   - {course: ECON 384, grade_option: grade}
               - both:
-                  - {course: SDS 272, grade_option: grade}
+                  - {crsid: '0000001405', grade_option: grade} # SDS 272
                   - {course: ECON 385, grade_option: grade}
 
     - name: Economic Analysis
