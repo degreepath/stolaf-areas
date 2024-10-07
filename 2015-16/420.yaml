@@ -185,7 +185,7 @@ requirements:
             - {course: MATH 352, from_claimed: true}
         - both:
             - {course: MATH 262, from_claimed: true}
-            - {course: SDS 322, from_claimed: true}
+            - {crsid: '0000001412', from_claimed: true} # SDS 322
         - both:
             - {course: MATH 232, from_claimed: true}
             - {course: MATH 332, from_claimed: true}

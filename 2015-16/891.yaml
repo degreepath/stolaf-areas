@@ -23,7 +23,7 @@ requirements:
         - either:
           - crsid: '0000001403' # SDS 172
           - course: STAT 212
-        - {course: SDS 214, hidden: true}
+        - {course: STAT 214, hidden: true}
         - course: ECON 260
         - course: ECON 263
         - ap: AP Statistics
