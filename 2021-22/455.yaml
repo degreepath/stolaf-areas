@@ -93,19 +93,25 @@ requirements:
         - course: EDUC 355
         - course: EDUC 356
         - course: EDUC 231
-        - course: EDUC 290
+        - at_most: true
+          any:
+            - course: EDUC 290
+            - course: EDUC 295
         - course: EDUC 291
         - course: EDUC 330
-        - crsid: '0000000335'
+        # - crsid: '0000000335' # EDUC 272/372 Counseling/Communications - being waived, not sure if permanent
         - course: EDUC 374
-        - course: EDUC 375
+        - at_most: true
+          any:
+            - course: EDUC 340
+            - course: EDUC 375
         - at_most: true
           any:
             - course: EDUC 378
             - course: EDUC 379
         - course: EDUC 381
         - course: EDUC 382
-        - course: EDUC 385
+        # - course: EDUC 385 # being waived permanently
         - course: EDUC 389
 
   Art, Theater, or Lyric Theater:
