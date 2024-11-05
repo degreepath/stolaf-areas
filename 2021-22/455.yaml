@@ -97,7 +97,10 @@ requirements:
           any:
             - course: EDUC 290
             - course: EDUC 295
-        - course: EDUC 291
+        - at_most: true
+          any:
+            - course: EDUC 291
+            - crsid: '0000038633' # EDUC 330 LAB (different than EDUC 330 on next line)
         - course: EDUC 330
         # - crsid: '0000000335' # EDUC 272/372 Counseling/Communications - being waived, not sure if permanent
         - course: EDUC 374
