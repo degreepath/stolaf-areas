@@ -19,7 +19,7 @@ requirements:
           any:
             - course: KINES 195
             - ap: IB Sports Exercise Health Science
-        - course: KINES 231
+        - crsid: '0000001012' # KINES 231/331
         - course: KINES 250
         - course: KINES 374
         - course: KINES 375
