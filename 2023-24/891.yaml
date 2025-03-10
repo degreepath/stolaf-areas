@@ -31,7 +31,7 @@ requirements:
       all:
         - either:
           - crsid: '0000038706' # MSCS 164 / SDS 164
-          - crsid: '0000032292' # MSCS 264 / SDS 264
+          - course: MSCS 264 # Cannot be crsid: '0000032292' because that was usurped by SDS 264
         - crsid: '0000001405'
 
   Level III:
