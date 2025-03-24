@@ -7,9 +7,9 @@ degree: B.A.
 result:
   count: all
   of:
-    - course: ART 153
-    - course: ART 161
-    - course: ART 350
+    - crsid: '0000027940' # ART/ARTH 153
+    - crsid: '0000000059' # ART/ARTH 161
+    - crsid: '0000000072' # ART/ARTH 350
     - requirement: Studio Art
     - requirement: Electives
     

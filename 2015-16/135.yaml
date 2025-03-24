@@ -15,11 +15,11 @@ result:
 requirements:
   Intro:
     result:
-      course: ART 153
+      crsid: '0000027940' # ART/ARTH 153
 
   Methods:
     result:
-      course: ART 350
+      crsid: '0000000072' # ART/ARTH 350
 
   Studio Art:
     result:
