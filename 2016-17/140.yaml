@@ -19,10 +19,10 @@ requirements:
       all:
         - at_most: true
           either:
-            - course: ART 102
-            - course: ART 106
-        - course: ART 103
-        - course: ART 104
+            - crsid: '0000020054' # ART 102
+            - crsid: '0000019833' # ART 106
+        - crsid: '0000020056' # ART 103
+        - crsid: '0000020055' # ART 104
 
   Areas:
     result:
@@ -91,7 +91,7 @@ requirements:
   Senior Studies in Studio Art:
     result:
       all:
-        - course: ART 343
+        - crsid: '0000000071' # ART 343
 
   Electives:
     result:
