@@ -35,6 +35,7 @@ requirements:
   Value Theory:
     result:
       any:
+        - course: PHIL 225
         - course: PHIL 243
         - course: PHIL 250
         - course: PHIL 251
