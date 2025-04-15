@@ -733,7 +733,7 @@ For example, you could do this to limit the student to only take one non-Philoso
 
 ```yaml
 given: these courses
-courses: [PHIL 118, PHIL 119, PHIL 120, GCON 218, REL 147]
+courses: [PHIL 118, PHIL 119, PHIL 120, GCON 218, REL 147, BIO 121]
 limit:
   - where: {department: '! PHIL'}
     at_most: 1
