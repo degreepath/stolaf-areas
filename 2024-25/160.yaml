@@ -84,7 +84,7 @@ requirements:
           - credits: {$eq: 1}
           - level: {$eq: 300}
           - subject: {$eq: BIO}
-          - {course: {$nin: [BIO 396, BIO 398]}}
+          - {course: {$nin: [BIO 394, BIO 395, BIO 396, BIO 398]}}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
