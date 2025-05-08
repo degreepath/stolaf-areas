@@ -33,8 +33,8 @@ requirements:
   Capstone Project:
     result:
       all:
-        - {courseid: '0000000689', optional: true} # IS/IM 391
-        - {courseid: '0000000690'} #ID/IM 392
+        - {crsid: '0000000689', optional: true} # IS/IM 391
+        - {crsid: '0000000690'} #ID/IM 392
 
   Web Portfolio:
     department_audited: true
