@@ -172,7 +172,9 @@ requirements:
             - {course: MATH 230, from_claimed: true}
             - {course: MATH 330, from_claimed: true}
         - both:
-            - {course: MATH 232, from_claimed: true}
+            - either:
+              - {course: MATH 232, from_claimed: true}
+              - {course: MATH 234, from_claimed: true}
             - {course: MATH 364, from_claimed: true}
         - both:
             - {course: MATH 244, from_claimed: true}
@@ -187,5 +189,7 @@ requirements:
             - {course: MATH 262, from_claimed: true}
             - {crsid: '0000001412', from_claimed: true} # SDS 322
         - both:
-            - {course: MATH 232, from_claimed: true}
+            - either:
+              - {course: MATH 232, from_claimed: true}
+              - {course: MATH 234, from_claimed: true}
             - {course: MATH 332, from_claimed: true}
