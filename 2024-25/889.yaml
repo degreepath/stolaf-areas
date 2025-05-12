@@ -25,8 +25,8 @@ requirements:
     result:
       all:
         - any:
-          - course: MATH 120
           - course: MATH 119
+          - course: MATH 120
           - course: MATH 126
           - course: MATH 128
           - ap: AP Calculus I
