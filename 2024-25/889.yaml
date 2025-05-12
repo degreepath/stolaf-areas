@@ -24,9 +24,13 @@ requirements:
   Mathematics Courses:
     result:
       all:
-        - either:
+        - any:
           - course: MATH 120
           - course: MATH 119
+          - course: MATH 126
+          - course: MATH 128
+          - ap: AP Calculus I
+          - ap: AP Calculus I and II
         - course: MATH 220
 
   Philosophy Courses:
