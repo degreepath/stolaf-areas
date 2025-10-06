@@ -87,7 +87,7 @@ requirements:
 
   Other Required Electives:
     message: |
-      At least 2 credits from 200- or 300-level music electives that can
+      At least 3 credits from 200- or 300-level music electives that can
       include up to 1.0 credit of 100-level secondary lessons
 
     result:
@@ -108,7 +108,7 @@ requirements:
       all:
         - message: >
             At least 3 additional credits of MUSIC electives
-          assert: {sum(credits): {$gte: 2, at_most: true}}
+          assert: {sum(credits): {$gte: 3, at_most: true}}
 
         - message: At most 1.0 credits of 100-level secondary lessons
           where: {subject: {$eq: MUSPF}}
