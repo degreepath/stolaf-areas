@@ -57,8 +57,9 @@ requirements:
 
   Other Required Electives:
     message: |
-      At least 3 credits from 200- or 300-level music electives that can
+      At least 3* credits from 200- or 300-level music electives that can
       include up to 1.0 credit of additional 100-level secondary lessons
+      (*: may change depending on your emphasis)
 
     result:
       from: courses
@@ -78,7 +79,7 @@ requirements:
 
       all:
         - message: >
-            At least 2* credits of MUSIC electives (*: may change
+            At least 3* credits of MUSIC electives (*: may change
             depending on your emphasis)
           assert:
             sum(credits):
