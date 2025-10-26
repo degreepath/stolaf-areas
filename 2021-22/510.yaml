@@ -26,11 +26,9 @@ requirements:
 
   Metaphysics and Epistemology:
     result:
-      any:
-        - course: PHIL 231
-        - course: PHIL 241
-        - course: PHIL 244
-        - course: PHIL 246
+      from: courses
+      where: {attributes: {$eq: phil_metaphysics}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Value Theory:
     result:
