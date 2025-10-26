@@ -34,20 +34,9 @@ requirements:
 
   Value Theory:
     result:
-      any:
-        - course: PHIL 225
-        - course: PHIL 243
-        - course: PHIL 250
-        - course: PHIL 251
-        - course: PHIL 252
-        - course: PHIL 253
-        - course: PHIL 254
-        - course: PHIL 256
-        - course: PHIL 257
-        - course: PHIL 258
-        - course: PHIL 259
-        - course: PHIL 260
-        - course: PHIL 278
+      from: courses
+      where: {attributes: {$eq: phil_value_theory}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   History of Western Philosophy:
     result:
@@ -57,10 +46,9 @@ requirements:
 
   Expanding Perspectives:
     result:
-      any:
-        - course: PHIL 245
-        - course: PHIL 249
-        - course: PHIL 255
+      from: courses
+      where: {attributes: {$eq: phil_expanding_perspectives}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
 
   Level III Seminars:
     result:
