@@ -1,0 +1,80 @@
+---
+name: Education
+type: major
+code: '240'
+degree: B.A.
+
+result:
+  all:
+    - crsid: '0000000309'  # EDUC 231
+    - course: EDUC 295
+    - crsid: '0000000321'  # EDUC 330
+    - course: EDUC 330.L
+    - course: EDUC 340
+    - at_most: true
+      either:
+        - crsid: '0000022779'  # EDUC 374
+        - course: EDUC 321
+    - at_most: true
+      either:
+        - crsid: '0000000338'  # EDUC 378
+        - crsid: '0000000339'  # EDUC 379
+    - crsid: '0000000340'  # EDUC 381
+    - course: EDUC 382
+    - crsid: '0000000343'  # EDUC 389
+
+    - name: Special Methods
+      message: |
+        EDUC 3XX: Special Methods (varies by content area).
+        1 credit + 20 Field Experience hours.
+      result:
+        all:
+          - $if: {has-declared-area-code: '140'}
+            $then: {course: EDUC 341}
+
+          - $if: {has-declared-area-code: '250'}
+            $then: {course: EDUC 345}
+
+          - $if: {has-declared-area-code: '420'}
+            $then: {course: EDUC 350}
+
+          - $if:
+              $or:
+                - {has-declared-area-code: '160'}
+                - {has-declared-area-code: '170'}
+                - {has-declared-area-code: '540'}
+            $then: {course: EDUC 364}
+
+          - $if: {has-declared-area-code: '640'}
+            $then: {course: EDUC 367}
+
+          - $if:
+              $or:
+                - {has-declared-area-code: '280'}
+                - {has-declared-area-code: '310'}
+                - {has-declared-area-code: '620'}
+            $then: {course: EDUC 352}
+
+          - $if: {has-declared-area-code: '400'}
+            $then: {course: EDUC 349}
+
+          - $if:
+              $not:
+                $or:
+                  - {has-declared-area-code: '140'}
+                  - {has-declared-area-code: '250'}
+                  - {has-declared-area-code: '420'}
+                  - {has-declared-area-code: '160'}
+                  - {has-declared-area-code: '170'}
+                  - {has-declared-area-code: '540'}
+                  - {has-declared-area-code: '640'}
+                  - {has-declared-area-code: '280'}
+                  - {has-declared-area-code: '310'}
+                  - {has-declared-area-code: '620'}
+                  - {has-declared-area-code: '400'}
+            $then:
+              name: Content Area Major is required
+              department_audited: true
+              message:
+                One of the content area majors is required.
+                
