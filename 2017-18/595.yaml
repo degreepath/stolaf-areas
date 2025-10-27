@@ -75,5 +75,5 @@ requirements:
           to discuss approving that course as well.
         result:
           from: courses
-          where: {attribute: {$eq: ss_multicultural_studies}}
+          where: {attribute: {$eq: ss_race_ethnic_studies}}
           assert: {count(courses): {$gte: 1}}
