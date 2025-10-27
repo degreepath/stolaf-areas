@@ -39,7 +39,3 @@ requirements:
               - is_stolaf: {$eq: true}
           assert: {count(courses): {$gte: 2}}
           message: Two 300-level courses
-
-        - where: {level: {$eq: 200}}
-          assert: {count(courses): {$gte: 3}}
-          message: Three additional Spanish electives above 250 or 251
