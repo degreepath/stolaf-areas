@@ -1,0 +1,78 @@
+---
+name: Social Studies Education
+type: major
+code: '595'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Prescribed Courses
+    - requirement: Electives
+
+  audit:
+    all:
+      - where: {grade_option: {$eq: s/u}}
+        assert: {count(courses): {$lte: 1}}
+
+      - where: {is_stolaf: {$eq: false}}
+        assert: {count(courses): {$lte: 2}}
+
+requirements:
+  Prescribed Courses:
+    result:
+      all:
+        - any:
+            - course: HIST 191
+            - course: HIST 195
+            - both:
+                - course: GCON 217
+                - course: GCON 218
+        - course: HIST 199
+        - requirement: Level 2 Non-Western History Course
+        - course: ECON 121
+        - course: ID 234
+        - course: PSCI 111
+        - course: PSYCH 125
+        - either:
+            - course: SOAN 128
+            - course: SOAN 264
+        - either:
+            - course: EDUC 290
+            - course: EDUC 295
+        - course: EDUC 365
+    
+    requirements:
+      Level 2 Non-Western History Course:
+        result:
+          from: courses
+          where: {attribute: {$eq: history_region_nonwesternworld}}
+          assert: {count(courses): {$gte: 1}}
+
+  Electives:
+    result:
+      all:
+        - requirement: Critical Global/Environmental Studies
+        - requirement: Race and Ethnic Studies
+
+    requirements:
+      Critical Global/Environmental Studies:
+        message: |
+          The following courses have been pre-approved for this requirement;
+          however, if you feel that you have taken a course that also covers
+          critical global or environmental issues extensively, please chat with
+          the program chair to discuss approving that course as well.
+        result:
+          from: courses
+          where: {attribute: {$eq: ss_critical_studies}}
+          assert: {count(courses): {$gte: 1}}
+
+      Race and Ethnic Studies:
+        message: |
+          The following courses have been pre-approved for this requirement;
+          however, if you feel that you have taken a course that also covers
+          race and ethnic topics extensively, please chat with the program chair
+          to discuss approving that course as well.
+        result:
+          from: courses
+          where: {attribute: {$eq: ss_race_ethnic_studies}}
+          assert: {count(courses): {$gte: 1}}
