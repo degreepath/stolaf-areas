@@ -68,9 +68,9 @@ requirements:
           assert: {count(courses): {$gte: 1, at_most: true}}
 
       Ecology:
+        message: BIO 226 is offered only through the Environmental Science in Australia semester
         result:
           at_most: true
-          message: BIO 226 is offered only through the Environmental Science in Australia semester
           any:
             - {course: BIO 226, institution: ENVIRON}
             - course: BIO 261
