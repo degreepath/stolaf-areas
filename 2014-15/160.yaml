@@ -76,10 +76,10 @@ requirements:
             - course: BIO 275
 
       Ecology:
+        message: BIO 226 is offered only through the Environmental Science in Australia semester
         result:
           at_most: true
           any:
-            - course: BIO 226
             - {course: BIO 226, institution: ENVIRON}
             - course: BIO 261
 
