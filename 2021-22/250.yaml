@@ -69,7 +69,7 @@ requirements:
     result:
       both:
         - from: courses
-          where: {course: {$in: [ENGL 330, ENGL 340, ENGL 345, ENGL 347, ENGL 360, ENGL 380, ENGL 391, ENGL 392, ENGL 395]}}
+          where: {course: {$in: [ENGL 330, ENGL 340, ENGL 345, ENGL 347, ENGL 360, ENGL 380, ENGL 391, ENGL 392, ENGL 395, ENGL 399]}}
           allow_claimed: true
           assert: {count(courses): {$gte: 1}}
 
