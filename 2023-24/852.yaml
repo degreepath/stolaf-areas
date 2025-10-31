@@ -26,6 +26,7 @@ requirements:
       any:
         - course: HIST 126
         - course: HIST 193
+        - course: LAMST 120
         - course: PSCI 257
         - course: PSCI 264
         - course: SOAN 237
