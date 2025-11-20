@@ -16,7 +16,9 @@ requirements:
     result:
       all:
         - crsid: '0000038706' # SDS 164
-        - crsid: '0000001403' # SDS 172
+        - either:
+          - crsid: '0000001403' # SDS 172
+          - ap: AP Statistics
         - crsid: '0000032292' # SDS 264
         - crsid: '0000001405' # SDS 272
         - crsid: '0000031455' # SDS 341
