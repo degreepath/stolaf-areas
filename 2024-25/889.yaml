@@ -51,7 +51,7 @@ requirements:
         where: 
           $and:
             - {level: {$eq: 300}}
-            - (subject: {$eq: SDS})
+            - {subject: {$eq: SDS}}
         assert: {count(courses): {$gte: 1}}
 
     requirements:
