@@ -48,7 +48,10 @@ requirements:
         - requirement: Data Science Depth Courses
 
       audit:
-        where: {level: {$eq: 300}}
+        where: 
+          $and:
+            - {level: {$eq: 300}}
+            - (subject: {$eq: SDS})
         assert: {count(courses): {$gte: 1}}
 
     requirements:
