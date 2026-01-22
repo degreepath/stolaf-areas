@@ -67,6 +67,7 @@ requirements:
   Advanced Course:
     result:
       any:
+        - course: NORST 300
         - course: NORST 396
         - course: NORW 396
         - course: NORST 398
