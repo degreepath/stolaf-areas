@@ -125,6 +125,8 @@ requirements:
         $or:
           - attribute: {$eq: music_ed_bm_other_finearts}
           - subject: {$eq: ART}
+          - subject: {$eq: ARTH}
+          - subject: {$eq: ARTS}
           - subject: {$eq: THEAT}
       assert: {sum(credits): {$gte: 1}}
 
