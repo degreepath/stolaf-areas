@@ -15,7 +15,6 @@ result:
     - requirement: Official Ensemble Participation
     - requirement: Required Performances
     - requirement: Required Recital Attendance
-    - requirement: Capstone
 
 limit:
   - at-most: 0
@@ -52,6 +51,7 @@ requirements:
         - course: MUSIC 141
         - course: MUSIC 237
         - course: MUSIC 245
+        - course: MUSIC 349
 
   Upper-Level Elective:
     message: |
@@ -125,9 +125,6 @@ requirements:
       from: music recitals
       assert: {count(recitals): {$gte: 60}}
 
-  Capstone:
-    result:
-      all:
-        - course: MUSIC 349
+       
 
 
