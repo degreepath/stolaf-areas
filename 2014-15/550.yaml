@@ -92,7 +92,7 @@ requirements:
   Optional Editorial Lab:
     result:
       from: courses
-      where: {course: {$eq: PSCI 250}}
+      where: {course: {$in: [PSCI 250]}}
       assert: {count(courses): {$gte: 0}}      
 
   Optional Electives:
