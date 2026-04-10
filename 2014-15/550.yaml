@@ -91,7 +91,9 @@ requirements:
 
   Optional Editorial Lab:
     result:
-      course: PSCI 250
+      from: courses
+      where: {course: {$eq: PSCI 250}}
+      assert: {count(courses): {$gte: 0}}      
 
   Optional Electives:
     in_gpa: false
