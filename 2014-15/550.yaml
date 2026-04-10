@@ -92,8 +92,6 @@ requirements:
   Optional Editorial Lab:
     result:
       course: PSCI 250
-      all:
-        - assert: {count(courses): {$gte: 0, treat_in_progress_as_pass: true}}
 
   Optional Electives:
     in_gpa: false
