@@ -17,6 +17,7 @@ result:
     - requirement: International Relations
     - requirement: Political Theory
     - requirement: Level III Electives
+    - recommended: Optional Editorial Lab
     - requirement: Optional Electives
 
   audit:
@@ -87,6 +88,11 @@ requirements:
                 - psci_level_3
           - {level: {$eq: 300}}
       assert: {count(courses): {$gte: 2}}
+
+  Optional Editorial Lab:
+    result:
+      course: PSCI 250
+      assert: {count(courses): {$gte: 0, treat_in_progress_as_pass: true}}
 
   Optional Electives:
     in_gpa: false
