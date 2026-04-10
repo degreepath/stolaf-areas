@@ -39,7 +39,8 @@ requirements:
 
   Computer Science Course:
     result:
-      - course: CSCI 121
+      all:
+        - course: CSCI 121
 
   Philosophy Courses:
     message: The first offering of PHIL 244 Philosophy of Science (with Data Science Module) that will satisfy the SDS major will be in 2025-26.
