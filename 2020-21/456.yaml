@@ -69,9 +69,7 @@ requirements:
           - $and:
               - subject: {$eq: MUSPF}
               - level: {$eq: 100}
-              - $if: {$primary-performing-medium: {$eq: 'Cello'}}
-                $then: {name: {$nin: ['Cello','Violoncello']}}
-                $else: {name: {$neq: $primary-performing-medium}}
+              - name: {$neq: $primary-performing-medium}
 
       all:
         - message: >
