@@ -39,7 +39,7 @@ requirements:
     result:
       from: courses
       where:
-        - attribute: {$eq: music_upper_musicology}}
+        - attribute: {$eq: music_upper_musicology}
           assert: {sum(credits): {$gte: 1, at_most: true}}
 
   Education:
