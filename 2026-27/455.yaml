@@ -38,9 +38,8 @@ requirements:
   Upper-Level Musicology Elective:
     result:
       from: courses
-      where:
-        - attribute: {$eq: music_upper_musicology}
-          assert: {sum(credits): {$gte: 1, at_most: true}}
+      where: {attribute: {$eq: music_upper_musicology}}
+      assert: {sum(credits): {$gte: 1, at_most: true}}
 
   Education:
     result:
