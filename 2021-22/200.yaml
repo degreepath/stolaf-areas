@@ -29,6 +29,7 @@ requirements:
             - course: CSCI 121
             - course: CSCI 125
             - course: PHYS 130
+            - ap: AP Computer Science A
 
   Required Mathematics:
     result:
