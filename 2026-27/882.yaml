@@ -1,0 +1,27 @@
+---
+name: Neuroscience
+type: major
+code: '882'
+degree: B.A.
+
+result:
+  all:
+    - requirement: Core Courses
+    - requirement: Electives
+
+requirements:
+  Core Courses:
+    result:
+      all:
+        - course: NEURO 125
+        - course: NEURO 210
+        - course: NEURO 251
+        - course: NEURO 252
+        - course: NEURO 300
+        - course: NEURO 391
+
+  Electives:
+    result:
+      from: courses
+      where: {attributes: {$eq: neuro_electives}}
+      assert: {count(courses): {$gte: 3, at_most: true}}
