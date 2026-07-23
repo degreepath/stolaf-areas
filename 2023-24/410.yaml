@@ -19,7 +19,7 @@ result:
         assert: {count(courses): {$lte: 1}}
       - where: {attribute: {$eq: lamst_latinos_in_usa}}
         assert: {count(courses): {$lte: 3}}
-      - assert: {count(subjects): {$gte: 3}}
+      - assert: {count(subjects): {$gte: 4}}
 
 requirements:
   Core:
