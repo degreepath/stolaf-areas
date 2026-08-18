@@ -1,0 +1,50 @@
+---
+name: Art History
+type: major
+code: '135'
+degree: B.A.
+
+result:
+  count: all
+  of:
+    - crsid: '0000027940' # ART/ARTH 153
+    - crsid: '0000000059' # ART/ARTH 161
+    - crsid: '0000000072' # ART/ARTH 350
+    - requirement: Studio Art
+    - requirement: Electives
+    
+
+requirements:
+  Studio Art:
+    result:
+      from: courses
+      where: {attribute: {$eq: arth_studio_art}}
+      assert: {count(courses): {$gte: 1, at_most: true}}
+
+  Electives:
+    message:
+      Five elective courses, of which two must be Survey courses and two must be Topics courses.
+
+    result:
+      from: courses
+      where: {attribute: {$in: [arth_topics, arth_survey]}}
+      all:
+        - assert: {count(courses): {$gte: 5}}
+
+        - where:
+            attribute: {$eq: arth_topics}
+          assert: {count(courses): {$gte: 2}}
+
+        - where:
+            attribute: {$eq: arth_survey}
+          assert: {count(courses): {$gte: 2}}
+
+enphases:
+  136:
+    name: Cultural Heritage and Community Engagement
+
+    result:
+      from: courses
+      allow_claimed: true
+      where: {attributes: {$eq: arth_emph_heritage_community}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
