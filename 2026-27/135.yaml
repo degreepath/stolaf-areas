@@ -45,6 +45,13 @@ enphases:
 
     result:
       from: courses
-      allow_claimed: true
       where: {attributes: {$eq: arth_emph_heritage_community}}
       assert: {count(courses): {$gte: 4, at_most: true}}
+
+  138:
+    name: Restoration and Preservation
+
+    result:
+      from: courses
+      where: {attribute: {$eq: arth_emph_restoration_preservation}}
+      assert: {count(courses): {gte: 4, at_most: true}}
