@@ -80,4 +80,4 @@ emphases:
         result:
           from: courses
           where: {attribute: {$eq: arth_emph_restoration_preservation}}
-          assert: {count(courses): {gte: 4, at_most: true}}
+          assert: {count(courses): {$gte: 4, at_most: true}}
