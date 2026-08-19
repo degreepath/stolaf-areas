@@ -44,22 +44,40 @@ emphases:
     name: Cultural Heritage and Community Engagement
 
     result:
-      from: courses
-      where: {attributes: {$eq: arth_emph_heritage_community}}
-      assert: {count(courses): {$gte: 4, at_most: true}}
+      all:
+        - requirement: Cultural Heritage and Community Engagement
+
+    requirements:
+      Cultural Heritage and Community Engagement:
+        result:
+          from: courses
+          where: {attributes: {$eq: arth_emph_heritage_community}}
+          assert: {count(courses): {$gte: 4, at_most: true}}
 
   137:
     name: Curatorial and Collection Practices
 
     result:
-      from: courses
-      where: {attributes: {$eq: arth_emph_curatorial_collection}}
-      assert: {count(courses): {$gte: 4, at_most: true}}
+      all:
+        - requirement: Curatorial and Collection Practices
+
+    requirements:
+      Curatorial and Collection Practices:
+        result:
+          from: courses
+          where: {attributes: {$eq: arth_emph_curatorial_collection}}
+          assert: {count(courses): {$gte: 4, at_most: true}}
 
   138:
     name: Restoration and Preservation
 
     result:
-      from: courses
-      where: {attribute: {$eq: arth_emph_restoration_preservation}}
-      assert: {count(courses): {gte: 4, at_most: true}}
+      all:
+        - requirement: Restoration and Preservation
+
+    requirements:
+      Restoration and Preservation:
+        result:
+          from: courses
+          where: {attribute: {$eq: arth_emph_restoration_preservation}}
+          assert: {count(courses): {gte: 4, at_most: true}}
