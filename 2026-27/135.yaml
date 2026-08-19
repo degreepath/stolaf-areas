@@ -39,13 +39,21 @@ requirements:
             attribute: {$eq: arth_survey}
           assert: {count(courses): {$gte: 2}}
 
-enphases:
+emphases:
   136:
     name: Cultural Heritage and Community Engagement
 
     result:
       from: courses
       where: {attributes: {$eq: arth_emph_heritage_community}}
+      assert: {count(courses): {$gte: 4, at_most: true}}
+
+  137:
+    name: Curatorial and Collection Practices
+
+    result:
+      from: courses
+      where: {attributes: {$eq: arth_emph_curatorial_collection}}
       assert: {count(courses): {$gte: 4, at_most: true}}
 
   138:
