@@ -55,8 +55,10 @@ requirements:
         - course: NURS 211
         - course: NURS 212
         - course: NURS 310
+        - either:
+            - course: NURS 311
+            - course: NURS 313
         - course: NURS 312
-        - course: NURS 313
         - course: NURS 314
         - course: NURS 315
         - course: NURS 316
