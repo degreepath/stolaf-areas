@@ -432,3 +432,93 @@ emphases:
               $in:
                 - Collab Keyboard Performance
           assert: {count(performances): {$gte: 2}}
+
+  717:
+    name: Voice with Musical Theater
+
+    result:
+      all:
+        - requirement: Core Courses
+        - requirement: Music Elective
+        - requirement: Musical Theater Courses
+        - requirement: Theater Elective
+        - requirement: Dance Electives
+        - requirement: Productions
+        - requirement: World Language
+
+    requirements:
+      Core Courses:
+        result:
+          all:
+            - course: MUSIC 148
+            - course: MUSIC 161
+            - course: MUSIC 162
+            - course: MUSIC 248
+            - course: MUSIC 261
+            - course: MUSIC 262
+            - course: MUSIC 263
+            - course: MUSIC 291
+            - course: MUSIC 292
+
+      Music Elective:
+        result:
+          at_most: true
+          any:
+            - course: MUSIC 225
+            - course: MUSIC 265
+            - course: MUSIC 266
+            - course: MUSIC 267
+            - course: MUSIC 268
+            - course: MUSIC 269
+
+      Musical Theater Courses:
+        result:
+          all:
+            - course: THEAT 131
+            - either:
+              - course: THEAT 115
+              - course: THEAT 130
+            - course: THEAT 132
+            - course: THEAT 272
+      
+      Theater Elective:
+        result:
+          from: courses
+          where: {attributes: {$eq: music_emph_theater_elective}}
+          assert: {count(courses): {$gte: 1, at_most: true}}
+
+      Dance Electives:
+        result:
+          from: courses
+          where: {attributes: {$eq: music_emph_dance_electives}}
+          assert: {count(courses): {$gte: 3, at_most: true}}
+
+      Productions:
+        department-audited: true
+        message:
+          "At least 3. Can be taken for credit or as 0 credit. The following can count with approval:
+          Theater Department Productions, Lyric Theater productions, Musical Theater Lab productions, 
+          St. Olaf Stock productions."
+
+      World Language:
+        message:
+          Depending on placement, incoming students must complete at least one course and a 
+          maximum of two world language courses at St. Olaf.
+
+        result:
+          from: courses
+          where:
+            attribute:
+              $in:
+                - bm_fol_chin
+                - bm_fol_fren
+                - bm_fol_germ
+                - bm_fol_greek
+                - bm_fol_japan
+                - bm_fol_latin
+                - bm_fol_norw
+                - bm_fol_russn
+                - bm_fol_span
+                - bm_fol_other
+          all:
+            - assert: {count(courses): {$gte: 1, at_most: true}}
