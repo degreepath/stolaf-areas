@@ -84,7 +84,7 @@ requirements:
           - attribute: {$eq: bio_elective}
           - credits: {$eq: 1}
           - level: {$eq: 300}
-          - subject: {$eq: BIO}
+          - subject: {$in: [BIO,BI/ES]}
       assert: {count(courses): {$gte: 1, at_most: true}}
 
   Electives:
