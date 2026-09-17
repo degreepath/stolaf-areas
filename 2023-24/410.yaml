@@ -24,6 +24,7 @@ result:
 requirements:
   Core:
     result:
+      at_most: true
       any:
         - course: HIST 126
         - course: HIST 193
@@ -31,7 +32,6 @@ requirements:
         - course: PSCI 257
         - course: PSCI 264
         - course: SOAN 237
-        - at_most: true
 
   Spanish:
     result:
