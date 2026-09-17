@@ -31,6 +31,7 @@ requirements:
         - course: PSCI 257
         - course: PSCI 264
         - course: SOAN 237
+        - at_most: true
 
   Spanish:
     result:
